@@ -28,6 +28,16 @@ os.makedirs(config.TERMINOLOGY_DB_PATH, exist_ok=True)
 def index():
     return render_template('index.html')
 
+@app.route('/terminology')
+def terminology_management():
+    """术语库管理页面"""
+    return render_template('terminology.html')
+
+@app.route('/vector-db')
+def vector_db_management():
+    """翻译记忆库管理页面"""
+    return render_template('vector_db.html')
+
 @app.route('/api/translate', methods=['POST'])
 def translate():
     """处理翻译请求"""
@@ -137,6 +147,63 @@ def export_terminology():
     except Exception as e:
         return jsonify({'error': str(e)}), 500
 
+@app.route('/api/terminology/list', methods=['GET'])
+def list_terminology():
+    """获取术语库列表"""
+    try:
+        page = int(request.args.get('page', 1))
+        per_page = int(request.args.get('per_page', 50))
+        search = request.args.get('search', '')
+        
+        result = terminology_service.list_terms(page, per_page, search)
+        return jsonify(result)
+    
+    except Exception as e:
+        return jsonify({'error': str(e)}), 500
+
+@app.route('/api/terminology/delete', methods=['DELETE'])
+def delete_terminology():
+    """删除术语"""
+    try:
+        data = request.json
+        term = data.get('term', '')
+        
+        if not term:
+            return jsonify({'error': '请提供术语名称'}), 400
+        
+        result = terminology_service.delete_term(term)
+        return jsonify(result)
+    
+    except Exception as e:
+        return jsonify({'error': str(e)}), 500
+
+@app.route('/api/terminology/update', methods=['PUT'])
+def update_terminology():
+    """更新术语"""
+    try:
+        data = request.json
+        term = data.get('term', '')
+        translations = data.get('translations', {})
+        
+        if not term:
+            return jsonify({'error': '请提供术语名称'}), 400
+        
+        result = terminology_service.update_term(term, translations)
+        return jsonify(result)
+    
+    except Exception as e:
+        return jsonify({'error': str(e)}), 500
+
+@app.route('/api/terminology/stats', methods=['GET'])
+def get_terminology_stats():
+    """获取术语库统计信息"""
+    try:
+        stats = terminology_service.get_statistics()
+        return jsonify(stats)
+    
+    except Exception as e:
+        return jsonify({'error': str(e)}), 500
+
 @app.route('/api/vector-db/add', methods=['POST'])
 def add_to_vector_db():
     """添加翻译对到向量数据库"""
@@ -160,6 +227,92 @@ def export_vector_db():
         filepath = vector_db_service.export_translation_memory(format_type)
         
         return send_file(filepath, as_attachment=True)
+    
+    except Exception as e:
+        return jsonify({'error': str(e)}), 500
+
+@app.route('/api/vector-db/list', methods=['GET'])
+def list_vector_db():
+    """获取翻译记忆库列表"""
+    try:
+        page = int(request.args.get('page', 1))
+        per_page = int(request.args.get('per_page', 50))
+        search = request.args.get('search', '')
+        
+        result = vector_db_service.list_translations(page, per_page, search)
+        return jsonify(result)
+    
+    except Exception as e:
+        return jsonify({'error': str(e)}), 500
+
+@app.route('/api/vector-db/delete', methods=['DELETE'])
+def delete_vector_db_item():
+    """删除翻译记忆库条目"""
+    try:
+        data = request.json
+        index = data.get('index', -1)
+        
+        if index < 0:
+            return jsonify({'error': '请提供有效的索引'}), 400
+        
+        result = vector_db_service.delete_translation(index)
+        return jsonify(result)
+    
+    except Exception as e:
+        return jsonify({'error': str(e)}), 500
+
+@app.route('/api/vector-db/search', methods=['POST'])
+def search_vector_db():
+    """搜索相似翻译"""
+    try:
+        data = request.json
+        query = data.get('query', '')
+        k = data.get('k', 10)
+        
+        if not query:
+            return jsonify({'error': '请提供搜索查询'}), 400
+        
+        result = vector_db_service.search_similar_translations(query, k)
+        return jsonify(result)
+    
+    except Exception as e:
+        return jsonify({'error': str(e)}), 500
+
+@app.route('/api/vector-db/import', methods=['POST'])
+def import_vector_db():
+    """导入翻译记忆库"""
+    try:
+        if 'file' not in request.files:
+            return jsonify({'error': '没有文件'}), 400
+        
+        file = request.files['file']
+        if file.filename == '':
+            return jsonify({'error': '没有选择文件'}), 400
+        
+        filepath = file_handler.save_uploaded_file(file)
+        result = vector_db_service.import_translation_memory(filepath, 'tmx')
+        
+        return jsonify(result)
+    
+    except Exception as e:
+        return jsonify({'error': str(e)}), 500
+
+@app.route('/api/vector-db/stats', methods=['GET'])
+def get_vector_db_stats():
+    """获取翻译记忆库统计信息"""
+    try:
+        stats = vector_db_service.get_statistics()
+        return jsonify(stats)
+    
+    except Exception as e:
+        return jsonify({'error': str(e)}), 500
+
+@app.route('/api/vector-db/clear', methods=['DELETE'])
+def clear_vector_db():
+    """清空翻译记忆库"""
+    try:
+        result = vector_db_service.clear_all()
+        return jsonify(result)
     
     except Exception as e:
         return jsonify({'error': str(e)}), 500

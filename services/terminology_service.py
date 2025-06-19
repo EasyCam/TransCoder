@@ -323,4 +323,107 @@ class TerminologyService:
         }
         
         lang_lower = lang.lower()
-        return lang_map.get(lang_lower, lang_lower[:2]) 
+        return lang_map.get(lang_lower, lang_lower[:2])
+    
+    def list_terms(self, page: int = 1, per_page: int = 50, search: str = '') -> Dict[str, Any]:
+        """分页列出术语"""
+        try:
+            # 过滤术语
+            filtered_terms = {}
+            search_lower = search.lower()
+            
+            for term, translations in self.terminology.items():
+                if not search or search_lower in term or any(search_lower in t.lower() for t in translations.values()):
+                    filtered_terms[term] = translations
+            
+            # 分页
+            total = len(filtered_terms)
+            start = (page - 1) * per_page
+            end = start + per_page
+            
+            terms_list = list(filtered_terms.items())[start:end]
+            
+            return {
+                'success': True,
+                'terms': [{'term': term, 'translations': translations} for term, translations in terms_list],
+                'pagination': {
+                    'page': page,
+                    'per_page': per_page,
+                    'total': total,
+                    'pages': (total + per_page - 1) // per_page
+                }
+            }
+            
+        except Exception as e:
+            return {
+                'success': False,
+                'error': str(e)
+            }
+    
+    def delete_term(self, term: str) -> Dict[str, Any]:
+        """删除术语"""
+        try:
+            term_lower = term.lower()
+            if term_lower in self.terminology:
+                del self.terminology[term_lower]
+                self._save_terminology()
+                return {
+                    'success': True,
+                    'message': f'术语 "{term}" 已删除',
+                    'total_terms': len(self.terminology)
+                }
+            else:
+                return {
+                    'success': False,
+                    'error': f'术语 "{term}" 不存在'
+                }
+                
+        except Exception as e:
+            return {
+                'success': False,
+                'error': str(e)
+            }
+    
+    def update_term(self, term: str, translations: Dict[str, str]) -> Dict[str, Any]:
+        """更新术语"""
+        try:
+            term_lower = term.lower()
+            if term_lower in self.terminology:
+                self.terminology[term_lower] = translations
+                self._save_terminology()
+                return {
+                    'success': True,
+                    'message': f'术语 "{term}" 已更新'
+                }
+            else:
+                return {
+                    'success': False,
+                    'error': f'术语 "{term}" 不存在'
+                }
+                
+        except Exception as e:
+            return {
+                'success': False,
+                'error': str(e)
+            }
+    
+    def get_statistics(self) -> Dict[str, Any]:
+        """获取术语库统计信息"""
+        try:
+            total_terms = len(self.terminology)
+            language_counts = {}
+            
+            for translations in self.terminology.values():
+                for lang in translations.keys():
+                    language_counts[lang] = language_counts.get(lang, 0) + 1
+            
+            return {
+                'total_terms': total_terms,
+                'language_counts': language_counts,
+                'most_common_languages': sorted(language_counts.items(), key=lambda x: x[1], reverse=True)[:5]
+            }
+            
+        except Exception as e:
+            return {
+                'error': str(e)
+            } 

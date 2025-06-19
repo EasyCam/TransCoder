@@ -197,4 +197,135 @@ class VectorDBService:
             raise ValueError(f'Unsupported format: {format_type}')
             
         except Exception as e:
-            raise Exception(f'Export failed: {str(e)}') 
+            raise Exception(f'Export failed: {str(e)}')
+    
+    def list_translations(self, page: int = 1, per_page: int = 50, search: str = '') -> Dict[str, Any]:
+        """分页列出翻译记忆"""
+        try:
+            # 过滤翻译记忆
+            filtered_items = []
+            search_lower = search.lower()
+            
+            for i, item in enumerate(self.metadata):
+                if not search or search_lower in item['source'].lower() or \
+                   any(search_lower in translation.lower() for translation in item['translations'].values()):
+                    filtered_items.append({
+                        'index': i,
+                        'source': item['source'],
+                        'translations': item['translations']
+                    })
+            
+            # 分页
+            total = len(filtered_items)
+            start = (page - 1) * per_page
+            end = start + per_page
+            
+            items_page = filtered_items[start:end]
+            
+            return {
+                'success': True,
+                'items': items_page,
+                'pagination': {
+                    'page': page,
+                    'per_page': per_page,
+                    'total': total,
+                    'pages': (total + per_page - 1) // per_page
+                }
+            }
+            
+        except Exception as e:
+            return {
+                'success': False,
+                'error': str(e)
+            }
+    
+    def delete_translation(self, index: int) -> Dict[str, Any]:
+        """删除翻译记忆条目"""
+        try:
+            if 0 <= index < len(self.metadata):
+                # 删除元数据
+                removed_item = self.metadata.pop(index)
+                
+                # 重建索引（这是一个简化的方法，实际中可能需要更复杂的索引管理）
+                self._rebuild_index()
+                
+                return {
+                    'success': True,
+                    'message': f'已删除翻译记忆条目',
+                    'total_items': len(self.metadata)
+                }
+            else:
+                return {
+                    'success': False,
+                    'error': f'无效的索引: {index}'
+                }
+                
+        except Exception as e:
+            return {
+                'success': False,
+                'error': str(e)
+            }
+    
+    def _rebuild_index(self):
+        """重建FAISS索引"""
+        try:
+            # 创建新索引
+            self.index = faiss.IndexFlatL2(self.dimension)
+            
+            # 重新添加所有向量
+            if self.metadata:
+                embeddings = np.array([item['embedding'] for item in self.metadata])
+                self.index.add(embeddings)
+            
+            # 保存索引
+            self._save_index()
+            
+        except Exception as e:
+            print(f"Error rebuilding index: {e}")
+    
+    def get_statistics(self) -> Dict[str, Any]:
+        """获取翻译记忆库统计信息"""
+        try:
+            total_items = len(self.metadata)
+            language_counts = {}
+            
+            for item in self.metadata:
+                for lang in item['translations'].keys():
+                    language_counts[lang] = language_counts.get(lang, 0) + 1
+            
+            # 计算平均源文本长度
+            avg_source_length = 0
+            if self.metadata:
+                total_length = sum(len(item['source']) for item in self.metadata)
+                avg_source_length = total_length / total_items
+            
+            return {
+                'total_items': total_items,
+                'language_counts': language_counts,
+                'most_common_languages': sorted(language_counts.items(), key=lambda x: x[1], reverse=True)[:5],
+                'avg_source_length': round(avg_source_length, 1),
+                'index_size': self.index.ntotal if hasattr(self, 'index') else 0
+            }
+            
+        except Exception as e:
+            return {
+                'error': str(e)
+            }
+    
+    def clear_all(self) -> Dict[str, Any]:
+        """清空所有翻译记忆"""
+        try:
+            self.metadata = []
+            self.index = faiss.IndexFlatL2(self.dimension)
+            self._save_index()
+            
+            return {
+                'success': True,
+                'message': '已清空所有翻译记忆'
+            }
+            
+        except Exception as e:
+            return {
+                'success': False,
+                'error': str(e)
+            } 

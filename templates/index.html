@@ -42,6 +42,12 @@
                     <button class="btn btn-light btn-sm" onclick="showVectorDBModal()">
                         <i class="bi bi-database"></i> 翻译记忆库
                     </button>
+                    <a class="btn btn-outline-light btn-sm ms-2" href="/terminology">
+                        <i class="bi bi-gear"></i> 术语管理
+                    </a>
+                    <a class="btn btn-outline-light btn-sm ms-1" href="/vector-db">
+                        <i class="bi bi-tools"></i> 记忆库管理
+                    </a>
                 </div>
             </div>
         </div>
@@ -55,7 +61,7 @@
                     <div class="card-header">
                         <div class="d-flex justify-content-between align-items-center">
                             <h5 class="mb-0">源文本</h5>
-                            <select id="sourceLang" class="form-select form-select-sm" style="width: auto;">
+                            <select id="sourceLang" class="form-select form-select-sm" style="width: auto;" aria-label="选择源语言">
                                 <option value="auto">自动检测</option>
                                 <option value="zh">中文</option>
                                 <option value="en">English</option>
@@ -72,7 +78,7 @@
                     </div>
                     <div class="card-body">
                         <textarea id="sourceText" class="form-control" rows="15" 
-                                placeholder="请输入要翻译的文本..."></textarea>
+                                placeholder="请输入要翻译的文本..." aria-label="输入要翻译的文本"></textarea>
                         <div class="mt-2 text-end">
                             <small class="text-muted">字数: <span id="charCount">0</span></small>
                         </div>
@@ -100,7 +106,7 @@
                         <!-- 默认添加一个目标语言 -->
                         <div class="target-lang-item mb-3" data-lang="en">
                             <div class="d-flex justify-content-between align-items-center mb-2">
-                                <select class="form-select form-select-sm target-lang-select" style="width: auto;">
+                                <select class="form-select form-select-sm target-lang-select" style="width: auto;" aria-label="选择目标语言">
                                     <option value="zh">中文</option>
                                     <option value="en" selected>English</option>
                                     <option value="ja">日本語</option>
@@ -112,12 +118,12 @@
                                     <option value="ar">العربية</option>
                                     <option value="pt">Português</option>
                                 </select>
-                                <button class="btn btn-sm btn-danger" onclick="removeTargetLanguage(this)">
+                                <button class="btn btn-sm btn-danger" onclick="removeTargetLanguage(this)" aria-label="删除此目标语言">
                                     <i class="bi bi-trash"></i>
                                 </button>
                             </div>
                             <textarea class="form-control translation-result" rows="5" readonly 
-                                    placeholder="翻译结果将显示在这里..."></textarea>
+                                    placeholder="翻译结果将显示在这里..." aria-label="翻译结果"></textarea>
                             <div class="mt-2">
                                 <button class="btn btn-sm btn-info" onclick="evaluateTranslation(this)">
                                     <i class="bi bi-speedometer2"></i> 评估质量
@@ -140,20 +146,20 @@
             <div class="modal-content">
                 <div class="modal-header">
                     <h5 class="modal-title">术语库管理</h5>
-                    <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="关闭"></button>
                 </div>
                 <div class="modal-body">
                     <div class="mb-3">
                         <h6>导入术语库</h6>
                         <input type="file" id="terminologyFile" class="form-control" 
-                               accept=".csv,.xlsx,.tbx,.json">
+                               accept=".csv,.xlsx,.tbx,.json" aria-label="选择术语库文件">
                         <button class="btn btn-primary mt-2" onclick="uploadTerminology()">
                             <i class="bi bi-upload"></i> 上传
                         </button>
                     </div>
                     <div class="mb-3">
                         <h6>导出术语库</h6>
-                        <select id="exportFormat" class="form-select mb-2">
+                        <select id="exportFormat" class="form-select mb-2" aria-label="选择导出格式">
                             <option value="csv">CSV</option>
                             <option value="xlsx">Excel</option>
                             <option value="tbx">TBX</option>
@@ -165,11 +171,11 @@
                     </div>
                     <div>
                         <h6>添加新术语</h6>
-                        <input type="text" id="newTerm" class="form-control mb-2" placeholder="术语">
+                        <input type="text" id="newTerm" class="form-control mb-2" placeholder="术语" aria-label="输入新术语">
                         <div id="termTranslations">
                             <div class="row mb-2">
                                 <div class="col-3">
-                                    <select class="form-select term-lang">
+                                    <select class="form-select term-lang" aria-label="选择术语语言">
                                         <option value="zh">中文</option>
                                         <option value="en">English</option>
                                         <option value="ja">日本語</option>
@@ -177,7 +183,7 @@
                                 </div>
                                 <div class="col-9">
                                     <input type="text" class="form-control term-translation" 
-                                           placeholder="翻译">
+                                           placeholder="翻译" aria-label="输入术语翻译">
                                 </div>
                             </div>
                         </div>
@@ -199,12 +205,12 @@
             <div class="modal-content">
                 <div class="modal-header">
                     <h5 class="modal-title">翻译记忆库管理</h5>
-                    <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="关闭"></button>
                 </div>
                 <div class="modal-body">
                     <div class="mb-3">
                         <h6>导入TMX文件</h6>
-                        <input type="file" id="tmxFile" class="form-control" accept=".tmx">
+                        <input type="file" id="tmxFile" class="form-control" accept=".tmx" aria-label="选择TMX文件">
                         <button class="btn btn-primary mt-2" onclick="uploadTMX()">
                             <i class="bi bi-upload"></i> 上传
                         </button>
