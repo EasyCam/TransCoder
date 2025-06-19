@@ -1233,4 +1233,170 @@ function updatePerformanceMetrics(state, tokensPerSecond, elapsedTime, totalToke
     } else {
         console.error('Performance spans not found in performance div');
     }
+}
+
+// 互换源语言和第一个目标语言
+function swapSourceAndTarget() {
+    // 检查是否正在翻译
+    if (isTranslating) {
+        alert('翻译进行中，请等待翻译完成后再进行互换');
+        return;
+    }
+    
+    const sourceText = document.getElementById('sourceText');
+    const sourceLangSelect = document.getElementById('sourceLang');
+    
+    // 获取第一个目标语言区域
+    const firstTargetItem = document.querySelector('.target-lang-item');
+    if (!firstTargetItem) {
+        alert('请先添加至少一个目标语言');
+        return;
+    }
+    
+    const firstTargetSelect = firstTargetItem.querySelector('.target-lang-select');
+    const firstTargetTextarea = firstTargetItem.querySelector('.translation-result');
+    
+    // 检查是否有源文本
+    if (!sourceText.value.trim()) {
+        alert('请先输入源文本');
+        return;
+    }
+    
+    // 检查第一个目标语言是否有翻译结果
+    if (!firstTargetTextarea.value.trim()) {
+        alert('第一个目标语言没有翻译结果可以互换\n请先进行翻译，然后再使用互换功能');
+        return;
+    }
+    
+    // 获取当前值
+    const currentSourceText = sourceText.value;
+    const currentSourceLang = sourceLangSelect.value;
+    const currentTargetLang = firstTargetSelect.value;
+    const currentTargetText = firstTargetTextarea.value;
+    
+    // 确认互换操作
+    const sourceLangName = getLanguageDisplayName(currentSourceLang);
+    const targetLangName = getLanguageDisplayName(currentTargetLang);
+    
+    if (!confirm(`确定要互换源语言（${sourceLangName}）和第一个目标语言（${targetLangName}）吗？\n\n这将清空其他目标语言的翻译结果。`)) {
+        return;
+    }
+    
+    // 执行互换
+    // 1. 将第一个目标语言的翻译结果设置为源文本
+    sourceText.value = currentTargetText;
+    
+    // 2. 将第一个目标语言的语种设置为源语言
+    sourceLangSelect.value = currentTargetLang;
+    
+    // 3. 将原来的源语言设置为第一个目标语言
+    // 处理自动检测的情况
+    let newTargetLang = currentSourceLang;
+    if (currentSourceLang === 'auto') {
+        // 如果原来是自动检测，尝试从翻译缓存中获取检测到的语言
+        if (currentTranslations && currentTranslations.source_lang && currentTranslations.source_lang !== 'auto') {
+            newTargetLang = currentTranslations.source_lang;
+        } else {
+            // 默认设为中文简体
+            newTargetLang = 'zh-cn';
+        }
+    }
+    firstTargetSelect.value = newTargetLang;
+    
+    // 4. 将原来的源文本设置为第一个目标语言的翻译结果
+    firstTargetTextarea.value = currentSourceText;
+    
+    // 5. 更新字符计数
+    document.getElementById('charCount').textContent = sourceText.value.length;
+    
+    // 6. 清空其他目标语言的翻译结果和相关状态
+    const otherTargetItems = document.querySelectorAll('.target-lang-item:not(:first-child)');
+    otherTargetItems.forEach(item => {
+        const textarea = item.querySelector('.translation-result');
+        if (textarea) {
+            textarea.value = '';
+            textarea.style.backgroundColor = '#f8f9fa';
+            textarea.className = 'form-control translation-result'; // 重置样式类
+        }
+        
+        // 隐藏性能指标
+        const performanceDiv = item.querySelector('.performance-metrics');
+        if (performanceDiv) {
+            performanceDiv.style.display = 'none';
+        }
+        
+        // 清空评估结果
+        const evaluationDiv = item.querySelector('.evaluation-result');
+        if (evaluationDiv) {
+            evaluationDiv.innerHTML = '';
+        }
+        
+        // 移除相似翻译参考
+        const similarDiv = item.querySelector('.similar-translation');
+        if (similarDiv) {
+            similarDiv.remove();
+        }
+    });
+    
+    // 7. 重置第一个目标语言的状态
+    firstTargetTextarea.style.backgroundColor = '#f8f9fa';
+    firstTargetTextarea.className = 'form-control translation-result';
+    
+    // 隐藏第一个目标语言的性能指标
+    const firstPerformanceDiv = firstTargetItem.querySelector('.performance-metrics');
+    if (firstPerformanceDiv) {
+        firstPerformanceDiv.style.display = 'none';
+    }
+    
+    // 清空第一个目标语言的评估结果
+    const firstEvaluationDiv = firstTargetItem.querySelector('.evaluation-result');
+    if (firstEvaluationDiv) {
+        firstEvaluationDiv.innerHTML = '';
+    }
+    
+    // 8. 检查语言重复并自动调整
+    checkLanguageDuplication(firstTargetSelect);
+    
+    // 9. 清空当前翻译缓存
+    currentTranslations = {};
+    
+    console.log(`语言和内容互换完成: ${sourceLangName} ↔ ${targetLangName}`);
+    
+    // 10. 显示成功提示
+    showSwapSuccess(sourceLangName, targetLangName);
+}
+
+// 获取语言显示名称
+function getLanguageDisplayName(langCode) {
+    const languageNames = {
+        'auto': '自动检测',
+        'zh-cn': '中文大陆地区现代文简体',
+        'zh-tw': '中文港澳台地区现代文繁体',
+        'zh-classical-cn': '中文文言文简体',
+        'zh-classical-tw': '中文文言文繁体',
+        'en': 'English',
+        'ja': '日本語',
+        'ko': '한국어',
+        'es': 'Español',
+        'fr': 'Français',
+        'de': 'Deutsch',
+        'ru': 'Русский',
+        'ar': 'العربية',
+        'pt': 'Português'
+    };
+    return languageNames[langCode] || langCode;
+}
+
+// 显示互换成功提示
+function showSwapSuccess(sourceLang, targetLang) {
+    const swapBtn = document.getElementById('swapBtn');
+    const originalHTML = swapBtn.innerHTML;
+    
+    swapBtn.innerHTML = '<i class="bi bi-check"></i> 已互换';
+    swapBtn.className = 'btn btn-success btn-sm';
+    
+    setTimeout(() => {
+        swapBtn.innerHTML = originalHTML;
+        swapBtn.className = 'btn btn-outline-secondary btn-sm';
+    }, 2000);
 } 
