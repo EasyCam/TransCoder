@@ -310,7 +310,16 @@ class TerminologyService:
     def _normalize_lang_code(self, lang: str) -> str:
         """标准化语言代码"""
         lang_map = {
-            'chinese': 'zh',
+            'chinese': 'zh-cn',
+            'simplified chinese': 'zh-cn',
+            'traditional chinese': 'zh-tw',
+            'classical chinese': 'zh-classical-cn',
+            'classical chinese simplified': 'zh-classical-cn',
+            'classical chinese traditional': 'zh-classical-tw',
+            'mainland chinese': 'zh-cn',
+            'hong kong chinese': 'zh-tw',
+            'taiwan chinese': 'zh-tw',
+            'macao chinese': 'zh-tw',
             'english': 'en',
             'japanese': 'ja',
             'korean': 'ko',
@@ -323,7 +332,18 @@ class TerminologyService:
         }
         
         lang_lower = lang.lower()
-        return lang_map.get(lang_lower, lang_lower[:2])
+        # 优先匹配完整映射
+        if lang_lower in lang_map:
+            return lang_map[lang_lower]
+        
+        # 如果是中文相关的简单代码，默认为大陆地区简体中文
+        if lang_lower in ['zh', 'cn']:
+            return 'zh-cn'
+        elif lang_lower in ['tw', 'hk', 'mo']:
+            return 'zh-tw'
+        
+        # 其他情况返回前两个字符
+        return lang_lower[:2] if len(lang_lower) >= 2 else lang_lower
     
     def list_terms(self, page: int = 1, per_page: int = 50, search: str = '') -> Dict[str, Any]:
         """分页列出术语"""

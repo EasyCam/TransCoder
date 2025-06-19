@@ -1,6 +1,7 @@
-from flask import Flask, render_template, request, jsonify, send_file
+from flask import Flask, render_template, request, jsonify, send_file, Response
 from flask_cors import CORS
 import os
+import json
 import config
 from services.translation_service import TranslationService
 from services.vector_db_service import VectorDBService
@@ -70,6 +71,73 @@ def translate():
         
         return jsonify(results)
     
+    except Exception as e:
+        return jsonify({'error': str(e)}), 500
+
+@app.route('/api/translate/stream', methods=['POST'])
+def translate_stream():
+    """处理流式翻译请求"""
+    try:
+        data = request.json
+        source_text = data.get('source_text', '')
+        source_lang = data.get('source_lang', 'auto')
+        target_langs = data.get('target_langs', [])
+        use_vector_db = data.get('use_vector_db', True)
+        use_terminology = data.get('use_terminology', True)
+        model = data.get('model', None)
+        
+        if not source_text:
+            return jsonify({'error': '请输入要翻译的文本'}), 400
+        
+        if not target_langs:
+            return jsonify({'error': '请选择至少一种目标语言'}), 400
+        
+        def generate():
+            try:
+                # 发送初始化信息
+                init_data = {
+                    'type': 'init',
+                    'source_text': source_text,
+                    'source_lang': source_lang,
+                    'target_langs': target_langs,
+                    'model': model or config.OLLAMA_MODEL
+                }
+                yield f"data: {json.dumps(init_data, ensure_ascii=False)}\n\n"
+                
+                # 执行流式翻译
+                for chunk in translation_service.translate_streaming(
+                    source_text=source_text,
+                    source_lang=source_lang,
+                    target_langs=target_langs,
+                    use_vector_db=use_vector_db,
+                    use_terminology=use_terminology,
+                    vector_db_service=vector_db_service,
+                    terminology_service=terminology_service,
+                    model=model
+                ):
+                    yield f"data: {json.dumps(chunk, ensure_ascii=False)}\n\n"
+                
+                # 发送完成信号
+                yield f"data: {json.dumps({'type': 'finished'}, ensure_ascii=False)}\n\n"
+                
+            except Exception as e:
+                error_data = {
+                    'type': 'error',
+                    'error': str(e)
+                }
+                yield f"data: {json.dumps(error_data, ensure_ascii=False)}\n\n"
+        
+        return Response(
+            generate(),
+            mimetype='text/event-stream',
+            headers={
+                'Cache-Control': 'no-cache',
+                'Connection': 'keep-alive',
+                'Access-Control-Allow-Origin': '*',
+                'Access-Control-Allow-Headers': 'Cache-Control'
+            }
+        )
+        
     except Exception as e:
         return jsonify({'error': str(e)}), 500
 

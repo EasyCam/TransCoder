@@ -38,6 +38,7 @@ body {
     background-color: #f8f9fa;
     border-radius: 8px;
     margin-bottom: 10px;
+    position: relative;
 }
 
 .translation-result {
@@ -84,6 +85,32 @@ body {
 #translateBtn i {
     font-size: 2rem;
     margin-bottom: 5px;
+}
+
+#stopBtn {
+    width: 80px;
+    height: 30px;
+    border-radius: 15px;
+    font-size: 0.85rem;
+}
+
+.performance-metrics {
+    background-color: #f8f9fa;
+    padding: 8px 12px;
+    border-radius: 6px;
+    border: 1px solid #e9ecef;
+    margin-top: 8px;
+    font-size: 0.85rem;
+}
+
+.performance-metrics .tokens-per-second {
+    color: #007bff;
+    font-weight: 600;
+}
+
+.performance-metrics .translation-time {
+    color: #6c757d;
+    font-weight: 500;
 }
 
 .loading {
@@ -186,4 +213,87 @@ body {
     .navbar .form-check-label {
         font-size: 0.875rem;
     }
+}
+
+/* 流式翻译效果 */
+.translation-streaming {
+    background-color: #fff3cd !important;
+    border-left: 4px solid #ffc107;
+    transition: background-color 0.3s ease;
+}
+
+.translation-active {
+    background-color: #d1ecf1 !important;
+    border-left: 4px solid #17a2b8;
+}
+
+.translation-completed {
+    background-color: #d4edda !important;
+    border-left: 4px solid #28a745;
+}
+
+.translation-error {
+    background-color: #f8d7da !important;
+    border-left: 4px solid #dc3545;
+}
+
+/* 打字机光标效果 */
+.typing-cursor::after {
+    content: '|';
+    animation: blink 1s infinite;
+    font-weight: bold;
+    color: #007bff;
+}
+
+@keyframes blink {
+    0%, 50% { opacity: 1; }
+    51%, 100% { opacity: 0; }
+}
+
+/* 流式状态指示器 */
+.stream-status {
+    position: absolute;
+    top: 5px;
+    right: 5px;
+    padding: 2px 6px;
+    border-radius: 10px;
+    font-size: 0.7rem;
+    font-weight: bold;
+    background-color: rgba(255, 255, 255, 0.9);
+}
+
+.stream-status.waiting {
+    color: #6c757d;
+    background-color: #f8f9fa;
+}
+
+.stream-status.translating {
+    color: #0c5460;
+    background-color: #bee5eb;
+}
+
+.stream-status.completed {
+    color: #155724;
+    background-color: #c3e6cb;
+}
+
+.stream-status.error {
+    color: #721c24;
+    background-color: #f1aeb5;
+}
+
+/* 重新翻译按钮样式 */
+.target-lang-item .btn-primary {
+    font-size: 0.8rem;
+    padding: 0.25rem 0.5rem;
+}
+
+.target-lang-item .btn-primary:hover {
+    transform: translateY(-1px);
+    box-shadow: 0 2px 4px rgba(0,123,255,0.3);
+}
+
+.target-lang-item .btn-primary:disabled {
+    transform: none;
+    box-shadow: none;
 } 
