@@ -1,0 +1,15 @@
+flask
+flask-cors
+ollama
+numpy
+faiss-cpu
+sentence-transformers
+pandas
+openpyxl
+nltk
+sacrebleu
+bert-score
+rouge-score
+langdetect
+python-dotenv
+waitress 

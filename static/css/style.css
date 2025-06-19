@@ -1,0 +1,189 @@
+/* 自定义样式 */
+body {
+    background-color: #f8f9fa;
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+}
+
+.navbar-brand {
+    font-size: 1.5rem;
+    font-weight: bold;
+}
+
+.navbar .form-check-input {
+    background-color: rgba(255, 255, 255, 0.1);
+    border-color: rgba(255, 255, 255, 0.5);
+}
+
+.navbar .form-check-input:checked {
+    background-color: #ffffff;
+    border-color: #ffffff;
+}
+
+.navbar .form-select {
+    min-width: 120px;
+}
+
+.card {
+    box-shadow: 0 0.125rem 0.25rem rgba(0, 0, 0, 0.075);
+    border: none;
+}
+
+.card-header {
+    background-color: #f8f9fa;
+    border-bottom: 1px solid #dee2e6;
+}
+
+.target-lang-item {
+    padding: 15px;
+    background-color: #f8f9fa;
+    border-radius: 8px;
+    margin-bottom: 10px;
+}
+
+.translation-result {
+    background-color: white;
+}
+
+.evaluation-result {
+    font-size: 0.875rem;
+}
+
+.evaluation-score {
+    display: inline-block;
+    margin-right: 15px;
+    padding: 5px 10px;
+    background-color: #e9ecef;
+    border-radius: 5px;
+}
+
+.evaluation-score.good {
+    background-color: #d4edda;
+    color: #155724;
+}
+
+.evaluation-score.medium {
+    background-color: #fff3cd;
+    color: #856404;
+}
+
+.evaluation-score.poor {
+    background-color: #f8d7da;
+    color: #721c24;
+}
+
+#translateBtn {
+    width: 100px;
+    height: 100px;
+    border-radius: 50%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+#translateBtn i {
+    font-size: 2rem;
+    margin-bottom: 5px;
+}
+
+.loading {
+    display: inline-block;
+    width: 20px;
+    height: 20px;
+    border: 3px solid rgba(255,255,255,.3);
+    border-radius: 50%;
+    border-top-color: #fff;
+    animation: spin 1s ease-in-out infinite;
+}
+
+@keyframes spin {
+    to { transform: rotate(360deg); }
+}
+
+.terminology-highlight {
+    background-color: #ffeaa7;
+    padding: 2px 4px;
+    border-radius: 3px;
+}
+
+.similar-translation {
+    background-color: #e3f2fd;
+    padding: 10px;
+    margin: 5px 0;
+    border-radius: 5px;
+    font-size: 0.85rem;
+}
+
+.term-row {
+    margin-bottom: 10px;
+}
+
+/* 响应式调整 */
+@media (max-width: 1200px) {
+    .navbar-brand {
+        font-size: 1.25rem;
+    }
+    
+    .navbar .d-flex {
+        flex-wrap: wrap;
+        gap: 0.5rem;
+    }
+    
+    .navbar .form-check-inline {
+        margin-bottom: 0.5rem;
+    }
+}
+
+@media (max-width: 992px) {
+    .navbar .d-flex {
+        width: 100%;
+        justify-content: space-between;
+        margin-top: 0.5rem;
+    }
+    
+    .navbar .form-select {
+        min-width: 100px;
+    }
+}
+
+@media (max-width: 768px) {
+    .col-md-2 {
+        margin: 20px 0;
+    }
+    
+    #translateBtn {
+        width: 80px;
+        height: 80px;
+    }
+    
+    .navbar .d-flex {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 0.75rem;
+    }
+    
+    .navbar .form-check-inline {
+        margin-right: 1rem;
+        margin-bottom: 0.25rem;
+    }
+    
+    .navbar-brand {
+        margin-bottom: 0.5rem;
+    }
+}
+
+@media (max-width: 576px) {
+    .navbar .form-select {
+        min-width: 80px;
+        font-size: 0.875rem;
+    }
+    
+    .navbar .btn-sm {
+        padding: 0.25rem 0.5rem;
+        font-size: 0.8rem;
+    }
+    
+    .navbar .form-check-label {
+        font-size: 0.875rem;
+    }
+} 
