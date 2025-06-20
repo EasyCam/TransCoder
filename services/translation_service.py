@@ -137,7 +137,7 @@ class TranslationService:
         
         # 对每个目标语言进行翻译
         for target_lang in target_langs:
-            translation = self._translate_single(
+            translation_result = self._translate_single_with_metrics(
                 source_text=source_text,
                 source_lang=source_lang,
                 target_lang=target_lang,
@@ -147,9 +147,10 @@ class TranslationService:
             )
             
             results['translations'][target_lang] = {
-                'text': translation,
+                'text': translation_result['text'],
                 'used_terminology': terminology_dict,
-                'similar_references': similar_translations.get(target_lang, [])
+                'similar_references': similar_translations.get(target_lang, []),
+                'performance_metrics': translation_result['metrics']
             }
         
         return results
@@ -269,7 +270,11 @@ class TranslationService:
             translation = translation[1:-1]
         
         # 移除可能的"Translation:"前缀
-        prefixes = ['Translation:', 'Translated:', '翻译:', '译文:', 'Output:', 'Result:']
+        prefixes = [
+            'Translation:', 'Translated:', '翻译:', '译文:', 'Output:', 'Result:',
+            'Here is the translation:', 'The translation is:', '翻译结果:',
+            'Improved translation:', 'Final translation:', '改进翻译:', '最终翻译:'
+        ]
         for prefix in prefixes:
             if translation.startswith(prefix):
                 translation = translation[len(prefix):].strip()
@@ -301,7 +306,10 @@ class TranslationService:
                     line.startswith('注:') or
                     line.startswith('备注:') or
                     line.lower().startswith('explanation:') or
-                    line.lower().startswith('analysis:')):
+                    line.lower().startswith('analysis:') or
+                    line.lower().startswith('here is') or
+                    line.lower().startswith('the translation') or
+                    line.lower().startswith('翻译结果')):
                     continue
                 
                 # 跳过重复的前缀行
@@ -312,6 +320,10 @@ class TranslationService:
                         break
                 
                 if is_prefix_line:
+                    continue
+                
+                # 跳过过短的说明性行（可能是标题或说明）
+                if len(line) < 5 and any(word in line.lower() for word in ['翻译', 'translation', '结果', 'result']):
                     continue
                 
                 # 这是有效的翻译内容
@@ -454,4 +466,368 @@ class TranslationService:
                 'type': 'error',
                 'target_lang': target_lang,
                 'error': str(e)
-            } 
+            }
+    
+    def reflect_translation(self, source_text: str, translation: str, 
+                           source_lang: str, target_lang: str, model: str = None) -> Dict[str, Any]:
+        """对翻译进行反思，提出改进建议"""
+        import time
+        
+        current_model = model if model else self.default_model
+        start_time = time.time()
+        
+        # 构建反思提示
+        prompt = self._build_reflection_prompt(
+            source_text=source_text,
+            translation=translation,
+            source_lang=source_lang,
+            target_lang=target_lang
+        )
+        
+        try:
+            response = self.client.chat(
+                model=current_model,
+                messages=[
+                    {
+                        'role': 'system',
+                        'content': 'You are an expert translation critic and reviewer. Your task is to carefully analyze translations and provide constructive feedback for improvement. Focus on accuracy, fluency, cultural appropriateness, and style.'
+                    },
+                    {
+                        'role': 'user',
+                        'content': prompt
+                    }
+                ]
+            )
+            
+            reflection = response['message']['content'].strip()
+            cleaned_reflection = self._clean_reflection(reflection)
+            
+            end_time = time.time()
+            total_time = end_time - start_time
+            
+            # 计算反思的性能指标
+            word_count = len(cleaned_reflection.split())
+            char_count = len(cleaned_reflection)
+            estimated_tokens = word_count + char_count // 4
+            tokens_per_second = estimated_tokens / total_time if total_time > 0 else 0
+            
+            return {
+                'reflection': cleaned_reflection,
+                'metrics': {
+                    'tokens_per_second': round(tokens_per_second, 1),
+                    'total_time': round(total_time, 2),
+                    'total_tokens': estimated_tokens
+                }
+            }
+            
+        except Exception as e:
+            print(f"Reflection error with model {current_model}: {e}")
+            return {
+                'reflection': f"反思失败: {str(e)}",
+                'metrics': {
+                    'tokens_per_second': 0,
+                    'total_time': 0,
+                    'total_tokens': 0
+                }
+            }
+    
+    def improve_translation(self, source_text: str, current_translation: str, 
+                           reflection: str, source_lang: str, target_lang: str, 
+                           model: str = None) -> Dict[str, Any]:
+        """根据反思意见改进翻译"""
+        import time
+        
+        current_model = model if model else self.default_model
+        start_time = time.time()
+        
+        # 构建改进提示
+        prompt = self._build_improvement_prompt(
+            source_text=source_text,
+            current_translation=current_translation,
+            reflection=reflection,
+            source_lang=source_lang,
+            target_lang=target_lang
+        )
+        
+        try:
+            response = self.client.chat(
+                model=current_model,
+                messages=[
+                    {
+                        'role': 'system',
+                        'content': 'You are a professional translator tasked with improving translations based on expert feedback. Create improved translations that address the specific issues mentioned in the feedback while maintaining accuracy and natural flow.'
+                    },
+                    {
+                        'role': 'user',
+                        'content': prompt
+                    }
+                ]
+            )
+            
+            improved_translation = response['message']['content'].strip()
+            cleaned_translation = self._clean_improved_translation(improved_translation)
+            
+            end_time = time.time()
+            total_time = end_time - start_time
+            
+            # 计算改进的性能指标
+            word_count = len(cleaned_translation.split())
+            char_count = len(cleaned_translation)
+            estimated_tokens = word_count + char_count // 4
+            tokens_per_second = estimated_tokens / total_time if total_time > 0 else 0
+            
+            return {
+                'improved_translation': cleaned_translation,
+                'metrics': {
+                    'tokens_per_second': round(tokens_per_second, 1),
+                    'total_time': round(total_time, 2),
+                    'total_tokens': estimated_tokens
+                }
+            }
+            
+        except Exception as e:
+            print(f"Improvement error with model {current_model}: {e}")
+            return {
+                'improved_translation': f"改进失败: {str(e)}",
+                'metrics': {
+                    'tokens_per_second': 0,
+                    'total_time': 0,
+                    'total_tokens': 0
+                }
+            }
+    
+    def _build_reflection_prompt(self, source_text: str, translation: str, 
+                                source_lang: str, target_lang: str) -> str:
+        """构建反思提示"""
+        
+        lang_names = {
+            'zh-cn': 'Simplified Chinese (Mainland China Modern Chinese)',
+            'zh-tw': 'Traditional Chinese (Hong Kong, Macau, Taiwan Modern Chinese)',
+            'zh-classical-cn': 'Classical Chinese (Simplified Characters)',
+            'zh-classical-tw': 'Classical Chinese (Traditional Characters)',
+            'en': 'English',
+            'ja': 'Japanese',
+            'ko': 'Korean',
+            'es': 'Spanish',
+            'fr': 'French',
+            'de': 'German',
+            'ru': 'Russian',
+            'ar': 'Arabic',
+            'pt': 'Portuguese'
+        }
+        
+        source_lang_desc = lang_names.get(source_lang, source_lang)
+        target_lang_desc = lang_names.get(target_lang, target_lang)
+        
+        prompt = f"""Please carefully review this translation and provide constructive feedback for improvement.
+
+Source Language: {source_lang_desc}
+Target Language: {target_lang_desc}
+
+Source Text:
+{source_text}
+
+Current Translation:
+{translation}
+
+Please analyze the translation and provide specific feedback on:
+1. Accuracy: Are there any mistranslations or omissions?
+2. Fluency: Does the translation read naturally in the target language?
+3. Style: Is the tone and register appropriate?
+4. Cultural appropriateness: Are there any cultural nuances that could be better handled?
+5. Terminology: Are technical terms or specific expressions properly translated?
+
+Provide your feedback in a clear, constructive manner. Focus on specific issues and suggest improvements where needed. If the translation is already good, acknowledge its strengths while noting any minor areas for enhancement.
+
+Please respond in Chinese (简体中文) for easier understanding."""
+        
+        return prompt
+    
+    def _build_improvement_prompt(self, source_text: str, current_translation: str, 
+                                 reflection: str, source_lang: str, target_lang: str) -> str:
+        """构建改进提示"""
+        
+        lang_names = {
+            'zh-cn': 'Simplified Chinese (Mainland China Modern Chinese)',
+            'zh-tw': 'Traditional Chinese (Hong Kong, Macau, Taiwan Modern Chinese)',
+            'zh-classical-cn': 'Classical Chinese (Simplified Characters)',
+            'zh-classical-tw': 'Classical Chinese (Traditional Characters)',
+            'en': 'English',
+            'ja': 'Japanese',
+            'ko': 'Korean',
+            'es': 'Spanish',
+            'fr': 'French',
+            'de': 'German',
+            'ru': 'Russian',
+            'ar': 'Arabic',
+            'pt': 'Portuguese'
+        }
+        
+        source_lang_desc = lang_names.get(source_lang, source_lang)
+        target_lang_desc = lang_names.get(target_lang, target_lang)
+        
+        prompt = f"""Based on the expert feedback provided, please create an improved version of the translation.
+
+Source Language: {source_lang_desc}
+Target Language: {target_lang_desc}
+
+Source Text:
+{source_text}
+
+Current Translation:
+{current_translation}
+
+Expert Feedback:
+{reflection}
+
+IMPORTANT INSTRUCTIONS:
+1. Provide ONLY the improved translation text
+2. Do NOT include any explanations, descriptions, or meta-text
+3. Do NOT use phrases like "Here is the improved translation:", "Improved version:", etc.
+4. Do NOT add any prefixes, suffixes, or commentary
+5. Ensure the entire source text is translated and preserve all paragraphs and line breaks
+6. Output ONLY the pure translation content
+
+The improved translation should address the specific issues mentioned in the feedback while maintaining accuracy and natural flow."""
+        
+        return prompt
+    
+    def _clean_reflection(self, reflection: str) -> str:
+        """清理反思结果"""
+        # 移除可能的前缀
+        prefixes = ['Feedback:', 'Review:', 'Analysis:', 'Reflection:', '反馈:', '评价:', '分析:', '反思:', 'Response:', '回应:']
+        for prefix in prefixes:
+            if reflection.startswith(prefix):
+                reflection = reflection[len(prefix):].strip()
+        
+        # 移除思考过程标签
+        if "<think>" in reflection and "</think>" in reflection:
+            start = reflection.find("<think>")
+            end = reflection.find("</think>") + 8
+            reflection = reflection[:start] + reflection[end:]
+        
+        # 移除引号包围
+        if reflection.startswith('"') and reflection.endswith('"'):
+            reflection = reflection[1:-1]
+        if reflection.startswith("'") and reflection.endswith("'"):
+            reflection = reflection[1:-1]
+        
+        return reflection.strip()
+    
+    def _clean_improved_translation(self, translation: str) -> str:
+        """清理改进的翻译结果，确保只保留纯净的翻译文本"""
+        # 首先使用基础清理逻辑
+        translation = self._clean_translation(translation)
+        
+        # 额外的改进翻译清理步骤
+        lines = translation.split('\n')
+        cleaned_lines = []
+        
+        for line in lines:
+            line = line.strip()
+            
+            # 跳过空行
+            if not line:
+                continue
+            
+            # 跳过明显的说明性文本
+            skip_patterns = [
+                '改进后的翻译',
+                '优化后的翻译', 
+                '改进版本',
+                '最终翻译',
+                'improved translation',
+                'optimized translation',
+                'final translation',
+                'revised translation',
+                '修订后的翻译',
+                '以下是',
+                'here is',
+                'the improved',
+                'the optimized',
+                'the final',
+                'the revised'
+            ]
+            
+            line_lower = line.lower()
+            should_skip = False
+            for pattern in skip_patterns:
+                if pattern in line_lower:
+                    should_skip = True
+                    break
+            
+            if should_skip:
+                continue
+            
+            # 跳过包含冒号的说明行（但保留正常的翻译内容）
+            if ':' in line and len(line) < 50:
+                # 检查是否是说明性文本
+                explanation_indicators = ['翻译', 'translation', '版本', 'version', '改进', 'improved', '优化', 'optimized']
+                if any(indicator in line_lower for indicator in explanation_indicators):
+                    continue
+            
+            # 保留这一行
+            cleaned_lines.append(line)
+        
+        # 如果清理后没有内容，返回原始文本的第一个非空行
+        if not cleaned_lines:
+            for line in translation.split('\n'):
+                line = line.strip()
+                if line and not any(pattern in line.lower() for pattern in ['翻译', 'translation']):
+                    return line
+            return translation.strip()
+        
+        # 返回清理后的内容，用换行符连接
+        result = '\n'.join(cleaned_lines)
+        
+        # 最终检查：如果结果看起来仍然包含说明性文本，提取核心内容
+        if len(result.split('\n')) > 3:  # 如果有太多行，可能包含说明
+            # 找到最长的非说明性行作为主要翻译内容
+            main_lines = []
+            for line in cleaned_lines:
+                if len(line) > 20 and not any(indicator in line.lower() for indicator in ['翻译', 'translation', '改进', 'improved']):
+                    main_lines.append(line)
+            
+            if main_lines:
+                result = '\n'.join(main_lines)
+        
+        return result.strip()
+    
+    def _translate_single_with_metrics(self, source_text: str, source_lang: str, target_lang: str,
+                                     similar_translations: List[Dict], terminology: Dict,
+                                     model: str) -> Dict[str, Any]:
+        """翻译到单个目标语言，并返回性能指标"""
+        import time
+        
+        start_time = time.time()
+        
+        # 翻译
+        translation = self._translate_single(
+            source_text=source_text,
+            source_lang=source_lang,
+            target_lang=target_lang,
+            similar_translations=similar_translations,
+            terminology=terminology,
+            model=model
+        )
+        
+        end_time = time.time()
+        total_time = end_time - start_time
+        
+        # 计算token数量（简单估算：按空格分割的词数 + 字符数/4）
+        word_count = len(translation.split())
+        char_count = len(translation)
+        estimated_tokens = word_count + char_count // 4
+        
+        # 计算tokens/s
+        tokens_per_second = estimated_tokens / total_time if total_time > 0 else 0
+        
+        return {
+            'text': translation,
+            'metrics': {
+                'tokens_per_second': round(tokens_per_second, 1),
+                'total_time': round(total_time, 2),
+                'total_tokens': estimated_tokens,
+                'word_count': word_count
+            }
+        } 

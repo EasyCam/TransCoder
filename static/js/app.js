@@ -12,9 +12,27 @@ document.addEventListener('DOMContentLoaded', function() {
         document.getElementById('charCount').textContent = this.value.length;
     });
     
+    // 监听翻译模式变化
+    const translationModeSelect = document.getElementById('translationMode');
+    translationModeSelect.addEventListener('change', function() {
+        toggleIterativeCountContainer();
+    });
+    
     // 加载可用的Ollama模型
     loadAvailableModels();
 });
+
+// 切换优化次数选择器的显示
+function toggleIterativeCountContainer() {
+    const mode = document.getElementById('translationMode').value;
+    const container = document.getElementById('iterativeCountContainer');
+    
+    if (mode === 'iterative') {
+        container.style.display = 'block';
+    } else {
+        container.style.display = 'none';
+    }
+}
 
 // 加载可用的Ollama模型
 async function loadAvailableModels() {
@@ -176,7 +194,7 @@ async function translateText() {
     const sourceLang = document.getElementById('sourceLang').value;
     const useVectorDB = document.getElementById('useVectorDB').checked;
     const useTerminology = document.getElementById('useTerminology').checked;
-    const useStreaming = document.getElementById('useStreaming').checked;
+    const translationMode = document.getElementById('translationMode').value;
     const selectedModel = document.getElementById('ollamaModel').value;
     
     if (!sourceText.trim()) {
@@ -215,12 +233,26 @@ async function translateText() {
     });
     
     try {
-        if (useStreaming) {
-            // 使用流式翻译
-            await translateTextStreaming(sourceText, sourceLang, targetLangs, useVectorDB, useTerminology, selectedModel);
-        } else {
-            // 使用传统翻译
-            await translateTextTraditional(sourceText, sourceLang, targetLangs, useVectorDB, useTerminology, selectedModel);
+        // 根据翻译模式选择不同的翻译方法
+        switch (translationMode) {
+            case 'simple':
+                await translateTextTraditional(sourceText, sourceLang, targetLangs, useVectorDB, useTerminology, selectedModel);
+                break;
+            case 'streaming':
+                await translateTextStreaming(sourceText, sourceLang, targetLangs, useVectorDB, useTerminology, selectedModel);
+                break;
+            case 'reflection':
+                await translateTextReflection(sourceText, sourceLang, targetLangs, useVectorDB, useTerminology, selectedModel, 1);
+                break;
+            case 'triple':
+                await translateTextReflection(sourceText, sourceLang, targetLangs, useVectorDB, useTerminology, selectedModel, 2);
+                break;
+            case 'iterative':
+                const iterativeCount = parseInt(document.getElementById('iterativeCount').value);
+                await translateTextReflection(sourceText, sourceLang, targetLangs, useVectorDB, useTerminology, selectedModel, iterativeCount);
+                break;
+            default:
+                await translateTextTraditional(sourceText, sourceLang, targetLangs, useVectorDB, useTerminology, selectedModel);
         }
         
     } catch (error) {
@@ -495,6 +527,23 @@ async function typewriterEffect(element, text, clearFirst = false, speed = 30) {
     }
 }
 
+// 状态信息打字机效果（临时显示状态信息）
+async function typewriterStatusEffect(element, statusText, duration = 1500) {
+    const originalValue = element.value;
+    const originalPlaceholder = element.placeholder;
+    
+    // 设置状态文本
+    element.placeholder = statusText;
+    element.value = '';
+    
+    // 等待指定时间
+    await new Promise(resolve => setTimeout(resolve, duration));
+    
+    // 恢复原始内容
+    element.placeholder = originalPlaceholder;
+    element.value = originalValue;
+}
+
 // 显示翻译结果
 function displayTranslations(data) {
     const items = document.querySelectorAll('.target-lang-item');
@@ -506,6 +555,27 @@ function displayTranslations(data) {
         
         if (translation) {
             resultArea.value = translation.text;
+            
+            // 显示性能指标
+            if (translation.performance_metrics) {
+                const performanceDiv = item.querySelector('.performance-metrics');
+                if (performanceDiv) {
+                    const tokensPerSecondSpan = performanceDiv.querySelector('.tokens-per-second');
+                    const translationTimeSpan = performanceDiv.querySelector('.translation-time');
+                    
+                    if (tokensPerSecondSpan && translationTimeSpan) {
+                        const metrics = translation.performance_metrics;
+                        tokensPerSecondSpan.textContent = `${metrics.tokens_per_second} tokens/s`;
+                        translationTimeSpan.textContent = `总用时: ${metrics.total_time}s`;
+                        
+                        if (metrics.total_tokens) {
+                            tokensPerSecondSpan.textContent = `${metrics.tokens_per_second} tokens/s (${metrics.total_tokens} tokens)`;
+                        }
+                        
+                        performanceDiv.style.display = 'block';
+                    }
+                }
+            }
             
             // 显示相似翻译参考
             if (translation.similar_references && translation.similar_references.length > 0) {
@@ -894,16 +964,15 @@ async function exportTMX() {
 // 更新翻译按钮状态
 function updateTranslationButtons() {
     const translateBtn = document.getElementById('translateBtn');
-    const stopBtn = document.getElementById('stopBtn');
     
     if (isTranslating) {
-        translateBtn.disabled = true;
-        translateBtn.innerHTML = '<span class="loading"></span>';
-        stopBtn.style.display = 'block';
+        translateBtn.className = 'btn btn-danger btn-sm me-2';
+        translateBtn.innerHTML = '<i class="bi bi-stop-circle"></i> 停止';
+        translateBtn.onclick = stopTranslation;
     } else {
-        translateBtn.disabled = false;
-        translateBtn.innerHTML = '<i class="bi bi-arrow-right-circle"></i><br>翻译';
-        stopBtn.style.display = 'none';
+        translateBtn.className = 'btn btn-success btn-sm me-2';
+        translateBtn.innerHTML = '<i class="bi bi-arrow-right-circle"></i> 翻译';
+        translateBtn.onclick = translateText;
     }
 }
 
@@ -923,7 +992,7 @@ async function translateSingle(btn) {
     const sourceLang = document.getElementById('sourceLang').value;
     const useVectorDB = document.getElementById('useVectorDB').checked;
     const useTerminology = document.getElementById('useTerminology').checked;
-    const useStreaming = document.getElementById('useStreaming').checked;
+    const translationMode = document.getElementById('translationMode').value;
     const selectedModel = document.getElementById('ollamaModel').value;
     
     if (!sourceText.trim()) {
@@ -944,19 +1013,38 @@ async function translateSingle(btn) {
     // 清空当前语言的翻译结果和性能指标
     const textarea = item.querySelector('.translation-result');
     const performanceDiv = item.querySelector('.performance-metrics');
+    const reflectionDiv = item.querySelector('.reflection-status');
+    
     textarea.value = '';
     textarea.style.backgroundColor = '#f8f9fa';
     if (performanceDiv) {
         performanceDiv.style.display = 'none';
     }
+    if (reflectionDiv) {
+        reflectionDiv.style.display = 'none';
+    }
     
     try {
-        if (useStreaming) {
-            // 使用流式翻译单个语言
-            await translateSingleStreaming(sourceText, sourceLang, [targetLang], useVectorDB, useTerminology, selectedModel, item);
-        } else {
-            // 使用传统翻译单个语言
-            await translateSingleTraditional(sourceText, sourceLang, [targetLang], useVectorDB, useTerminology, selectedModel, item);
+        // 根据翻译模式选择不同的翻译方法
+        switch (translationMode) {
+            case 'simple':
+                await translateSingleTraditional(sourceText, sourceLang, [targetLang], useVectorDB, useTerminology, selectedModel, item);
+                break;
+            case 'streaming':
+                await translateSingleStreaming(sourceText, sourceLang, [targetLang], useVectorDB, useTerminology, selectedModel, item);
+                break;
+            case 'reflection':
+                await translateSingleReflection(sourceText, sourceLang, [targetLang], useVectorDB, useTerminology, selectedModel, 1, item);
+                break;
+            case 'triple':
+                await translateSingleReflection(sourceText, sourceLang, [targetLang], useVectorDB, useTerminology, selectedModel, 2, item);
+                break;
+            case 'iterative':
+                const iterativeCount = parseInt(document.getElementById('iterativeCount').value);
+                await translateSingleReflection(sourceText, sourceLang, [targetLang], useVectorDB, useTerminology, selectedModel, iterativeCount, item);
+                break;
+            default:
+                await translateSingleTraditional(sourceText, sourceLang, [targetLang], useVectorDB, useTerminology, selectedModel, item);
         }
         
     } catch (error) {
@@ -999,6 +1087,27 @@ async function translateSingleTraditional(sourceText, sourceLang, targetLangs, u
     
     if (translation) {
         textarea.value = translation.text;
+        
+        // 显示性能指标
+        if (translation.performance_metrics) {
+            const performanceDiv = targetItem.querySelector('.performance-metrics');
+            if (performanceDiv) {
+                const tokensPerSecondSpan = performanceDiv.querySelector('.tokens-per-second');
+                const translationTimeSpan = performanceDiv.querySelector('.translation-time');
+                
+                if (tokensPerSecondSpan && translationTimeSpan) {
+                    const metrics = translation.performance_metrics;
+                    tokensPerSecondSpan.textContent = `${metrics.tokens_per_second} tokens/s`;
+                    translationTimeSpan.textContent = `总用时: ${metrics.total_time}s`;
+                    
+                    if (metrics.total_tokens) {
+                        tokensPerSecondSpan.textContent = `${metrics.tokens_per_second} tokens/s (${metrics.total_tokens} tokens)`;
+                    }
+                    
+                    performanceDiv.style.display = 'block';
+                }
+            }
+        }
         
         // 更新全局翻译结果
         if (!currentTranslations) {
@@ -1387,6 +1496,13 @@ function getLanguageDisplayName(langCode) {
     return languageNames[langCode] || langCode;
 }
 
+// HTML转义函数
+function escapeHtml(text) {
+    const div = document.createElement('div');
+    div.textContent = text;
+    return div.innerHTML;
+}
+
 // 显示互换成功提示
 function showSwapSuccess(sourceLang, targetLang) {
     const swapBtn = document.getElementById('swapBtn');
@@ -1399,4 +1515,406 @@ function showSwapSuccess(sourceLang, targetLang) {
         swapBtn.innerHTML = originalHTML;
         swapBtn.className = 'btn btn-outline-secondary btn-sm';
     }, 2000);
+}
+
+// 反思翻译函数
+async function translateTextReflection(sourceText, sourceLang, targetLangs, useVectorDB, useTerminology, selectedModel, reflectionRounds) {
+    // 初始化全局翻译结果对象
+    currentTranslations = {
+        source_text: sourceText,
+        source_lang: sourceLang,
+        translations: {},
+        model_used: selectedModel
+    };
+    
+    // 存储每种语言的翻译状态
+    const translationStates = {};
+    targetLangs.forEach(lang => {
+        translationStates[lang] = {
+            currentTranslation: '',
+            reflections: [],
+            improvements: [],
+            textarea: null,
+            container: null,
+            statusDiv: null
+        };
+    });
+    
+    // 获取对应的UI元素
+    document.querySelectorAll('.target-lang-item').forEach((item, index) => {
+        const lang = item.querySelector('.target-lang-select').value;
+        if (targetLangs.includes(lang)) {
+            translationStates[lang].textarea = item.querySelector('.translation-result');
+            translationStates[lang].container = item;
+            
+            // 添加状态显示区域
+            let statusDiv = item.querySelector('.reflection-status');
+            if (!statusDiv) {
+                statusDiv = document.createElement('div');
+                statusDiv.className = 'reflection-status mt-2 p-2 bg-light border rounded';
+                statusDiv.style.fontSize = '0.85rem';
+                
+                // 插入到性能指标之前
+                const performanceDiv = item.querySelector('.performance-metrics');
+                if (performanceDiv) {
+                    item.insertBefore(statusDiv, performanceDiv);
+                } else {
+                    item.appendChild(statusDiv);
+                }
+            }
+            translationStates[lang].statusDiv = statusDiv;
+            
+            // 设置初始状态
+            translationStates[lang].textarea.className = 'form-control translation-result translation-active';
+            translationStates[lang].statusDiv.innerHTML = '<i class="bi bi-hourglass-split"></i> 准备开始反思翻译...';
+        }
+    });
+    
+    // 对每个目标语言进行反思翻译
+    for (const targetLang of targetLangs) {
+        const state = translationStates[targetLang];
+        
+        try {
+            // 第一步：初始翻译
+            state.statusDiv.innerHTML = '<i class="bi bi-translate"></i> 正在进行初始翻译...';
+            await typewriterStatusEffect(state.textarea, '正在进行初始翻译...');
+            
+            const initialTranslation = await performSingleTranslation(
+                sourceText, sourceLang, targetLang, useVectorDB, useTerminology, selectedModel
+            );
+            
+            state.currentTranslation = initialTranslation;
+            await typewriterEffect(state.textarea, initialTranslation, true, 20);
+            state.statusDiv.innerHTML = '<i class="bi bi-check-circle text-success"></i> 初始翻译完成';
+            
+            // 进行反思和优化轮次
+            for (let round = 1; round <= reflectionRounds; round++) {
+                state.statusDiv.innerHTML = `<i class="bi bi-lightbulb"></i> 第${round}轮反思中...`;
+                await typewriterStatusEffect(state.textarea, `第${round}轮反思分析中...`);
+                
+                // 反思阶段
+                const reflectionResult = await performReflection(
+                    sourceText, state.currentTranslation, sourceLang, targetLang, selectedModel
+                );
+                state.reflections.push(reflectionResult.reflection);
+                
+                state.statusDiv.innerHTML = `<i class="bi bi-gear"></i> 第${round}轮优化中...`;
+                await typewriterStatusEffect(state.textarea, `第${round}轮优化改进中...`);
+                
+                // 优化阶段
+                const improvementResult = await performImprovement(
+                    sourceText, state.currentTranslation, reflectionResult.reflection, sourceLang, targetLang, selectedModel
+                );
+                
+                state.currentTranslation = improvementResult.improved_translation;
+                state.improvements.push(improvementResult.improved_translation);
+                await typewriterEffect(state.textarea, improvementResult.improved_translation, true, 15);
+                
+                state.statusDiv.innerHTML = `<i class="bi bi-check-circle text-success"></i> 第${round}轮优化完成`;
+                
+                // 短暂延迟以显示进度
+                await new Promise(resolve => setTimeout(resolve, 800));
+            }
+            
+            // 最终状态
+            state.textarea.className = 'form-control translation-result translation-completed';
+            state.statusDiv.innerHTML = `
+                <div class="d-flex justify-content-between align-items-center">
+                    <span><i class="bi bi-star text-warning"></i> 反思翻译完成 (${reflectionRounds}轮优化)</span>
+                    <button class="btn btn-sm btn-outline-info" onclick="showReflectionDetails('${targetLang}')">
+                        <i class="bi bi-eye"></i> 查看详情
+                    </button>
+                </div>
+            `;
+            
+            // 显示累计性能指标（如果有的话）
+            const performanceDiv = state.container.querySelector('.performance-metrics');
+            if (performanceDiv) {
+                            // 计算总的性能指标（简单估算）
+            const totalTokens = state.currentTranslation.split(' ').length + Math.floor(state.currentTranslation.length / 4);
+                const estimatedTime = reflectionRounds * 3 + 2; // 估算总时间
+                const avgTokensPerSecond = totalTokens / estimatedTime;
+                
+                const tokensPerSecondSpan = performanceDiv.querySelector('.tokens-per-second');
+                const translationTimeSpan = performanceDiv.querySelector('.translation-time');
+                
+                if (tokensPerSecondSpan && translationTimeSpan) {
+                    tokensPerSecondSpan.textContent = `平均 ${avgTokensPerSecond.toFixed(1)} tokens/s`;
+                    translationTimeSpan.textContent = `总用时: ~${estimatedTime}s (${reflectionRounds}轮)`;
+                    performanceDiv.style.display = 'block';
+                }
+            }
+            
+            // 存储翻译结果
+            currentTranslations.translations[targetLang] = {
+                text: state.currentTranslation,
+                reflections: state.reflections,
+                improvements: state.improvements,
+                mode: 'reflection'
+            };
+            
+        } catch (error) {
+            console.error(`反思翻译失败 (${targetLang}):`, error);
+            state.textarea.value = `反思翻译失败: ${error.message}`;
+            state.textarea.className = 'form-control translation-result translation-error';
+            state.statusDiv.innerHTML = '<i class="bi bi-exclamation-triangle text-danger"></i> 翻译失败';
+        }
+    }
+}
+
+// 执行单次翻译
+async function performSingleTranslation(sourceText, sourceLang, targetLang, useVectorDB, useTerminology, selectedModel) {
+    const response = await axios.post('/api/translate', {
+        source_text: sourceText,
+        source_lang: sourceLang,
+        target_langs: [targetLang],
+        use_vector_db: useVectorDB,
+        use_terminology: useTerminology,
+        model: selectedModel
+    });
+    
+    return response.data.translations[targetLang].text;
+}
+
+// 执行反思
+async function performReflection(sourceText, translation, sourceLang, targetLang, selectedModel) {
+    const response = await axios.post('/api/translate/reflect', {
+        source_text: sourceText,
+        translation: translation,
+        source_lang: sourceLang,
+        target_lang: targetLang,
+        model: selectedModel
+    });
+    
+    return {
+        reflection: response.data.reflection,
+        metrics: response.data.metrics
+    };
+}
+
+// 执行改进
+async function performImprovement(sourceText, currentTranslation, reflection, sourceLang, targetLang, selectedModel) {
+    const response = await axios.post('/api/translate/improve', {
+        source_text: sourceText,
+        current_translation: currentTranslation,
+        reflection: reflection,
+        source_lang: sourceLang,
+        target_lang: targetLang,
+        model: selectedModel
+    });
+    
+    return {
+        improved_translation: response.data.improved_translation,
+        metrics: response.data.metrics
+    };
+}
+
+// 显示反思详情
+function showReflectionDetails(targetLang) {
+    const translation = currentTranslations?.translations[targetLang];
+    if (!translation || !translation.reflections) {
+        alert('没有找到反思详情');
+        return;
+    }
+    
+    let detailsHtml = `
+        <div class="modal fade" id="reflectionDetailsModal" tabindex="-1">
+            <div class="modal-dialog modal-lg">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title">反思翻译详情 - ${getLanguageDisplayName(targetLang)}</h5>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+                    </div>
+                    <div class="modal-body">
+                        <div class="accordion" id="reflectionAccordion">
+    `;
+    
+    // 显示每一轮的反思和改进
+    translation.reflections.forEach((reflection, index) => {
+        const improvement = translation.improvements[index];
+        detailsHtml += `
+            <div class="accordion-item">
+                <h2 class="accordion-header">
+                    <button class="accordion-button ${index === 0 ? '' : 'collapsed'}" type="button" 
+                            data-bs-toggle="collapse" data-bs-target="#collapse${index}">
+                        第${index + 1}轮反思与优化
+                    </button>
+                </h2>
+                <div id="collapse${index}" class="accordion-collapse collapse ${index === 0 ? 'show' : ''}" 
+                     data-bs-parent="#reflectionAccordion">
+                    <div class="accordion-body">
+                        <h6><i class="bi bi-lightbulb"></i> 反思意见：</h6>
+                        <div class="bg-light p-2 rounded mb-3">${escapeHtml(reflection)}</div>
+                        <h6><i class="bi bi-arrow-up-circle"></i> 优化结果：</h6>
+                        <div class="bg-success bg-opacity-10 p-2 rounded">${escapeHtml(improvement)}</div>
+                    </div>
+                </div>
+            </div>
+        `;
+    });
+    
+    detailsHtml += `
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">关闭</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    `;
+    
+    // 移除现有模态框
+    const existingModal = document.getElementById('reflectionDetailsModal');
+    if (existingModal) {
+        existingModal.remove();
+    }
+    
+    // 添加新模态框
+    document.body.insertAdjacentHTML('beforeend', detailsHtml);
+    
+    // 显示模态框
+    const modal = new bootstrap.Modal(document.getElementById('reflectionDetailsModal'));
+    modal.show();
+}
+
+// 单独语言的反思翻译
+async function translateSingleReflection(sourceText, sourceLang, targetLangs, useVectorDB, useTerminology, selectedModel, reflectionRounds, targetItem) {
+    const targetLang = targetLangs[0];
+    const textarea = targetItem.querySelector('.translation-result');
+    
+    // 初始化全局翻译结果对象（如果不存在）
+    if (!currentTranslations) {
+        currentTranslations = {
+            source_text: sourceText,
+            source_lang: sourceLang,
+            translations: {},
+            model_used: selectedModel
+        };
+    }
+    
+    // 添加状态显示区域
+    let statusDiv = targetItem.querySelector('.reflection-status');
+    if (!statusDiv) {
+        statusDiv = document.createElement('div');
+        statusDiv.className = 'reflection-status mt-2 p-2 bg-light border rounded';
+        statusDiv.style.fontSize = '0.85rem';
+        
+        // 插入到性能指标之前
+        const performanceDiv = targetItem.querySelector('.performance-metrics');
+        if (performanceDiv) {
+            targetItem.insertBefore(statusDiv, performanceDiv);
+        } else {
+            targetItem.appendChild(statusDiv);
+        }
+    }
+    statusDiv.style.display = 'block';
+    
+    const translationState = {
+        currentTranslation: '',
+        reflections: [],
+        improvements: []
+    };
+    
+    try {
+        // 设置初始状态
+        textarea.className = 'form-control translation-result translation-active';
+        statusDiv.innerHTML = '<i class="bi bi-hourglass-split"></i> 准备开始反思翻译...';
+        
+        // 第一步：初始翻译
+        statusDiv.innerHTML = '<i class="bi bi-translate"></i> 正在进行初始翻译...';
+        await typewriterStatusEffect(textarea, '正在进行初始翻译...');
+        
+        const initialTranslation = await performSingleTranslation(
+            sourceText, sourceLang, targetLang, useVectorDB, useTerminology, selectedModel
+        );
+        
+        translationState.currentTranslation = initialTranslation;
+        await typewriterEffect(textarea, initialTranslation, true, 20);
+        statusDiv.innerHTML = '<i class="bi bi-check-circle text-success"></i> 初始翻译完成';
+        
+        // 进行反思和优化轮次
+        for (let round = 1; round <= reflectionRounds; round++) {
+            statusDiv.innerHTML = `<i class="bi bi-lightbulb"></i> 第${round}轮反思中...`;
+            await typewriterStatusEffect(textarea, `第${round}轮反思分析中...`);
+            
+            // 反思阶段
+            const reflectionResult = await performReflection(
+                sourceText, translationState.currentTranslation, sourceLang, targetLang, selectedModel
+            );
+            translationState.reflections.push(reflectionResult.reflection);
+            
+            statusDiv.innerHTML = `<i class="bi bi-gear"></i> 第${round}轮优化中...`;
+            await typewriterStatusEffect(textarea, `第${round}轮优化改进中...`);
+            
+            // 优化阶段
+            const improvementResult = await performImprovement(
+                sourceText, translationState.currentTranslation, reflectionResult.reflection, sourceLang, targetLang, selectedModel
+            );
+            
+            translationState.currentTranslation = improvementResult.improved_translation;
+            translationState.improvements.push(improvementResult.improved_translation);
+            await typewriterEffect(textarea, improvementResult.improved_translation, true, 15);
+            
+            statusDiv.innerHTML = `<i class="bi bi-check-circle text-success"></i> 第${round}轮优化完成`;
+            
+            // 短暂延迟以显示进度
+            await new Promise(resolve => setTimeout(resolve, 800));
+        }
+        
+        // 最终状态
+        textarea.className = 'form-control translation-result translation-completed';
+        statusDiv.innerHTML = `
+            <div class="d-flex justify-content-between align-items-center">
+                <span><i class="bi bi-star text-warning"></i> 反思翻译完成 (${reflectionRounds}轮优化)</span>
+                <button class="btn btn-sm btn-outline-info" onclick="showSingleReflectionDetails('${targetLang}', ${JSON.stringify(translationState).replace(/"/g, '&quot;')})">
+                    <i class="bi bi-eye"></i> 查看详情
+                </button>
+            </div>
+        `;
+        
+        // 显示累计性能指标
+        const performanceDiv = targetItem.querySelector('.performance-metrics');
+        if (performanceDiv) {
+            // 计算总的性能指标（简单估算）
+            const totalTokens = translationState.currentTranslation.split(' ').length + Math.floor(translationState.currentTranslation.length / 4);
+            const estimatedTime = reflectionRounds * 3 + 2; // 估算总时间
+            const avgTokensPerSecond = totalTokens / estimatedTime;
+            
+            const tokensPerSecondSpan = performanceDiv.querySelector('.tokens-per-second');
+            const translationTimeSpan = performanceDiv.querySelector('.translation-time');
+            
+            if (tokensPerSecondSpan && translationTimeSpan) {
+                tokensPerSecondSpan.textContent = `平均 ${avgTokensPerSecond.toFixed(1)} tokens/s`;
+                translationTimeSpan.textContent = `总用时: ~${estimatedTime}s (${reflectionRounds}轮)`;
+                performanceDiv.style.display = 'block';
+            }
+        }
+        
+        // 更新全局翻译结果
+        currentTranslations.translations[targetLang] = {
+            text: translationState.currentTranslation,
+            reflections: translationState.reflections,
+            improvements: translationState.improvements,
+            mode: 'reflection'
+        };
+        
+    } catch (error) {
+        console.error(`单独反思翻译失败 (${targetLang}):`, error);
+        textarea.value = `反思翻译失败: ${error.message}`;
+        textarea.className = 'form-control translation-result translation-error';
+        statusDiv.innerHTML = '<i class="bi bi-exclamation-triangle text-danger"></i> 翻译失败';
+    }
+}
+
+// 显示单独反思详情（简化版本，直接使用传入的数据）
+function showSingleReflectionDetails(targetLang, translationState) {
+    // 使用全局的currentTranslations数据
+    const translation = currentTranslations?.translations[targetLang];
+    if (!translation || !translation.reflections) {
+        alert('没有找到反思详情');
+        return;
+    }
+    
+    showReflectionDetails(targetLang);
 } 

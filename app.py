@@ -141,6 +141,68 @@ def translate_stream():
     except Exception as e:
         return jsonify({'error': str(e)}), 500
 
+@app.route('/api/translate/reflect', methods=['POST'])
+def reflect_translation():
+    """对翻译进行反思"""
+    try:
+        data = request.json
+        source_text = data.get('source_text', '')
+        translation = data.get('translation', '')
+        source_lang = data.get('source_lang', 'auto')
+        target_lang = data.get('target_lang', '')
+        model = data.get('model', None)
+        
+        if not source_text or not translation:
+            return jsonify({'error': '请提供源文本和翻译'}), 400
+        
+        result = translation_service.reflect_translation(
+            source_text=source_text,
+            translation=translation,
+            source_lang=source_lang,
+            target_lang=target_lang,
+            model=model
+        )
+        
+        return jsonify({
+            'reflection': result['reflection'],
+            'metrics': result['metrics']
+        })
+        
+    except Exception as e:
+        return jsonify({'error': str(e)}), 500
+
+@app.route('/api/translate/improve', methods=['POST'])
+def improve_translation():
+    """根据反思改进翻译"""
+    try:
+        data = request.json
+        source_text = data.get('source_text', '')
+        current_translation = data.get('current_translation', '')
+        reflection = data.get('reflection', '')
+        source_lang = data.get('source_lang', 'auto')
+        target_lang = data.get('target_lang', '')
+        model = data.get('model', None)
+        
+        if not source_text or not current_translation or not reflection:
+            return jsonify({'error': '请提供完整的信息'}), 400
+        
+        result = translation_service.improve_translation(
+            source_text=source_text,
+            current_translation=current_translation,
+            reflection=reflection,
+            source_lang=source_lang,
+            target_lang=target_lang,
+            model=model
+        )
+        
+        return jsonify({
+            'improved_translation': result['improved_translation'],
+            'metrics': result['metrics']
+        })
+        
+    except Exception as e:
+        return jsonify({'error': str(e)}), 500
+
 @app.route('/api/evaluate', methods=['POST'])
 def evaluate():
     """评价翻译质量"""

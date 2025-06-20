@@ -15,8 +15,18 @@
                 <i class="bi bi-translate"></i> TransCoder
             </span>
             
-            <!-- 高级选项 -->
+            <!-- 高级选项和控制按钮 -->
             <div class="d-flex align-items-center flex-wrap">
+                <!-- 翻译控制按钮 -->
+                <div class="me-3">
+                    <button id="translateBtn" class="btn btn-success btn-sm me-2" onclick="translateText()">
+                        <i class="bi bi-arrow-right-circle"></i> 翻译
+                    </button>
+                    <button id="swapBtn" class="btn btn-outline-light btn-sm" onclick="swapSourceAndTarget()" title="将第一个目标语言与源语言对调">
+                        <i class="bi bi-arrow-left-right"></i> 互换
+                    </button>
+                </div>
+                
                 <div class="form-check form-check-inline me-3">
                     <input class="form-check-input" type="checkbox" id="useVectorDB" checked>
                     <label class="form-check-label text-white" for="useVectorDB">
@@ -29,11 +39,27 @@
                         术语库
                     </label>
                 </div>
-                <div class="form-check form-check-inline me-3">
-                    <input class="form-check-input" type="checkbox" id="useStreaming" checked>
-                    <label class="form-check-label text-white" for="useStreaming">
-                        流式输出
-                    </label>
+                <div class="me-3">
+                    <label class="form-label text-white me-2 mb-0">翻译模式:</label>
+                    <select id="translationMode" class="form-select form-select-sm" style="width: auto; display: inline-block;" aria-label="选择翻译模式">
+                        <option value="simple">简单快速翻译</option>
+                        <option value="streaming">流式输出翻译</option>
+                        <option value="reflection">反思翻译模式</option>
+                        <option value="triple">三省吾身模式</option>
+                        <option value="iterative">千锤百炼模式</option>
+                    </select>
+                </div>
+                <div class="me-3" id="iterativeCountContainer" style="display: none;">
+                    <label class="form-label text-white me-2 mb-0">优化次数:</label>
+                    <select id="iterativeCount" class="form-select form-select-sm" style="width: auto; display: inline-block;" aria-label="选择优化次数">
+                        <option value="1">1次</option>
+                        <option value="2">2次</option>
+                        <option value="3" selected>3次</option>
+                        <option value="4">4次</option>
+                        <option value="5">5次</option>
+                        <option value="8">8次</option>
+                        <option value="10">10次</option>
+                    </select>
                 </div>
                 <div class="me-3">
                     <label class="form-label text-white me-2 mb-0">模型:</label>
@@ -62,7 +88,7 @@
     <div class="container mt-4">
         <!-- 主翻译区域 -->
         <div class="row">
-            <div class="col-md-5">
+            <div class="col-md-6">
                 <div class="card">
                     <div class="card-header">
                         <div class="d-flex justify-content-between align-items-center">
@@ -95,21 +121,7 @@
                 </div>
             </div>
 
-            <div class="col-md-2 text-center d-flex align-items-center justify-content-center">
-                <div class="d-flex flex-column gap-2">
-                    <button id="translateBtn" class="btn btn-primary btn-lg" onclick="translateText()">
-                        <i class="bi bi-arrow-right-circle"></i><br>翻译
-                    </button>
-                    <button id="stopBtn" class="btn btn-danger btn-sm" onclick="stopTranslation()" style="display: none;">
-                        <i class="bi bi-stop-circle"></i> 停止
-                    </button>
-                    <button id="swapBtn" class="btn btn-outline-secondary btn-sm" onclick="swapSourceAndTarget()" title="将第一个目标语言与源语言对调">
-                        <i class="bi bi-arrow-left-right"></i> 互换
-                    </button>
-                </div>
-            </div>
-
-            <div class="col-md-5">
+            <div class="col-md-6">
                 <div class="card">
                     <div class="card-header">
                         <div class="d-flex justify-content-between align-items-center">
@@ -278,11 +290,21 @@
                         <div class="col-md-4">
                             <h6><i class="bi bi-lightning"></i> 灵活翻译操作</h6>
                             <ul class="small">
-                                <li><strong>流式输出</strong>：实时查看翻译进度和性能指标</li>
+                                <li><strong>多种翻译模式</strong>：简单快速、流式输出、反思优化等</li>
                                 <li><strong>停止控制</strong>：可随时中断正在进行的翻译</li>
                                 <li><strong>单独翻译</strong>：每个语言都有独立的翻译按钮</li>
                                 <li><strong>语言互换</strong>：一键将源语言与第一个目标语言对调</li>
                                 <li><strong>智能管理</strong>：自动避免语言重复选择</li>
+                            </ul>
+                        </div>
+                        <div class="col-md-4">
+                            <h6><i class="bi bi-gear-fill"></i> 翻译模式说明</h6>
+                            <ul class="small">
+                                <li><strong>简单快速翻译</strong>：传统一次性翻译，速度最快</li>
+                                <li><strong>流式输出翻译</strong>：实时显示翻译过程和性能指标</li>
+                                <li><strong>反思翻译模式</strong>：翻译→反思→优化，提升质量</li>
+                                <li><strong>三省吾身模式</strong>：连续两轮反思优化</li>
+                                <li><strong>千锤百炼模式</strong>：自定义优化次数，追求完美</li>
                             </ul>
                         </div>
                         <div class="col-md-4">
@@ -295,7 +317,9 @@
                                 <li><strong>智能检测</strong>：自动区分不同中文变体</li>
                             </ul>
                         </div>
-                        <div class="col-md-4">
+                    </div>
+                    <div class="row mt-3">
+                        <div class="col-md-12">
                             <h6><i class="bi bi-gear"></i> 高级功能</h6>
                             <ul class="small">
                                 <li>翻译记忆库：自动使用相似翻译提高质量</li>
