@@ -1,11 +1,17 @@
-# TransCoder
-基于本地Ollama的智能多语种并行翻译工具
+# TransCoder-基于本地大语言模型和反思改进的多语种并行翻译平台
+
+版本号：1.0
 
 ## 功能特性
 
 ### 核心功能
 - **多语种并行翻译**：支持一次输入、多语言同时输出
-- **流式文字输出**：实时逐字显示翻译结果，如同在Ollama中直接使用
+- **多种翻译模式**：
+  - **简单快速翻译**：传统一次性翻译，速度最快
+  - **流式文字输出**：实时逐字显示翻译结果，如同在Ollama中直接使用
+  - **反思翻译模式**：翻译→反思→优化，AI自我改进提升质量
+  - **三省吾身模式**：连续两轮反思优化，追求更高质量
+  - **千锤百炼模式**：自定义优化次数（1-10次），追求完美翻译
 - **任意篇幅支持**：可处理从短句到长文的各种文本
 - **智能语言检测**：自动识别源语言
 - **支持14种语言变体**：中文大陆地区现代文简体、中文港澳台地区现代文繁体、中文文言文简体、中文文言文繁体、英语、日语、韩语、西班牙语、法语、德语、俄语、阿拉伯语、葡萄牙语
@@ -53,8 +59,8 @@ curl -fsSL https://ollama.ai/install.sh | sh
 ```bash
 # 下载推荐的模型（选择其一）
 ollama pull qwen3:0.6b       # 阿里通义千问3（默认，轻量级）
-ollama pull qwen2:1.5b       # 阿里通义千问2（平衡型）
-ollama pull qwen2:7b         # 阿里通义千问2（高质量）
+ollama pull qwen3:4b       # 阿里通义千问2（平衡型）
+ollama pull qwen3:8b        # 阿里通义千问2（高质量）
 ollama pull llama3.2:1b      # Meta Llama 3.2（轻量级）
 ollama pull mistral          # Mistral AI的模型
 ```
@@ -62,7 +68,7 @@ ollama pull mistral          # Mistral AI的模型
 ### 4. 安装TransCoder
 ```bash
 # 克隆项目
-git clone https://github.com/yourusername/TransCoder.git
+git clone https://github.com/EasyCam/TransCoder.git
 cd TransCoder
 
 # 创建虚拟环境（推荐）
@@ -107,10 +113,39 @@ python run.py
 1. 在左侧文本框输入要翻译的内容
 2. 选择源语言（或使用自动检测，支持中文变体智能识别）
 3. 点击"添加语言"按钮添加目标语言
-4. 在高级选项中选择要使用的Ollama模型
-5. 可选择是否启用"流式输出"（默认开启）
-6. 点击中间的翻译按钮进行批量翻译
-7. 在右侧查看翻译结果
+4. 在高级选项中选择翻译模式和Ollama模型
+5. 点击中间的翻译按钮进行批量翻译
+6. 在右侧查看翻译结果
+
+### 🚀 翻译模式详解
+
+#### 简单快速翻译
+- **特点**：传统一次性翻译，速度最快
+- **适用场景**：日常快速翻译、大量文本处理
+- **优势**：速度快，资源消耗少
+
+#### 流式输出翻译  
+- **特点**：实时显示翻译过程，支持性能监控
+- **适用场景**：观察翻译过程、长文本翻译
+- **优势**：可视化进度，支持中途停止
+
+#### 反思翻译模式
+- **工作流程**：初始翻译 → AI反思分析 → 优化改进
+- **特点**：AI自我评估和改进，提升翻译质量
+- **适用场景**：重要文档翻译、质量要求较高的内容
+- **优势**：自动质量提升，减少人工校对
+
+#### 三省吾身模式
+- **工作流程**：初始翻译 → 第一轮反思优化 → 第二轮反思优化
+- **特点**：连续两轮AI自我改进
+- **适用场景**：专业文档、学术论文、商务合同
+- **优势**：更高的翻译质量和准确性
+
+#### 千锤百炼模式
+- **工作流程**：初始翻译 → 多轮反思优化（用户自定义次数）
+- **特点**：可自定义1-10次优化轮数，追求完美
+- **适用场景**：顶级质量要求、重要公文、文学作品
+- **优势**：极致的翻译质量，可根据需求调整优化强度
 
 ### ⚡ 灵活翻译操作
 - **批量翻译**：使用中间的大翻译按钮一次性翻译所有语言
@@ -179,6 +214,45 @@ Content-Type: application/json
 }
 ```
 
+### 反思翻译接口
+```bash
+POST /api/translate/reflect
+Content-Type: application/json
+
+{
+    "source_text": "你好世界",
+    "translation": "Hello world",
+    "source_lang": "zh",
+    "target_lang": "en",
+    "model": "qwen3:0.6b"
+}
+
+响应:
+{
+    "reflection": "翻译基本准确，但可以考虑更自然的表达方式..."
+}
+```
+
+### 改进翻译接口
+```bash
+POST /api/translate/improve
+Content-Type: application/json
+
+{
+    "source_text": "你好世界",
+    "current_translation": "Hello world",
+    "reflection": "翻译基本准确，但可以考虑更自然的表达方式...",
+    "source_lang": "zh",
+    "target_lang": "en",
+    "model": "qwen3:0.6b"
+}
+
+响应:
+{
+    "improved_translation": "Hello, world!"
+}
+```
+
 ### 流式翻译接口
 ```bash
 POST /api/translate/stream
@@ -228,7 +302,7 @@ GET /api/models
 
 响应:
 {
-    "models": ["qwen3:0.6b", "qwen2:1.5b", "llama3.2:1b", ...],
+    "models": ["qwen3:0.6b", "qwen3:4b", "llama3.2:1b", ...],
     "default": "qwen3:0.6b"
 }
 ```
@@ -237,7 +311,7 @@ GET /api/models
 
 1. **模型选择**：
    - 速度优先：使用较小的模型如 qwen3:0.6b 或 llama3.2:1b
-   - 质量优先：使用较大的模型如 qwen2:7b 或 llama3.2:3b
+   - 质量优先：使用较大的模型如 qwen3:8b或 llama3.2:3b
 
 2. **硬件配置**：
    - GPU加速：如有NVIDIA GPU，Ollama会自动使用

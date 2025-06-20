@@ -120,7 +120,7 @@ function showModelInstallationHelp() {
         <h6><i class="bi bi-exclamation-triangle"></i> 没有找到可用的模型</h6>
         <p>请先安装Ollama模型。推荐安装命令：</p>
         <code>ollama pull qwen3:0.6b</code><br>
-        <small class="text-muted">或者安装其他模型如：llama3.2:1b, qwen2:1.5b 等</small>
+        <small class="text-muted">或者安装其他模型如：llama3.2:1b, qwen3:4b 等</small>
         <button class="btn btn-sm btn-outline-primary mt-2" onclick="retryLoadModels()">
             <i class="bi bi-arrow-clockwise"></i> 重新检测模型
         </button>
