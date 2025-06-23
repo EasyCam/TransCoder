@@ -188,32 +188,12 @@ download_models() {
     log_info "模型下载完成"
 }
 
-# 创建Python虚拟环境
-create_venv() {
-    log_step "创建Python虚拟环境..."
-    
-    if [ -d "venv" ]; then
-        log_info "虚拟环境已存在，跳过创建"
-        return
-    fi
-    
-    python3 -m venv venv
-    source venv/bin/activate
-    
-    # 升级pip
-    pip install --upgrade pip
-    
-    log_info "Python虚拟环境创建完成"
-}
-
 # 安装Python依赖
 install_python_dependencies() {
     log_step "安装Python依赖..."
     
-    source venv/bin/activate
-    
-    # 安装依赖
-    pip install -r requirements.txt
+    # 直接使用系统Python安装依赖
+    pip3 install -r requirements.txt
     
     log_info "Python依赖安装完成"
 }
@@ -240,8 +220,6 @@ create_config() {
 # 测试安装
 test_installation() {
     log_step "测试安装..."
-    
-    source venv/bin/activate
     
     # 测试Python导入
     python3 -c "
@@ -328,17 +306,14 @@ check_ollama() {
 start_transcoder() {
     log_info "启动TransCoder..."
     
-    # 激活虚拟环境
-    source venv/bin/activate
-    
     # 检查端口是否被占用
-    if lsof -Pi :5000 -sTCP:LISTEN -t >/dev/null ; then
-        log_error "端口5000已被占用，请先关闭占用该端口的程序"
+    if lsof -Pi :6000 -sTCP:LISTEN -t >/dev/null ; then
+        log_error "端口6000已被占用，请先关闭占用该端口的程序"
         exit 1
     fi
     
     # 启动应用
-    python run.py
+    python3 run.py
 }
 
 # 主函数
@@ -519,7 +494,7 @@ show_completion_info() {
     echo "  启动服务:  ./start.sh"
     echo "  停止服务:  ./stop.sh"
     echo ""
-    echo "访问地址:  http://localhost:5000"
+    echo "访问地址:  http://localhost:6000"
     echo ""
     echo "已安装的模型："
     ollama list | grep -E "NAME|qwen|llama" | head -10
@@ -554,7 +529,6 @@ main() {
     install_ollama
     start_ollama_service
     download_models
-    create_venv
     install_python_dependencies
     create_config
     test_installation
