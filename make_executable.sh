@@ -13,6 +13,7 @@ chmod +x install_service.sh
 
 # 测试脚本
 chmod +x test_*.py
+chmod +x test_environment.py
 
 # 运行脚本
 chmod +x run.py
@@ -29,6 +30,7 @@ echo "  ./start.sh           - 标准启动"
 echo "  ./stop.sh            - 强制停止"
 echo ""
 echo "使用步骤："
-echo "1. 首次部署：./setup.sh"
-echo "2. 日常启动：./start.sh 或 ./quick_start.sh"
-echo "3. 停止服务：./stop.sh" 
+echo "1. 环境检测：python test_environment.py"
+echo "2. 首次部署：./setup.sh (智能检测现有包)"
+echo "3. 日常启动：./start.sh 或 ./quick_start.sh"
+echo "4. 停止服务：./stop.sh" 
