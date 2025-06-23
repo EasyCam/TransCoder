@@ -408,11 +408,11 @@ stop_ollama() {
 cleanup_ports() {
     log_info "清理相关端口..."
     
-    # 查找占用5000端口的进程
-    local port_5000_pids=$(lsof -ti:5000)
-    if [ -n "$port_5000_pids" ]; then
-        log_warn "强制终止占用端口5000的进程..."
-        echo "$port_5000_pids" | xargs kill -KILL 2>/dev/null || true
+    # 查找占用6000端口的进程
+    local port_6000_pids=$(lsof -ti:6000)
+    if [ -n "$port_6000_pids" ]; then
+        log_warn "强制终止占用端口6000的进程..."
+        echo "$port_6000_pids" | xargs kill -KILL 2>/dev/null || true
     fi
     
     # 查找占用11434端口的进程（Ollama默认端口）
@@ -442,10 +442,10 @@ show_status() {
         log_info "Ollama进程已停止"
     fi
     
-    if lsof -Pi :5000 -sTCP:LISTEN -t >/dev/null 2>&1; then
-        log_warn "端口5000仍被占用"
+    if lsof -Pi :6000 -sTCP:LISTEN -t >/dev/null 2>&1; then
+        log_warn "端口6000仍被占用"
     else
-        log_info "端口5000已释放"
+        log_info "端口6000已释放"
     fi
     
     if lsof -Pi :11434 -sTCP:LISTEN -t >/dev/null 2>&1; then
