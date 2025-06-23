@@ -37,9 +37,44 @@ check_environment() {
     fi
     
     # 检查Python依赖
-    if ! python3 -c "import flask, ollama, faiss" 2>/dev/null; then
-        log_error "Python依赖不完整，请先运行 ./setup.sh 进行完整部署"
-        exit 1
+    log_info "检查Python依赖..."
+    missing_packages=()
+    
+    # 检查核心依赖
+    if ! python3 -c "import flask" 2>/dev/null; then
+        missing_packages+=("flask")
+    fi
+    if ! python3 -c "import ollama" 2>/dev/null; then
+        missing_packages+=("ollama")
+    fi
+    if ! python3 -c "import faiss" 2>/dev/null; then
+        missing_packages+=("faiss-cpu")
+    fi
+    if ! python3 -c "import sentence_transformers" 2>/dev/null; then
+        missing_packages+=("sentence-transformers")
+    fi
+    
+    if [ ${#missing_packages[@]} -gt 0 ]; then
+        log_warn "发现缺失的Python包: ${missing_packages[*]}"
+        read -p "是否现在安装缺失的包？(y/n) [默认: y]: " install_now
+        install_now=${install_now:-y}
+        
+        if [[ $install_now =~ ^[Yy]$ ]]; then
+            log_info "安装缺失的包..."
+            pip3 install "${missing_packages[@]}"
+            
+            # 重新检查
+            if ! python3 -c "import flask, ollama, faiss, sentence_transformers" 2>/dev/null; then
+                log_error "安装后依然有包缺失，请运行 ./setup.sh 进行完整部署"
+                exit 1
+            fi
+            log_info "包安装成功"
+        else
+            log_error "Python依赖不完整，请先运行 ./setup.sh 进行完整部署"
+            exit 1
+        fi
+    else
+        log_info "Python依赖检查通过"
     fi
     
     # 检查Ollama

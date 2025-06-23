@@ -33,8 +33,8 @@ chmod +x setup.sh
 - 安装Python 3和相关依赖
 - 安装Ollama AI引擎
 - 下载推荐的AI模型
-- 创建Python虚拟环境
-- 安装Python依赖包
+- **智能检测现有Python包**（避免破坏现有环境）
+- 安装缺失的Python依赖包
 - 创建配置文件
 - 测试安装完整性
 
@@ -79,7 +79,8 @@ chmod +x setup.sh
 
 **功能特点：**
 - 自动检测系统环境
-- 智能跳过已安装的组件
+- **智能检测现有Python包**（如torch、tensorflow等）
+- 智能跳过已安装的组件，避免环境冲突
 - 交互式模型选择
 - 完整性测试验证
 

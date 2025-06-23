@@ -188,14 +188,127 @@ download_models() {
     log_info "模型下载完成"
 }
 
-# 安装Python依赖
+# 检查Python包是否已安装
+check_python_package() {
+    local package_name=$1
+    local import_name=${2:-$1}  # 如果没有提供import名称，使用包名
+    
+    python3 -c "import $import_name" 2>/dev/null
+    return $?
+}
+
+# 智能安装Python依赖
 install_python_dependencies() {
-    log_step "安装Python依赖..."
+    log_step "检查并安装Python依赖..."
     
-    # 直接使用系统Python安装依赖
-    pip3 install -r requirements.txt
+    # 读取requirements.txt并检查每个包
+    local packages_to_install=()
+    local existing_packages=()
     
-    log_info "Python依赖安装完成"
+    # 核心包检查映射 (包名 -> 导入名)
+    declare -A package_imports=(
+        ["torch"]="torch"
+        ["tensorflow"]="tensorflow"
+        ["transformers"]="transformers"
+        ["sentence-transformers"]="sentence_transformers"
+        ["faiss-cpu"]="faiss"
+        ["numpy"]="numpy"
+        ["pandas"]="pandas"
+        ["flask"]="flask"
+        ["ollama"]="ollama"
+        ["nltk"]="nltk"
+        ["sacrebleu"]="sacrebleu"
+        ["bert-score"]="bert_score"
+        ["rouge-score"]="rouge_score"
+        ["langdetect"]="langdetect"
+        ["python-dotenv"]="dotenv"
+        ["waitress"]="waitress"
+        ["flask-cors"]="flask_cors"
+        ["openpyxl"]="openpyxl"
+    )
+    
+    log_info "检查已安装的包..."
+    
+    # 检查核心包
+    for package in "${!package_imports[@]}"; do
+        import_name="${package_imports[$package]}"
+        if check_python_package "$package" "$import_name"; then
+            existing_packages+=("$package")
+            log_info "✓ $package 已安装，跳过"
+        else
+            packages_to_install+=("$package")
+        fi
+    done
+    
+    # 选择requirements文件
+    local requirements_file="requirements.txt"
+    if [ -f "requirements-minimal.txt" ]; then
+        log_info "发现最小化依赖文件，将优先使用以避免环境冲突"
+        requirements_file="requirements-minimal.txt"
+    fi
+    
+    # 检查requirements文件中的其他包
+    if [ -f "$requirements_file" ]; then
+        while IFS= read -r line; do
+            # 跳过空行和注释
+            [[ -z "$line" || "$line" =~ ^[[:space:]]*# ]] && continue
+            
+            # 提取包名（去除版本号）
+            package=$(echo "$line" | sed 's/[><=!].*//' | sed 's/\[.*\]//' | xargs)
+            
+            # 跳过已检查的核心包
+            if [[ " ${!package_imports[@]} " =~ " $package " ]]; then
+                continue
+            fi
+            
+            # 检查其他包
+            if check_python_package "$package"; then
+                existing_packages+=("$package")
+            else
+                packages_to_install+=("$package")
+            fi
+        done < "$requirements_file"
+    fi
+    
+    # 显示检查结果
+    if [ ${#existing_packages[@]} -gt 0 ]; then
+        log_info "已安装的包 (${#existing_packages[@]}个): ${existing_packages[*]}"
+    fi
+    
+    if [ ${#packages_to_install[@]} -gt 0 ]; then
+        log_warn "需要安装的包 (${#packages_to_install[@]}个): ${packages_to_install[*]}"
+        
+        # 询问用户是否继续安装
+        echo ""
+        read -p "是否安装缺失的Python包？(y/n) [默认: y]: " install_missing
+        install_missing=${install_missing:-y}
+        
+        if [[ $install_missing =~ ^[Yy]$ ]]; then
+            # 创建临时requirements文件，只包含需要安装的包
+            local temp_requirements=$(mktemp)
+            
+            for package in "${packages_to_install[@]}"; do
+                # 从requirements文件中找到完整的包声明
+                if [ -f "$requirements_file" ]; then
+                    grep -i "^$package" "$requirements_file" >> "$temp_requirements" 2>/dev/null || echo "$package" >> "$temp_requirements"
+                else
+                    echo "$package" >> "$temp_requirements"
+                fi
+            done
+            
+            log_info "安装缺失的包..."
+            pip3 install -r "$temp_requirements"
+            
+            # 清理临时文件
+            rm -f "$temp_requirements"
+        else
+            log_warn "跳过安装缺失的包，某些功能可能无法正常工作"
+        fi
+    else
+        log_info "所有Python依赖都已安装！"
+    fi
+    
+    log_info "Python依赖检查完成"
 }
 
 # 创建配置文件
@@ -302,6 +415,49 @@ check_ollama() {
     done
 }
 
+# 检查Python依赖
+check_python_deps() {
+    log_info "检查Python依赖..."
+    missing_packages=()
+    
+    # 检查核心依赖
+    if ! python3 -c "import flask" 2>/dev/null; then
+        missing_packages+=("flask")
+    fi
+    if ! python3 -c "import ollama" 2>/dev/null; then
+        missing_packages+=("ollama")
+    fi
+    if ! python3 -c "import faiss" 2>/dev/null; then
+        missing_packages+=("faiss-cpu")
+    fi
+    if ! python3 -c "import sentence_transformers" 2>/dev/null; then
+        missing_packages+=("sentence-transformers")
+    fi
+    
+    if [ ${#missing_packages[@]} -gt 0 ]; then
+        log_warn "发现缺失的Python包: ${missing_packages[*]}"
+        read -p "是否现在安装缺失的包？(y/n) [默认: y]: " install_now
+        install_now=${install_now:-y}
+        
+        if [[ $install_now =~ ^[Yy]$ ]]; then
+            log_info "安装缺失的包..."
+            pip3 install "${missing_packages[@]}"
+            
+            # 重新检查
+            if ! python3 -c "import flask, ollama, faiss, sentence_transformers" 2>/dev/null; then
+                log_error "安装后依然有包缺失，请检查安装是否成功"
+                exit 1
+            fi
+            log_info "包安装成功"
+        else
+            log_error "Python依赖不完整，请先安装缺失的包"
+            exit 1
+        fi
+    else
+        log_info "Python依赖检查通过"
+    fi
+}
+
 # 启动TransCoder
 start_transcoder() {
     log_info "启动TransCoder..."
@@ -311,6 +467,9 @@ start_transcoder() {
         log_error "端口6000已被占用，请先关闭占用该端口的程序"
         exit 1
     fi
+    
+    # 检查Python依赖
+    check_python_deps
     
     # 启动应用
     python3 run.py

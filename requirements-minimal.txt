@@ -1,0 +1,37 @@
+# TransCoder 最小化依赖包
+# 避免与现有PyTorch/TensorFlow环境冲突
+
+# Web框架
+flask
+flask-cors
+waitress
+
+# AI模型接口
+ollama
+
+# 向量数据库 (轻量级版本)
+faiss-cpu
+sentence-transformers
+
+# 数据处理
+numpy
+pandas
+openpyxl
+
+# 语言检测
+langdetect
+
+# 翻译评估 (基础版本)
+sacrebleu
+rouge-score
+
+# 自然语言处理 (基础)
+nltk
+
+# 配置管理
+python-dotenv
+
+# 注意：
+# - 如果您已有torch/tensorflow环境，本脚本会跳过这些包
+# - bert-score需要transformers，如果您没有请手动安装：pip install bert-score transformers
+# - 如果需要GPU加速，请安装：faiss-gpu (替代 faiss-cpu) 
