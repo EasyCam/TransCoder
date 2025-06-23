@@ -7,7 +7,7 @@ import requests
 import json
 
 # 测试配置
-BASE_URL = "http://localhost:6000"
+BASE_URL = "http://localhost:5555"
 
 def test_reflection_cleaning():
     """测试反思翻译的文本清理功能"""

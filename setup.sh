@@ -463,8 +463,8 @@ start_transcoder() {
     log_info "启动TransCoder..."
     
     # 检查端口是否被占用
-    if lsof -Pi :6000 -sTCP:LISTEN -t >/dev/null ; then
-        log_error "端口6000已被占用，请先关闭占用该端口的程序"
+    if lsof -Pi :5555 -sTCP:LISTEN -t >/dev/null ; then
+        log_error "端口5555已被占用，请先关闭占用该端口的程序"
         exit 1
     fi
     
@@ -567,11 +567,11 @@ stop_ollama() {
 cleanup_ports() {
     log_info "清理相关端口..."
     
-    # 查找占用6000端口的进程
-    local port_6000_pids=$(lsof -ti:6000)
-    if [ -n "$port_6000_pids" ]; then
-        log_warn "强制终止占用端口6000的进程..."
-        echo "$port_6000_pids" | xargs kill -KILL 2>/dev/null || true
+    # 查找占用5555端口的进程
+    local port_5555_pids=$(lsof -ti:5555)
+    if [ -n "$port_5555_pids" ]; then
+        log_warn "强制终止占用端口5555的进程..."
+        echo "$port_5555_pids" | xargs kill -KILL 2>/dev/null || true
     fi
     
     # 查找占用11434端口的进程（Ollama默认端口）
@@ -601,10 +601,10 @@ show_status() {
         log_info "Ollama进程已停止"
     fi
     
-    if lsof -Pi :6000 -sTCP:LISTEN -t >/dev/null 2>&1; then
-        log_warn "端口6000仍被占用"
+    if lsof -Pi :5555 -sTCP:LISTEN -t >/dev/null 2>&1; then
+        log_warn "端口5555仍被占用"
     else
-        log_info "端口6000已释放"
+        log_info "端口5555已释放"
     fi
     
     if lsof -Pi :11434 -sTCP:LISTEN -t >/dev/null 2>&1; then
@@ -653,7 +653,7 @@ show_completion_info() {
     echo "  启动服务:  ./start.sh"
     echo "  停止服务:  ./stop.sh"
     echo ""
-    echo "访问地址:  http://localhost:6000"
+    echo "访问地址:  http://localhost:5555"
     echo ""
     echo "已安装的模型："
     ollama list | grep -E "NAME|qwen|llama" | head -10

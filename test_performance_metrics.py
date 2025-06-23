@@ -8,7 +8,7 @@ import json
 import time
 
 # 测试配置
-BASE_URL = "http://localhost:6000"
+BASE_URL = "http://localhost:5555"
 TEST_TEXT = "Hello, how are you today?"
 SOURCE_LANG = "en"
 TARGET_LANG = "zh-cn"

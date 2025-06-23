@@ -52,7 +52,7 @@ chmod +x setup.sh
 
 ### 3. 访问应用
 
-在浏览器中访问：http://localhost:6000
+在浏览器中访问：http://localhost:5555
 
 ## 脚本说明
 
@@ -258,13 +258,13 @@ lsof -i :11434
 
 **症状：**
 ```
-[ERROR] 端口6000已被占用
+[ERROR] 端口5555已被占用
 ```
 
 **解决方案：**
 ```bash
 # 查找占用进程
-lsof -i :6000
+lsof -i :5555
 
 # 停止占用进程
 ./stop.sh
@@ -390,10 +390,10 @@ rm -rf venv
 1. **防火墙配置**：
 ```bash
 # 只允许本地访问
-sudo ufw allow from 127.0.0.1 to any port 6000
+sudo ufw allow from 127.0.0.1 to any port 5555
 
 # 或允许特定网段访问
-sudo ufw allow from 192.168.1.0/24 to any port 6000
+sudo ufw allow from 192.168.1.0/24 to any port 5555
 ```
 
 2. **用户权限**：

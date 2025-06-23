@@ -8,7 +8,7 @@ import json
 import time
 
 # 测试配置
-BASE_URL = "http://localhost:6000"
+BASE_URL = "http://localhost:5555"
 TEST_TEXT = "人工智能技术正在快速发展，它将深刻改变我们的生活方式。"
 SOURCE_LANG = "zh-cn"
 TARGET_LANG = "en"

@@ -14,13 +14,13 @@ def main():
     if not config.DEBUG:
         # 生产环境使用waitress
         print("Starting TransCoder in production mode...")
-        print(f"Server running on http://0.0.0.0:6000")
-        serve(app, host='0.0.0.0', port=6000)
+        print(f"Server running on http://0.0.0.0:5555")
+        serve(app, host='0.0.0.0', port=5555)
     else:
         # 开发环境使用Flask内置服务器
         print("Starting TransCoder in development mode...")
-        print(f"Server running on http://localhost:6000")
-        app.run(debug=True, host='0.0.0.0', port=6000)
+        print(f"Server running on http://localhost:5555")
+        app.run(debug=True, host='0.0.0.0', port=5555)
 
 if __name__ == '__main__':
     main() 

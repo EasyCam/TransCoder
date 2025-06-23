@@ -139,8 +139,8 @@ start_transcoder() {
     log_step "启动TransCoder..."
     
     # 检查端口
-    if lsof -Pi :6000 -sTCP:LISTEN -t >/dev/null 2>&1; then
-        log_error "端口6000已被占用"
+    if lsof -Pi :5555 -sTCP:LISTEN -t >/dev/null 2>&1; then
+        log_error "端口5555已被占用"
         log_error "请运行 ./stop.sh 停止其他服务，或使用其他端口"
         exit 1
     fi
@@ -153,7 +153,7 @@ start_transcoder() {
     
     # 启动应用
     log_info "启动TransCoder应用..."
-    log_info "访问地址: http://localhost:6000"
+    log_info "访问地址: http://localhost:5555"
     log_info "按 Ctrl+C 停止服务"
     echo ""
     

@@ -104,7 +104,7 @@ python run.py
 python run.py
 ```
 
-访问 http://localhost:6000 即可使用
+访问 http://localhost:5555 即可使用
 
 ## 使用指南
 

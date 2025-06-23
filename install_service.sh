@@ -198,14 +198,14 @@ else
     echo -e "Ollama端口:     ${RED}11434 (未监听)${NC}"
 fi
 
-if lsof -Pi :6000 -sTCP:LISTEN -t >/dev/null 2>&1; then
-    echo -e "TransCoder端口: ${GREEN}6000 (正常)${NC}"
+if lsof -Pi :5555 -sTCP:LISTEN -t >/dev/null 2>&1; then
+    echo -e "TransCoder端口: ${GREEN}5555 (正常)${NC}"
 else
-    echo -e "TransCoder端口: ${RED}6000 (未监听)${NC}"
+    echo -e "TransCoder端口: ${RED}5555 (未监听)${NC}"
 fi
 
 echo ""
-echo "访问地址: http://localhost:6000"
+echo "访问地址: http://localhost:5555"
 echo ""
 echo "管理命令:"
 echo "  启动服务: sudo systemctl start transcoder.service"
@@ -254,7 +254,7 @@ show_completion_info() {
     echo "  停止服务: sudo systemctl stop transcoder.service"
     echo "  查看日志: sudo journalctl -u transcoder.service -f"
     echo ""
-    echo "访问地址: http://localhost:6000"
+    echo "访问地址: http://localhost:5555"
     echo ""
     echo "服务现在会在系统启动时自动启动。"
     echo ""
