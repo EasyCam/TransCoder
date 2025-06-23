@@ -311,6 +311,30 @@ ollama pull qwen3:0.6b
 df -h
 ```
 
+#### 5. Python环境冲突
+
+**症状：**
+```
+ERROR: pip's dependency resolver does not currently have a way to satisfy the following requirements
+```
+
+**解决方案：**
+```bash
+# 使用最小化依赖安装
+cp requirements-minimal.txt requirements.txt
+
+# 重新运行部署
+./setup.sh
+
+# 或手动安装核心包
+pip install flask ollama faiss-cpu sentence-transformers
+```
+
+**环境保护说明：**
+- 脚本会自动检测已安装的torch、tensorflow等包
+- 如果检测到现有包，会跳过安装避免冲突
+- 优先使用 `requirements-minimal.txt` 以减少依赖冲突
+
 ### 日志查看
 
 ```bash

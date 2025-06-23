@@ -71,18 +71,17 @@ ollama pull mistral          # Mistral AI的模型
 git clone https://github.com/EasyCam/TransCoder.git
 cd TransCoder
 
-# 创建虚拟环境（推荐）
-python -m venv venv
+# 智能安装依赖（自动检测现有包，避免环境冲突）
+pip install -r requirements-minimal.txt
 
-# 激活虚拟环境
-# Windows
-venv\Scripts\activate
-# macOS/Linux
-source venv/bin/activate
-
-# 安装依赖
+# 如果您有完整的PyTorch/TensorFlow环境，可以安装完整版本
 pip install -r requirements.txt
 ```
+
+**环境保护说明：**
+- `requirements-minimal.txt` 包含最少必需的依赖，避免与现有torch等环境冲突
+- 安装脚本会自动检测已有的Python包，跳过已安装的包
+- 支持与现有机器学习环境共存
 
 ### 5. 配置环境
 创建 `.env` 文件：
