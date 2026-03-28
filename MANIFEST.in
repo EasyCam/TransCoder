@@ -1,0 +1,25 @@
+include LICENSE
+include README.md
+include README_CN.md
+include pyproject.toml
+include requirements.txt
+include requirements-minimal.txt
+include env.example
+include upload_pypi.sh
+include upload_pypi.bat
+include AGENTS.md
+
+recursive-include templates *.html *.css *.js
+recursive-include static *.css *.js *.png *.jpg *.ico
+recursive-include transcoder *.html *.css *.js
+
+recursive-include data *.json *.csv *.xlsx *.tmx *.tbx
+recursive-exclude data __pycache__
+recursive-exclude tests __pycache__
+recursive-exclude transcoder __pycache__
+
+global-exclude __pycache__
+global-exclude *.py[cod]
+global-exclude *.so
+global-exclude .DS_Store
+global-exclude .git*
