@@ -17,8 +17,10 @@ from transcoder.core import ToolResult
 
 def create_app(config: Optional[dict] = None) -> Flask:
     """Create and configure Flask application."""
-    template_dir = os.path.join(os.path.dirname(os.path.dirname(__file__)), "templates")
-    app = Flask(__name__, template_folder=template_dir)
+    base_dir = os.path.dirname(os.path.dirname(__file__))
+    template_dir = os.path.join(base_dir, "templates")
+    static_dir = os.path.join(base_dir, "static")
+    app = Flask(__name__, template_folder=template_dir, static_folder=static_dir)
 
     # Configuration
     app.config["SECRET_KEY"] = os.getenv("SECRET_KEY", "dev-secret-key-change-in-production")
