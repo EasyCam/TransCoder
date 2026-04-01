@@ -12,7 +12,7 @@ __email__ = "transcoder@example.com"
 __license__ = "MIT"
 
 from transcoder.api import TransCoderAPI
-from transcoder.core import TranslationService, VectorDBService, TerminologyService, EvaluationService
+from transcoder.core import EvaluationService, TerminologyService, TranslationService, VectorDBService
 
 __all__ = [
     "TransCoderAPI",

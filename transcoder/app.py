@@ -4,15 +4,14 @@ TransCoder Flask Web Application
 Provides web interface and REST API for the translation platform.
 """
 
-import os
 import json
+import os
 from typing import Optional
 
-from flask import Flask, render_template, request, jsonify, send_file, Response
+from flask import Flask, Response, jsonify, render_template, request
 from flask_cors import CORS
 
 from transcoder.api import TransCoderAPI
-from transcoder.core import ToolResult
 
 
 def create_app(config: Optional[dict] = None) -> Flask:
@@ -29,9 +28,10 @@ def create_app(config: Optional[dict] = None) -> Flask:
     CORS(app)
 
     # Initialize API
-    model = os.getenv("OLLAMA_MODEL", "qwen3:0.6b")
+    provider_type = os.getenv("LLM_PROVIDER", "ollama")
+    model = os.getenv("OLLAMA_MODEL", "qwen3:0.6b" if provider_type == "ollama" else "gpt-4o-mini")
     ollama_host = os.getenv("OLLAMA_HOST", "http://localhost:11434")
-    api = TransCoderAPI(model=model, ollama_host=ollama_host)
+    api = TransCoderAPI(model=model, ollama_host=ollama_host, provider_type=provider_type)
 
     # Ensure directories exist
     os.makedirs("data/vector_db", exist_ok=True)
