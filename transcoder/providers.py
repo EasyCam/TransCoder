@@ -8,10 +8,21 @@ import os
 from abc import ABC, abstractmethod
 from typing import List, Optional
 
+_proxy_vars = ["ALL_PROXY", "all_proxy", "HTTPS_PROXY", "https_proxy", "HTTP_PROXY", "http_proxy"]
+_saved_proxy = {}
+
+for var in _proxy_vars:
+    if var in os.environ:
+        _saved_proxy[var] = os.environ[var]
+        del os.environ[var]
+
 try:
     import ollama
 except ImportError:
     ollama = None
+
+for var, value in _saved_proxy.items():
+    os.environ[var] = value
 
 try:
     from openai import OpenAI
@@ -41,10 +52,32 @@ class LLMProvider(ABC):
 class OllamaProvider(LLMProvider):
     """Ollama LLM provider (default, local)."""
 
-    def __init__(self, host: str = "http://localhost:11434", default_model: str = "qwen3:0.6b"):
+    def __init__(
+        self,
+        host: str = "http://localhost:11434",
+        default_model: str = "qwen3:0.6b",
+        use_proxy: bool = False,
+        proxy_url: Optional[str] = None,
+    ):
         self.host = host
         self.default_model = default_model
+        self.use_proxy = use_proxy
+        self.proxy_url = proxy_url
+
         if ollama:
+            if use_proxy and proxy_url:
+                for var in _proxy_vars:
+                    if var in os.environ:
+                        del os.environ[var]
+                if proxy_url.startswith("socks://"):
+                    proxy_url = proxy_url.replace("socks://", "socks5://")
+                os.environ["HTTPS_PROXY"] = proxy_url
+                os.environ["HTTP_PROXY"] = proxy_url
+            elif not use_proxy:
+                for var in _proxy_vars:
+                    if var in os.environ:
+                        del os.environ[var]
+
             ollama.host = host
 
     def generate(self, prompt: str, model: Optional[str] = None) -> str:
@@ -148,7 +181,7 @@ def create_provider(provider_type: str = "ollama", model: Optional[str] = None, 
         provider_type: "ollama" or "openai"
         model: Default model to use
         **kwargs: Additional provider-specific arguments
-            For Ollama: host
+            For Ollama: host, use_proxy, proxy_url
             For OpenAI: api_key, base_url
 
     Returns:
@@ -157,7 +190,12 @@ def create_provider(provider_type: str = "ollama", model: Optional[str] = None, 
     provider_type = provider_type.lower()
 
     if provider_type == "ollama":
-        return OllamaProvider(host=kwargs.get("host", "http://localhost:11434"), default_model=model or "qwen3:0.6b")
+        return OllamaProvider(
+            host=kwargs.get("host", "http://localhost:11434"),
+            default_model=model or "qwen3:0.6b",
+            use_proxy=kwargs.get("use_proxy", False),
+            proxy_url=kwargs.get("proxy_url"),
+        )
 
     elif provider_type == "openai":
         return OpenAIProvider(

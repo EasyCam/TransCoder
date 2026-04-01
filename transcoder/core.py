@@ -71,6 +71,8 @@ class TranslationService:
         ollama_host: str = "http://localhost:11434",
         provider: Optional["LLMProvider"] = None,
         provider_type: str = "ollama",
+        use_proxy: bool = False,
+        proxy_url: Optional[str] = None,
     ):
         """
         Initialize translation service.
@@ -80,6 +82,8 @@ class TranslationService:
             ollama_host: Ollama server host (deprecated, use provider_type)
             provider: LLMProvider instance (if provided, overrides other settings)
             provider_type: "ollama" or "openai"
+            use_proxy: Whether to use proxy for API calls
+            proxy_url: Proxy URL (e.g., socks5://127.0.0.1:7897)
         """
         self.model = model
         self.ollama_host = ollama_host
@@ -89,7 +93,9 @@ class TranslationService:
         else:
             from transcoder.providers import create_provider
 
-            self._provider = create_provider(provider_type=provider_type, model=model, host=ollama_host)
+            self._provider = create_provider(
+                provider_type=provider_type, model=model, host=ollama_host, use_proxy=use_proxy, proxy_url=proxy_url
+            )
 
     @property
     def provider(self) -> "LLMProvider":

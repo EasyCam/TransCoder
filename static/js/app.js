@@ -1909,7 +1909,6 @@ async function translateSingleReflection(sourceText, sourceLang, targetLangs, us
 
 // 显示单独反思详情（简化版本，直接使用传入的数据）
 function showSingleReflectionDetails(targetLang, translationState) {
-    // 使用全局的currentTranslations数据
     const translation = currentTranslations?.translations[targetLang];
     if (!translation || !translation.reflections) {
         alert('没有找到反思详情');
@@ -1917,4 +1916,38 @@ function showSingleReflectionDetails(targetLang, translationState) {
     }
     
     showReflectionDetails(targetLang);
+}
+
+async function showSettingsModal() {
+    const modal = new bootstrap.Modal(document.getElementById('settingsModal'));
+    
+    try {
+        const response = await axios.get('/api/config');
+        document.getElementById('useProxy').checked = response.data.use_proxy || false;
+        document.getElementById('proxyUrl').value = response.data.proxy_url || '';
+    } catch (error) {
+        console.error('Failed to load config:', error);
+    }
+    
+    modal.show();
+}
+
+async function saveSettings() {
+    const useProxy = document.getElementById('useProxy').checked;
+    const proxyUrl = document.getElementById('proxyUrl').value;
+    
+    try {
+        const response = await axios.post('/api/config', {
+            use_proxy: useProxy,
+            proxy_url: proxyUrl
+        });
+        
+        alert(response.data.message);
+        
+        const modal = bootstrap.Modal.getInstance(document.getElementById('settingsModal'));
+        modal.hide();
+        
+    } catch (error) {
+        alert('保存设置失败: ' + (error.response?.data?.error || error.message));
+    }
 } 

@@ -37,6 +37,8 @@ class TransCoderAPI:
         provider_type: str = "ollama",
         vector_db_path: str = "data/vector_db",
         terminology_path: str = "data/terminology",
+        use_proxy: bool = False,
+        proxy_url: Optional[str] = None,
     ):
         """
         Initialize TransCoder API.
@@ -47,12 +49,18 @@ class TransCoderAPI:
             provider_type: LLM provider type ("ollama" or "openai"). Default is "ollama".
             vector_db_path: Path for translation memory storage
             terminology_path: Path for terminology database
+            use_proxy: Whether to use proxy for API calls
+            proxy_url: Proxy URL (e.g., socks5://127.0.0.1:7897)
         """
         self.model = model
         self.ollama_host = ollama_host
         self.provider_type = provider_type
+        self.use_proxy = use_proxy
+        self.proxy_url = proxy_url
 
-        self.translation_service = TranslationService(model=model, ollama_host=ollama_host, provider_type=provider_type)
+        self.translation_service = TranslationService(
+            model=model, ollama_host=ollama_host, provider_type=provider_type, use_proxy=use_proxy, proxy_url=proxy_url
+        )
 
         self._vector_db: Optional[VectorDBService] = None
         self._terminology: Optional[TerminologyService] = None

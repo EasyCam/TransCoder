@@ -13,6 +13,23 @@ from flask_cors import CORS
 
 from transcoder.api import TransCoderAPI
 
+CONFIG_FILE = "data/config.json"
+
+
+def load_config() -> dict:
+    """Load configuration from file."""
+    if os.path.exists(CONFIG_FILE):
+        with open(CONFIG_FILE, encoding="utf-8") as f:
+            return json.load(f)
+    return {"use_proxy": False, "proxy_url": ""}
+
+
+def save_config(config: dict) -> None:
+    """Save configuration to file."""
+    os.makedirs(os.path.dirname(CONFIG_FILE), exist_ok=True)
+    with open(CONFIG_FILE, "w", encoding="utf-8") as f:
+        json.dump(config, f, ensure_ascii=False, indent=2)
+
 
 def create_app(config: Optional[dict] = None) -> Flask:
     """Create and configure Flask application."""
@@ -21,17 +38,23 @@ def create_app(config: Optional[dict] = None) -> Flask:
     static_dir = os.path.join(base_dir, "static")
     app = Flask(__name__, template_folder=template_dir, static_folder=static_dir)
 
-    # Configuration
     app.config["SECRET_KEY"] = os.getenv("SECRET_KEY", "dev-secret-key-change-in-production")
-    app.config["MAX_CONTENT_LENGTH"] = 16 * 1024 * 1024  # 16MB
+    app.config["MAX_CONTENT_LENGTH"] = 16 * 1024 * 1024
 
     CORS(app)
 
-    # Initialize API
+    app_config = load_config()
     provider_type = os.getenv("LLM_PROVIDER", "ollama")
     model = os.getenv("OLLAMA_MODEL", "qwen3:0.6b" if provider_type == "ollama" else "gpt-4o-mini")
     ollama_host = os.getenv("OLLAMA_HOST", "http://localhost:11434")
-    api = TransCoderAPI(model=model, ollama_host=ollama_host, provider_type=provider_type)
+
+    api = TransCoderAPI(
+        model=model,
+        ollama_host=ollama_host,
+        provider_type=provider_type,
+        use_proxy=app_config.get("use_proxy", False),
+        proxy_url=app_config.get("proxy_url"),
+    )
 
     # Ensure directories exist
     os.makedirs("data/vector_db", exist_ok=True)
@@ -200,6 +223,20 @@ def create_app(config: Optional[dict] = None) -> Flask:
     def vector_db_stats():
         result = api.vector_db.get_statistics()
         return jsonify(result.to_dict())
+
+    @app.route("/api/config", methods=["GET"])
+    def get_config():
+        config = load_config()
+        return jsonify(config)
+
+    @app.route("/api/config", methods=["POST"])
+    def update_config():
+        data = request.json
+        config = load_config()
+        config["use_proxy"] = data.get("use_proxy", False)
+        config["proxy_url"] = data.get("proxy_url", "")
+        save_config(config)
+        return jsonify({"success": True, "message": "配置已保存，重启服务后生效"})
 
     @app.errorhandler(404)
     def not_found(error):
