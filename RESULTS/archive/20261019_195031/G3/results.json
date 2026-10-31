@@ -1,0 +1,278 @@
+{
+  "schema": "transcoder-next/results/v1",
+  "group": "G3",
+  "description": "iterative-small (existing loop, 5 iterations)",
+  "temperature": 0.3,
+  "seed": 42,
+  "translator_model": "qwen3:0.6b",
+  "reviewer": [
+    "deepseek",
+    "deepseek-chat"
+  ],
+  "n_pairs": 12,
+  "rows": [
+    {
+      "group": "G3",
+      "pair_id": "la-ch1-en",
+      "subset": "c1-la",
+      "source_lang": "zh-classical-cn",
+      "target_lang": "en",
+      "has_reference": true,
+      "seed": 42,
+      "source_tokens_o200k": 58,
+      "output": "The Dao is the great Dao, the name of the Dao is the great name, and the name of the great name is the Dao. There is no name for the Dao, and there is no name for the great name. The Dao is the beginning of all things, and the great name is the mother of all things. Without desire, one can observe the great mystery; with desire, one can observe the boundary of the great thing. These two are both from the Dao and different names, and they are called the \"玄\" (the \"玄\" is the \"玄\" again, and the \"玄\" is the \"玄\" again). The \"衆\" (the \"衆\" is the \"衆\" again) is the great wisdom.",
+      "mechanism": "iterative",
+      "rounds": 5,
+      "edge_tok_s": 9.93,
+      "wall_s": 280.03,
+      "metrics": {
+        "no_reference": false,
+        "length_ratio": 9.897,
+        "bleu": 8.14,
+        "chrf": 29.96,
+        "ter": 83.46,
+        "rougeL": 0.328,
+        "bert_f1": 0.709
+      }
+    },
+    {
+      "group": "G3",
+      "pair_id": "la-ch1-fr",
+      "subset": "c1-la",
+      "source_lang": "zh-classical-cn",
+      "target_lang": "fr",
+      "has_reference": true,
+      "seed": 42,
+      "source_tokens_o200k": 58,
+      "output": "道可道，非常道名可名，无名天地之始，有名万物之母，常无欲以观其妙，常有欲以观其徼。",
+      "mechanism": "iterative",
+      "rounds": 5,
+      "edge_tok_s": 9.5,
+      "wall_s": 223.19,
+      "metrics": {
+        "no_reference": false,
+        "length_ratio": 0.707,
+        "bleu": 0.0,
+        "chrf": 0.0,
+        "ter": 100.0,
+        "rougeL": 0,
+        "bert_f1": 0.582
+      }
+    },
+    {
+      "group": "G3",
+      "pair_id": "la-ch1-ja",
+      "subset": "c1-la",
+      "source_lang": "zh-classical-cn",
+      "target_lang": "ja",
+      "has_reference": true,
+      "seed": 42,
+      "source_tokens_o200k": 58,
+      "output": "道可道非常道名可名非常名無名天地之始有名萬物之母無欲以觀其妙有欲以觀其徼此二者同出而異名同謂之玄玄之又玄眾妙之門",
+      "mechanism": "iterative",
+      "rounds": 5,
+      "edge_tok_s": 8.32,
+      "wall_s": 282.81,
+      "metrics": {
+        "no_reference": false,
+        "length_ratio": 0.966,
+        "bleu": 0.74,
+        "chrf": 4.82,
+        "ter": 100.0,
+        "rougeL": 0,
+        "bert_f1": 0.686
+      }
+    },
+    {
+      "group": "G3",
+      "pair_id": "la-ch1-ko",
+      "subset": "c1-la",
+      "source_lang": "zh-classical-cn",
+      "target_lang": "ko",
+      "has_reference": false,
+      "seed": 42,
+      "source_tokens_o200k": 58,
+      "output": "道可道非常道名可名非常名无名天地之始有名万物之母",
+      "mechanism": "iterative",
+      "rounds": 5,
+      "edge_tok_s": 6.76,
+      "wall_s": 541.24,
+      "metrics": {
+        "no_reference": true,
+        "length_ratio": 0.414
+      }
+    },
+    {
+      "group": "G3",
+      "pair_id": "la-ch1-de",
+      "subset": "c1-la",
+      "source_lang": "zh-classical-cn",
+      "target_lang": "de",
+      "has_reference": false,
+      "seed": 42,
+      "source_tokens_o200k": 58,
+      "output": "常无欲观其妙，常有欲观其徼。",
+      "mechanism": "iterative",
+      "rounds": 5,
+      "edge_tok_s": 6.75,
+      "wall_s": 316.71,
+      "metrics": {
+        "no_reference": true,
+        "length_ratio": 0.241
+      }
+    },
+    {
+      "group": "G3",
+      "pair_id": "la-ch8-en",
+      "subset": "c1-la",
+      "source_lang": "zh-classical-cn",
+      "target_lang": "en",
+      "has_reference": true,
+      "seed": 42,
+      "source_tokens_o200k": 54,
+      "output": "The King of Heaven is like water, which is good for all things, and is not in conflict with the people, and thus is close to the way. He is good in the heart, and is good in the deep, and is good in words, and is good in governance, and is good in action, and is good in time.",
+      "mechanism": "iterative",
+      "rounds": 5,
+      "edge_tok_s": 8.16,
+      "wall_s": 222.89,
+      "metrics": {
+        "no_reference": false,
+        "length_ratio": 5.872,
+        "bleu": 1.86,
+        "chrf": 16.28,
+        "ter": 83.46,
+        "rougeL": 0.278,
+        "bert_f1": 0.701
+      }
+    },
+    {
+      "group": "G3",
+      "pair_id": "la-ch8-fr",
+      "subset": "c1-la",
+      "source_lang": "zh-classical-cn",
+      "target_lang": "fr",
+      "has_reference": true,
+      "seed": 42,
+      "source_tokens_o200k": 54,
+      "output": "L'art de l'humain est comme l'eau : l'eau est bienveillante, utile, et ne se oppose pas aux autres, et elle est bienveillante.",
+      "mechanism": "iterative",
+      "rounds": 5,
+      "edge_tok_s": 10.14,
+      "wall_s": 189.79,
+      "metrics": {
+        "no_reference": false,
+        "length_ratio": 2.681,
+        "bleu": 0.09,
+        "chrf": 8.29,
+        "ter": 95.54,
+        "rougeL": 0.161,
+        "bert_f1": 0.657
+      }
+    },
+    {
+      "group": "G3",
+      "pair_id": "la-ch8-ja",
+      "subset": "c1-la",
+      "source_lang": "zh-classical-cn",
+      "target_lang": "ja",
+      "has_reference": true,
+      "seed": 42,
+      "source_tokens_o200k": 54,
+      "output": "上善若水，水善利万物而不争于众，故几于道，居于善地，心善渊，与善仁，言善信，政善治，事善行。夫惟不争。",
+      "mechanism": "iterative",
+      "rounds": 5,
+      "edge_tok_s": 11.07,
+      "wall_s": 163.17,
+      "metrics": {
+        "no_reference": false,
+        "length_ratio": 1.085,
+        "bleu": 1.81,
+        "chrf": 5.48,
+        "ter": 100.0,
+        "rougeL": 0,
+        "bert_f1": 0.753
+      }
+    },
+    {
+      "group": "G3",
+      "pair_id": "la-ch8-ko",
+      "subset": "c1-la",
+      "source_lang": "zh-classical-cn",
+      "target_lang": "ko",
+      "has_reference": false,
+      "seed": 42,
+      "source_tokens_o200k": 54,
+      "output": "상선의 풍습을 따르는 것이며, 물은 풍습에 따르며, 물은 풍습에 따르며, 물은 풍습에 따르며, 물은 풍습에 따르며, 물은 풍습에 따르며, 물은 풍습에 따르며, 물은 풍습에 따르며, 물은 풍습에 따르며, 물은 풍습에 따르며, 물은 풍습에 따르며, 물은 풍습에 따르며, 물은 풍습에 따르며, 물은 풍습에 따르며, 물은 풍습에 따르며, 물은 풍습에 따르며, 물은 풍습에 따르며, 물은 풍습에 따르며, 물은 풍습에 따르며, 물은 풍습에 따르며, 물은 풍습에 따르며, 물은 풍습에 따르며, 물은 풍습에 따르며, 물은 풍습에 따르며, 물은 풍습에 따르며, 물은 풍습에 따르며, 물은 풍습에 따르며, 물은 풍습에 따르며, 물은 풍습에 따르며, 물은 풍습에 따르며, 물은 풍습에 따르며, 물은 풍습에 따르며, 물은 풍습에 따르며, 물은 풍습에 따르며, 물은 풍습에 따르며, 물은 풍습에 따르며, 물은 풍습에 따르며, 물은 풍습에 따르며, 물은 풍습에 따르며, 물은 풍습에 따르며, 물은 풍습에 따르며, 물은 풍습에 따르며, 물은 풍습에 따르며, 물은 풍습에 따르며, 물은 풍습에 따르며, 물은 풍습에 따르며, 물은 �",
+      "mechanism": "iterative",
+      "rounds": 5,
+      "edge_tok_s": 8.82,
+      "wall_s": 669.34,
+      "metrics": {
+        "no_reference": true,
+        "length_ratio": 11.936
+      }
+    },
+    {
+      "group": "G3",
+      "pair_id": "la-ch8-de",
+      "subset": "c1-la",
+      "source_lang": "zh-classical-cn",
+      "target_lang": "de",
+      "has_reference": false,
+      "seed": 42,
+      "source_tokens_o200k": 54,
+      "output": "Die Wurzel fördert das Leben und das Wachstum aller Wesen, sie nicht im Vergehen, sondern im Gleichgewicht mit den Menschen, und sie ist so gut wie die Wahrheit, die die Regierung und die Handlung so gut wie die Wahrheit.",
+      "mechanism": "iterative",
+      "rounds": 5,
+      "edge_tok_s": 9.9,
+      "wall_s": 184.94,
+      "metrics": {
+        "no_reference": true,
+        "length_ratio": 4.702
+      }
+    },
+    {
+      "group": "G3",
+      "pair_id": "aq-xu-en",
+      "subset": "c1-aq",
+      "source_lang": "zh-cn",
+      "target_lang": "en",
+      "has_reference": true,
+      "seed": 42,
+      "source_tokens_o200k": 98,
+      "output": "I will write a letter to Q, which has been done for more than a year. But at the same time, I am also thinking back about it. This shows that I am not a person who writes a letter, because I have never written a letter to someone who is not dead. Therefore, people are written by the text, and the text is written by the people. The question of who is the one who writes and who is the one who is written becomes gradually clear, and finally, it comes to writing Q, as if there is a ghost in the mind.",
+      "mechanism": "iterative",
+      "rounds": 5,
+      "edge_tok_s": 11.4,
+      "wall_s": 211.77,
+      "metrics": {
+        "no_reference": false,
+        "length_ratio": 4.473,
+        "bleu": 7.54,
+        "chrf": 29.37,
+        "ter": 79.05,
+        "rougeL": 0.27,
+        "bert_f1": 0.726
+      }
+    },
+    {
+      "group": "G3",
+      "pair_id": "c3-tech1",
+      "subset": "c3",
+      "source_lang": "zh-cn",
+      "target_lang": "en",
+      "has_reference": false,
+      "seed": 42,
+      "source_tokens_o200k": 78,
+      "output": "This system uses retrieval-based generation (RAG): a large language model first retrieves relevant document fragments from a vector database, then concatenates the context into the prompt. Word count uses a real tokenizer, multi-agent collaboration is orchestrated by the orchestrator, and term guardians inject recommended translations from the term library.",
+      "mechanism": "iterative",
+      "rounds": 5,
+      "edge_tok_s": 10.97,
+      "wall_s": 157.29,
+      "metrics": {
+        "no_reference": true,
+        "length_ratio": 3.264
+      }
+    }
+  ]
+}

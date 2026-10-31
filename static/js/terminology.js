@@ -216,10 +216,8 @@ function addTranslationRow() {
     newRow.innerHTML = `
         <div class="col-3">
             <select class="form-select translation-lang" aria-label="选择语言">
-                <option value="zh-cn">中文大陆地区现代文简体</option>
-                <option value="zh-tw">中文港澳台地区现代文繁体</option>
-                <option value="zh-classical-cn">中文文言文简体</option>
-                <option value="zh-classical-tw">中文文言文繁体</option>
+                <option value="zh-cn">简体中文</option>
+                <option value="zh-tw">繁体中文</option>
                 <option value="en">English</option>
                 <option value="ja">日本語</option>
                 <option value="ko">한국어</option>
@@ -353,10 +351,8 @@ function addEditTranslationRow(selectedLang = 'en', translationText = '') {
     newRow.innerHTML = `
         <div class="col-3">
             <select class="form-select translation-lang" aria-label="选择语言">
-                <option value="zh-cn" ${selectedLang === 'zh-cn' ? 'selected' : ''}>中文大陆地区现代文简体</option>
-                <option value="zh-tw" ${selectedLang === 'zh-tw' ? 'selected' : ''}>中文港澳台地区现代文繁体</option>
-                <option value="zh-classical-cn" ${selectedLang === 'zh-classical-cn' ? 'selected' : ''}>中文文言文简体</option>
-                <option value="zh-classical-tw" ${selectedLang === 'zh-classical-tw' ? 'selected' : ''}>中文文言文繁体</option>
+                <option value="zh-cn" ${selectedLang === 'zh-cn' ? 'selected' : ''}>简体中文</option>
+                <option value="zh-tw" ${selectedLang === 'zh-tw' ? 'selected' : ''}>繁体中文</option>
                 <option value="en" ${selectedLang === 'en' ? 'selected' : ''}>English</option>
                 <option value="ja" ${selectedLang === 'ja' ? 'selected' : ''}>日本語</option>
                 <option value="ko" ${selectedLang === 'ko' ? 'selected' : ''}>한국어</option>
@@ -508,10 +504,8 @@ async function exportTerminology() {
 // 工具函数
 function getLanguageName(code) {
     const names = {
-        'zh-cn': '中文大陆地区现代文简体',
-        'zh-tw': '中文港澳台地区现代文繁体',
-        'zh-classical-cn': '中文文言文简体',
-        'zh-classical-tw': '中文文言文繁体',
+        'zh-cn': '简体中文',
+        'zh-tw': '繁体中文',
         'en': 'English',
         'ja': '日本語',
         'ko': '한국어',
@@ -527,8 +521,8 @@ function getLanguageName(code) {
 
 function getLanguageCode(name) {
     const codes = {
-        '中文大陆地区现代文简体': 'zh-cn',
-        '中文港澳台地区现代文繁体': 'zh-tw',
+        '简体中文': 'zh-cn',
+        '繁体中文': 'zh-tw',
         '中文文言文简体': 'zh-classical-cn',
         '中文文言文繁体': 'zh-classical-tw',
         'English': 'en',

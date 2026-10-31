@@ -1,0 +1,12 @@
+{"schema": "transcoder-next/events/v1", "ts": "2026-10-19T14:36:15", "seq": 0, "run_id": "02ec77ddf9ba", "event": "pair.start", "role": "", "payload": {"group": "G3", "pair_id": "la-ch1-en"}}
+{"schema": "transcoder-next/events/v1", "ts": "2026-10-19T14:36:15", "seq": 0, "run_id": "1a7af9b0036d", "event": "pair.start", "role": "", "payload": {"group": "G3", "pair_id": "la-ch1-fr"}}
+{"schema": "transcoder-next/events/v1", "ts": "2026-10-19T14:36:15", "seq": 0, "run_id": "6ddd5a63280c", "event": "pair.start", "role": "", "payload": {"group": "G3", "pair_id": "la-ch1-ja"}}
+{"schema": "transcoder-next/events/v1", "ts": "2026-10-19T14:36:15", "seq": 0, "run_id": "af0aa17c111a", "event": "pair.start", "role": "", "payload": {"group": "G3", "pair_id": "la-ch1-ko"}}
+{"schema": "transcoder-next/events/v1", "ts": "2026-10-19T14:36:15", "seq": 0, "run_id": "d7fa727e7a8f", "event": "pair.start", "role": "", "payload": {"group": "G3", "pair_id": "la-ch1-de"}}
+{"schema": "transcoder-next/events/v1", "ts": "2026-10-19T14:36:15", "seq": 0, "run_id": "668cd588efc2", "event": "pair.start", "role": "", "payload": {"group": "G3", "pair_id": "la-ch8-en"}}
+{"schema": "transcoder-next/events/v1", "ts": "2026-10-19T14:36:15", "seq": 0, "run_id": "2abda59aeaed", "event": "pair.start", "role": "", "payload": {"group": "G3", "pair_id": "la-ch8-fr"}}
+{"schema": "transcoder-next/events/v1", "ts": "2026-10-19T14:36:15", "seq": 0, "run_id": "3f787908d236", "event": "pair.start", "role": "", "payload": {"group": "G3", "pair_id": "la-ch8-ja"}}
+{"schema": "transcoder-next/events/v1", "ts": "2026-10-19T14:36:15", "seq": 0, "run_id": "951c3f149e9f", "event": "pair.start", "role": "", "payload": {"group": "G3", "pair_id": "la-ch8-ko"}}
+{"schema": "transcoder-next/events/v1", "ts": "2026-10-19T14:36:15", "seq": 0, "run_id": "f6304141738f", "event": "pair.start", "role": "", "payload": {"group": "G3", "pair_id": "la-ch8-de"}}
+{"schema": "transcoder-next/events/v1", "ts": "2026-10-19T14:36:15", "seq": 0, "run_id": "a663c48bc83c", "event": "pair.start", "role": "", "payload": {"group": "G3", "pair_id": "aq-xu-en"}}
+{"schema": "transcoder-next/events/v1", "ts": "2026-10-19T14:36:15", "seq": 0, "run_id": "ca41e3572887", "event": "pair.start", "role": "", "payload": {"group": "G3", "pair_id": "c3-tech1"}}

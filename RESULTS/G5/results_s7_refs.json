@@ -1,0 +1,645 @@
+{
+  "schema": "transcoder-next/results/v1",
+  "group": "G5",
+  "description": "team-hybrid (edge translator + online reviewer)",
+  "temperature": 0.3,
+  "seed": 7,
+  "translator_model": "qwen3:0.6b",
+  "reviewer": [
+    "deepseek",
+    "deepseek-chat"
+  ],
+  "n_pairs": 14,
+  "rows": [
+    {
+      "group": "G5",
+      "pair_id": "la-ch1-en",
+      "subset": "c1-la",
+      "source_lang": "zh-classical-cn",
+      "target_lang": "en",
+      "has_reference": true,
+      "seed": 7,
+      "source_tokens_o200k": 58,
+      "degraded": false,
+      "degraded_reason": null,
+      "rounds": 3,
+      "model": "qwen3:0.6b",
+      "reviewer_model": "deepseek-chat",
+      "reviewer_kind": "online",
+      "output": "The Dao is the Dao, the name is the name, and the name is the name. The name is the name, and the name is the name. The name is the name, and the name is the name. The name is the name, and the name is the name. The name is the name, and the name is the name. The name is the name, and the name is the name. The name is the name, and the name is the name. The name is the name, and the name is the name. The name is the name, and the name is the name. The name is the name, and the name is the name. The name is the name, and the name is the name. The name is the name, and the name is the name. The name is the name, and the name is the name. The name is the name, and the name is the name. The name is the name, and the name is the name. The name is the name, and the name is the name. The name is the name, and the name is the name. The name is the name, and the name is the name. The name is the name, and the name is the name. The name is the name, and the name is the name. The name is the name, and the name is the name. The name is the name, and the name is the name. The name is the name, and the name is the name. The name is the name, and the name is the name. The name is the name, and the name is the name. The name is the name, and the name is the name. The name is the name, and the name is the name. The name is the name, and the name is the name. The name is the name, and the name is the name. The name is the name, and the name is the name. The name is the name, and the name is the name. The name is the name, and the name is the name. The name is the name, and the name is the name. The name is the name, and the name is the name. The name is the name, and the name is the name. The name is the name, and the name is the name. The name is the name, and the name is the name. The name is the name, and the name is the name. The name is the name, and the name is the name",
+      "review_scores": {
+        "adequacy": 0.0,
+        "terminology": 1.0,
+        "fluency": 1.0,
+        "culture": 1.0
+      },
+      "review_pass": false,
+      "review_parse_ok": true,
+      "online_tokens": {
+        "in": 2157,
+        "out": 1289
+      },
+      "team_tokens": {
+        "translator_in": 3992,
+        "translator_out": 2560,
+        "reviewer_in": 2157,
+        "reviewer_out": 1289
+      },
+      "wall_s": 159.33,
+      "metrics": {
+        "no_reference": false,
+        "length_ratio": 32.586,
+        "bleu": 0.74,
+        "chrf": 13.14,
+        "ter": 318.9,
+        "rougeL": 0.103,
+        "bert_f1": 0.558
+      }
+    },
+    {
+      "group": "G5",
+      "pair_id": "la-ch1-fr",
+      "subset": "c1-la",
+      "source_lang": "zh-classical-cn",
+      "target_lang": "fr",
+      "has_reference": true,
+      "seed": 7,
+      "source_tokens_o200k": 58,
+      "degraded": false,
+      "degraded_reason": null,
+      "rounds": 3,
+      "model": "qwen3:0.6b",
+      "reviewer_model": "deepseek-chat",
+      "reviewer_kind": "online",
+      "output": "D'outray, la vérité est la vérité, la vérité est la vérité, ...",
+      "review_scores": {
+        "adequacy": 0.0,
+        "terminology": 0.0,
+        "fluency": 1.0,
+        "culture": 0.0
+      },
+      "review_pass": false,
+      "review_parse_ok": true,
+      "online_tokens": {
+        "in": 1463,
+        "out": 1114
+      },
+      "team_tokens": {
+        "translator_in": 3756,
+        "translator_out": 1592,
+        "reviewer_in": 1463,
+        "reviewer_out": 1114
+      },
+      "wall_s": 106.13,
+      "metrics": {
+        "no_reference": false,
+        "length_ratio": 1.086,
+        "bleu": 0.02,
+        "chrf": 4.09,
+        "ter": 95.28,
+        "rougeL": 0.09,
+        "bert_f1": 0.613
+      }
+    },
+    {
+      "group": "G5",
+      "pair_id": "la-ch1-ja",
+      "subset": "c1-la",
+      "source_lang": "zh-classical-cn",
+      "target_lang": "ja",
+      "has_reference": true,
+      "seed": 7,
+      "source_tokens_o200k": 58,
+      "degraded": false,
+      "degraded_reason": null,
+      "rounds": 1,
+      "model": "qwen3:0.6b",
+      "reviewer_model": "deepseek-chat",
+      "reviewer_kind": "online",
+      "output": "道可道非常道名可名非常名無名天地之始有名萬物之母常無欲以觀其妙常有欲以觀其徼此兩者同出而異名同謂之玄玄之又玄衆妙之門",
+      "review_scores": {
+        "adequacy": 10.0,
+        "terminology": 10.0,
+        "fluency": 10.0,
+        "culture": 10.0
+      },
+      "review_pass": true,
+      "review_parse_ok": true,
+      "online_tokens": {
+        "in": 260,
+        "out": 39
+      },
+      "team_tokens": {
+        "translator_in": 108,
+        "translator_out": 56,
+        "reviewer_in": 260,
+        "reviewer_out": 39
+      },
+      "wall_s": 6.08,
+      "metrics": {
+        "no_reference": false,
+        "length_ratio": 1.0,
+        "bleu": 0.95,
+        "chrf": 5.69,
+        "ter": 100.0,
+        "rougeL": 0,
+        "bert_f1": 0.685
+      }
+    },
+    {
+      "group": "G5",
+      "pair_id": "la-ch8-en",
+      "subset": "c1-la",
+      "source_lang": "zh-classical-cn",
+      "target_lang": "en",
+      "has_reference": true,
+      "seed": 7,
+      "source_tokens_o200k": 54,
+      "degraded": false,
+      "degraded_reason": null,
+      "rounds": 3,
+      "model": "qwen3:0.6b",
+      "reviewer_model": "deepseek-chat",
+      "reviewer_kind": "online",
+      "output": "The source is: \"The great virtue is like water. Water is good for all things, and it does not compete with others. Therefore, it is near to the Dao. It dwells in good places, its heart is good like a deep pool, in giving it is good and benevolent. It speaks with truth. It governs the state, and it does good deeds. It is active in the time.\"",
+      "review_scores": {
+        "adequacy": 4.0,
+        "terminology": 5.0,
+        "fluency": 5.0,
+        "culture": 4.0
+      },
+      "review_pass": false,
+      "review_parse_ok": true,
+      "online_tokens": {
+        "in": 842,
+        "out": 1549
+      },
+      "team_tokens": {
+        "translator_in": 2228,
+        "translator_out": 421,
+        "reviewer_in": 842,
+        "reviewer_out": 1549
+      },
+      "wall_s": 36.22,
+      "metrics": {
+        "no_reference": false,
+        "length_ratio": 7.277,
+        "bleu": 2.8,
+        "chrf": 19.8,
+        "ter": 85.83,
+        "rougeL": 0.226,
+        "bert_f1": 0.701
+      }
+    },
+    {
+      "group": "G5",
+      "pair_id": "la-ch8-fr",
+      "subset": "c1-la",
+      "source_lang": "zh-classical-cn",
+      "target_lang": "fr",
+      "has_reference": true,
+      "seed": 7,
+      "source_tokens_o200k": 54,
+      "degraded": false,
+      "degraded_reason": null,
+      "rounds": 3,
+      "model": "qwen3:0.6b",
+      "reviewer_model": "deepseek-chat",
+      "reviewer_kind": "online",
+      "output": "L'art du bien suprême est de laisser l'eau exceller à profiter à toutes choses, sans rivaliser avec les autres, et donc s'adonner à la vérité, à la place, à la réflexion, à la gouvernance, à la force et à la force du temps. Il est ainsi que l'art du bien suprême est de ne pas rivaliser.",
+      "review_scores": {
+        "adequacy": 3.0,
+        "terminology": 4.0,
+        "fluency": 3.0,
+        "culture": 3.0
+      },
+      "review_pass": false,
+      "review_parse_ok": true,
+      "online_tokens": {
+        "in": 847,
+        "out": 1805
+      },
+      "team_tokens": {
+        "translator_in": 2966,
+        "translator_out": 452,
+        "reviewer_in": 847,
+        "reviewer_out": 1805
+      },
+      "wall_s": 39.55,
+      "metrics": {
+        "no_reference": false,
+        "length_ratio": 6.106,
+        "bleu": 1.56,
+        "chrf": 17.92,
+        "ter": 86.61,
+        "rougeL": 0.167,
+        "bert_f1": 0.656
+      }
+    },
+    {
+      "group": "G5",
+      "pair_id": "la-ch8-ja",
+      "subset": "c1-la",
+      "source_lang": "zh-classical-cn",
+      "target_lang": "ja",
+      "has_reference": true,
+      "seed": 7,
+      "source_tokens_o200k": 54,
+      "degraded": false,
+      "degraded_reason": null,
+      "rounds": 1,
+      "model": "qwen3:0.6b",
+      "reviewer_model": "deepseek-chat",
+      "reviewer_kind": "online",
+      "output": "上善若水、水善利萬物而不爭處衆人之所惡故幾於道、居善地、心善淵、與善仁、言善信、政善治、事善能、動善時夫惟不爭",
+      "review_scores": {
+        "adequacy": 9.0,
+        "terminology": 9.0,
+        "fluency": 8.0,
+        "culture": 9.0
+      },
+      "review_pass": true,
+      "review_parse_ok": true,
+      "online_tokens": {
+        "in": 252,
+        "out": 98
+      },
+      "team_tokens": {
+        "translator_in": 100,
+        "translator_out": 56,
+        "reviewer_in": 252,
+        "reviewer_out": 98
+      },
+      "wall_s": 6.69,
+      "metrics": {
+        "no_reference": false,
+        "length_ratio": 1.17,
+        "bleu": 14.51,
+        "chrf": 13.75,
+        "ter": 100.0,
+        "rougeL": 0,
+        "bert_f1": 0.748
+      }
+    },
+    {
+      "group": "G5",
+      "pair_id": "la-ch9-en",
+      "subset": "c1-la",
+      "source_lang": "zh-classical-cn",
+      "target_lang": "en",
+      "has_reference": true,
+      "seed": 7,
+      "source_tokens_o200k": 46,
+      "degraded": false,
+      "degraded_reason": null,
+      "rounds": 3,
+      "model": "qwen3:0.6b",
+      "reviewer_model": "deepseek-chat",
+      "reviewer_kind": "online",
+      "output": "Holding it up and gaining more than it is, it is better to stop. Holding it up and sharpening it is not long-lasting. Gold and silver are full of treasure. Wealth and honor will lead to ruin. The good will come to you, and you will leave the world. The Way of Heaven has its way.",
+      "review_scores": {
+        "adequacy": 3.0,
+        "terminology": 4.0,
+        "fluency": 3.0,
+        "culture": 3.0
+      },
+      "review_pass": false,
+      "review_parse_ok": true,
+      "online_tokens": {
+        "in": 776,
+        "out": 1692
+      },
+      "team_tokens": {
+        "translator_in": 2396,
+        "translator_out": 339,
+        "reviewer_in": 776,
+        "reviewer_out": 1692
+      },
+      "wall_s": 31.71,
+      "metrics": {
+        "no_reference": false,
+        "length_ratio": 6.805,
+        "bleu": 7.51,
+        "chrf": 25.51,
+        "ter": 84.15,
+        "rougeL": 0.286,
+        "bert_f1": 0.725
+      }
+    },
+    {
+      "group": "G5",
+      "pair_id": "la-ch9-fr",
+      "subset": "c1-la",
+      "source_lang": "zh-classical-cn",
+      "target_lang": "fr",
+      "has_reference": true,
+      "seed": 7,
+      "source_tokens_o200k": 46,
+      "degraded": false,
+      "degraded_reason": null,
+      "rounds": 3,
+      "model": "qwen3:0.6b",
+      "reviewer_model": "deepseek-chat",
+      "reviewer_kind": "online",
+      "output": "chercher et enlever, mieux qu'il soit, ne peut pas être conservé. Enchercher et enlever, mieux qu'il soit, ne peut pas être conservé. Les orrages, les richesses, les gloire et l'admiration, ne peuvent pas être conservés. Leur conséquence, la gloire et la gloire, ne peuvent pas être conservés.",
+      "review_scores": {
+        "adequacy": 1.0,
+        "terminology": 1.0,
+        "fluency": 1.0,
+        "culture": 1.0
+      },
+      "review_pass": false,
+      "review_parse_ok": true,
+      "online_tokens": {
+        "in": 859,
+        "out": 1807
+      },
+      "team_tokens": {
+        "translator_in": 2894,
+        "translator_out": 483,
+        "reviewer_in": 859,
+        "reviewer_out": 1807
+      },
+      "wall_s": 41.03,
+      "metrics": {
+        "no_reference": false,
+        "length_ratio": 7.146,
+        "bleu": 0.65,
+        "chrf": 17.11,
+        "ter": 94.12,
+        "rougeL": 0.132,
+        "bert_f1": 0.62
+      }
+    },
+    {
+      "group": "G5",
+      "pair_id": "la-ch9-ja",
+      "subset": "c1-la",
+      "source_lang": "zh-classical-cn",
+      "target_lang": "ja",
+      "has_reference": true,
+      "seed": 7,
+      "source_tokens_o200k": 46,
+      "degraded": false,
+      "degraded_reason": null,
+      "rounds": 1,
+      "model": "qwen3:0.6b",
+      "reviewer_model": "deepseek-chat",
+      "reviewer_kind": "online",
+      "output": "持而盈之不如其已，揣而銳之不可長保，金玉滿堂莫之能守，富貴而驕自遺其咎，功成名遂身退，天之道。",
+      "review_scores": {
+        "adequacy": 10.0,
+        "terminology": 10.0,
+        "fluency": 10.0,
+        "culture": 10.0
+      },
+      "review_pass": true,
+      "review_parse_ok": true,
+      "online_tokens": {
+        "in": 234,
+        "out": 39
+      },
+      "team_tokens": {
+        "translator_in": 92,
+        "translator_out": 46,
+        "reviewer_in": 234,
+        "reviewer_out": 39
+      },
+      "wall_s": 5.77,
+      "metrics": {
+        "no_reference": false,
+        "length_ratio": 1.146,
+        "bleu": 1.34,
+        "chrf": 5.1,
+        "ter": 100.0,
+        "rougeL": 0,
+        "bert_f1": 0.69
+      }
+    },
+    {
+      "group": "G5",
+      "pair_id": "la-ch15-en",
+      "subset": "c1-la",
+      "source_lang": "zh-classical-cn",
+      "target_lang": "en",
+      "has_reference": true,
+      "seed": 7,
+      "source_tokens_o200k": 111,
+      "degraded": false,
+      "degraded_reason": null,
+      "rounds": 3,
+      "model": "qwen3:0.6b",
+      "reviewer_model": "deepseek-chat",
+      "reviewer_kind": "online",
+      "output": "The ancient masters of the people are subtle and profound, and their ways are hard to recognize. Only by not recognizing this is it that they are used and arranged with care. Like the river hesitating as if crossing a mountain, like the fear of four neighbors, like the guest, like the ice, like the one who releases the moon, like the vastness of the mountain, like the vastness of the valley, like the clarity of the sky. Who can be clear and still, and who can be tranquil and alive? Those who preserve this path do not seek to fill it, and thus they can be both worn and new.",
+      "review_scores": {
+        "adequacy": 3.0,
+        "terminology": 3.0,
+        "fluency": 4.0,
+        "culture": 3.0
+      },
+      "review_pass": false,
+      "review_parse_ok": true,
+      "online_tokens": {
+        "in": 1132,
+        "out": 2275
+      },
+      "team_tokens": {
+        "translator_in": 3582,
+        "translator_out": 645,
+        "reviewer_in": 1132,
+        "reviewer_out": 2275
+      },
+      "wall_s": 54.22,
+      "metrics": {
+        "no_reference": false,
+        "length_ratio": 6.363,
+        "bleu": 2.58,
+        "chrf": 26.67,
+        "ter": 81.97,
+        "rougeL": 0.277,
+        "bert_f1": 0.713
+      }
+    },
+    {
+      "group": "G5",
+      "pair_id": "la-ch15-fr",
+      "subset": "c1-la",
+      "source_lang": "zh-classical-cn",
+      "target_lang": "fr",
+      "has_reference": true,
+      "seed": 7,
+      "source_tokens_o200k": 111,
+      "degraded": false,
+      "degraded_reason": null,
+      "rounds": 3,
+      "model": "qwen3:0.6b",
+      "reviewer_model": "deepseek-chat",
+      "reviewer_kind": "online",
+      "output": "D'abord, les maîtres de jadis, habiles dans la Voie, étaient subtils, mystérieux, pénétrants. Ce qui est difficile à comprendre, c'est pourquoi ils s'effortaient à les donner une description/une apparence. Cependant, il est en effet difficile de les comprendre, ce qui les rend aptes à les faire. Cependant, il est en effet difficile de les comprendre, ce qui les rend aptes à les faire. Cependant, il est en effet difficile de les comprendre, ce qui les rend aptes à les faire. Cependant, il est en effet difficile de les comprendre, ce qui les rend aptes à les faire. Cependant, il est en effet difficile de les comprendre, ce qui les rend aptes à les faire. Cependant, il est en effet difficile de les comprendre, ce qui les rend aptes à les faire.",
+      "review_scores": {
+        "adequacy": 2.0,
+        "terminology": 4.0,
+        "fluency": 2.0,
+        "culture": 4.0
+      },
+      "review_pass": false,
+      "review_parse_ok": true,
+      "online_tokens": {
+        "in": 1237,
+        "out": 1752
+      },
+      "team_tokens": {
+        "translator_in": 3374,
+        "translator_out": 941,
+        "reviewer_in": 1237,
+        "reviewer_out": 1752
+      },
+      "wall_s": 77.51,
+      "metrics": {
+        "no_reference": false,
+        "length_ratio": 8.253,
+        "bleu": 1.01,
+        "chrf": 20.85,
+        "ter": 89.35,
+        "rougeL": 0.171,
+        "bert_f1": 0.639
+      }
+    },
+    {
+      "group": "G5",
+      "pair_id": "la-ch15-ja",
+      "subset": "c1-la",
+      "source_lang": "zh-classical-cn",
+      "target_lang": "ja",
+      "has_reference": true,
+      "seed": 7,
+      "source_tokens_o200k": 111,
+      "degraded": false,
+      "degraded_reason": null,
+      "rounds": 3,
+      "model": "qwen3:0.6b",
+      "reviewer_model": "deepseek-chat",
+      "reviewer_kind": "online",
+      "output": "古之善为士者，微妙玄通，深不可识。惟不可识故强为之容，豫若冬涉川，犹若畏四邻，儼若客，渙若冰，将释敦兮，其若樸曠兮，其若谷渾兮，其若濁。孰能濁以靜之，徐清？孰能安以久動之，徐生。保此道者，不欲盈，惟不盈故能弊，不新成。",
+      "review_scores": {
+        "adequacy": 3.0,
+        "terminology": 4.0,
+        "fluency": 3.0,
+        "culture": 3.0
+      },
+      "review_pass": false,
+      "review_parse_ok": true,
+      "online_tokens": {
+        "in": 1073,
+        "out": 1578
+      },
+      "team_tokens": {
+        "translator_in": 2858,
+        "translator_out": 559,
+        "reviewer_in": 1073,
+        "reviewer_out": 1578
+      },
+      "wall_s": 58.92,
+      "metrics": {
+        "no_reference": false,
+        "length_ratio": 1.198,
+        "bleu": 1.41,
+        "chrf": 4.21,
+        "ter": 100.0,
+        "rougeL": 0,
+        "bert_f1": 0.679
+      }
+    },
+    {
+      "group": "G5",
+      "pair_id": "aq-xu-en",
+      "subset": "c1-aq",
+      "source_lang": "zh-cn",
+      "target_lang": "en",
+      "has_reference": true,
+      "seed": 7,
+      "source_tokens_o200k": 98,
+      "degraded": false,
+      "degraded_reason": null,
+      "rounds": 3,
+      "model": "qwen3:0.6b",
+      "reviewer_model": "deepseek-chat",
+      "reviewer_kind": "online",
+      "output": "I have been wanting to write the true biography of Ah Q for more than a year or two. But I am not only writing, but also thinking back on it. This shows that I am not a person who writes only for the sake of writing, because I have never written for the sake of writing. Therefore, people are written by the words, and words are written by people — who is the one who writes, and who is the one who is written, gradually becomes clear, and finally comes down to writing Ah Q's biography.",
+      "review_scores": {
+        "adequacy": 3.0,
+        "terminology": 4.0,
+        "fluency": 4.0,
+        "culture": 3.0
+      },
+      "review_pass": false,
+      "review_parse_ok": true,
+      "online_tokens": {
+        "in": 1042,
+        "out": 2119
+      },
+      "team_tokens": {
+        "translator_in": 3543,
+        "translator_out": 582,
+        "reviewer_in": 1042,
+        "reviewer_out": 2119
+      },
+      "wall_s": 62.32,
+      "metrics": {
+        "no_reference": false,
+        "length_ratio": 4.348,
+        "bleu": 12.73,
+        "chrf": 29.82,
+        "ter": 78.38,
+        "rougeL": 0.286,
+        "bert_f1": 0.71
+      }
+    },
+    {
+      "group": "G5",
+      "pair_id": "aq-ch1-en",
+      "subset": "c1-aq",
+      "source_lang": "zh-cn",
+      "target_lang": "en",
+      "has_reference": true,
+      "seed": 7,
+      "source_tokens_o200k": 104,
+      "degraded": false,
+      "degraded_reason": null,
+      "rounds": 3,
+      "model": "qwen3:0.6b",
+      "reviewer_model": "deepseek-chat",
+      "reviewer_kind": "online",
+      "output": "A Q is not only a name and place, but even his earlier \"life story\" is obscure. The villagers of Weizhuang only wanted him to do chores and only made fun of him. When he quarreled with others, he may stare at his eyes and say: \"We were much richer than you—what do you amount to!\"",
+      "review_scores": {
+        "adequacy": 6.0,
+        "terminology": 7.0,
+        "fluency": 6.0,
+        "culture": 6.0
+      },
+      "review_pass": false,
+      "review_parse_ok": true,
+      "online_tokens": {
+        "in": 960,
+        "out": 1520
+      },
+      "team_tokens": {
+        "translator_in": 2762,
+        "translator_out": 417,
+        "reviewer_in": 960,
+        "reviewer_out": 1520
+      },
+      "wall_s": 40.2,
+      "metrics": {
+        "no_reference": false,
+        "length_ratio": 2.414,
+        "bleu": 6.07,
+        "chrf": 23.74,
+        "ter": 81.0,
+        "rougeL": 0.304,
+        "bert_f1": 0.759
+      }
+    }
+  ]
+}

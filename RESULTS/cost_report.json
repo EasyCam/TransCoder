@@ -1,0 +1,43 @@
+{
+  "schema": "transcoder-next/cost/v1",
+  "date": "2026-10-19",
+  "unit": "o200k tokens (uniform accounting; vendor rate application below)",
+  "groups": {
+    "G0": {
+      "calls_with_online": 37,
+      "online_tokens_in": 4134,
+      "online_tokens_out": 5106,
+      "total_online": 9240
+    },
+    "G1": {
+      "calls_with_online": 0,
+      "online_tokens_in": 0,
+      "online_tokens_out": 0,
+      "total_online": 0
+    },
+    "G2": {
+      "calls_with_online": 0,
+      "online_tokens_in": 0,
+      "online_tokens_out": 0,
+      "total_online": 0
+    },
+    "G3": {
+      "calls_with_online": 0,
+      "online_tokens_in": 0,
+      "online_tokens_out": 0,
+      "total_online": 0
+    },
+    "G4": {
+      "calls_with_online": 0,
+      "online_tokens_in": 0,
+      "online_tokens_out": 0,
+      "total_online": 0
+    },
+    "G5": {
+      "calls_with_online": 37,
+      "online_tokens_in": 41627,
+      "online_tokens_out": 56002,
+      "total_online": 97629
+    }
+  }
+}

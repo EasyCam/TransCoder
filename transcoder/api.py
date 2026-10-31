@@ -100,6 +100,19 @@ class TransCoderAPI:
         lang = self.translation_service.detect_language(text)
         return ToolResult(success=True, data={"language": lang})
 
+    def _service_for_endpoint(self, endpoint: str, model: Optional[str] = None):
+        """Build a request-scoped TranslationService bound to a configured endpoint.
+
+        API keys stay server-side inside provider_for_endpoint; nothing secret
+        is returned to callers beyond the service object itself.
+        """
+        from transcoder.core import TranslationService
+        from transcoder.team_setup import provider_for_endpoint
+
+        provider = provider_for_endpoint(endpoint, model)
+        default_model = getattr(provider, "default_model", None) or self.model
+        return TranslationService(model=model or default_model, provider=provider)
+
     def translate(
         self,
         source_text: str,
@@ -110,6 +123,7 @@ class TransCoderAPI:
         use_vector_db: bool = False,
         use_terminology: bool = False,
         iterations: int = 1,
+        endpoint: Optional[str] = None,
     ) -> ToolResult:
         """
         Translate text with various modes.
@@ -135,8 +149,12 @@ class TransCoderAPI:
         vector_db_svc = self.vector_db if use_vector_db else None
         terminology_svc = self.terminology if use_terminology else None
 
+        service = self.translation_service
+        if endpoint:
+            service = self._service_for_endpoint(endpoint, model)
+
         if mode == "simple":
-            return self.translation_service.translate(
+            return service.translate(
                 source_text=source_text,
                 source_lang=source_lang,
                 target_langs=target_langs,
@@ -149,10 +167,11 @@ class TransCoderAPI:
 
         elif mode in ("reflect", "iterate"):
             results = {}
+            finals: Dict[str, str] = {}
 
             for target_lang in target_langs:
                 iters = iterations if mode == "iterate" else 1
-                result = self.translation_service.translate_with_reflection(
+                result = service.translate_with_reflection(
                     source_text=source_text,
                     source_lang=source_lang,
                     target_lang=target_lang,
@@ -161,10 +180,19 @@ class TransCoderAPI:
                 )
                 if result.success:
                     results[target_lang] = result.data
+                    if result.data.get("text"):
+                        finals[target_lang] = result.data["text"]
                 else:
                     results[target_lang] = {"error": result.error}
 
-            return ToolResult(success=True, data={"translations": results})
+            stored = False
+            if vector_db_svc is not None and finals:
+                stored = bool(self.vector_db.add_translation_pair(source_text, finals).success)
+
+            return ToolResult(success=True, data={
+                "translations": results,
+                "memory": {"references_used": 0, "stored": stored} if vector_db_svc is not None else None,
+            })
 
         else:
             return ToolResult(success=False, error=f"Unknown mode: {mode}. Use 'simple', 'reflect', or 'iterate'.")
@@ -224,7 +252,8 @@ class TransCoderAPI:
         )
 
     def reflect_translation(
-        self, source_text: str, translation: str, source_lang: str, target_lang: str, model: Optional[str] = None
+        self, source_text: str, translation: str, source_lang: str, target_lang: str,
+        model: Optional[str] = None, endpoint: Optional[str] = None,
     ) -> ToolResult:
         """
         Analyze translation quality (反思翻译).
@@ -235,12 +264,13 @@ class TransCoderAPI:
         - Style: Is the tone appropriate?
         - Terminology: Are terms correct?
         """
-        return self.translation_service.reflect_translation(
+        service = self._service_for_endpoint(endpoint, model) if endpoint else self.translation_service
+        return service.reflect_translation(
             source_text=source_text,
             translation=translation,
             source_lang=source_lang,
             target_lang=target_lang,
-            model=model or self.model,
+            model=model or service.model,
         )
 
     def improve_translation(
@@ -251,17 +281,19 @@ class TransCoderAPI:
         source_lang: str,
         target_lang: str,
         model: Optional[str] = None,
+        endpoint: Optional[str] = None,
     ) -> ToolResult:
         """
         Improve translation based on reflection analysis.
         """
-        return self.translation_service.improve_translation(
+        service = self._service_for_endpoint(endpoint, model) if endpoint else self.translation_service
+        return service.improve_translation(
             source_text=source_text,
             current_translation=current_translation,
             reflection=reflection,
             source_lang=source_lang,
             target_lang=target_lang,
-            model=model or self.model,
+            model=model or service.model,
         )
 
     def add_translation_memory(self, source_text: str, translations: Dict[str, str]) -> ToolResult:

@@ -1,0 +1,1565 @@
+{
+  "schema": "transcoder-next/results/v1",
+  "group": "G5",
+  "description": "team-hybrid (edge translator + online reviewer)",
+  "temperature": 0.3,
+  "seed": 42,
+  "translator_model": "qwen3:0.6b",
+  "reviewer": [
+    "deepseek",
+    "deepseek-chat"
+  ],
+  "n_pairs": 37,
+  "rows": [
+    {
+      "group": "G5",
+      "pair_id": "la-ch1-en",
+      "subset": "c1-la",
+      "source_lang": "zh-classical-cn",
+      "target_lang": "en",
+      "has_reference": true,
+      "seed": 42,
+      "source_tokens_o200k": 58,
+      "degraded": false,
+      "degraded_reason": null,
+      "rounds": 3,
+      "model": "qwen3:0.6b",
+      "reviewer_model": "deepseek-chat",
+      "reviewer_kind": "online",
+      "output": "The Dao is the Dao, the name is the name, and the name is the name. There is no name for the Dao, and there is no name for the name. There is no name for the beginning of the world, and there is no name for the mother of all things. Without desire, one can observe the mystery, and with desire, one can observe the limit. These two are both from the same source, different names, and they are called the \"Mystery\" (the \"Mystery\" is the \"Mystery\" again, and the \"Gate of All Wonders\" is the \"Gate of All Wonders\").",
+      "review_scores": {
+        "adequacy": 1.0,
+        "terminology": 2.0,
+        "fluency": 2.0,
+        "culture": 1.0
+      },
+      "review_pass": false,
+      "review_parse_ok": true,
+      "online_tokens": {
+        "in": 1004,
+        "out": 1970
+      },
+      "team_tokens": {
+        "translator_in": 3050,
+        "translator_out": 648,
+        "reviewer_in": 1004,
+        "reviewer_out": 1970
+      },
+      "wall_s": 430.9,
+      "metrics": {
+        "no_reference": false,
+        "length_ratio": 8.845,
+        "bleu": 7.9,
+        "chrf": 0.6,
+        "ter": 80.31,
+        "rougeL": 0.368,
+        "bert_error": "BERTScorer.__init__() got an unexpected keyword argument 'verbose'"
+      }
+    },
+    {
+      "group": "G5",
+      "pair_id": "la-ch1-fr",
+      "subset": "c1-la",
+      "source_lang": "zh-classical-cn",
+      "target_lang": "fr",
+      "has_reference": true,
+      "seed": 42,
+      "source_tokens_o200k": 58,
+      "degraded": false,
+      "degraded_reason": null,
+      "rounds": 3,
+      "model": "qwen3:0.6b",
+      "reviewer_model": "deepseek-chat",
+      "reviewer_kind": "online",
+      "output": "L'origine : La Voie est la vérité, la vérité est la vérité, la vérité est la vérité...",
+      "review_scores": {
+        "adequacy": 0.0,
+        "terminology": 0.0,
+        "fluency": 1.0,
+        "culture": 0.0
+      },
+      "review_pass": false,
+      "review_parse_ok": true,
+      "online_tokens": {
+        "in": 1083,
+        "out": 1323
+      },
+      "team_tokens": {
+        "translator_in": 2940,
+        "translator_out": 652,
+        "reviewer_in": 1083,
+        "reviewer_out": 1323
+      },
+      "wall_s": 805.79,
+      "metrics": {
+        "no_reference": false,
+        "length_ratio": 1.483,
+        "bleu": 0.08,
+        "chrf": 3.38,
+        "ter": 93.4,
+        "rougeL": 0.129,
+        "bert_error": "BERTScorer.__init__() got an unexpected keyword argument 'verbose'"
+      }
+    },
+    {
+      "group": "G5",
+      "pair_id": "la-ch1-ja",
+      "subset": "c1-la",
+      "source_lang": "zh-classical-cn",
+      "target_lang": "ja",
+      "has_reference": true,
+      "seed": 42,
+      "source_tokens_o200k": 58,
+      "degraded": false,
+      "degraded_reason": null,
+      "rounds": 1,
+      "model": "qwen3:0.6b",
+      "reviewer_model": "deepseek-chat",
+      "reviewer_kind": "online",
+      "output": "道可道非常道名可名非常名無名天地之始有名萬物之母常無欲以觀其妙常有欲以觀其徼此兩者同出而異名同謂之玄玄之又玄衆妙之門",
+      "review_scores": {
+        "adequacy": 10.0,
+        "terminology": 10.0,
+        "fluency": 10.0,
+        "culture": 10.0
+      },
+      "review_pass": true,
+      "review_parse_ok": true,
+      "online_tokens": {
+        "in": 260,
+        "out": 39
+      },
+      "team_tokens": {
+        "translator_in": 108,
+        "translator_out": 56,
+        "reviewer_in": 260,
+        "reviewer_out": 39
+      },
+      "wall_s": 38.59,
+      "metrics": {
+        "no_reference": false,
+        "length_ratio": 1.0,
+        "bleu": 0.95,
+        "chrf": 4.03,
+        "ter": 100.0,
+        "rougeL": 0,
+        "bert_error": "BERTScorer.__init__() got an unexpected keyword argument 'verbose'"
+      }
+    },
+    {
+      "group": "G5",
+      "pair_id": "la-ch1-ko",
+      "subset": "c1-la",
+      "source_lang": "zh-classical-cn",
+      "target_lang": "ko",
+      "has_reference": false,
+      "seed": 42,
+      "source_tokens_o200k": 58,
+      "degraded": false,
+      "degraded_reason": null,
+      "rounds": 3,
+      "model": "qwen3:0.6b",
+      "reviewer_model": "deepseek-chat",
+      "reviewer_kind": "online",
+      "output": "도는 말할 수 있으면 늘 그러한 도가 아니다. 무명의 날시에 명은 무명의 날시에 명이 되고, 무명의 날시에 명은 무명의 날시에 명이 되고, 무명의 날시에 명은 무명의 날시에 명이 되고, 무명의 날시에 명은 무명의 날시에 명이 되고, 무명의 날시에 명은 무명의 날시에 명이 되고, 무명의 날시에 명은 무명의 날시에 명이 되고, 무명의 날시에 명은 무명의 날시에 명이 되고, 무명의 날시에 명은 무명의 날시에 명이 되고, 무명의 날시에 명은 무명의 날시에 명이 되고, 무명의 날시에 명은 무명의 날시에 명이 되고, 무명의 날시에 명은 무명의 날시에 명이 되고, 무명의 날시에 명은 무명의 날시에 명이 되고, 무명의 날시에 명은 무명의 날시에 명이 되고, 무명의 날시에 명은 무명의 날시에 명이 되고, 무명의 날시에 명은 무명의 날시에 명이 되고, 무명의 날시에 명은 무명의 날시에 명이 되고, 무명의 날시에 명은 무명의 날시에 명이 되고, 무명의 날시에 명은 무명의 날시에 명이 되고, 무명의 날시에 명은 무명의 날시에 명이 되고, 무명의 날시에 명은 무명의 날시에 명이 되고, 무명의 날시에 명은 무명의 날시에 명이 되고, 무명의 날시에 명은 무명의 날시에 명이 되고, 무명의 날시에 명은 무명의 날시에 명이 되고, 무명의 날시에 명은 무명의 날",
+      "review_scores": {
+        "adequacy": 1.0,
+        "terminology": 2.0,
+        "fluency": 1.0,
+        "culture": 2.0
+      },
+      "review_pass": false,
+      "review_parse_ok": true,
+      "online_tokens": {
+        "in": 1180,
+        "out": 1035
+      },
+      "team_tokens": {
+        "translator_in": 1624,
+        "translator_out": 1183,
+        "reviewer_in": 1180,
+        "reviewer_out": 1035
+      },
+      "wall_s": 644.89,
+      "metrics": {
+        "no_reference": true,
+        "length_ratio": 11.034
+      }
+    },
+    {
+      "group": "G5",
+      "pair_id": "la-ch1-de",
+      "subset": "c1-la",
+      "source_lang": "zh-classical-cn",
+      "target_lang": "de",
+      "has_reference": false,
+      "seed": 42,
+      "source_tokens_o200k": 58,
+      "degraded": false,
+      "degraded_reason": null,
+      "rounds": 3,
+      "model": "qwen3:0.6b",
+      "reviewer_model": "deepseek-chat",
+      "reviewer_kind": "online",
+      "output": "Der kann nicht genannt werden, weil der Name nicht genannt wird, und die Namen nicht genannt werden, und die Namen nicht genannt werden, und die Namen nicht genannt werden, und die Namen nicht genannt werden, und die Namen nicht genannt werden, und die Namen nicht genannt werden, und die Namen nicht genannt werden, und die Namen nicht genannt werden, und die Namen nicht genannt werden, und die Namen nicht genannt werden, und die Namen nicht genannt werden, und die Namen nicht genannt werden, und die Namen nicht genannt werden, und die Namen nicht genannt werden, und die Namen nicht genannt werden, und die Namen nicht genannt werden, und die Namen nicht genannt werden, und die Namen nicht genannt werden, und die Namen nicht genannt werden, und die Namen nicht genannt werden, und die Namen nicht genannt werden, und die Namen nicht genannt werden, und die Namen nicht genannt werden, und die Namen nicht genannt werden, und die Namen nicht genannt werden, und die Namen nicht genannt werden, und die Namen nicht genannt werden, und die Namen nicht genannt werden, und die Namen nicht genannt werden, und die Namen nicht genannt werden, und die Namen nicht genannt werden, und die Namen nicht genannt werden, und die Namen nicht genannt werden, und die Namen nicht genannt werden, und die Namen nicht genannt werden, und die Namen nicht genannt werden, und die Namen nicht genannt werden, und die Namen nicht genannt werden, und die Namen nicht genannt werden, und die Namen nicht genannt werden, und die Namen nicht genannt werden, und die Namen nicht genannt werden, und die Namen nicht genannt werden, und die Namen nicht genannt werden, und die Namen nicht genannt werden, und die Namen nicht genannt werden, und die Namen nicht genannt werden, und die Namen nicht genannt werden, und die Namen nicht genannt werden, und die Namen nicht genannt werden, und die Namen nicht genannt werden, und die Namen nicht genannt werden, und die Namen nicht genannt werden, und die Namen nicht genannt werden, und die Namen nicht genannt werden, und die Namen nicht genannt werden, und die Namen nicht genannt werden, und die Namen nicht genannt werden, und die Namen nicht genannt werden, und die Namen nicht genannt werden, und die Namen nicht genannt werden, und die Namen nicht genannt werden, und",
+      "review_scores": {
+        "adequacy": 0.0,
+        "terminology": 0.0,
+        "fluency": 0.0,
+        "culture": 0.0
+      },
+      "review_pass": false,
+      "review_parse_ok": true,
+      "online_tokens": {
+        "in": 1965,
+        "out": 1233
+      },
+      "team_tokens": {
+        "translator_in": 3864,
+        "translator_out": 2560,
+        "reviewer_in": 1965,
+        "reviewer_out": 1233
+      },
+      "wall_s": 3411.74,
+      "metrics": {
+        "no_reference": true,
+        "length_ratio": 39.655
+      }
+    },
+    {
+      "group": "G5",
+      "pair_id": "la-ch8-en",
+      "subset": "c1-la",
+      "source_lang": "zh-classical-cn",
+      "target_lang": "en",
+      "has_reference": true,
+      "seed": 42,
+      "source_tokens_o200k": 54,
+      "degraded": false,
+      "degraded_reason": null,
+      "rounds": 3,
+      "model": "qwen3:0.6b",
+      "reviewer_model": "deepseek-chat",
+      "reviewer_kind": "online",
+      "output": "The source text is translated as: \"The great virtue is like water, which is benevolent and good for all things, and does not compete with others. It is near to the path, and is in the heart of the virtue, and is benevolent, and has sincere words, and is good in governance, and is able to act, and is in harmony with the times.\"",
+      "review_scores": {
+        "adequacy": 3.0,
+        "terminology": 4.0,
+        "fluency": 3.0,
+        "culture": 3.0
+      },
+      "review_pass": false,
+      "review_parse_ok": true,
+      "online_tokens": {
+        "in": 825,
+        "out": 1828
+      },
+      "team_tokens": {
+        "translator_in": 2616,
+        "translator_out": 395,
+        "reviewer_in": 825,
+        "reviewer_out": 1828
+      },
+      "wall_s": 192.08,
+      "metrics": {
+        "no_reference": false,
+        "length_ratio": 6.979,
+        "bleu": 2.74,
+        "chrf": 0.93,
+        "ter": 82.68,
+        "rougeL": 0.262,
+        "bert_error": "BERTScorer.__init__() got an unexpected keyword argument 'verbose'"
+      }
+    },
+    {
+      "group": "G5",
+      "pair_id": "la-ch8-fr",
+      "subset": "c1-la",
+      "source_lang": "zh-classical-cn",
+      "target_lang": "fr",
+      "has_reference": true,
+      "seed": 42,
+      "source_tokens_o200k": 54,
+      "degraded": false,
+      "degraded_reason": null,
+      "rounds": 3,
+      "model": "qwen3:0.6b",
+      "reviewer_model": "deepseek-chat",
+      "reviewer_kind": "online",
+      "output": "L'art de l'humilité, de l'humilité, de l'humilité, de l'humilité, de l'humilité, de l'humilité, de l'humilité, de l'humilité, de l'humilité, de l'humilité, de l'humilité, de l'humilité, de l'humilité, de l'humilité, de l'humilité, de l'humilité, de l'humilité, de l'humilité, de l'humilité, de l'humilité, de l'humilité, de l'humilité, de l'humilité, de l'humilité, de l'humilité, de l'humilité, de l'humilité, de l'humilité, de l'humilité, de l'humilité, de l'humilité, de l'humilité, de l'humilité, de l'humilité, de l'humilité, de l'humilité, de l'humilité, de l'humilité, de l'humilité, de l'humilité, de l'humilité, de l'humilité, de l'humilité, de l'humilité, de l'humilité, de l'humilité, de l'humilité, de l'humilité, de l'humilité, de l'humilité, de l'humilité, de l'humilité, de l'humilité, de l'humilité, de l'humilité, de l'humilité, de l'humilité, de l'humilité, de l'humilité, de l'humilité, de l'humilité, de l'humilité, de l'humilité, de l'humilité, de l'humilité, de l'humilité, de l'humilité, de l'humilité, de l'humilité, de l'humilité, de l'humilité, de l'humilité, de l'humilit",
+      "review_scores": {
+        "adequacy": 0.0,
+        "terminology": 1.0,
+        "fluency": 0.0,
+        "culture": 1.0
+      },
+      "review_pass": false,
+      "review_parse_ok": true,
+      "online_tokens": {
+        "in": 2130,
+        "out": 1391
+      },
+      "team_tokens": {
+        "translator_in": 3876,
+        "translator_out": 2560,
+        "reviewer_in": 2130,
+        "reviewer_out": 1391
+      },
+      "wall_s": 2121.93,
+      "metrics": {
+        "no_reference": false,
+        "length_ratio": 23.362,
+        "bleu": 0.26,
+        "chrf": 0.26,
+        "ter": 129.46,
+        "rougeL": 0.035,
+        "bert_error": "BERTScorer.__init__() got an unexpected keyword argument 'verbose'"
+      }
+    },
+    {
+      "group": "G5",
+      "pair_id": "la-ch8-ja",
+      "subset": "c1-la",
+      "source_lang": "zh-classical-cn",
+      "target_lang": "ja",
+      "has_reference": true,
+      "seed": 42,
+      "source_tokens_o200k": 54,
+      "degraded": false,
+      "degraded_reason": null,
+      "rounds": 1,
+      "model": "qwen3:0.6b",
+      "reviewer_model": "deepseek-chat",
+      "reviewer_kind": "online",
+      "output": "上善若水水善利萬物而不爭處衆人之所惡故幾於道居善地心善淵與善仁言善信政善治事善能動善時夫惟不爭",
+      "review_scores": {
+        "adequacy": 10.0,
+        "terminology": 10.0,
+        "fluency": 10.0,
+        "culture": 10.0
+      },
+      "review_pass": true,
+      "review_parse_ok": true,
+      "online_tokens": {
+        "in": 244,
+        "out": 39
+      },
+      "team_tokens": {
+        "translator_in": 100,
+        "translator_out": 48,
+        "reviewer_in": 244,
+        "reviewer_out": 39
+      },
+      "wall_s": 23.08,
+      "metrics": {
+        "no_reference": false,
+        "length_ratio": 1.0,
+        "bleu": 2.0,
+        "chrf": 4.9,
+        "ter": 100.0,
+        "rougeL": 0,
+        "bert_error": "BERTScorer.__init__() got an unexpected keyword argument 'verbose'"
+      }
+    },
+    {
+      "group": "G5",
+      "pair_id": "la-ch8-ko",
+      "subset": "c1-la",
+      "source_lang": "zh-classical-cn",
+      "target_lang": "ko",
+      "has_reference": false,
+      "seed": 42,
+      "source_tokens_o200k": 54,
+      "degraded": false,
+      "degraded_reason": null,
+      "rounds": 3,
+      "model": "qwen3:0.6b",
+      "reviewer_model": "deepseek-chat",
+      "reviewer_kind": "online",
+      "output": "상善과 물 alike, 물은 만물을 빌려주며, 중인 것을 가까운 것이며, 지극한 선을 가진 곳에 있다. 천원을 가진 것이며, 천원을 가진 것이며, 천원을 가진 것이며, 천원을 가진 것이며, 천원을 가진 것이며, 천원을 가진 것이며, 천원을 가진 것이며, 천원을 가진 것이며, 천원을 가진 것이며, 천원을 가진 것이며, 천원을 가진 것이며, 천원을 가진 것이며, 천원을 가진 것이며, 천원을 가진 것이며, 천원을 가진 것이며, 천원을 가진 것이며, 천원을 가진 것이며, 천원을 가진 것이며, 천원을 가진 것이며, 천원을 가진 것이며, 천원을 가진 것이며, 천원을 가진 것이며, 천원을 가진 것이며, 천원을 가진 것이며, 천원을 가진 것이며, 천원을 가진 것이며, 천원을 가진 것이며, 천원을 가진 것이며, 천원을 가진 것이며, 천원을 가진 것이며, 천원을 가진 것이며, 천원을 가진 것이며, 천원을 가진 것이며, 천원을 가진 것이며, 천원을 가진 것이며, 천원을 가진 것이며, 천원을 가진 것이며, 천원을 가진 것이며, 천원을 가진 것이며, 천원을 가진 것이며, 천원을 가진 것이며, 천원을 가진 것이며, 천원을 가진 것이며, 천원을 가진 것이며, 천원을 가진 것이며, 천원을 가진 것이며, 천원을 가진 것이며, 천원을 가진 것이며, 천원을 가진 것이며, 천원을 가진 것이며, 천원을 가진 것이며, 천원을 가진 것이며, 천원을 가",
+      "review_scores": {
+        "adequacy": 1.0,
+        "terminology": 1.0,
+        "fluency": 0.0,
+        "culture": 1.0
+      },
+      "review_pass": false,
+      "review_parse_ok": true,
+      "online_tokens": {
+        "in": 1553,
+        "out": 1400
+      },
+      "team_tokens": {
+        "translator_in": 2962,
+        "translator_out": 2093,
+        "reviewer_in": 1553,
+        "reviewer_out": 1400
+      },
+      "wall_s": 1659.38,
+      "metrics": {
+        "no_reference": true,
+        "length_ratio": 14.617
+      }
+    },
+    {
+      "group": "G5",
+      "pair_id": "la-ch8-de",
+      "subset": "c1-la",
+      "source_lang": "zh-classical-cn",
+      "target_lang": "de",
+      "has_reference": false,
+      "seed": 42,
+      "source_tokens_o200k": 54,
+      "degraded": false,
+      "degraded_reason": null,
+      "rounds": 3,
+      "model": "qwen3:0.6b",
+      "reviewer_model": "deepseek-chat",
+      "reviewer_kind": "online",
+      "output": "Sei das Wachstum, das Wachstum, das Wachstum, das Wachstum, das Wachstum, das Wachstum, das Wachstum, das Wachstum, das Wachstum, das Wachstum, das Wachstum, das Wachstum, das Wachstum, das Wachstum, das Wachstum, das Wachstum, das Wachstum, das Wachstum, das Wachstum, das Wachstum, das Wachstum, das Wachstum, das Wachstum, das Wachstum, das Wachstum, das Wachstum, das Wachstum, das Wachstum, das Wachstum, das Wachstum, das Wachstum, das Wachstum, das Wachstum, das Wachstum, das Wachstum, das Wachstum, das Wachstum, das Wachstum, das Wachstum, das Wachstum, das Wachstum, das Wachstum, das Wachstum, das Wachstum, das Wachstum, das Wachstum, das Wachstum, das Wachstum, das Wachstum, das Wachstum, das Wachstum, das Wachstum, das Wachstum, das Wachstum, das Wachstum, das Wachstum, das Wachstum, das Wachstum, das Wachstum, das Wachstum, das Wachstum, das Wachstum, das Wachstum, das Wachstum, das Wachstum, das Wachstum, das Wachstum, das Wachstum, das Wachstum, das Wachstum, das Wachstum, das Wachstum, das Wachstum, das Wachstum, das Wachstum, das Wachstum, das Wachstum, das Wachstum, das Wachstum, das Wachstum, das Wachstum, das Wachstum, das Wachstum, das Wachstum, das Wachstum,",
+      "review_scores": {
+        "adequacy": 0.0,
+        "terminology": 0.0,
+        "fluency": 0.0,
+        "culture": 0.0
+      },
+      "review_pass": false,
+      "review_parse_ok": true,
+      "online_tokens": {
+        "in": 1878,
+        "out": 1086
+      },
+      "team_tokens": {
+        "translator_in": 3848,
+        "translator_out": 2560,
+        "reviewer_in": 1878,
+        "reviewer_out": 1086
+      },
+      "wall_s": 2020.57,
+      "metrics": {
+        "no_reference": true,
+        "length_ratio": 25.383
+      }
+    },
+    {
+      "group": "G5",
+      "pair_id": "la-ch9-en",
+      "subset": "c1-la",
+      "source_lang": "zh-classical-cn",
+      "target_lang": "en",
+      "has_reference": true,
+      "seed": 42,
+      "source_tokens_o200k": 46,
+      "degraded": false,
+      "degraded_reason": null,
+      "rounds": 3,
+      "model": "qwen3:0.6b",
+      "reviewer_model": "deepseek-chat",
+      "reviewer_kind": "online",
+      "output": "Hold it and then get more, but it's not enough. Keep it sharp and it will not last. Gold and jade will never be lost. The rich will be rich, the famous will be famous, and the person will be gone. The Way of Heaven and Earth will be fulfilled.",
+      "review_scores": {
+        "adequacy": 3.0,
+        "terminology": 4.0,
+        "fluency": 4.0,
+        "culture": 3.0
+      },
+      "review_pass": false,
+      "review_parse_ok": true,
+      "online_tokens": {
+        "in": 753,
+        "out": 1523
+      },
+      "team_tokens": {
+        "translator_in": 2324,
+        "translator_out": 300,
+        "reviewer_in": 753,
+        "reviewer_out": 1523
+      },
+      "wall_s": 210.75,
+      "metrics": {
+        "no_reference": false,
+        "length_ratio": 5.927,
+        "bleu": 4.51,
+        "chrf": 0.0,
+        "ter": 90.24,
+        "rougeL": 0.194,
+        "bert_error": "BERTScorer.__init__() got an unexpected keyword argument 'verbose'"
+      }
+    },
+    {
+      "group": "G5",
+      "pair_id": "la-ch9-fr",
+      "subset": "c1-la",
+      "source_lang": "zh-classical-cn",
+      "target_lang": "fr",
+      "has_reference": true,
+      "seed": 42,
+      "source_tokens_o200k": 46,
+      "degraded": false,
+      "degraded_reason": null,
+      "rounds": 3,
+      "model": "qwen3:0.6b",
+      "reviewer_model": "deepseek-chat",
+      "reviewer_kind": "online",
+      "output": "chercher et enrichir ne sert qu'à mieux se protéger, ne pas se dépasser ne peut pas être conservé, et ne peut être gardé par personne, les richesses et les honneurs ne font pas de bonheur, et la gloire et la gloire ne font pas de bonheur, et la gloire et la gloire ne font pas de bonheur.",
+      "review_scores": {
+        "adequacy": 1.0,
+        "terminology": 2.0,
+        "fluency": 1.0,
+        "culture": 1.0
+      },
+      "review_pass": false,
+      "review_parse_ok": true,
+      "online_tokens": {
+        "in": 822,
+        "out": 1499
+      },
+      "team_tokens": {
+        "translator_in": 2408,
+        "translator_out": 436,
+        "reviewer_in": 822,
+        "reviewer_out": 1499
+      },
+      "wall_s": 336.73,
+      "metrics": {
+        "no_reference": false,
+        "length_ratio": 7.024,
+        "bleu": 1.17,
+        "chrf": 0.0,
+        "ter": 90.59,
+        "rougeL": 0.166,
+        "bert_error": "BERTScorer.__init__() got an unexpected keyword argument 'verbose'"
+      }
+    },
+    {
+      "group": "G5",
+      "pair_id": "la-ch9-ja",
+      "subset": "c1-la",
+      "source_lang": "zh-classical-cn",
+      "target_lang": "ja",
+      "has_reference": true,
+      "seed": 42,
+      "source_tokens_o200k": 46,
+      "degraded": false,
+      "degraded_reason": null,
+      "rounds": 1,
+      "model": "qwen3:0.6b",
+      "reviewer_model": "deepseek-chat",
+      "reviewer_kind": "online",
+      "output": "持而盈之不如其已，揣而銳之不可長保。金玉滿堂莫之能守，富貴而驕自遺其咎，功成名遂身退，天之道。",
+      "review_scores": {
+        "adequacy": 9.0,
+        "terminology": 9.0,
+        "fluency": 9.0,
+        "culture": 9.0
+      },
+      "review_pass": true,
+      "review_parse_ok": true,
+      "online_tokens": {
+        "in": 234,
+        "out": 39
+      },
+      "team_tokens": {
+        "translator_in": 92,
+        "translator_out": 46,
+        "reviewer_in": 234,
+        "reviewer_out": 39
+      },
+      "wall_s": 32.5,
+      "metrics": {
+        "no_reference": false,
+        "length_ratio": 1.146,
+        "bleu": 2.0,
+        "chrf": 4.9,
+        "ter": 100.0,
+        "rougeL": 0,
+        "bert_error": "BERTScorer.__init__() got an unexpected keyword argument 'verbose'"
+      }
+    },
+    {
+      "group": "G5",
+      "pair_id": "la-ch9-ko",
+      "subset": "c1-la",
+      "source_lang": "zh-classical-cn",
+      "target_lang": "ko",
+      "has_reference": false,
+      "seed": 42,
+      "source_tokens_o200k": 46,
+      "degraded": false,
+      "degraded_reason": null,
+      "rounds": 3,
+      "model": "qwen3:0.6b",
+      "reviewer_model": "deepseek-chat",
+      "reviewer_kind": "online",
+      "output": "고리가 증가하는 것이 아니라, 그 것을 잡아서 채워지는 것이 아니라, 그 것을 빠져나가지 못할 것 같아. 금과 옥이 모두를 잡아서 보호할 수 없다. 금과 옥이 모두를 잡아서 보호할 수 없다. 금과 옥이 모두를 잡아서 보호할 수 없다. 부귀하면서 교만하면 스스로 허물을 남긴다. 공을 이루고 이름이 이루어지면 몸을 물러나는 것이 하늘의 도이다.",
+      "review_scores": {
+        "adequacy": 3.0,
+        "terminology": 4.0,
+        "fluency": 3.0,
+        "culture": 4.0
+      },
+      "review_pass": false,
+      "review_parse_ok": true,
+      "online_tokens": {
+        "in": 863,
+        "out": 1390
+      },
+      "team_tokens": {
+        "translator_in": 2560,
+        "translator_out": 552,
+        "reviewer_in": 863,
+        "reviewer_out": 1390
+      },
+      "wall_s": 173.69,
+      "metrics": {
+        "no_reference": true,
+        "length_ratio": 4.659
+      }
+    },
+    {
+      "group": "G5",
+      "pair_id": "la-ch9-de",
+      "subset": "c1-la",
+      "source_lang": "zh-classical-cn",
+      "target_lang": "de",
+      "has_reference": false,
+      "seed": 42,
+      "source_tokens_o200k": 46,
+      "degraded": false,
+      "degraded_reason": null,
+      "rounds": 3,
+      "model": "qwen3:0.6b",
+      "reviewer_model": "deepseek-chat",
+      "reviewer_kind": "online",
+      "output": "Hält es mit dem Geld ausgeben, nicht mit dem Geld ausgeben, und die Macht mit dem Geld ausgeben, nicht mit dem Geld ausgeben. Die Macht ist nicht zu verwalten, und die Macht ist nicht zu verwalten. Die Macht ist nicht zu verwalten, und die Macht ist nicht zu verwalten. Die Macht ist nicht zu verwalten, und die Macht ist nicht zu verwalten. Die Macht ist nicht zu verwalten, und die Macht ist nicht zu verwalten. Die Macht ist nicht zu verwalten, und die Macht ist nicht zu verwalten. Die Macht ist nicht zu verwalten, und die Macht ist nicht zu verwalten. Die Macht ist nicht zu verwalten, und die Macht ist nicht zu verwalten. Die Macht ist nicht zu verwalten, und die Macht ist nicht zu verwalten. Die Macht ist nicht zu verwalten, und die Macht ist nicht zu verwalten.",
+      "review_scores": {
+        "adequacy": 0.0,
+        "terminology": 0.0,
+        "fluency": 0.0,
+        "culture": 0.0
+      },
+      "review_pass": false,
+      "review_parse_ok": true,
+      "online_tokens": {
+        "in": 1176,
+        "out": 1473
+      },
+      "team_tokens": {
+        "translator_in": 2766,
+        "translator_out": 1031,
+        "reviewer_in": 1176,
+        "reviewer_out": 1473
+      },
+      "wall_s": 120.28,
+      "metrics": {
+        "no_reference": true,
+        "length_ratio": 18.854
+      }
+    },
+    {
+      "group": "G5",
+      "pair_id": "la-ch15-en",
+      "subset": "c1-la",
+      "source_lang": "zh-classical-cn",
+      "target_lang": "en",
+      "has_reference": true,
+      "seed": 42,
+      "source_tokens_o200k": 111,
+      "degraded": false,
+      "degraded_reason": null,
+      "rounds": 3,
+      "model": "qwen3:0.6b",
+      "reviewer_model": "deepseek-chat",
+      "reviewer_kind": "online",
+      "output": "Of those who have mastered the art of the gentleman, it is difficult to see and understand. Only in that case they are able to be used and arranged with care. Like the river flowing through a mountain, like the fear of four neighbors, like the guest, like the ice, like the one who releases the Duang, like the one who is vast and open, like the one who is deep and vast, like the one who is clear and vast. Who can be clear and calm, who can be safe and enduring, and who has preserved this path without being filled with it, for it is not filled with it, so it is not renewed.",
+      "review_scores": {
+        "adequacy": 3.0,
+        "terminology": 2.0,
+        "fluency": 3.0,
+        "culture": 3.0
+      },
+      "review_pass": false,
+      "review_parse_ok": true,
+      "online_tokens": {
+        "in": 1166,
+        "out": 2715
+      },
+      "team_tokens": {
+        "translator_in": 3964,
+        "translator_out": 700,
+        "reviewer_in": 1166,
+        "reviewer_out": 2715
+      },
+      "wall_s": 95.95,
+      "metrics": {
+        "no_reference": false,
+        "length_ratio": 6.352,
+        "bleu": 1.67,
+        "chrf": 0.0,
+        "ter": 85.79,
+        "rougeL": 0.226,
+        "bert_error": "BERTScorer.__init__() got an unexpected keyword argument 'verbose'"
+      }
+    },
+    {
+      "group": "G5",
+      "pair_id": "la-ch15-fr",
+      "subset": "c1-la",
+      "source_lang": "zh-classical-cn",
+      "target_lang": "fr",
+      "has_reference": true,
+      "seed": 42,
+      "source_tokens_o200k": 111,
+      "degraded": false,
+      "degraded_reason": null,
+      "rounds": 3,
+      "model": "qwen3:0.6b",
+      "reviewer_model": "deepseek-chat",
+      "reviewer_kind": "online",
+      "output": "L'art des sages est profond et mystérieux, et il est impossible de le comprendre. Il s'adapte à l'homme comme l'eau dans un fleuve, comme la peur de quatre voisins, comme la simplicité, comme l'herbe, comme le froid, comme le sortilège d'Ésophe, comme l'abondance, comme l'abondance. Il ne s'adapte pas à l'homme, et c'est pourquoi il est capable de se débarrasser de l'abondance et de ne pas se reconstituer.",
+      "review_scores": {
+        "adequacy": 1.0,
+        "terminology": 1.0,
+        "fluency": 2.0,
+        "culture": 1.0
+      },
+      "review_pass": false,
+      "review_parse_ok": true,
+      "online_tokens": {
+        "in": 1126,
+        "out": 2053
+      },
+      "team_tokens": {
+        "translator_in": 3662,
+        "translator_out": 691,
+        "reviewer_in": 1126,
+        "reviewer_out": 2053
+      },
+      "wall_s": 130.78,
+      "metrics": {
+        "no_reference": false,
+        "length_ratio": 4.495,
+        "bleu": 0.67,
+        "chrf": 0.0,
+        "ter": 89.35,
+        "rougeL": 0.188,
+        "bert_error": "BERTScorer.__init__() got an unexpected keyword argument 'verbose'"
+      }
+    },
+    {
+      "group": "G5",
+      "pair_id": "la-ch15-ja",
+      "subset": "c1-la",
+      "source_lang": "zh-classical-cn",
+      "target_lang": "ja",
+      "has_reference": true,
+      "seed": 42,
+      "source_tokens_o200k": 111,
+      "degraded": false,
+      "degraded_reason": null,
+      "rounds": 3,
+      "model": "qwen3:0.6b",
+      "reviewer_model": "deepseek-chat",
+      "reviewer_kind": "online",
+      "output": "古之善为士者微妙玄通，深不可识，惟不可识故强为之容，豫若冬涉川，犹若畏四邻，儼若客，渙若冰，将釋敦兮，其若樸曠兮，其若谷渾兮，其若濁，孰能濁以靜之，徐清孰能安以長動之，徐生，保此道者，不欲盈夫惟不盈。",
+      "review_scores": {
+        "adequacy": 2.0,
+        "terminology": 3.0,
+        "fluency": 2.0,
+        "culture": 2.0
+      },
+      "review_pass": false,
+      "review_parse_ok": true,
+      "online_tokens": {
+        "in": 1056,
+        "out": 1476
+      },
+      "team_tokens": {
+        "translator_in": 2838,
+        "translator_out": 526,
+        "reviewer_in": 1056,
+        "reviewer_out": 1476
+      },
+      "wall_s": 78.23,
+      "metrics": {
+        "no_reference": false,
+        "length_ratio": 1.099,
+        "bleu": 1.17,
+        "chrf": 2.4,
+        "ter": 100.0,
+        "rougeL": 0,
+        "bert_error": "BERTScorer.__init__() got an unexpected keyword argument 'verbose'"
+      }
+    },
+    {
+      "group": "G5",
+      "pair_id": "la-ch15-ko",
+      "subset": "c1-la",
+      "source_lang": "zh-classical-cn",
+      "target_lang": "ko",
+      "has_reference": false,
+      "seed": 42,
+      "source_tokens_o200k": 111,
+      "degraded": false,
+      "degraded_reason": null,
+      "rounds": 3,
+      "model": "qwen3:0.6b",
+      "reviewer_model": "deepseek-chat",
+      "reviewer_kind": "online",
+      "output": "어떤 사람을 잘 관리하는 것은 미묘현통, 순박, 탁함, 골짜기, 탁함, 가득 참, 낡음, 선비, 도인, 清, 安, 生, 濒, 滋, 滋, 滋, 滋, 滋, 滋, 滋, 滋, 滋, 滋, 滋, 滋, 滋, 滋, 滋, 滋, 滋, 滋, 滋, 滋, 滋, 滋, 滋, 滋, 滋, 滋, 滋, 滋, 滋, 滋, 滋, 滋, 滋, 滋, 滋, 滋, 滋, 滋, 滋, 滋, 滋, 滋, 滋, 滋, 滋, 滋, 滋, 滋, 滋, 滋, 滋, 滋, 滋, 滋, 滋, 滋, 滋, 滋, 滋, 滋, 滋, 滋, 滋, 滋, 滋, 滋, 滋, 滋, 滋, 滋, 滋, 滋, 滋, 滋, 滋, 滋, 滋, 滋, 滋, 滋, 滋, 滋, 滋, 滋, 滋, 滋, 滋, 滋, 滋, 滋, 滋, 滋, 滋, 滋, 滋, 滋, 滋, 滋, 滋, 滋, 滋, 滋, 滋, 滋, 滋, 滋, 滋, 滋, 滋, 滋, 滋, 滋, 滋, 滋,",
+      "review_scores": {
+        "adequacy": 0.0,
+        "terminology": 0.0,
+        "fluency": 0.0,
+        "culture": 0.0
+      },
+      "review_pass": false,
+      "review_parse_ok": true,
+      "online_tokens": {
+        "in": 1355,
+        "out": 1982
+      },
+      "team_tokens": {
+        "translator_in": 3536,
+        "translator_out": 1343,
+        "reviewer_in": 1355,
+        "reviewer_out": 1982
+      },
+      "wall_s": 205.75,
+      "metrics": {
+        "no_reference": true,
+        "length_ratio": 4.516
+      }
+    },
+    {
+      "group": "G5",
+      "pair_id": "la-ch15-de",
+      "subset": "c1-la",
+      "source_lang": "zh-classical-cn",
+      "target_lang": "de",
+      "has_reference": false,
+      "seed": 42,
+      "source_tokens_o200k": 111,
+      "degraded": false,
+      "degraded_reason": null,
+      "rounds": 3,
+      "model": "qwen3:0.6b",
+      "reviewer_model": "deepseek-chat",
+      "reviewer_kind": "online",
+      "output": "Der alte, der gut handelt, ist sehr subtil und tiefgründig, und es liegt darin, dass es schwer ist, zu erkennen. Es liegt darin, dass es schwer ist, zu erkennen, also man es beschreibt. So wie ein Winterfisch, der in den Wellen fließt, so ist es auch ein Mensch, der in der Umgebung verloren geht. So wie ein Knecht, der um die Umgebung bemüht, so ist es ein Mensch, der in der Umgebung verloren geht. So wie das Eis, das nicht klar ist, so ist es auch das Licht, das nicht klar ist. Es ist der Schatz, der nicht voll ist, und es ist das Licht, das nicht voll ist.",
+      "review_scores": {
+        "adequacy": 2.0,
+        "terminology": 2.0,
+        "fluency": 2.0,
+        "culture": 2.0
+      },
+      "review_pass": false,
+      "review_parse_ok": true,
+      "online_tokens": {
+        "in": 1208,
+        "out": 2724
+      },
+      "team_tokens": {
+        "translator_in": 4486,
+        "translator_out": 812,
+        "reviewer_in": 1208,
+        "reviewer_out": 2724
+      },
+      "wall_s": 142.66,
+      "metrics": {
+        "no_reference": true,
+        "length_ratio": 6.198
+      }
+    },
+    {
+      "group": "G5",
+      "pair_id": "aq-xu-en",
+      "subset": "c1-aq",
+      "source_lang": "zh-cn",
+      "target_lang": "en",
+      "has_reference": true,
+      "seed": 42,
+      "source_tokens_o200k": 98,
+      "degraded": false,
+      "degraded_reason": null,
+      "rounds": 3,
+      "model": "qwen3:0.6b",
+      "reviewer_model": "deepseek-chat",
+      "reviewer_kind": "online",
+      "output": "I have been writing a proper biography for Ah Q for a long time. However, I am writing it at the same time and thinking back, which shows that I am not a person who writes a letter. Because I have no immortal pen, it must be written by an immortal person, so the people are written by the people, and the people are written by the people — ultimately, it comes down to writing Ah Q, as if there is a ghost in the mind.",
+      "review_scores": {
+        "adequacy": 3.0,
+        "terminology": 2.0,
+        "fluency": 3.0,
+        "culture": 2.0
+      },
+      "review_pass": false,
+      "review_parse_ok": true,
+      "online_tokens": {
+        "in": 981,
+        "out": 1925
+      },
+      "team_tokens": {
+        "translator_in": 3023,
+        "translator_out": 482,
+        "reviewer_in": 981,
+        "reviewer_out": 1925
+      },
+      "wall_s": 72.83,
+      "metrics": {
+        "no_reference": false,
+        "length_ratio": 3.732,
+        "bleu": 4.5,
+        "chrf": 0.0,
+        "ter": 83.11,
+        "rougeL": 0.258,
+        "bert_error": "BERTScorer.__init__() got an unexpected keyword argument 'verbose'"
+      }
+    },
+    {
+      "group": "G5",
+      "pair_id": "aq-xu-ja",
+      "subset": "c1-aq",
+      "source_lang": "zh-cn",
+      "target_lang": "ja",
+      "has_reference": false,
+      "seed": 42,
+      "source_tokens_o200k": 98,
+      "degraded": false,
+      "degraded_reason": null,
+      "rounds": 3,
+      "model": "qwen3:0.6b",
+      "reviewer_model": "deepseek-chat",
+      "reviewer_kind": "online",
+      "output": "源文：私は阿Qを正伝するため、すでに数年間経ったこと。一面は正伝を務め、一面は再憶す。これは、私は『立言』ではないことを示している。なぜなら、不朽の筆を伝すために不朽な人を伝すことが必要であるから、人を文として伝すことで、文を人として伝すことがなることになる。究竟誰が誰を伝わるか、はっきりしてくるようになるが、結局は阿Qを伝わるというように、その思想の中には鬼もいる。  \n\n- [accuracy] 私は阿Qを正伝するため、すでに数年間経ったこと: 「正伝するため」ではなく「正伝を書く」を表す必要がある。  \n- [accuracy] 一面は正伝を務め、一面は再憶す: 「務め」『再憶す』は不自然な漢語的造語を、自然な日本語の動詞表現にすべき。  \n- [accuracy] 不朽の筆を伝すために不朽な人を伝すことが必要である: 原文「从来不朽之笔，须传不朽之人」は『不朽の筆は不朽の人を伝えるものだ』という断定であり、『ために…必要である』という因果・必要の関係は原文にない。付加された因果関係を除くべき。  \n- [accuracy] 人を文として伝すことで、文を人として伝すことがなることになる: 「人以文传，文以人传」は『人は文によって伝わり、文は人によって伝わる』の意。『人を文として伝す』は意味不明で、『ことがなる』も非文。相互伝承の意味を正しく表すべき。  \n- [accuracy] 究竟誰が誰を伝わるか、はっきりしてくるようになるが: 「渐渐的不甚了然起来」は『だんだんはっきりしなくなる』であり、『はっきりしてくる』は正反対の意味。否定方向に修正すべき。  \n- [accuracy] 結局は阿Qを伝わるというように、その思想の中には鬼もいる: 「终于归结到传阿Q」は『結局は阿Qの伝",
+      "review_scores": {
+        "adequacy": 2.0,
+        "terminology": 3.0,
+        "fluency": 2.0,
+        "culture": 3.0
+      },
+      "review_pass": false,
+      "review_parse_ok": true,
+      "online_tokens": {
+        "in": 1818,
+        "out": 2690
+      },
+      "team_tokens": {
+        "translator_in": 5019,
+        "translator_out": 2176,
+        "reviewer_in": 1818,
+        "reviewer_out": 2690
+      },
+      "wall_s": 376.48,
+      "metrics": {
+        "no_reference": true,
+        "length_ratio": 6.741
+      }
+    },
+    {
+      "group": "G5",
+      "pair_id": "aq-xu-ko",
+      "subset": "c1-aq",
+      "source_lang": "zh-cn",
+      "target_lang": "ko",
+      "has_reference": false,
+      "seed": 42,
+      "source_tokens_o200k": 98,
+      "degraded": false,
+      "degraded_reason": null,
+      "rounds": 3,
+      "model": "qwen3:0.6b",
+      "reviewer_model": "deepseek-chat",
+      "reviewer_kind": "online",
+      "output": "정전(正传)을 쓰고 있다. 이는 약 한 해 이상이 지났다. 그러나 한편은 전하고 있지만, 또 다시 생각을 하게 되었다. '정서'가 아니라 '정서'가 아니라 ... (반복적으로) 이는 '立言'이 아니라 '立言'이 아니라 ... (반복적으로) 이라는 의미를 뒤집어내었다. 정전은 본격적인 전기로, 정전은 사람으로써 전기로, 결국은 아Q에게 전기로, 그가 생각에 숨어 있는 듯한 것처럼 되었다.",
+      "review_scores": {
+        "adequacy": 2.0,
+        "terminology": 3.0,
+        "fluency": 2.0,
+        "culture": 2.0
+      },
+      "review_pass": false,
+      "review_parse_ok": true,
+      "online_tokens": {
+        "in": 1853,
+        "out": 1913
+      },
+      "team_tokens": {
+        "translator_in": 4727,
+        "translator_out": 1812,
+        "reviewer_in": 1853,
+        "reviewer_out": 1913
+      },
+      "wall_s": 379.02,
+      "metrics": {
+        "no_reference": true,
+        "length_ratio": 1.938
+      }
+    },
+    {
+      "group": "G5",
+      "pair_id": "aq-xu-fr",
+      "subset": "c1-aq",
+      "source_lang": "zh-cn",
+      "target_lang": "fr",
+      "has_reference": false,
+      "seed": 42,
+      "source_tokens_o200k": 98,
+      "degraded": false,
+      "degraded_reason": null,
+      "rounds": 3,
+      "model": "qwen3:0.6b",
+      "reviewer_model": "deepseek-chat",
+      "reviewer_kind": "online",
+      "output": "Je vais à l'oublier, à l'oublier, à l'oublier. Mais je dois faire le récit d'Ah Q, et il n'a pas été plus long qu'une année. Mais je dois le faire, et je le réfléchis. Ce qui montre que je n'étais pas un « rédacteur » en temps de récit. Par conséquent, l'homme parle, et le récit parle. Et c'est à ce moment que l'on arrive à comprendre que c'est l'homme qui parle, comme si l'esprit avait un fantôme.",
+      "review_scores": {
+        "adequacy": 1.0,
+        "terminology": 2.0,
+        "fluency": 2.0,
+        "culture": 2.0
+      },
+      "review_pass": false,
+      "review_parse_ok": true,
+      "online_tokens": {
+        "in": 1088,
+        "out": 2211
+      },
+      "team_tokens": {
+        "translator_in": 3725,
+        "translator_out": 682,
+        "reviewer_in": 1088,
+        "reviewer_out": 2211
+      },
+      "wall_s": 107.13,
+      "metrics": {
+        "no_reference": true,
+        "length_ratio": 3.58
+      }
+    },
+    {
+      "group": "G5",
+      "pair_id": "aq-xu-de",
+      "subset": "c1-aq",
+      "source_lang": "zh-cn",
+      "target_lang": "de",
+      "has_reference": false,
+      "seed": 42,
+      "source_tokens_o200k": 98,
+      "degraded": false,
+      "degraded_reason": null,
+      "rounds": 3,
+      "model": "qwen3:0.6b",
+      "reviewer_model": "deepseek-chat",
+      "reviewer_kind": "online",
+      "output": "Ich habe den Prozess für Ah Q vorbereitet, bereits länger als ein Jahr. Aber ich arbeite sowohl daran, als auch zurück — was zeigt, dass ich nicht ein Mensch, der \"Worte stiftet\" bin, da ich nie einen unendlichen Schriftsteller gewesen sein werde, und somit Menschen durch Schrift und Schriftsteller durch Schrift — doch was man überwiegend vermittelt, ist, dass es nicht immer klar wird, was man überwiegend vermittelt, und endlich zurück zu Ah Q.",
+      "review_scores": {
+        "adequacy": 3.0,
+        "terminology": 3.0,
+        "fluency": 2.0,
+        "culture": 3.0
+      },
+      "review_pass": false,
+      "review_parse_ok": true,
+      "online_tokens": {
+        "in": 1044,
+        "out": 2264
+      },
+      "team_tokens": {
+        "translator_in": 3737,
+        "translator_out": 611,
+        "reviewer_in": 1044,
+        "reviewer_out": 2264
+      },
+      "wall_s": 77.43,
+      "metrics": {
+        "no_reference": true,
+        "length_ratio": 4.0
+      }
+    },
+    {
+      "group": "G5",
+      "pair_id": "aq-ch1-en",
+      "subset": "c1-aq",
+      "source_lang": "zh-cn",
+      "target_lang": "en",
+      "has_reference": true,
+      "seed": 42,
+      "source_tokens_o200k": 104,
+      "degraded": false,
+      "degraded_reason": null,
+      "rounds": 3,
+      "model": "qwen3:0.6b",
+      "reviewer_model": "deepseek-chat",
+      "reviewer_kind": "online",
+      "output": "A Q is not merely a name and place, but even his earlier \"biographical record\" is obscure. The people of Weizhuang only want him to help and only make fun of him. A Q himself does not say, but only when quarreling with others, he may occasionally glare and say: \"We were much more prosperous than you, and you are nothing at all!\"",
+      "review_scores": {
+        "adequacy": 7.0,
+        "terminology": 6.0,
+        "fluency": 7.0,
+        "culture": 6.0
+      },
+      "review_pass": false,
+      "review_parse_ok": true,
+      "online_tokens": {
+        "in": 962,
+        "out": 1488
+      },
+      "team_tokens": {
+        "translator_in": 2584,
+        "translator_out": 421,
+        "reviewer_in": 962,
+        "reviewer_out": 1488
+      },
+      "wall_s": 53.22,
+      "metrics": {
+        "no_reference": false,
+        "length_ratio": 2.845,
+        "bleu": 6.83,
+        "chrf": 0.0,
+        "ter": 82.0,
+        "rougeL": 0.268,
+        "bert_error": "BERTScorer.__init__() got an unexpected keyword argument 'verbose'"
+      }
+    },
+    {
+      "group": "G5",
+      "pair_id": "aq-ch1-ja",
+      "subset": "c1-aq",
+      "source_lang": "zh-cn",
+      "target_lang": "ja",
+      "has_reference": false,
+      "seed": 42,
+      "source_tokens_o200k": 104,
+      "degraded": false,
+      "degraded_reason": null,
+      "rounds": 3,
+      "model": "qwen3:0.6b",
+      "reviewer_model": "deepseek-chat",
+      "reviewer_kind": "online",
+      "output": "阿Qは、名前や籍貫など、いくつかの内容が不明である。また、『行状』もその内容が不明である。なぜなら、未庄の人々は、阿Qの助けを借りることにあたると、あらゆる笑いをすることにあたって、その『行状』を気にしなかったからである。また、阿Qも、他人と口角するとき、時折目を上げて言う：「我々は、あなたより、より大きく、あなたをどうか？」と。",
+      "review_scores": {
+        "adequacy": 3.0,
+        "terminology": 4.0,
+        "fluency": 2.0,
+        "culture": 3.0
+      },
+      "review_pass": false,
+      "review_parse_ok": true,
+      "online_tokens": {
+        "in": 1066,
+        "out": 2383
+      },
+      "team_tokens": {
+        "translator_in": 3832,
+        "translator_out": 584,
+        "reviewer_in": 1066,
+        "reviewer_out": 2383
+      },
+      "wall_s": 80.01,
+      "metrics": {
+        "no_reference": true,
+        "length_ratio": 1.431
+      }
+    },
+    {
+      "group": "G5",
+      "pair_id": "aq-ch1-ko",
+      "subset": "c1-aq",
+      "source_lang": "zh-cn",
+      "target_lang": "ko",
+      "has_reference": false,
+      "seed": 42,
+      "source_tokens_o200k": 104,
+      "degraded": false,
+      "degraded_reason": null,
+      "rounds": 3,
+      "model": "qwen3:0.6b",
+      "reviewer_model": "deepseek-chat",
+      "reviewer_kind": "online",
+      "output": "아Q는 이름과 근거가 매우 부정확하고, 그 전에 작성된 「행적/이력」도 흐릿하다. 그들은 아Q가 도와주면 그만으로 그만으로 그만으로 그만으로 그만으로 그만으로 그만으로 그만으로 그만으로 그만으로 그만으로 그만으로 그만으로 그만으로 그만으로 그만으로 그만으로 그만으로 그만으로 그만으로 그만으로 그만으로 그만으로 그만으로 그만으로 그만으로 그만으로 그만으로 그만으로 그만으로 그만으로 그만으로 그만으로 그만으로 그만으로 그만으로 그만으로 그만으로 그만으로 그만으로 그만으로 그만으로 그만으로 그만으로 그만으로 그만으로 그만으로 그만으로 그만으로 그만으로 그만으로 그만으로 그만으로 그만으로 그만으로 그만으로 그만으로 그만으로 그만으로 그만으로 그만으로 그만으로 그만으로 그만으로 그만으로 그만으로 그만으로 그만으로 그만으로 그만으로 그만으로 그만으로 그만으로 그만으로 그만으로 그만으로 그만으로 그만으로 그만으로 그만으로 그만으로 그만으로 그만으로 그만으로 그만으로 그만으로 그만으로 그만으로 그만으로 그만으로 그만으로 그만으로 그만으로 그만으로 그만으로 그만으로 그만으로 그만으로 그만으로 그만으로 그만으로 그만으로 그만으로 그만으로 그만으로 그만으로 그만으로 그만으로 그만으로 그만으로 그만으로 그만으로 그만으로 그만으로 그만으로 그만으로 그만으로 그만으로 그만으로 그만으로 그만으로 그만으로 그만으로 그만으로 그만으로 그만으로 그만으로 그만으로 그만으로 그만으로 그만으로 그만으로 그만으로 그만으로 그만으로 그만으로 그만으로 그만으로 그만으로 그만으로 그만으로 그만으로 그만으로 그만으로 그만으로 그만으로 그만으로 그만으로 그만으로 그만으로 그만으로 그만으로 그만으로 그만으로 그만으로 그만으로 그",
+      "review_scores": {
+        "adequacy": 1.0,
+        "terminology": 3.0,
+        "fluency": 1.0,
+        "culture": 2.0
+      },
+      "review_pass": false,
+      "review_parse_ok": true,
+      "online_tokens": {
+        "in": 2241,
+        "out": 1470
+      },
+      "team_tokens": {
+        "translator_in": 4310,
+        "translator_out": 2560,
+        "reviewer_in": 2241,
+        "reviewer_out": 1470
+      },
+      "wall_s": 392.17,
+      "metrics": {
+        "no_reference": true,
+        "length_ratio": 7.241
+      }
+    },
+    {
+      "group": "G5",
+      "pair_id": "aq-ch1-fr",
+      "subset": "c1-aq",
+      "source_lang": "zh-cn",
+      "target_lang": "fr",
+      "has_reference": false,
+      "seed": 42,
+      "source_tokens_o200k": 104,
+      "degraded": false,
+      "degraded_reason": null,
+      "rounds": 3,
+      "model": "qwen3:0.6b",
+      "reviewer_model": "deepseek-chat",
+      "reviewer_kind": "online",
+      "output": "A Q n’est pas seul un nom et une origine, et même son « chronique » n’est pas encore clair. Car les gens de Yu Gong ne se soucient qu’apporter à A Q, et seulement en lui donnant des réconforts, sans même se soucier de son « chronique ». Et bien qu’il ne l’exprime pas, il se contente d’être en face à face avec d’autres, et peut-être même se montrer avec un regard de ce genre : « Nous avons été plus grand que toi, et tu as quoi ? »",
+      "review_scores": {
+        "adequacy": 3.0,
+        "terminology": 3.0,
+        "fluency": 3.0,
+        "culture": 3.0
+      },
+      "review_pass": false,
+      "review_parse_ok": true,
+      "online_tokens": {
+        "in": 1092,
+        "out": 2158
+      },
+      "team_tokens": {
+        "translator_in": 3490,
+        "translator_out": 625,
+        "reviewer_in": 1092,
+        "reviewer_out": 2158
+      },
+      "wall_s": 104.58,
+      "metrics": {
+        "no_reference": true,
+        "length_ratio": 3.733
+      }
+    },
+    {
+      "group": "G5",
+      "pair_id": "aq-ch1-de",
+      "subset": "c1-aq",
+      "source_lang": "zh-cn",
+      "target_lang": "de",
+      "has_reference": false,
+      "seed": 42,
+      "source_tokens_o200k": 104,
+      "degraded": false,
+      "degraded_reason": null,
+      "rounds": 3,
+      "model": "qwen3:0.6b",
+      "reviewer_model": "deepseek-chat",
+      "reviewer_kind": "online",
+      "output": "Bei A Q sind schon Name und Herkunft kaum bekannt, und seine frühere „Lebensgeschichte“ ist ebenfalls kaum bekannt. Denn die Leute von Weizhuang ließen ihn nur helfen und trieben nur Scherz mit ihm. Und A Q selbst sagte nichts; nur wenn er mit anderen stritt, sagte er bisweilen mit starrem Blick: „Wir waren früher viel wohlhabender als du! Was bist du schon!“",
+      "review_scores": {
+        "adequacy": 7.0,
+        "terminology": 7.0,
+        "fluency": 7.0,
+        "culture": 7.0
+      },
+      "review_pass": false,
+      "review_parse_ok": true,
+      "online_tokens": {
+        "in": 1005,
+        "out": 1378
+      },
+      "team_tokens": {
+        "translator_in": 2968,
+        "translator_out": 495,
+        "reviewer_in": 1005,
+        "reviewer_out": 1378
+      },
+      "wall_s": 78.11,
+      "metrics": {
+        "no_reference": true,
+        "length_ratio": 3.112
+      }
+    },
+    {
+      "group": "G5",
+      "pair_id": "c2-zh-en",
+      "subset": "c2",
+      "source_lang": "zh-cn",
+      "target_lang": "en",
+      "has_reference": false,
+      "seed": 42,
+      "source_tokens_o200k": 209,
+      "degraded": false,
+      "degraded_reason": null,
+      "rounds": 3,
+      "model": "qwen3:0.6b",
+      "reviewer_model": "deepseek-chat",
+      "reviewer_kind": "online",
+      "output": "A Q has no home and lives in the Tugu Temple; he has no fixed job, only doing short labor, plowing and harvesting, and threshing and pounding. When his work is long, he may live with the temporary employer, but once done, he leaves. So when people are busy, they still remember A Q, but remembering is only the work, not the \"biography\"; when idle, people forget even A Q, and the \"biography\" is forgotten. Only once, there is an old man who praises: \"A Q is really able to do it!\" At that moment, A Q is barefoot and thin, standing before him, and others don't know whether the words are sincere or mockery, yet A Q likes it. A Q is very self-respecting, and all the residents of Weizhuang are not in his eyes.",
+      "review_scores": {
+        "adequacy": 6.0,
+        "terminology": 5.0,
+        "fluency": 6.0,
+        "culture": 5.0
+      },
+      "review_pass": false,
+      "review_parse_ok": true,
+      "online_tokens": {
+        "in": 1530,
+        "out": 1767
+      },
+      "team_tokens": {
+        "translator_in": 3571,
+        "translator_out": 899,
+        "reviewer_in": 1530,
+        "reviewer_out": 1767
+      },
+      "wall_s": 118.98,
+      "metrics": {
+        "no_reference": true,
+        "length_ratio": 3.105
+      }
+    },
+    {
+      "group": "G5",
+      "pair_id": "c2-zh-fr",
+      "subset": "c2",
+      "source_lang": "zh-cn",
+      "target_lang": "fr",
+      "has_reference": false,
+      "seed": 42,
+      "source_tokens_o200k": 200,
+      "degraded": false,
+      "degraded_reason": null,
+      "rounds": 3,
+      "model": "qwen3:0.6b",
+      "reviewer_model": "deepseek-chat",
+      "reviewer_kind": "online",
+      "output": "A Q fut vaincu en apparence, fut saisi par sa natte jaune, et fut touché quatre ou cinq fois sa tête contre le mur. Les oisifs, satisfaits, s'en allèrent victorieux. A Q pensa : « J'ai quand même été battu par mon fils, et le monde d'aujourd'hui est vraiment scandaleux… » Et il s'en allait victorieux. Presque tous ceux qui plaisantaient avec Ah Q connaissaient sa méthode de victoire spirituelle. Il disait d'avance : « Ce n'est pas un fils qui bat son père, c'est un homme qui bat une bête. » Ah Q saisit la racine de sa natte à deux mains et inclina la tête. C'est une vermine qu'on bat, d'accord ? Je suis une vermine !",
+      "review_scores": {
+        "adequacy": 6.0,
+        "terminology": 8.0,
+        "fluency": 7.0,
+        "culture": 7.0
+      },
+      "review_pass": false,
+      "review_parse_ok": true,
+      "online_tokens": {
+        "in": 1633,
+        "out": 2955
+      },
+      "team_tokens": {
+        "translator_in": 5213,
+        "translator_out": 1108,
+        "reviewer_in": 1633,
+        "reviewer_out": 2955
+      },
+      "wall_s": 192.13,
+      "metrics": {
+        "no_reference": true,
+        "length_ratio": 2.761
+      }
+    },
+    {
+      "group": "G5",
+      "pair_id": "c2-en-zh",
+      "subset": "c2",
+      "source_lang": "en",
+      "target_lang": "zh-cn",
+      "has_reference": false,
+      "seed": 42,
+      "source_tokens_o200k": 40,
+      "degraded": false,
+      "degraded_reason": null,
+      "rounds": 3,
+      "model": "qwen3:0.6b",
+      "reviewer_model": "deepseek-chat",
+      "reviewer_kind": "online",
+      "output": "Hell Row 是一排茅草屋顶、鼓凸的村舍，位于Greenhill Lane旁的溪边。那里居住着采煤工。",
+      "review_scores": {
+        "adequacy": 6.0,
+        "terminology": 8.0,
+        "fluency": 8.0,
+        "culture": 8.0
+      },
+      "review_pass": false,
+      "review_parse_ok": true,
+      "online_tokens": {
+        "in": 670,
+        "out": 826
+      },
+      "team_tokens": {
+        "translator_in": 1668,
+        "translator_out": 176,
+        "reviewer_in": 670,
+        "reviewer_out": 826
+      },
+      "wall_s": 27.26,
+      "metrics": {
+        "no_reference": true,
+        "length_ratio": 0.306
+      }
+    },
+    {
+      "group": "G5",
+      "pair_id": "c2-fr-zh",
+      "subset": "c2",
+      "source_lang": "fr",
+      "target_lang": "zh-cn",
+      "has_reference": false,
+      "seed": 42,
+      "source_tokens_o200k": 70,
+      "degraded": false,
+      "degraded_reason": null,
+      "rounds": 3,
+      "model": "qwen3:0.6b",
+      "reviewer_model": "deepseek-chat",
+      "reviewer_kind": "online",
+      "output": "他们说，两个旅人在那里寻找庇护时遭了雷击。",
+      "review_scores": {
+        "adequacy": 3.0,
+        "terminology": 9.0,
+        "fluency": 8.0,
+        "culture": 9.0
+      },
+      "review_pass": false,
+      "review_parse_ok": true,
+      "online_tokens": {
+        "in": 759,
+        "out": 529
+      },
+      "team_tokens": {
+        "translator_in": 1387,
+        "translator_out": 112,
+        "reviewer_in": 759,
+        "reviewer_out": 529
+      },
+      "wall_s": 22.02,
+      "metrics": {
+        "no_reference": true,
+        "length_ratio": 0.085
+      }
+    },
+    {
+      "group": "G5",
+      "pair_id": "c2-de-zh",
+      "subset": "c2",
+      "source_lang": "de",
+      "target_lang": "zh-cn",
+      "has_reference": false,
+      "seed": 42,
+      "source_tokens_o200k": 74,
+      "degraded": false,
+      "degraded_reason": null,
+      "rounds": 3,
+      "model": "qwen3:0.6b",
+      "reviewer_model": "deepseek-chat",
+      "reviewer_kind": "online",
+      "output": "Und,稍作歇息,继续前行,我选择向荒野之路走去,始终稳稳踏在较低处。看,在开始的陡峭路上,毛发覆盖着身体,披着华丽的毛皮,灵巧而极其迅捷。",
+      "review_scores": {
+        "adequacy": 2.0,
+        "terminology": 1.0,
+        "fluency": 3.0,
+        "culture": 2.0
+      },
+      "review_pass": false,
+      "review_parse_ok": true,
+      "online_tokens": {
+        "in": 874,
+        "out": 1130
+      },
+      "team_tokens": {
+        "translator_in": 1623,
+        "translator_out": 349,
+        "reviewer_in": 874,
+        "reviewer_out": 1130
+      },
+      "wall_s": 69.78,
+      "metrics": {
+        "no_reference": true,
+        "length_ratio": 0.279
+      }
+    },
+    {
+      "group": "G5",
+      "pair_id": "c3-tech1",
+      "subset": "c3",
+      "source_lang": "zh-cn",
+      "target_lang": "en",
+      "has_reference": false,
+      "seed": 42,
+      "source_tokens_o200k": 78,
+      "degraded": false,
+      "degraded_reason": null,
+      "rounds": 1,
+      "model": "qwen3:0.6b",
+      "reviewer_model": "deepseek-chat",
+      "reviewer_kind": "online",
+      "output": "The system uses retrieval-augmented generation architecture: a large language model first retrieves relevant document fragments from a vector database, then concatenates the context into the prompt. Token counting uses the real tokenizer, multi-agent collaboration is managed by the orchestrator, and term guardians inject recommended translations from the term library.",
+      "review_scores": {
+        "adequacy": 9.0,
+        "terminology": 10.0,
+        "fluency": 8.0,
+        "culture": 9.0
+      },
+      "review_pass": true,
+      "review_parse_ok": true,
+      "online_tokens": {
+        "in": 314,
+        "out": 131
+      },
+      "team_tokens": {
+        "translator_in": 161,
+        "translator_out": 62,
+        "reviewer_in": 314,
+        "reviewer_out": 131
+      },
+      "wall_s": 18.72,
+      "metrics": {
+        "no_reference": true,
+        "length_ratio": 3.364
+      }
+    },
+    {
+      "group": "G5",
+      "pair_id": "c3-tech2",
+      "subset": "c3",
+      "source_lang": "zh-cn",
+      "target_lang": "en",
+      "has_reference": false,
+      "seed": 42,
+      "source_tokens_o200k": 59,
+      "degraded": false,
+      "degraded_reason": null,
+      "rounds": 3,
+      "model": "qwen3:0.6b",
+      "reviewer_model": "deepseek-chat",
+      "reviewer_kind": "online",
+      "output": "Large language model → large language model  \nRetrieval-augmented generation → retrieval-augmented generation  \nToken → token  \nMulti-agent → multi-agent",
+      "review_scores": {
+        "adequacy": 2.0,
+        "terminology": 7.0,
+        "fluency": 1.0,
+        "culture": 6.0
+      },
+      "review_pass": false,
+      "review_parse_ok": true,
+      "online_tokens": {
+        "in": 816,
+        "out": 566
+      },
+      "team_tokens": {
+        "translator_in": 1266,
+        "translator_out": 160,
+        "reviewer_in": 816,
+        "reviewer_out": 566
+      },
+      "wall_s": 41.63,
+      "metrics": {
+        "no_reference": true,
+        "length_ratio": 1.913
+      }
+    }
+  ]
+}

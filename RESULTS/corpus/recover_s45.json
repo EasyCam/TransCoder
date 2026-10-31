@@ -1,0 +1,50 @@
+{
+ "schema": "transcoder-next/dataset/v1",
+ "built": "2026-10-19",
+ "note": "recovery subset: pairs whose 4096-context call returned nothing",
+ "glossary": {
+  "大语言模型": {
+   "en": "large language model",
+   "ja": "大規模言語モデル",
+   "fr": "grand modèle de langage",
+   "de": "großes Sprachmodell"
+  },
+  "检索增强生成": {
+   "en": "retrieval-augmented generation",
+   "ja": "検索拡張生成"
+  },
+  "词元": {
+   "en": "token",
+   "ja": "トークン",
+   "fr": "jeton (token)",
+   "de": "Token"
+  },
+  "多智能体": {
+   "en": "multi-agent",
+   "ja": "マルチエージェント",
+   "fr": "multi-agents"
+  }
+ },
+ "n_pairs": 2,
+ "n_with_reference": 2,
+ "pairs": [
+  {
+   "pair_id": "la-ch1-fr",
+   "subset": "c1-la",
+   "source_text": "道可道非常道名可名非常名無名天地之始有名萬物之母常無欲以觀其妙常有欲以觀其徼此兩者同出而異名同謂之玄玄之又玄衆妙之門",
+   "source_lang": "zh-classical-cn",
+   "target_lang": "fr",
+   "reference": "La voie qui peut être exprimée par la parole n’est pas la Voie éternelle ; le nom qui peut être nommé n’est pas le Nom éternel. (L’être) sans nom est l’origine du ciel et de la terre ; avec un nom, il est la mère de toutes choses. C’est pourquoi, lorsqu’on est constamment exempt de passions, on voit son essence spirituelle ; lorsqu’on a constamment des passions, on le voit sous une forme bornée. Ces deux choses ont une même origine et reçoivent des noms différents. On les appelle toutes deux profondes. Elles sont profondes, doublement profondes. C’est la porte de toutes les choses spirituelles. <span",
+   "reference_provenance": "Stanislas Julien trans. 1842, fr.wikisource, ch.1"
+  },
+  {
+   "pair_id": "la-ch15-fr",
+   "subset": "c1-la",
+   "source_text": "古之善為士者微妙玄通深不可識夫惟不可識故彊為之容豫若冬涉川猶若畏四鄰儼若客渙若冰將釋敦兮其若樸曠兮其若谷渾兮其若濁孰能濁以靜之徐清孰能安以乆動之徐生保此道者不欲盈夫惟不盈故能弊不新成",
+   "source_lang": "zh-classical-cn",
+   "target_lang": "fr",
+   "reference": "Dans l’Antiquité, ceux qui excellaient à pratiquer le Tao étaient déliés et subtils, abstraits et pénétrants. Ils étaient tellement profonds qu’on ne pouvait les connaître. Comme on ne pouvait les connaître, je m’efforcerai de donner une idée (de ce qu’ils étaient). Ils étaient timides comme celui qui traverse un torrent en hiver. Ils étaient irrésolus comme celui qui craint d'être aperçu de ses voisins. Ils étaient graves comme un étranger (en présence de l’hôte). Ils s’effaçaient comme la glace qui se fond. Ils étaient rudes comme le bois non travaillé. Il étaient vides comme une vallée. Ils étaient troubles comme une eau limoneuse. Qui est-ce qui sait apaiser peu à peu le trouble (de son cœur) en le laissant reposer ? Qui est-ce qui sait naître peu à peu (à la vie spirituelle) par un calme prolongé ? Celui qui conserve ce Tao ne désire pas d’être plein. Il n’est pas plein (de lui-même), c’est pourquoi il garde ses défauts (apparents), et ne désire pas (d’être jugé) parfait. <span",
+   "reference_provenance": "Stanislas Julien trans. 1842, fr.wikisource, ch.15"
+  }
+ ]
+}

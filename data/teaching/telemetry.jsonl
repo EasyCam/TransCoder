@@ -1,0 +1,290 @@
+{"event": "human.grade", "payload": {"overall": 10.0, "issues": 0, "endpoint": "deepseek", "model": "deepseek-flash"}, "id": "e5d7370eab06", "ts": 1792399187.211}
+{"event": "human.polish", "payload": {"edits": 2, "parse_ok": true, "endpoint": "deepseek", "model": "deepseek-flash"}, "id": "39b933f8edb0", "ts": 1792399193.602}
+{"event": "annotation.add", "payload": {"kind": "grammar"}, "id": "23ca74cfb149", "ts": 1792399193.922}
+{"event": "test.ping", "payload": {"k": 1}, "id": "0605cc09d9a1", "ts": 1792399194.295}
+{"event": "page.view", "payload": {}, "id": "895561f59411", "ts": 1792399349.546}
+{"event": "endpoint.change", "payload": {"endpoint": "cycleuser-halogen"}, "id": "45292cff050a", "ts": 1792399458.519}
+{"event": "endpoint.change", "payload": {"endpoint": "ollama-cloud"}, "id": "67d1dbc034f4", "ts": 1792399466.672}
+{"event": "page.view", "payload": {}, "id": "b4d767602110", "ts": 1792399651.173}
+{"event": "page.view", "payload": {}, "id": "a4ea6a66d3dd", "ts": 1792399833.177}
+{"event": "workbench.switch", "payload": {"pane": "human"}, "id": "4980d625f875", "ts": 1792399906.644}
+{"event": "workbench.switch", "payload": {"pane": "human"}, "id": "610001aae5ba", "ts": 1792399912.159}
+{"event": "page.view", "payload": {}, "id": "c85bab7d1afa", "ts": 1792400128.762}
+{"event": "page.view", "payload": {}, "id": "93107450dd7a", "ts": 1792400375.497}
+{"event": "mode.change", "payload": {"mode": "team"}, "id": "e85c4771fe30", "ts": 1792400395.393}
+{"event": "mode.change", "payload": {"mode": "iterative"}, "id": "dfd164430758", "ts": 1792400398.325}
+{"event": "mode.change", "payload": {"mode": "triple"}, "id": "7b6ef60ddf12", "ts": 1792400401.029}
+{"event": "mode.change", "payload": {"mode": "reflection"}, "id": "c97de31bfc94", "ts": 1792400403.193}
+{"event": "human.grade", "payload": {"overall": 10.0, "issues": 0, "endpoint": "deepseek", "model": "deepseek-flash"}, "id": "482231f50335", "ts": 1792401074.852}
+{"event": "human.quick_score", "payload": {"semantic_score": 6.8, "combined_score": 8.3, "target_lang": "en"}, "id": "7f072e7ef713", "ts": 1792401096.645}
+{"event": "annotation.add", "payload": {"kind": "alignment"}, "id": "3b4f4985c067", "ts": 1792401096.774}
+{"event": "human.quick_score", "payload": {"semantic_score": 6.6, "combined_score": null, "target_lang": "en"}, "id": "cee680381821", "ts": 1792401102.484}
+{"event": "page.view", "payload": {}, "id": "c2e00349d81f", "ts": 1792401110.311}
+{"event": "human.quick_score", "payload": {"semantic_score": 6.5, "combined_score": null, "target_lang": "en"}, "id": "d7d956dfe241", "ts": 1792401170.404}
+{"event": "human.quick_score", "payload": {"semantic_score": 6.5, "target_lang": "en"}, "id": "eb84e4ba6fe0", "ts": 1792401170.513}
+{"event": "page.view", "payload": {}, "id": "016a1ea65100", "ts": 1792401423.426}
+{"event": "ui.lang", "payload": {"lang": "ja"}, "id": "e4073da8ed89", "ts": 1792401430.184}
+{"event": "ui.lang", "payload": {"lang": "zh"}, "id": "99504f52b0ac", "ts": 1792401438.601}
+{"event": "human.auto_align", "payload": {"pairs": 6, "target_lang": "en"}, "id": "92500f31af23", "ts": 1792401751.004}
+{"event": "human.auto_align", "payload": {"pairs": 6, "target_lang": "en"}, "id": "1f14a34cdf8a", "ts": 1792401876.988}
+{"event": "page.view", "payload": {}, "id": "7286db0dd05f", "ts": 1792401917.507}
+{"event": "ui.lang", "payload": {"lang": "en"}, "id": "9cd35c0fe7dc", "ts": 1792401932.722}
+{"event": "human.auto_align", "payload": {"pairs": 2, "target_lang": "en"}, "id": "357123d00e1f", "ts": 1792402044.49}
+{"event": "human.quick_score", "payload": {"semantic_score": 5.0, "combined_score": null, "target_lang": null}, "id": "709dbbe50b30", "ts": 1792402044.68}
+{"event": "human.auto_align", "payload": {"pairs": 2, "target_lang": "en"}, "id": "f4680cfbc76a", "ts": 1792402044.947}
+{"event": "human.quick_score", "payload": {"semantic_score": 5.0, "combined_score": null, "target_lang": null}, "id": "a65752cf02b4", "ts": 1792402045.116}
+{"event": "human.auto_align", "payload": {"pairs": 2, "target_lang": "en"}, "id": "6e4ac4ca291d", "ts": 1792402045.425}
+{"event": "human.quick_score", "payload": {"semantic_score": 5.0, "combined_score": null, "target_lang": null}, "id": "f5fe4c2a3f0a", "ts": 1792402045.602}
+{"event": "mode.change", "payload": {"mode": "reflection"}, "id": "5485c80d2988", "ts": 1792402061.374}
+{"event": "page.view", "payload": {}, "id": "9ded7a586a9f", "ts": 1792402306.24}
+{"event": "page.view", "payload": {}, "id": "4792fc22c04b", "ts": 1792402356.858}
+{"event": "translate.start", "payload": {"mode": "reflection", "endpoint": "deepseek", "model": null, "target_langs": ["en"]}, "id": "f9257377d76e", "ts": 1792402364.511}
+{"event": "translate.done", "payload": {"mode": "reflection", "endpoint": "deepseek", "ok": true, "ms": 11395, "target_langs": ["en"]}, "id": "d60177b08a4f", "ts": 1792402374.665}
+{"event": "page.view", "payload": {}, "id": "e003a1aa38e5", "ts": 1792402395.214}
+{"event": "translate.start", "payload": {"mode": "reflection", "endpoint": "deepseek", "model": "deepseek-flash", "target_langs": ["en"]}, "id": "d1f75e199b0b", "ts": 1792402399.381}
+{"event": "endpoint.change", "payload": {"endpoint": "cycleuser-halogen"}, "id": "e0c8b5bfb366", "ts": 1792402415.946}
+{"event": "reviewer.change", "payload": {"endpoint": "cycleuser-halogen"}, "id": "1179e823f9ee", "ts": 1792402421.43}
+{"event": "translate.done", "payload": {"mode": "reflection", "endpoint": "cycleuser-halogen", "ok": true, "ms": 25497, "target_langs": ["en"]}, "id": "f6e703c7644a", "ts": 1792402424.93}
+{"event": "endpoint.import", "payload": {"name": "deepseek"}, "id": "247355623580", "ts": 1792402430.309}
+{"event": "endpoint.change", "payload": {"endpoint": "deepseek"}, "id": "0892d3a57939", "ts": 1792402439.53}
+{"event": "translate.start", "payload": {"mode": "reflection", "endpoint": "deepseek", "model": "deepseek-flash", "target_langs": ["en"]}, "id": "34d334c2bc09", "ts": 1792402451.314}
+{"event": "translate.done", "payload": {"mode": "reflection", "endpoint": "deepseek", "ok": true, "ms": 54465, "target_langs": ["en"]}, "id": "94e840b5bd7d", "ts": 1792402505.783}
+{"event": "page.view", "payload": {}, "id": "60155ce2acf5", "ts": 1792402905.858}
+{"event": "writing.grade", "payload": {"overall": 7.0, "issues": 5, "level": "HSK 3", "author": "学习者B"}, "id": "bc7e76cad111", "ts": 1792403688.714}
+{"event": "writing.polish", "payload": {"edits": 5, "parse_ok": true, "author": null}, "id": "861413153df9", "ts": 1792403700.155}
+{"event": "page.view", "payload": {}, "id": "d9676ef7acf7", "ts": 1792404063.167}
+{"event": "writing.grade", "payload": {"overall": 7.4, "issues": 6, "level": "HSK 3", "author": "学习者B"}, "id": "52d1b8fecece", "ts": 1792404072.049}
+{"event": "translate.start", "payload": {"mode": "streaming", "endpoint": "deepseek", "model": "deepseek-flash", "target_langs": ["zh-cn"]}, "id": "60633327c1fd", "ts": 1792404257.993}
+{"event": "translate.done", "payload": {"mode": "streaming", "endpoint": "deepseek", "ok": false, "ms": 63298, "target_langs": ["zh-cn"]}, "id": "188b94fb529d", "ts": 1792404321.302}
+{"event": "workspace.switch", "payload": {"workspace": "writing"}, "id": "b8e0c3da1f23", "ts": 1792404322.592}
+{"event": "writing.new_prompt", "payload": {"id": "letter-teacher", "level": "HSK 4"}, "id": "8877149c73cf", "ts": 1792404322.611}
+{"event": "writing.new_prompt", "payload": {"id": "hometown", "level": "HSK 3"}, "id": "64ebe4ebaf94", "ts": 1792404330.886}
+{"event": "writing.new_prompt", "payload": {"id": "ai-life", "level": "HSK 6"}, "id": "7a4697f780a7", "ts": 1792404331.692}
+{"event": "ui.lang", "payload": {"lang": "ja"}, "id": "913523735e70", "ts": 1792404338.873}
+{"event": "ui.lang", "payload": {"lang": "fr"}, "id": "d29f522dcb55", "ts": 1792404343.925}
+{"event": "ui.lang", "payload": {"lang": "ja"}, "id": "7666005a68ea", "ts": 1792404346.423}
+{"event": "ui.lang", "payload": {"lang": "zh"}, "id": "c5210b70212b", "ts": 1792404349.07}
+{"event": "workspace.switch", "payload": {"workspace": "translate"}, "id": "d73c2c21e5dc", "ts": 1792404352.866}
+{"event": "page.view", "payload": {}, "id": "bcacec820938", "ts": 1792404399.304}
+{"event": "workspace.switch", "payload": {"workspace": "writing"}, "id": "acfee64d7592", "ts": 1792404861.369}
+{"event": "writing.new_prompt", "payload": {"id": "phone", "level": "HSK 5"}, "id": "7d3ad8d00e90", "ts": 1792404861.445}
+{"event": "writing.grade", "payload": {"overall": 3.0, "issues": 6, "level": "HSK 2", "author": null}, "id": "1515844e40ca", "ts": 1792404883.706}
+{"event": "writing.grade", "payload": {"overall": 3}, "id": "57beee8bdf67", "ts": 1792404883.735}
+{"event": "page.view", "payload": {}, "id": "da745c5b6f13", "ts": 1792405007.135}
+{"event": "workspace.switch", "payload": {"workspace": "writing"}, "id": "783a536c101b", "ts": 1792405007.174}
+{"event": "workspace.switch", "payload": {"workspace": "writing"}, "id": "64c8fade26ce", "ts": 1792405131.025}
+{"event": "page.view", "payload": {}, "id": "a89877978bf8", "ts": 1792405131.038}
+{"event": "writing.polish", "payload": {"edits": 3, "parse_ok": true, "author": null}, "id": "4d60dd9f5fef", "ts": 1792405203.323}
+{"event": "writing.polish", "payload": {"edits": 3}, "id": "4e74d9958b8e", "ts": 1792405203.363}
+{"event": "writing.grade", "payload": {"overall": 2.0, "issues": 10, "level": "HSK 2", "author": null}, "id": "2fcced9980cc", "ts": 1792405222.677}
+{"event": "writing.grade", "payload": {"overall": 2}, "id": "108496ef4dc3", "ts": 1792405222.713}
+{"event": "writing.polish", "payload": {"edits": 5, "parse_ok": true, "author": null}, "id": "679c57d53c5f", "ts": 1792405253.519}
+{"event": "writing.polish", "payload": {"edits": 5}, "id": "fa9969e27e8c", "ts": 1792405253.561}
+{"event": "speech.tts", "payload": {"chars": 2, "voice": "Tingting"}, "id": "0bd57715d2db", "ts": 1792405457.881}
+{"event": "speech.score", "payload": {"score": 10.0, "accuracy": 100.0, "missing": 0}, "id": "1b2d8b9d005d", "ts": 1792405457.921}
+{"event": "speech.tts", "payload": {"chars": 17, "voice": "Tingting"}, "id": "79184e6afe5a", "ts": 1792405520.557}
+{"event": "speech.score", "payload": {"score": 8.6, "accuracy": 80.0, "missing": 0}, "id": "52deb36c7891", "ts": 1792405529.135}
+{"event": "speech.score", "payload": {"score": 8.6, "accuracy": 80.0, "missing": 0}, "id": "a45f30a7074f", "ts": 1792405622.101}
+{"event": "speech.tts", "payload": {"chars": 2, "voice": "Tingting"}, "id": "c44ededbe2ad", "ts": 1792405622.874}
+{"event": "speech.score", "payload": {"score": 10.0, "accuracy": 100.0, "missing": 0}, "id": "db0a76948301", "ts": 1792405622.92}
+{"event": "speech.score", "payload": {"score": 10.0, "accuracy": 100.0, "missing": 0}, "id": "f536956b3327", "ts": 1792405687.97}
+{"event": "page.view", "payload": {}, "id": "a4a4a4cd6b94", "ts": 1792405694.277}
+{"event": "workspace.switch", "payload": {"workspace": "writing"}, "id": "1e343f93bd41", "ts": 1792405694.277}
+{"event": "workspace.switch", "payload": {"workspace": "speech"}, "id": "196ac0266244", "ts": 1792405698.088}
+{"event": "speech.score", "payload": {"score": 9.3, "accuracy": 90.0, "missing": 0}, "id": "27b2290b1f22", "ts": 1792406317.016}
+{"event": "speech.score", "payload": {"score": 8.9, "accuracy": 84.2, "missing": 0}, "id": "192c0cbd1bca", "ts": 1792406345.166}
+{"event": "speech.tts", "payload": {"chars": 2, "voice": "Tingting"}, "id": "8ade207d2851", "ts": 1792406767.839}
+{"event": "speech.score", "payload": {"score": 10.0, "accuracy": 100.0, "missing": 0}, "id": "42267567e95f", "ts": 1792406767.895}
+{"event": "speech.tts", "payload": {"chars": 2, "voice": "Tingting"}, "id": "47dead136b38", "ts": 1792406806.294}
+{"event": "speech.score", "payload": {"score": 10.0, "accuracy": 100.0, "missing": 0}, "id": "499f65d5434b", "ts": 1792406806.334}
+{"event": "speech.tts", "payload": {"chars": 59, "voice": "Samantha"}, "id": "4c65750c071a", "ts": 1792406843.561}
+{"event": "speech.tts", "payload": {"chars": 7, "voice": "Kyoko"}, "id": "e008d5b6dd00", "ts": 1792406847.228}
+{"event": "reading.check", "payload": {"exam": "cet4", "score": 4, "total": 4}, "id": "c4711e1e9382", "ts": 1792406878.846}
+{"event": "writing.grade", "payload": {"overall": 6.8, "issues": 6, "level": "CET-4", "author": "Learner C"}, "id": "54659a383c93", "ts": 1792406886.998}
+{"event": "speech.tts", "payload": {"chars": 85, "voice": "Samantha"}, "id": "0251bb39edde", "ts": 1792406890.813}
+{"event": "speech.score", "payload": {"score": 9.4, "accuracy": 90.9, "missing": 0}, "id": "adbf47cd7782", "ts": 1792406896.747}
+{"event": "speech.diagnose", "payload": {"issues": 1, "language": "en"}, "id": "02ec57f6c009", "ts": 1792406902.561}
+{"event": "speech.tts", "payload": {"chars": 2, "voice": "Tingting"}, "id": "112257032fc6", "ts": 1792406950.843}
+{"event": "speech.score", "payload": {"score": 10.0, "accuracy": 100.0, "missing": 0}, "id": "858b8701f3b2", "ts": 1792406950.904}
+{"event": "page.view", "payload": {}, "id": "40db3d02be1e", "ts": 1792406962.026}
+{"event": "workspace.switch", "payload": {"workspace": "speech"}, "id": "3f566b0dfe0e", "ts": 1792406962.034}
+{"event": "speech.score", "payload": {"score": 9.0, "accuracy": 85.2, "missing": 0}, "id": "6042ffc62f4d", "ts": 1792407049.054}
+{"event": "speech.diagnose", "payload": {"issues": 4, "language": "en"}, "id": "d4fb17968db2", "ts": 1792407059.324}
+{"event": "speech.diagnose", "payload": {"issues": 4, "lang": "en"}, "id": "8244ba811273", "ts": 1792407059.335}
+{"event": "speech.tts", "payload": {"chars": 181, "voice": "Samantha"}, "id": "6365d3eee5dd", "ts": 1792407098.31}
+{"event": "speech.tts", "payload": {"chars": 181, "lang": "en"}, "id": "6abad7678fd4", "ts": 1792407098.325}
+{"event": "workspace.switch", "payload": {"workspace": "reading"}, "id": "9b1df27b9c00", "ts": 1792407125.126}
+{"event": "reading.check", "payload": {"exam": "kaoyan", "score": 0, "total": 4}, "id": "f0390fdcef30", "ts": 1792407135.266}
+{"event": "reading.submit", "payload": {"exam": "kaoyan", "score": 0}, "id": "f7dc6ed897ef", "ts": 1792407135.273}
+{"event": "reading.import", "payload": {"exam": "cet4", "year": "2023"}, "id": "eb4493d934f0", "ts": 1792407311.146}
+{"event": "reading.check", "payload": {"exam": "cet4", "score": 2, "total": 2}, "id": "cdb5c15f30bb", "ts": 1792407311.149}
+{"event": "reading.import", "payload": {"exam": "kaoyan", "year": "2024"}, "id": "5c8134d4568e", "ts": 1792407311.166}
+{"event": "reading.import", "payload": {"exam": "cet4", "year": "2023"}, "id": "ee3378d70350", "ts": 1792407340.764}
+{"event": "reading.check", "payload": {"exam": "cet4", "score": 2, "total": 2}, "id": "8a876c3cc79d", "ts": 1792407340.892}
+{"event": "speech.tts", "payload": {"chars": 2, "voice": "Tingting"}, "id": "d1e198e16e49", "ts": 1792407367.677}
+{"event": "speech.score", "payload": {"score": 10.0, "accuracy": 100.0, "missing": 0}, "id": "9556e3167b47", "ts": 1792407367.707}
+{"event": "reading.import", "payload": {"exam": "cet4", "year": "2023"}, "id": "e1556b62fecc", "ts": 1792407368.862}
+{"event": "reading.check", "payload": {"exam": "cet4", "score": 2, "total": 2}, "id": "319ace896b2b", "ts": 1792407368.864}
+{"event": "reading.import", "payload": {"exam": "kaoyan", "year": "2024"}, "id": "e68e7395d600", "ts": 1792407368.883}
+{"event": "workspace.switch", "payload": {"workspace": "speech"}, "id": "d4184715a79d", "ts": 1792407373.026}
+{"event": "page.view", "payload": {}, "id": "1f295ec6a6f6", "ts": 1792407373.026}
+{"event": "workspace.switch", "payload": {"workspace": "reading"}, "id": "5f95ed74ea17", "ts": 1792407418.548}
+{"event": "page.view", "payload": {}, "id": "8625de8e62b4", "ts": 1792407623.185}
+{"event": "workspace.switch", "payload": {"workspace": "speech"}, "id": "1c730b10e557", "ts": 1792407623.186}
+{"event": "workspace.switch", "payload": {"workspace": "reading"}, "id": "bcbc1e10a22c", "ts": 1792407626.241}
+{"event": "workspace.switch", "payload": {"workspace": "speech"}, "id": "cae9447b3296", "ts": 1792407651.14}
+{"event": "workspace.switch", "payload": {"workspace": "writing"}, "id": "c73a286e051e", "ts": 1792407651.991}
+{"event": "workspace.switch", "payload": {"workspace": "translate"}, "id": "f2ada63953d0", "ts": 1792407652.624}
+{"event": "workspace.switch", "payload": {"workspace": "reading"}, "id": "32ee3f9c4e31", "ts": 1792407653.49}
+{"event": "reading.import", "payload": {"exam": "cet4", "year": "2023"}, "id": "cac3c490fc5a", "ts": 1792407927.06}
+{"event": "reading.check", "payload": {"exam": "cet4", "score": 2, "total": 2}, "id": "8abd707c29b9", "ts": 1792407927.063}
+{"event": "reading.import", "payload": {"exam": "kaoyan", "year": "2024"}, "id": "4ebc28c5bdb6", "ts": 1792407927.084}
+{"event": "page.view", "payload": {}, "id": "797208d892de", "ts": 1792408250.008}
+{"event": "workspace.switch", "payload": {"workspace": "reading"}, "id": "a7ef36b0d4b5", "ts": 1792408252.782}
+{"event": "reading.import", "payload": {"exam": "cet4", "year": "2023"}, "id": "bcd5bda9fa5f", "ts": 1792408564.703}
+{"event": "reading.check", "payload": {"exam": "cet4", "score": 2, "total": 2}, "id": "d68a31b9f7e0", "ts": 1792408564.706}
+{"event": "reading.import", "payload": {"exam": "kaoyan", "year": "2024"}, "id": "3e2feaaea76b", "ts": 1792408564.727}
+{"event": "reading.fetch_github", "payload": {"source": "kaoyan1", "year": "2025", "imported": 4}, "id": "698666621f43", "ts": 1792408601.215}
+{"event": "reading.check", "payload": {"exam": "kaoyan", "score": 5, "total": 5}, "id": "216d6d496364", "ts": 1792408620.789}
+{"event": "reading.fetch_github", "payload": {"source": "cet4", "year": "2023.06", "imported": 6}, "id": "37b658d8809d", "ts": 1792408625.851}
+{"event": "content.import", "payload": {"kind": "writing", "imported": 1, "skipped": 0}, "id": "674275abd625", "ts": 1792408636.088}
+{"event": "content.import", "payload": {"kind": "speech", "imported": 1, "skipped": 0}, "id": "ce3b2724a915", "ts": 1792408636.107}
+{"event": "reading.check", "payload": {"exam": "cet4", "score": null, "total": 5}, "id": "e0fa4bec9c9f", "ts": 1792408636.315}
+{"event": "page.view", "payload": {}, "id": "bbd9167a44df", "ts": 1792408637.114}
+{"event": "workspace.switch", "payload": {"workspace": "reading"}, "id": "446489acf9c8", "ts": 1792408641.717}
+{"event": "speech.tts", "payload": {"chars": 2, "voice": "Tingting"}, "id": "1ed784c1f0e2", "ts": 1792408668.964}
+{"event": "speech.score", "payload": {"score": 10.0, "accuracy": 100.0, "missing": 0}, "id": "2c299877f92c", "ts": 1792408668.999}
+{"event": "reading.import", "payload": {"exam": "cet4", "year": "2023"}, "id": "1e01873b68a3", "ts": 1792408670.233}
+{"event": "reading.check", "payload": {"exam": "cet4", "score": 2, "total": 2}, "id": "64a35b796500", "ts": 1792408670.235}
+{"event": "reading.import", "payload": {"exam": "kaoyan", "year": "2024"}, "id": "af9fbf157ba3", "ts": 1792408670.255}
+{"event": "reading.fetch_github", "payload": {"source": "kaoyan1", "year": "all", "imported": 64}, "id": "daa3551d6fa2", "ts": 1792408736.856}
+{"event": "reading.fetch_github", "payload": {"source": "kaoyan1", "year": "all", "imported": 64}, "id": "9f8cb7e96062", "ts": 1792408736.906}
+{"event": "reading.check", "payload": {"exam": "hsk", "score": 1, "total": 4}, "id": "577e3295522c", "ts": 1792408749.394}
+{"event": "reading.submit", "payload": {"exam": "hsk", "score": 1}, "id": "55d30154b766", "ts": 1792408749.406}
+{"event": "reading.check", "payload": {"exam": "kaoyan", "score": 5, "total": 5}, "id": "3b5b554658f1", "ts": 1792409021.455}
+{"event": "page.view", "payload": {}, "id": "8d38df489c44", "ts": 1792409024.097}
+{"event": "workspace.switch", "payload": {"workspace": "reading"}, "id": "10ec10d4dbd7", "ts": 1792409367.419}
+{"event": "page.view", "payload": {}, "id": "dccfa2530b09", "ts": 1792409376.091}
+{"event": "workspace.switch", "payload": {"workspace": "reading"}, "id": "75e8d66ac2bb", "ts": 1792409377.624}
+{"event": "page.view", "payload": {}, "id": "beaa940c8588", "ts": 1792409383.628}
+{"event": "page.view", "payload": {}, "id": "bcd24845bce0", "ts": 1792409451.526}
+{"event": "workspace.switch", "payload": {"workspace": "writing"}, "id": "b793bcc78fcb", "ts": 1792409454.775}
+{"event": "writing.new_prompt", "payload": {"id": "hometown", "level": "HSK 3"}, "id": "ea5c8a0d0cbb", "ts": 1792409454.801}
+{"event": "workspace.switch", "payload": {"workspace": "speech"}, "id": "fb873a05de29", "ts": 1792409456.456}
+{"event": "workspace.switch", "payload": {"workspace": "reading"}, "id": "776042f73207", "ts": 1792409460.371}
+{"event": "page.view", "payload": {}, "id": "ede3501f836c", "ts": 1792409476.934}
+{"event": "workspace.switch", "payload": {"workspace": "writing"}, "id": "cac1184baed2", "ts": 1792409480.151}
+{"event": "writing.new_prompt", "payload": {"id": "festival", "level": "HSK 5"}, "id": "94b0b3cbea28", "ts": 1792409480.189}
+{"event": "workspace.switch", "payload": {"workspace": "speech"}, "id": "a568fb8934d1", "ts": 1792409481.848}
+{"event": "workspace.switch", "payload": {"workspace": "reading"}, "id": "2a7e05ab3008", "ts": 1792409485.714}
+{"event": "page.view", "payload": {}, "id": "b72e13504039", "ts": 1792409501.825}
+{"event": "workspace.switch", "payload": {"workspace": "writing"}, "id": "ee3c40a7c63e", "ts": 1792409504.977}
+{"event": "writing.new_prompt", "payload": {"id": "city-country", "level": "HSK 5"}, "id": "bad90c97e9c2", "ts": 1792409505.01}
+{"event": "workspace.switch", "payload": {"workspace": "speech"}, "id": "a15df1ed380a", "ts": 1792409506.623}
+{"event": "workspace.switch", "payload": {"workspace": "reading"}, "id": "050cd22afbb3", "ts": 1792409510.473}
+{"event": "page.view", "payload": {}, "id": "afa839de0fba", "ts": 1792409526.866}
+{"event": "workspace.switch", "payload": {"workspace": "writing"}, "id": "03bc7f13db77", "ts": 1792409530.038}
+{"event": "writing.new_prompt", "payload": {"id": "environment", "level": "HSK 5"}, "id": "9e940c08e058", "ts": 1792409530.071}
+{"event": "workspace.switch", "payload": {"workspace": "speech"}, "id": "e54535a13196", "ts": 1792409531.703}
+{"event": "workspace.switch", "payload": {"workspace": "reading"}, "id": "3365dff0401b", "ts": 1792409535.57}
+{"event": "page.view", "payload": {}, "id": "53c172e110a0", "ts": 1792409551.803}
+{"event": "workspace.switch", "payload": {"workspace": "writing"}, "id": "e63ac56d12bb", "ts": 1792409555.193}
+{"event": "writing.new_prompt", "payload": {"id": "friend", "level": "HSK 4"}, "id": "7ba4384f606a", "ts": 1792409555.225}
+{"event": "workspace.switch", "payload": {"workspace": "speech"}, "id": "986e4c50d925", "ts": 1792409556.858}
+{"event": "workspace.switch", "payload": {"workspace": "reading"}, "id": "1fa09c0c2ee4", "ts": 1792409560.764}
+{"event": "page.view", "payload": {}, "id": "7c23ffbd2e5f", "ts": 1792409576.953}
+{"event": "workspace.switch", "payload": {"workspace": "writing"}, "id": "17319d6d12cf", "ts": 1792409580.217}
+{"event": "writing.new_prompt", "payload": {"id": "phone", "level": "HSK 5"}, "id": "21a6c0b91e5f", "ts": 1792409580.252}
+{"event": "workspace.switch", "payload": {"workspace": "speech"}, "id": "e8014c052c3a", "ts": 1792409581.877}
+{"event": "workspace.switch", "payload": {"workspace": "reading"}, "id": "b37a078206cb", "ts": 1792409585.74}
+{"event": "page.view", "payload": {}, "id": "3b2f1e23f77d", "ts": 1792409602.031}
+{"event": "workspace.switch", "payload": {"workspace": "writing"}, "id": "68f72a4b0007", "ts": 1792409605.145}
+{"event": "writing.new_prompt", "payload": {"id": "phone", "level": "HSK 5"}, "id": "2315e23e471d", "ts": 1792409605.187}
+{"event": "workspace.switch", "payload": {"workspace": "speech"}, "id": "9d943702f0fc", "ts": 1792409606.793}
+{"event": "workspace.switch", "payload": {"workspace": "reading"}, "id": "39318c5e5287", "ts": 1792409610.641}
+{"event": "page.view", "payload": {}, "id": "a23b4d01fa7a", "ts": 1792409627.59}
+{"event": "workspace.switch", "payload": {"workspace": "writing"}, "id": "ade039330a58", "ts": 1792409630.801}
+{"event": "writing.new_prompt", "payload": {"id": "hometown", "level": "HSK 3"}, "id": "5a22d994a992", "ts": 1792409630.836}
+{"event": "workspace.switch", "payload": {"workspace": "speech"}, "id": "c97367071a8c", "ts": 1792409632.45}
+{"event": "workspace.switch", "payload": {"workspace": "reading"}, "id": "ab0d1d53feef", "ts": 1792409636.317}
+{"event": "page.view", "payload": {}, "id": "c3a790beb170", "ts": 1792409652.167}
+{"event": "workspace.switch", "payload": {"workspace": "writing"}, "id": "7542cd81afce", "ts": 1792409655.332}
+{"event": "writing.new_prompt", "payload": {"id": "hometown", "level": "HSK 3"}, "id": "12104f84dda3", "ts": 1792409655.367}
+{"event": "workspace.switch", "payload": {"workspace": "speech"}, "id": "dcd73303edd4", "ts": 1792409656.997}
+{"event": "workspace.switch", "payload": {"workspace": "reading"}, "id": "2cd2ff97df26", "ts": 1792409660.848}
+{"event": "page.view", "payload": {}, "id": "e847af5d7000", "ts": 1792409677.095}
+{"event": "workspace.switch", "payload": {"workspace": "writing"}, "id": "cc13ccb93698", "ts": 1792409680.32}
+{"event": "writing.new_prompt", "payload": {"id": "user-1699638782", "level": "HSK 3"}, "id": "4e28a457eebf", "ts": 1792409680.36}
+{"event": "workspace.switch", "payload": {"workspace": "speech"}, "id": "33df122fab0b", "ts": 1792409681.955}
+{"event": "workspace.switch", "payload": {"workspace": "reading"}, "id": "44d4fb850b91", "ts": 1792409685.82}
+{"event": "page.view", "payload": {}, "id": "b7b5d31193d4", "ts": 1792409741.457}
+{"event": "workspace.switch", "payload": {"workspace": "writing"}, "id": "470c98f7f794", "ts": 1792409744.923}
+{"event": "writing.new_prompt", "payload": {"id": "trip", "level": "HSK 4"}, "id": "6ce6b8564c19", "ts": 1792409744.959}
+{"event": "workspace.switch", "payload": {"workspace": "speech"}, "id": "d82734151f6a", "ts": 1792409746.61}
+{"event": "workspace.switch", "payload": {"workspace": "reading"}, "id": "a799d5217c20", "ts": 1792409750.549}
+{"event": "page.view", "payload": {}, "id": "586c580ca975", "ts": 1792409767.018}
+{"event": "workspace.switch", "payload": {"workspace": "writing"}, "id": "7879b7711e7b", "ts": 1792409770.175}
+{"event": "writing.new_prompt", "payload": {"id": "user-1699638782", "level": "HSK 3"}, "id": "9611ff355206", "ts": 1792409770.209}
+{"event": "workspace.switch", "payload": {"workspace": "speech"}, "id": "1dd38e514387", "ts": 1792409771.824}
+{"event": "workspace.switch", "payload": {"workspace": "reading"}, "id": "d26f33a1a403", "ts": 1792409775.671}
+{"event": "page.view", "payload": {}, "id": "099d28f983b3", "ts": 1792409791.977}
+{"event": "workspace.switch", "payload": {"workspace": "writing"}, "id": "17555ec77d0a", "ts": 1792409795.234}
+{"event": "writing.new_prompt", "payload": {"id": "dream-job", "level": "HSK 5"}, "id": "d62df640413e", "ts": 1792409795.272}
+{"event": "workspace.switch", "payload": {"workspace": "speech"}, "id": "5cdcac3df4b6", "ts": 1792409796.907}
+{"event": "workspace.switch", "payload": {"workspace": "reading"}, "id": "cde04e2377ee", "ts": 1792409800.751}
+{"event": "page.view", "payload": {}, "id": "32b5d504f772", "ts": 1792409817.449}
+{"event": "page.view", "payload": {}, "id": "51b38646a3df", "ts": 1792409855.083}
+{"event": "workspace.switch", "payload": {"workspace": "writing"}, "id": "cbfdff6a72cd", "ts": 1792409858.181}
+{"event": "writing.new_prompt", "payload": {"id": "dream-job", "level": "HSK 5"}, "id": "fb47a3d3de63", "ts": 1792409858.215}
+{"event": "workspace.switch", "payload": {"workspace": "speech"}, "id": "579f7ced2bf4", "ts": 1792409859.896}
+{"event": "workspace.switch", "payload": {"workspace": "reading"}, "id": "38d1b6c7c441", "ts": 1792409863.865}
+{"event": "page.view", "payload": {}, "id": "7fd175b2f080", "ts": 1792409880.341}
+{"event": "workspace.switch", "payload": {"workspace": "writing"}, "id": "7f11f2829712", "ts": 1792409883.423}
+{"event": "writing.new_prompt", "payload": {"id": "trip", "level": "HSK 4"}, "id": "ff81d15e4d47", "ts": 1792409883.451}
+{"event": "workspace.switch", "payload": {"workspace": "speech"}, "id": "83a63e34e85b", "ts": 1792409885.053}
+{"event": "workspace.switch", "payload": {"workspace": "reading"}, "id": "07d123667bd3", "ts": 1792409888.926}
+{"event": "page.view", "payload": {}, "id": "046cfdec4230", "ts": 1792409905.204}
+{"event": "workspace.switch", "payload": {"workspace": "writing"}, "id": "faa93e97d84d", "ts": 1792409908.275}
+{"event": "writing.new_prompt", "payload": {"id": "user-1699638782", "level": "HSK 3"}, "id": "7a201dfcd460", "ts": 1792409908.31}
+{"event": "workspace.switch", "payload": {"workspace": "speech"}, "id": "702654aed703", "ts": 1792409909.891}
+{"event": "workspace.switch", "payload": {"workspace": "reading"}, "id": "262f6aa11ac1", "ts": 1792409913.756}
+{"event": "page.view", "payload": {}, "id": "422602297d3d", "ts": 1792409929.926}
+{"event": "workspace.switch", "payload": {"workspace": "writing"}, "id": "618833d0f8f7", "ts": 1792409933.023}
+{"event": "writing.new_prompt", "payload": {"id": "city-country", "level": "HSK 5"}, "id": "e663a6949afd", "ts": 1792409933.055}
+{"event": "workspace.switch", "payload": {"workspace": "speech"}, "id": "6c08fceb989c", "ts": 1792409934.636}
+{"event": "workspace.switch", "payload": {"workspace": "reading"}, "id": "d6c4b3b92725", "ts": 1792409938.485}
+{"event": "page.view", "payload": {}, "id": "333a9bdb06f0", "ts": 1792409954.692}
+{"event": "workspace.switch", "payload": {"workspace": "writing"}, "id": "bf61660798f3", "ts": 1792409957.771}
+{"event": "writing.new_prompt", "payload": {"id": "city-country", "level": "HSK 5"}, "id": "eb6eb97e4f24", "ts": 1792409957.802}
+{"event": "workspace.switch", "payload": {"workspace": "speech"}, "id": "4f3419793127", "ts": 1792409959.418}
+{"event": "workspace.switch", "payload": {"workspace": "reading"}, "id": "4d51846d087a", "ts": 1792409963.268}
+{"event": "page.view", "payload": {}, "id": "c277b9d5dc7b", "ts": 1792409979.355}
+{"event": "workspace.switch", "payload": {"workspace": "writing"}, "id": "07da9076d0d6", "ts": 1792409982.434}
+{"event": "writing.new_prompt", "payload": {"id": "ai-life", "level": "HSK 6"}, "id": "4ed28b9185d4", "ts": 1792409982.466}
+{"event": "workspace.switch", "payload": {"workspace": "speech"}, "id": "41e8f985d31e", "ts": 1792409984.081}
+{"event": "workspace.switch", "payload": {"workspace": "reading"}, "id": "d8acc891de86", "ts": 1792409987.915}
+{"event": "page.view", "payload": {}, "id": "aec97de9015c", "ts": 1792410004.142}
+{"event": "workspace.switch", "payload": {"workspace": "writing"}, "id": "80bacc175986", "ts": 1792410007.2}
+{"event": "writing.new_prompt", "payload": {"id": "misunderstanding", "level": "HSK 6"}, "id": "49b4986c3467", "ts": 1792410007.239}
+{"event": "workspace.switch", "payload": {"workspace": "speech"}, "id": "6bd1a12dcbba", "ts": 1792410008.846}
+{"event": "workspace.switch", "payload": {"workspace": "reading"}, "id": "8027b3180b0a", "ts": 1792410012.696}
+{"event": "page.view", "payload": {}, "id": "3d46969a4df0", "ts": 1792410028.57}
+{"event": "workspace.switch", "payload": {"workspace": "writing"}, "id": "7b656e32b44d", "ts": 1792410031.639}
+{"event": "writing.new_prompt", "payload": {"id": "user-1699638782", "level": "HSK 3"}, "id": "53b242dc5e92", "ts": 1792410031.674}
+{"event": "workspace.switch", "payload": {"workspace": "speech"}, "id": "055e8989b335", "ts": 1792410033.319}
+{"event": "workspace.switch", "payload": {"workspace": "reading"}, "id": "862bdeecbae0", "ts": 1792410037.168}
+{"event": "page.view", "payload": {}, "id": "578b219b6696", "ts": 1792410053.306}
+{"event": "workspace.switch", "payload": {"workspace": "writing"}, "id": "d03ce75c3dd0", "ts": 1792410056.38}
+{"event": "writing.new_prompt", "payload": {"id": "friend", "level": "HSK 4"}, "id": "3f7f4891e835", "ts": 1792410056.417}
+{"event": "workspace.switch", "payload": {"workspace": "speech"}, "id": "f0989acc08c9", "ts": 1792410058.029}
+{"event": "workspace.switch", "payload": {"workspace": "reading"}, "id": "a9bae2b63317", "ts": 1792410061.879}
+{"event": "page.view", "payload": {}, "id": "2fd438aa0cfe", "ts": 1792410077.999}
+{"event": "workspace.switch", "payload": {"workspace": "writing"}, "id": "c519c65d8108", "ts": 1792410081.06}
+{"event": "writing.new_prompt", "payload": {"id": "city-country", "level": "HSK 5"}, "id": "776da1355f8a", "ts": 1792410081.101}
+{"event": "workspace.switch", "payload": {"workspace": "speech"}, "id": "17d2c5c5ad32", "ts": 1792410082.759}
+{"event": "workspace.switch", "payload": {"workspace": "reading"}, "id": "6cc5dd66c213", "ts": 1792410086.722}
+{"event": "speech.tts", "payload": {"chars": 2, "voice": "Tingting"}, "id": "3b8ef3afd0ab", "ts": 1792414709.037}
+{"event": "speech.score", "payload": {"score": 10.0, "accuracy": 100.0, "missing": 0}, "id": "0698ba53b1ea", "ts": 1792414709.091}
+{"event": "reading.import", "payload": {"exam": "cet4", "year": "2023"}, "id": "172edc568d48", "ts": 1792414710.922}
+{"event": "reading.check", "payload": {"exam": "cet4", "score": 2, "total": 2}, "id": "279b29213d07", "ts": 1792414710.926}
+{"event": "reading.import", "payload": {"exam": "kaoyan", "year": "2024"}, "id": "4ff82e53b438", "ts": 1792414710.951}

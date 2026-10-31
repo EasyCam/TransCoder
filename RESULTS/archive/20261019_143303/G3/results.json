@@ -1,0 +1,207 @@
+{
+  "schema": "transcoder-next/results/v1",
+  "group": "G3",
+  "description": "iterative-small (existing loop, 5 iterations)",
+  "temperature": 0.3,
+  "seed": 42,
+  "translator_model": "qwen3:0.6b",
+  "reviewer": [
+    "deepseek",
+    "deepseek-chat"
+  ],
+  "n_pairs": 12,
+  "rows": [
+    {
+      "group": "G3",
+      "pair_id": "la-ch1-en",
+      "subset": "c1-la",
+      "source_lang": "zh-classical-cn",
+      "target_lang": "en",
+      "has_reference": true,
+      "seed": 42,
+      "source_tokens_o200k": 58,
+      "output": "",
+      "dry": true,
+      "would_call": [
+        "qwen3:0.6b x11"
+      ],
+      "wall_s": 0.44
+    },
+    {
+      "group": "G3",
+      "pair_id": "la-ch1-fr",
+      "subset": "c1-la",
+      "source_lang": "zh-classical-cn",
+      "target_lang": "fr",
+      "has_reference": true,
+      "seed": 42,
+      "source_tokens_o200k": 58,
+      "output": "",
+      "dry": true,
+      "would_call": [
+        "qwen3:0.6b x11"
+      ],
+      "wall_s": 0.0
+    },
+    {
+      "group": "G3",
+      "pair_id": "la-ch1-ja",
+      "subset": "c1-la",
+      "source_lang": "zh-classical-cn",
+      "target_lang": "ja",
+      "has_reference": true,
+      "seed": 42,
+      "source_tokens_o200k": 58,
+      "output": "",
+      "dry": true,
+      "would_call": [
+        "qwen3:0.6b x11"
+      ],
+      "wall_s": 0.0
+    },
+    {
+      "group": "G3",
+      "pair_id": "la-ch1-ko",
+      "subset": "c1-la",
+      "source_lang": "zh-classical-cn",
+      "target_lang": "ko",
+      "has_reference": false,
+      "seed": 42,
+      "source_tokens_o200k": 58,
+      "output": "",
+      "dry": true,
+      "would_call": [
+        "qwen3:0.6b x11"
+      ],
+      "wall_s": 0.0
+    },
+    {
+      "group": "G3",
+      "pair_id": "la-ch1-de",
+      "subset": "c1-la",
+      "source_lang": "zh-classical-cn",
+      "target_lang": "de",
+      "has_reference": false,
+      "seed": 42,
+      "source_tokens_o200k": 58,
+      "output": "",
+      "dry": true,
+      "would_call": [
+        "qwen3:0.6b x11"
+      ],
+      "wall_s": 0.0
+    },
+    {
+      "group": "G3",
+      "pair_id": "la-ch8-en",
+      "subset": "c1-la",
+      "source_lang": "zh-classical-cn",
+      "target_lang": "en",
+      "has_reference": true,
+      "seed": 42,
+      "source_tokens_o200k": 54,
+      "output": "",
+      "dry": true,
+      "would_call": [
+        "qwen3:0.6b x11"
+      ],
+      "wall_s": 0.0
+    },
+    {
+      "group": "G3",
+      "pair_id": "la-ch8-fr",
+      "subset": "c1-la",
+      "source_lang": "zh-classical-cn",
+      "target_lang": "fr",
+      "has_reference": true,
+      "seed": 42,
+      "source_tokens_o200k": 54,
+      "output": "",
+      "dry": true,
+      "would_call": [
+        "qwen3:0.6b x11"
+      ],
+      "wall_s": 0.0
+    },
+    {
+      "group": "G3",
+      "pair_id": "la-ch8-ja",
+      "subset": "c1-la",
+      "source_lang": "zh-classical-cn",
+      "target_lang": "ja",
+      "has_reference": true,
+      "seed": 42,
+      "source_tokens_o200k": 54,
+      "output": "",
+      "dry": true,
+      "would_call": [
+        "qwen3:0.6b x11"
+      ],
+      "wall_s": 0.0
+    },
+    {
+      "group": "G3",
+      "pair_id": "la-ch8-ko",
+      "subset": "c1-la",
+      "source_lang": "zh-classical-cn",
+      "target_lang": "ko",
+      "has_reference": false,
+      "seed": 42,
+      "source_tokens_o200k": 54,
+      "output": "",
+      "dry": true,
+      "would_call": [
+        "qwen3:0.6b x11"
+      ],
+      "wall_s": 0.0
+    },
+    {
+      "group": "G3",
+      "pair_id": "la-ch8-de",
+      "subset": "c1-la",
+      "source_lang": "zh-classical-cn",
+      "target_lang": "de",
+      "has_reference": false,
+      "seed": 42,
+      "source_tokens_o200k": 54,
+      "output": "",
+      "dry": true,
+      "would_call": [
+        "qwen3:0.6b x11"
+      ],
+      "wall_s": 0.0
+    },
+    {
+      "group": "G3",
+      "pair_id": "aq-xu-en",
+      "subset": "c1-aq",
+      "source_lang": "zh-cn",
+      "target_lang": "en",
+      "has_reference": true,
+      "seed": 42,
+      "source_tokens_o200k": 98,
+      "output": "",
+      "dry": true,
+      "would_call": [
+        "qwen3:0.6b x11"
+      ],
+      "wall_s": 0.0
+    },
+    {
+      "group": "G3",
+      "pair_id": "c3-tech1",
+      "subset": "c3",
+      "source_lang": "zh-cn",
+      "target_lang": "en",
+      "has_reference": false,
+      "seed": 42,
+      "source_tokens_o200k": 78,
+      "output": "",
+      "dry": true,
+      "would_call": [
+        "qwen3:0.6b x11"
+      ],
+      "wall_s": 0.0
+    }
+  ]
+}

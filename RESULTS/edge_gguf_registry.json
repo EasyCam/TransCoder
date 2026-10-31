@@ -1,0 +1,25 @@
+{
+  "note": "On-device GGUF models, served by llama-server (OpenAI-compatible). Safetensors weights were removed.",
+  "qwen3.5-2b-q4km": {
+    "tag": "edge-gen",
+    "role": "generation / translation",
+    "model": "Qwen3.5-2B",
+    "quant": "Q4_K_M",
+    "file": "/Users/fred/Models/gguf/Qwen3.5-2B-Q4_K_M.gguf",
+    "bytes": 1377000000,
+    "source": "ModelScope unsloth/Qwen3.5-2B-GGUF",
+    "endpoint": "http://127.0.0.1:18081/v1",
+    "serve": "llama-server -m <file> --port 18081 -c 4096 -t 6 --chat-template-kwargs '{\"enable_thinking\": false}'"
+  },
+  "lfm2.5-1.2b-q4km": {
+    "tag": "edge-rev",
+    "role": "review / rubric JSON",
+    "model": "LFM2.5-1.2B-Instruct",
+    "quant": "Q4_K_M",
+    "file": "/Users/fred/Models/gguf/LFM2.5-1.2B-Instruct-Q4_K_M.gguf",
+    "bytes": 731000000,
+    "source": "ModelScope LiquidAI/LFM2.5-1.2B-Instruct-GGUF",
+    "endpoint": "http://127.0.0.1:18082/v1",
+    "serve": "llama-server -m <file> --port 18082 -c 4096 -t 6"
+  }
+}

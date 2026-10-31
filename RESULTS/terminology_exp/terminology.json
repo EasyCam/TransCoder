@@ -1,0 +1,23 @@
+{
+  "大语言模型": {
+    "en": "large language model",
+    "ja": "大規模言語モデル",
+    "fr": "grand modèle de langage",
+    "de": "großes Sprachmodell"
+  },
+  "检索增强生成": {
+    "en": "retrieval-augmented generation",
+    "ja": "検索拡張生成"
+  },
+  "词元": {
+    "en": "token",
+    "ja": "トークン",
+    "fr": "jeton (token)",
+    "de": "Token"
+  },
+  "多智能体": {
+    "en": "multi-agent",
+    "ja": "マルチエージェント",
+    "fr": "multi-agents"
+  }
+}

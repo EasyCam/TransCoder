@@ -1,0 +1,645 @@
+{
+  "schema": "transcoder-next/results/v1",
+  "group": "G5",
+  "description": "team-hybrid (edge translator + online reviewer)",
+  "temperature": 0.3,
+  "seed": 42,
+  "translator_model": "Qwen3.5-2B-Q4_K_M.gguf",
+  "reviewer": [
+    "deepseek",
+    "deepseek-chat"
+  ],
+  "n_pairs": 14,
+  "rows": [
+    {
+      "group": "G5",
+      "pair_id": "la-ch1-en",
+      "subset": "c1-la",
+      "source_lang": "zh-classical-cn",
+      "target_lang": "en",
+      "has_reference": true,
+      "seed": 42,
+      "source_tokens_o200k": 58,
+      "degraded": false,
+      "degraded_reason": null,
+      "rounds": 3,
+      "model": "Qwen3.5-2B-Q4_K_M.gguf",
+      "reviewer_model": "deepseek-chat",
+      "reviewer_kind": "online",
+      "output": "The Way that can be spoken is not the eternal Way; the Name that can be named is not the eternal Name; The Nameless is the beginning of Heaven and Earth; The Nameless is the mother of all things.. Always without desire, one contemplates its subtlety; always with desire, one contemplates its limits. These two are of the same origin but different names; they are called the \"Mysterious.\" The Mysterious is the Mystery upon Mystery; The Gate of the Many Subtleties is the Gate of the Mystery upon Mystery.",
+      "review_scores": {
+        "adequacy": 5.0,
+        "terminology": 6.0,
+        "fluency": 6.0,
+        "culture": 5.0
+      },
+      "review_pass": false,
+      "review_parse_ok": true,
+      "online_tokens": {
+        "in": 963,
+        "out": 1275
+      },
+      "team_tokens": {
+        "translator_in": 3734,
+        "translator_out": 375,
+        "reviewer_in": 963,
+        "reviewer_out": 1275
+      },
+      "wall_s": 38.3,
+      "metrics": {
+        "no_reference": false,
+        "length_ratio": 8.69,
+        "bleu": 18.19,
+        "chrf": 36.4,
+        "ter": 66.93,
+        "rougeL_error": "No module named 'rouge_score'",
+        "bert_error": "No module named 'bert_score'"
+      }
+    },
+    {
+      "group": "G5",
+      "pair_id": "la-ch1-fr",
+      "subset": "c1-la",
+      "source_lang": "zh-classical-cn",
+      "target_lang": "fr",
+      "has_reference": true,
+      "seed": 42,
+      "source_tokens_o200k": 58,
+      "degraded": false,
+      "degraded_reason": null,
+      "rounds": 3,
+      "model": "Qwen3.5-2B-Q4_K_M.gguf",
+      "reviewer_model": "deepseek-chat",
+      "reviewer_kind": "online",
+      "output": "La Voie peut être dite, mais elle n'est pas la Voie constante.; le nom qui peut être nommé n'est pas le nom constant. Le sans-nom est le commencement du ciel et de la terre; le nommé est la mère des choses. Le vide constant est désiré pour observer la sagesse. avec un désir constant, avec un désir constant, on observe les manifestations.. Ces deux sont d'une même origine mais d'un nom différent; on les appelle ensemble le Mystère. Le Mystère est le Mystère, et le Mystère est le Mystère; la porte des choses infinies est le Mystère.; La porte des choses infinies est le Mystère.",
+      "review_scores": {
+        "adequacy": 4.0,
+        "terminology": 5.0,
+        "fluency": 3.0,
+        "culture": 4.0
+      },
+      "review_pass": false,
+      "review_parse_ok": true,
+      "online_tokens": {
+        "in": 1022,
+        "out": 1699
+      },
+      "team_tokens": {
+        "translator_in": 8676,
+        "translator_out": 632,
+        "reviewer_in": 1022,
+        "reviewer_out": 1699
+      },
+      "wall_s": 62.0,
+      "metrics": {
+        "no_reference": false,
+        "length_ratio": 10.034,
+        "bleu": 17.88,
+        "chrf": 40.47,
+        "ter": 70.75,
+        "rougeL_error": "No module named 'rouge_score'",
+        "bert_error": "No module named 'bert_score'"
+      }
+    },
+    {
+      "group": "G5",
+      "pair_id": "la-ch1-ja",
+      "subset": "c1-la",
+      "source_lang": "zh-classical-cn",
+      "target_lang": "ja",
+      "has_reference": true,
+      "seed": 42,
+      "source_tokens_o200k": 58,
+      "degraded": false,
+      "degraded_reason": null,
+      "rounds": 3,
+      "model": "Qwen3.5-2B-Q4_K_M.gguf",
+      "reviewer_model": "deepseek-chat",
+      "reviewer_kind": "online",
+      "output": "言及せず、道は常なり。言及せず、名は常なり。無名は天地の始まり、有名は万物の母なり。。。常無以觀其妙，常有以觀其徼。この二者は同一の源から出ているが異名を有する。これを玄と呼び、玄のまた玄、これを玄と呼び、玄のまた玄、これ玄之又玄、衆妙の門なり。",
+      "review_scores": {
+        "adequacy": 2.0,
+        "terminology": 3.0,
+        "fluency": 3.0,
+        "culture": 2.0
+      },
+      "review_pass": false,
+      "review_parse_ok": true,
+      "online_tokens": {
+        "in": 897,
+        "out": 1530
+      },
+      "team_tokens": {
+        "translator_in": 3752,
+        "translator_out": 430,
+        "reviewer_in": 897,
+        "reviewer_out": 1530
+      },
+      "wall_s": 37.97,
+      "metrics": {
+        "no_reference": false,
+        "length_ratio": 2.121,
+        "bleu": 19.89,
+        "chrf": 16.61,
+        "ter": 100.0,
+        "rougeL_error": "No module named 'rouge_score'",
+        "bert_error": "No module named 'bert_score'"
+      }
+    },
+    {
+      "group": "G5",
+      "pair_id": "la-ch8-en",
+      "subset": "c1-la",
+      "source_lang": "zh-classical-cn",
+      "target_lang": "en",
+      "has_reference": true,
+      "seed": 42,
+      "source_tokens_o200k": 54,
+      "degraded": false,
+      "degraded_reason": null,
+      "rounds": 3,
+      "model": "Qwen3.5-2B-Q4_K_M.gguf",
+      "reviewer_model": "deepseek-chat",
+      "reviewer_kind": "online",
+      "output": "The highest virtue is like water: it benefits all things without striving. It dwells in places people dislike.; it is kind and compassionate. It is kind and compassionate; it speaks truthfully.; The administration governs affairs wisely; it is capable of acting wisely at the right time in affairs and at the right time in action.; it is capable of acting wisely at the right time. Therefore, it is because it does not strive.",
+      "review_scores": {
+        "adequacy": 3.0,
+        "terminology": 4.0,
+        "fluency": 2.0,
+        "culture": 3.0
+      },
+      "review_pass": false,
+      "review_parse_ok": true,
+      "online_tokens": {
+        "in": 822,
+        "out": 1610
+      },
+      "team_tokens": {
+        "translator_in": 5626,
+        "translator_out": 400,
+        "reviewer_in": 822,
+        "reviewer_out": 1610
+      },
+      "wall_s": 43.45,
+      "metrics": {
+        "no_reference": false,
+        "length_ratio": 9.064,
+        "bleu": 1.19,
+        "chrf": 23.34,
+        "ter": 86.61,
+        "rougeL_error": "No module named 'rouge_score'",
+        "bert_error": "No module named 'bert_score'"
+      }
+    },
+    {
+      "group": "G5",
+      "pair_id": "la-ch8-fr",
+      "subset": "c1-la",
+      "source_lang": "zh-classical-cn",
+      "target_lang": "fr",
+      "has_reference": true,
+      "seed": 42,
+      "source_tokens_o200k": 54,
+      "degraded": false,
+      "degraded_reason": null,
+      "rounds": 3,
+      "model": "Qwen3.5-2B-Q4_K_M.gguf",
+      "reviewer_model": "deepseek-chat",
+      "reviewer_kind": "online",
+      "output": "Le plus haut bien est comme l'eau : l'eau profite à tout le monde sans rivaliser. Elle habite là où les autres s'abstiennent de s'abstenir, car elle habite là où les autres s'abstiennent de s'abstenir. Elle demeure le lieu bien choisi, le cœur profond, la bonté, la parole de foi, le gouvernement et l'administration, l'action, et le temps. C'est parce qu'elle ne se bat pas, car elle habite là où les autres s'abstiennent de s'abstenir.",
+      "review_scores": {
+        "adequacy": 3.0,
+        "terminology": 4.0,
+        "fluency": 3.0,
+        "culture": 4.0
+      },
+      "review_pass": false,
+      "review_parse_ok": true,
+      "online_tokens": {
+        "in": 921,
+        "out": 1553
+      },
+      "team_tokens": {
+        "translator_in": 5814,
+        "translator_out": 569,
+        "reviewer_in": 921,
+        "reviewer_out": 1553
+      },
+      "wall_s": 48.19,
+      "metrics": {
+        "no_reference": false,
+        "length_ratio": 9.298,
+        "bleu": 1.91,
+        "chrf": 21.45,
+        "ter": 91.96,
+        "rougeL_error": "No module named 'rouge_score'",
+        "bert_error": "No module named 'bert_score'"
+      }
+    },
+    {
+      "group": "G5",
+      "pair_id": "la-ch8-ja",
+      "subset": "c1-la",
+      "source_lang": "zh-classical-cn",
+      "target_lang": "ja",
+      "has_reference": true,
+      "seed": 42,
+      "source_tokens_o200k": 54,
+      "degraded": false,
+      "degraded_reason": null,
+      "rounds": 3,
+      "model": "Qwen3.5-2B-Q4_K_M.gguf",
+      "reviewer_model": "deepseek-chat",
+      "reviewer_kind": "online",
+      "output": "上善如水，潤澤萬物而不與爭。，潤澤萬物而不與爭。衆人之所悪に處る、故に道に幾し。居善地，心善淵，與善仁，言善信，政善治，事善能，動善時。夫惟不爭",
+      "review_scores": {
+        "adequacy": 7.0,
+        "terminology": 8.0,
+        "fluency": 5.0,
+        "culture": 7.0
+      },
+      "review_pass": false,
+      "review_parse_ok": true,
+      "online_tokens": {
+        "in": 781,
+        "out": 882
+      },
+      "team_tokens": {
+        "translator_in": 2770,
+        "translator_out": 209,
+        "reviewer_in": 781,
+        "reviewer_out": 882
+      },
+      "wall_s": 22.81,
+      "metrics": {
+        "no_reference": false,
+        "length_ratio": 1.532,
+        "bleu": 14.02,
+        "chrf": 13.42,
+        "ter": 100.0,
+        "rougeL_error": "No module named 'rouge_score'",
+        "bert_error": "No module named 'bert_score'"
+      }
+    },
+    {
+      "group": "G5",
+      "pair_id": "la-ch9-en",
+      "subset": "c1-la",
+      "source_lang": "zh-classical-cn",
+      "target_lang": "en",
+      "has_reference": true,
+      "seed": 42,
+      "source_tokens_o200k": 46,
+      "degraded": false,
+      "degraded_reason": null,
+      "rounds": 3,
+      "model": "Qwen3.5-2B-Q4_K_M.gguf",
+      "reviewer_model": "deepseek-chat",
+      "reviewer_kind": "online",
+      "output": "To hold and fill it is not as good as to stop it.; To hammer and sharpen it is not to be able to preserve it.; gold and jade fill the hall, yet no one can guard them; To attain wealth and fame while losing pride and bearing blame is the Way of Heaven..; 功成名遂身退，此乃天之道。.",
+      "review_scores": {
+        "adequacy": 3.0,
+        "terminology": 4.0,
+        "fluency": 3.0,
+        "culture": 3.0
+      },
+      "review_pass": false,
+      "review_parse_ok": true,
+      "online_tokens": {
+        "in": 819,
+        "out": 1420
+      },
+      "team_tokens": {
+        "translator_in": 4490,
+        "translator_out": 352,
+        "reviewer_in": 819,
+        "reviewer_out": 1420
+      },
+      "wall_s": 37.27,
+      "metrics": {
+        "no_reference": false,
+        "length_ratio": 6.537,
+        "bleu": 13.07,
+        "chrf": 25.15,
+        "ter": 79.27,
+        "rougeL_error": "No module named 'rouge_score'",
+        "bert_error": "No module named 'bert_score'"
+      }
+    },
+    {
+      "group": "G5",
+      "pair_id": "la-ch9-fr",
+      "subset": "c1-la",
+      "source_lang": "zh-classical-cn",
+      "target_lang": "fr",
+      "has_reference": true,
+      "seed": 42,
+      "source_tokens_o200k": 46,
+      "degraded": false,
+      "degraded_reason": null,
+      "rounds": 3,
+      "model": "Qwen3.5-2B-Q4_K_M.gguf",
+      "reviewer_model": "deepseek-chat",
+      "reviewer_kind": "online",
+      "output": "Mais ne pas remplir, ne pas le faire, ne pas le garder dans l'âme, ne pas le faire, ne pas le faire, ne pas le faire, ne pas le faire, ne pas le faire, ne pas le faire, ne pas le faire, ne pas le faire, ne pas le faire, ne pas le faire, ne pas le faire, ne pas le faire, ne pas le faire, ne pas le faire, ne pas le faire, ne pas le faire, ne pas le faire, ne pas le faire, ne pas le faire, ne pas le faire, ne pas le faire, ne pas le faire, ne pas le faire, ne pas le faire, ne pas le faire, ne pas le faire, ne pas le faire, ne pas le faire, ne pas le faire, ne pas le faire, ne pas le faire, ne pas le faire, ne pas le faire, ne pas le faire, ne pas le faire, ne pas le faire, ne pas le faire, ne pas le faire, ne pas le faire, ne pas le faire, ne pas le faire, ne pas le faire, ne pas le faire, ne pas le faire, ne pas le faire, ne pas le faire, ne pas le faire, ne pas le faire, ne pas le faire, ne pas le faire, ne pas le faire, ne pas le faire, ne pas le faire, ne pas le faire, ne pas le faire, ne pas le faire, ne pas le faire, ne pas le faire, ne pas le faire, ne pas le faire, ne pas le faire, ne pas le faire, ne pas le faire, ne pas le faire, ne pas le faire, ne pas le faire, ne pas le faire, ne pas le faire, ne pas le faire, ne pas le faire, ne pas le faire, ne pas le faire, ne pas le faire, ne pas le faire, ne pas le faire, ne pas le faire, ne pas le faire, ne pas le faire, ne pas le faire, ne pas le faire, ne pas le faire, ne pas le faire, ne pas le faire, ne pas le faire, ne pas le faire, ne pas le faire, ne pas le faire, ne pas le faire, ne pas le faire, ne pas le faire, ne pas le faire, ne pas le faire, ne pas le faire, ne pas le faire, ne pas le faire, ne pas le faire, ne pas le faire, ne pas le faire, ne pas le faire, ne pas le faire, ne pas le faire, ne pas le faire, ne pas le faire, ne pas le faire, ne pas le faire, ne pas le faire, ne pas le faire, ne pas le faire, ne pas le faire, ne pas le faire, ne pas le faire, ne pas le faire, ne pas le faire, ne pas le faire, ne pas le faire, ne pas le faire, ne pas le faire, ne pas le faire, ne pas le faire, ne pas le faire, ne pas le faire, ne pas le faire, ne pas le faire, ne pas le faire, ne pas le faire, ne pas le faire, ne pas le faire, ne pas le faire, ne pas le faire, ne pas le faire, ne pas le faire, ne pas le faire, ne pas le faire, ne pas le faire, ne pas le faire, ne pas le faire, ne pas le faire, ne pas le faire, ne pas le faire, ne pas le faire, ne pas le faire, ne pas le faire, ne pas le faire, ne pas le faire, ne pas le faire, ne pas le faire, ne pas le faire, ne pas le faire, ne pas le faire, ne pas le faire, ne pas le faire, ne pas le faire, ne pas le faire, ne pas le faire, ne pas le faire, ne pas le faire, ne pas le faire, ne pas le faire, ne pas le faire, ne pas le faire, ne pas le faire, ne pas le faire, ne pas le faire, ne pas le faire, ne pas le faire, ne pas le faire, ne pas le faire, ne pas le faire, ne pas le faire, ne pas le faire, ne pas le faire, ne pas le faire, ne pas le faire, ne pas le faire, ne pas le faire, ne pas le faire, ne pas le faire, ne pas le faire, ne pas le faire, ne pas le faire, ne pas le faire, ne pas le faire, ne pas le faire, ne pas le faire, ne pas le faire, ne pas le faire, ne pas le faire, ne pas le faire, ne pas le faire, ne pas le faire, ne pas le faire, ne pas le faire, ne pas le faire, ne pas le faire, ne pas le faire, ne pas le faire, ne pas le faire, ne pas le faire, ne pas le faire, ne pas le faire, ne pas le faire, ne pas le faire, ne pas le faire, ne pas le faire, ne pas le faire, ne pas le faire, ne pas le faire, ne pas le faire, ne pas le faire, ne pas le faire, ne pas le faire, ne pas le faire, ne pas le faire, ne pas le faire, ne pas le faire, ne pas le faire, ne pas le faire, ne pas le faire, ne pas le faire, ne pas le faire, ne pas le faire, ne pas le faire, ne pas le faire, ne pas le faire, ne pas le faire, ne pas le faire, ne pas le faire, ne pas le faire, ne pas le faire, ne pas le faire, ne pas le faire, ne pas le faire, ne pas le faire, ne pas le faire, ne pas le faire, ne pas le faire, ne pas le faire, ne pas le faire, ne pas le faire, ne pas le faire, ne pas le faire, ne pas le faire, ne pas le faire, ne pas le faire, ne pas le faire, ne pas le faire, ne pas le faire, ne pas le faire, ne pas le faire, ne pas le faire, ne pas le faire, ne pas le faire, ne pas le faire, ne pas le faire, ne pas le faire, ne pas le faire, ne pas le faire, ne pas le faire, ne pas le faire, ne pas le faire, ne pas le faire, ne pas le faire, ne pas le faire, ne pas le faire, ne pas le faire, ne pas le faire, ne pas le faire, ne pas le faire, ne pas le faire, ne pas le faire, ne pas le faire, ne pas le faire, ne pas le faire, ne pas le faire, ne pas le faire, ne pas le faire, ne pas le faire, ne pas le faire, ne pas le faire, ne pas le faire, ne pas le faire, ne pas le faire, ne pas le faire, ne pas le faire, ne pas le faire, ne pas le faire, ne pas le faire, ne pas le faire, ne pas le faire, ne pas le faire, ne pas le faire, ne pas le faire, ne pas le faire, ne pas le faire, ne pas le faire, ne pas le faire, ne pas le faire, ne pas le faire, ne pas le faire, ne pas le faire, ne pas le faire, ne pas le faire, ne pas le faire, ne pas le faire, ne pas le faire, ne pas le faire, ne pas le faire, ne pas le faire, ne pas le faire, ne pas le faire, ne pas le faire, ne pas le faire, ne pas le faire, ne pas le faire, ne pas le faire, ne pas le faire, ne pas le faire, ne pas le faire, ne pas le faire, ne pas le faire, ne pas le faire, ne pas le faire, ne pas le faire, ne pas le faire, ne pas le faire, ne pas le faire, ne pas le faire, ne pas le faire, ne pas le faire, ne pas le faire, ne pas le faire, ne pas le faire, ne pas le faire, ne pas le faire, ne pas le faire, ne pas le faire, ne pas le faire, ne pas le faire, ne pas le faire, ne pas le faire, ne pas le faire, ne pas le faire, ne pas le faire, ne pas le faire, ne pas le faire, ne pas le faire, ne pas le faire, ne pas le faire, ne pas le faire, ne pas le faire, ne pas le faire, ne pas le faire, ne pas le faire, ne pas le faire, ne pas le faire, ne pas le faire, ne pas le faire, ne pas le faire, ne pas le faire, ne pas le faire, ne pas le faire, ne pas le faire, ne pas le faire, ne pas le faire, ne pas le faire, ne pas le faire, ne pas le faire, ne pas le faire, ne pas le faire, ne pas le faire, ne pas le faire, ne pas le faire, ne pas le faire, ne pas le faire, ne pas le faire, ne pas le faire, ne pas le faire, ne pas le faire, ne pas le faire, ne pas le faire, ne pas le faire, ne pas le faire, ne pas le faire, ne pas le faire, ne pas le faire, ne pas le faire, ne pas le faire, ne pas le faire, ne pas le faire, ne pas le faire, ne pas le faire, ne pas le faire, ne pas le faire, ne pas le faire, ne pas le faire, ne pas le faire, ne pas le faire, ne pas le faire, ne pas le faire, ne pas le faire, ne pas le faire, ne pas le faire, ne pas le faire, ne pas le faire, ne pas le faire, ne pas le faire, ne pas le faire, ne pas le faire, ne pas le faire, ne pas le faire, ne pas le faire, ne pas le faire, ne pas le faire, ne pas le faire, ne pas le faire, ne pas le faire, ne pas le faire, ne pas le faire, ne pas le faire, ne pas le faire, ne pas le faire, ne pas le faire, ne pas le faire, ne pas le faire, ne pas le faire, ne pas le faire, ne pas le faire, ne pas le faire, ne pas le faire, ne pas le faire, ne pas le faire, ne pas le faire, ne pas le faire, ne pas le faire, ne pas le faire, ne pas le faire, ne pas le faire, ne pas le faire, ne pas le faire, ne pas le faire, ne pas le faire, ne pas le faire, ne pas le faire, ne pas le faire, ne pas le faire, ne pas le faire, ne pas le faire, ne pas le faire, ne pas le faire, ne pas le faire, ne pas le faire, ne pas le faire, ne pas le faire, ne pas le faire, ne pas le faire, ne pas le faire, ne pas le faire, ne pas le faire, ne pas le faire, ne pas le faire, ne pas le faire, ne pas le faire, ne pas le faire, ne pas le faire, ne pas le faire, ne pas le faire, ne pas le faire, ne pas le faire, ne pas le faire, ne pas le faire, ne pas le faire, ne pas le faire, ne pas le faire, ne pas le faire, ne pas le faire, ne pas le faire, ne pas le faire, ne pas le faire, ne pas le faire, ne pas le faire, ne pas le faire, ne pas le faire, ne pas le faire, ne pas le faire, ne pas le faire, ne pas le faire, ne pas le faire, ne pas le faire, ne pas le faire, ne pas le faire, ne pas le faire, ne pas le faire, ne pas le faire, ne pas le faire, ne pas le faire, ne pas le faire, ne pas le faire, ne pas le faire, ne pas le faire, ne pas le faire, ne pas le faire, ne pas le faire, ne pas le faire, ne pas le faire, ne pas le faire, ne pas le faire, ne pas le faire, ne pas le faire, ne pas le faire, ne pas le faire, ne pas le faire, ne pas le faire, ne pas le faire, ne pas le faire, ne pas le faire, ne pas le faire, ne pas le faire, ne pas le faire, ne pas le faire, ne pas le faire, ne pas le faire, ne pas le faire, ne pas le faire, ne pas le faire, ne pas le faire, ne pas le faire, ne pas le faire, ne pas le faire, ne pas le faire, ne pas le faire, ne pas le faire, ne pas le faire, ne pas le faire, ne pas le faire, ne pas le faire, ne pas le faire, ne pas le faire, ne pas le faire, ne pas le faire, ne pas le faire, ne pas le faire, ne pas le faire, ne pas le faire, ne pas le faire, ne pas le faire, ne pas le faire, ne pas le faire, ne pas le faire, ne pas le faire, ne pas le faire, ne pas le faire, ne pas le faire, ne pas le faire, ne pas le faire, ne pas le faire, ne pas le faire, ne pas le faire, ne pas le faire, ne pas le faire, ne pas le faire, ne pas le faire, ne pas le faire, ne pas le faire, ne pas le faire, ne pas le faire, ne pas le faire, ne pas le faire, ne pas le faire, ne pas le faire, ne pas le faire, ne pas le faire, ne pas le faire, ne pas le faire, ne pas le faire, ne pas le faire, ne pas le faire, ne pas le faire, ne pas le faire, ne pas le faire, ne pas le faire, ne pas le faire, ne pas le faire, ne pas le faire, ne pas le faire, ne pas le faire, ne pas le faire, ne pas le faire, ne pas le faire, ne pas le faire, ne pas le faire, ne pas le faire, ne pas le faire, ne pas le faire, ne pas le faire, ne pas le faire, ne pas le faire, ne pas le faire, ne pas le faire, ne pas le faire, ne pas le faire, ne pas le faire, ne pas le faire, ne pas le faire, ne pas le faire, ne pas le faire, ne pas le faire, ne pas le faire, ne pas le faire, ne pas le faire, ne pas le faire, ne pas le faire, ne pas le faire, ne pas le faire, ne pas le faire, ne pas le faire, ne pas le faire, ne pas le faire, ne pas le faire, ne pas le faire, ne pas le faire, ne pas le faire, ne pas le faire, ne pas le faire, ne pas le faire, ne pas le faire, ne pas le faire, ne pas le faire, ne pas le faire, ne pas le faire, ne pas le faire, ne pas le faire, ne pas le faire, ne pas le faire, ne pas le faire, ne pas le faire, ne pas le faire, ne pas le faire, ne pas le faire, ne pas le faire, ne pas le faire, ne pas le faire, ne pas le faire, ne pas le faire, ne pas le faire, ne pas le faire, ne pas le faire, ne pas le faire, ne pas le faire, ne pas le faire, ne pas le faire, ne pas le faire, ne pas le faire, ne pas le faire, ne pas le faire, ne pas le faire, ne pas le faire, ne pas le faire, ne pas le faire, ne pas le faire, ne pas le faire, ne pas le faire, ne pas le faire, ne pas le faire, ne pas le faire, ne pas le faire, ne pas le faire, ne pas le faire, ne pas le faire, ne pas le faire, ne pas le faire, ne pas le faire, ne pas le faire, ne pas le faire, ne pas le faire, ne pas le faire, ne pas le faire, ne pas le faire, ne pas le faire, ne pas le faire, ne pas le faire, ne pas le faire, ne pas le faire, ne pas le faire, ne pas le faire, ne pas le faire, ne pas le faire, ne pas le faire, ne pas le faire, ne pas le faire, ne pas le faire, ne pas le faire, ne pas le faire, ne pas le faire, ne pas le faire, ne pas le faire, ne pas le faire, ne pas le faire, ne pas le faire, ne pas le faire, ne pas le faire, ne pas le faire, ne pas le faire, ne pas le faire, ne pas le faire, ne pas le faire, ne pas le faire, ne pas le faire, ne pas le faire, ne pas le faire, ne pas le faire, ne pas le faire, ne pas le faire, ne pas le faire, ne pas le faire, ne pas le faire, ne pas le faire, ne pas le faire, ne pas le faire, ne pas le faire, ne pas le faire, ne pas le faire, ne pas le faire, ne pas le faire, ne pas le faire, ne pas le faire, ne pas le faire, ne pas le faire, ne pas le faire, ne pas le faire, ne pas le faire, ne pas le faire, ne pas le faire, ne pas le faire, ne pas le faire, ne pas le faire, ne pas le faire, ne pas le faire, ne pas le faire, ne pas le faire, ne pas le faire, ne pas le faire, ne pas le faire, ne pas le faire, ne pas le faire, ne pas le faire, ne pas le faire, ne pas le faire, ne pas le faire, ne pas le faire, ne pas le faire, ne pas le faire, ne pas le faire, ne pas le faire, ne pas le faire, ne pas le faire, ne pas le faire, ne pas le faire, ne pas le faire, ne pas le faire, ne pas le faire, ne pas le faire, ne pas le faire, ne pas le faire, ne pas le faire, ne pas le faire, ne pas le faire, ne pas le faire, ne pas le faire, ne pas le faire, ne pas le faire, ne pas le faire, ne pas le faire, ne pas le faire, ne pas le faire, ne pas le faire, ne pas le faire, ne pas le faire, ne pas le faire, ne pas le faire, ne pas le faire, ne pas le faire, ne pas le faire, ne pas le faire, ne pas le faire, ne pas le faire, ne pas le faire, ne pas le faire, ne pas le faire, ne pas le faire, ne pas le faire, ne pas le faire, ne pas le faire, ne pas le faire, ne pas le faire, ne pas le faire, ne pas le faire, ne pas le faire,",
+      "review_scores": {
+        "adequacy": 0.0,
+        "terminology": 0.0,
+        "fluency": 0.0,
+        "culture": 0.0
+      },
+      "review_pass": false,
+      "review_parse_ok": true,
+      "online_tokens": {
+        "in": 12594,
+        "out": 1242
+      },
+      "team_tokens": {
+        "translator_in": 92,
+        "translator_out": 4004,
+        "reviewer_in": 12594,
+        "reviewer_out": 1242
+      },
+      "wall_s": 275.87,
+      "metrics": {
+        "no_reference": false,
+        "length_ratio": 332.073,
+        "bleu": 0.05,
+        "chrf": 2.13,
+        "ter": 3761.18,
+        "rougeL_error": "No module named 'rouge_score'",
+        "bert_error": "No module named 'bert_score'"
+      }
+    },
+    {
+      "group": "G5",
+      "pair_id": "la-ch9-ja",
+      "subset": "c1-la",
+      "source_lang": "zh-classical-cn",
+      "target_lang": "ja",
+      "has_reference": true,
+      "seed": 42,
+      "source_tokens_o200k": 46,
+      "degraded": false,
+      "degraded_reason": null,
+      "rounds": 2,
+      "model": "Qwen3.5-2B-Q4_K_M.gguf",
+      "reviewer_model": "deepseek-chat",
+      "reviewer_kind": "online",
+      "output": "持して之を盈たすは其の已むに如かず、揣りて之を鋭くするは長く保つべからず、金玉堂に満つれども之を守る能うもの莫し、富貴にして驕れば自ら其の咎を遺すなり、功成り名遂げて身退くは天の道なり。",
+      "review_scores": {
+        "adequacy": 9.0,
+        "terminology": 9.0,
+        "fluency": 9.0,
+        "culture": 9.0
+      },
+      "review_pass": true,
+      "review_parse_ok": true,
+      "online_tokens": {
+        "in": 538,
+        "out": 743
+      },
+      "team_tokens": {
+        "translator_in": 2444,
+        "translator_out": 226,
+        "reviewer_in": 538,
+        "reviewer_out": 743
+      },
+      "wall_s": 23.1,
+      "metrics": {
+        "no_reference": false,
+        "length_ratio": 2.268,
+        "bleu": 37.4,
+        "chrf": 28.2,
+        "ter": 100.0,
+        "rougeL_error": "No module named 'rouge_score'",
+        "bert_error": "No module named 'bert_score'"
+      }
+    },
+    {
+      "group": "G5",
+      "pair_id": "la-ch15-en",
+      "subset": "c1-la",
+      "source_lang": "zh-classical-cn",
+      "target_lang": "en",
+      "has_reference": true,
+      "seed": 42,
+      "source_tokens_o200k": 111,
+      "degraded": false,
+      "degraded_reason": null,
+      "rounds": 3,
+      "model": "Qwen3.5-2B-Q4_K_M.gguf",
+      "reviewer_model": "deepseek-chat",
+      "reviewer_kind": "online",
+      "output": "The wise in the past, those skilled in being a '士'/scholar-officer, were subtle, mysterious, profound, and beyond recognition. For it is precisely because they are unrecognizable that one is For it is precisely because they are unrecognizable that one is forced to describe them as strengthened and their demeanor calm and easy... Like a person wading through a river in winter, Like a guest, they are dignified and solemn, yet they seem to fear their four neighbors as if they were wading through a river in winter.; like a guest, they are dignified and solemn.. They are yielding and relaxed like ice about to melt, yet they are not still... Like a primitive state, they are vast and open.. Like a valley, they are not full and undifferentiated. What can make them turbid and still? What can make them clear and calm? What can make them tranquil and enduring? The one who seeks to preserve this way does not wish to be full. For it is precisely because they are not full that 故能弊不新成.",
+      "review_scores": {
+        "adequacy": 3.0,
+        "terminology": 4.0,
+        "fluency": 2.0,
+        "culture": 3.0
+      },
+      "review_pass": false,
+      "review_parse_ok": true,
+      "online_tokens": {
+        "in": 1323,
+        "out": 2074
+      },
+      "team_tokens": {
+        "translator_in": 11961,
+        "translator_out": 820,
+        "reviewer_in": 1323,
+        "reviewer_out": 2074
+      },
+      "wall_s": 78.69,
+      "metrics": {
+        "no_reference": false,
+        "length_ratio": 10.824,
+        "bleu": 6.15,
+        "chrf": 33.36,
+        "ter": 87.43,
+        "rougeL_error": "No module named 'rouge_score'",
+        "bert_error": "No module named 'bert_score'"
+      }
+    },
+    {
+      "group": "G5",
+      "pair_id": "la-ch15-fr",
+      "subset": "c1-la",
+      "source_lang": "zh-classical-cn",
+      "target_lang": "fr",
+      "has_reference": true,
+      "seed": 42,
+      "source_tokens_o200k": 111,
+      "degraded": false,
+      "degraded_reason": null,
+      "rounds": 3,
+      "model": "Qwen3.5-2B-Q4_K_M.gguf",
+      "reviewer_model": "deepseek-chat",
+      "reviewer_kind": "online",
+      "output": "Celux, qui dans l'antiquité excédaient à être maîtres, sont subtils, mystérieux, profonds et inconnus.. C'est parce qu'il est inconnu qu'il est contraint d'en esquisser le portrait, comme si l'on traversait une rivière en hiver, comme si l'on craignait les quatre voisins, comme si l'on était un étranger, comme si l'eau se dissolvait comme si l'on craignait les quatre voisins comme si l'on était un étranger comme si l'on se préparait à la fonte de la glace comme si l'on était un homme brut devient une masse turbulente comme si l'on était dans une vallée comme si l'on était dans une vallée, comme si l'on était un homme brut, comme si l'on était dans une vallée, comme si l'on était dans une masse turbulente. Qui peut rendre la turbidité calme ? Qui peut la faire s'adoucir ? Qui peut la faire s'apaiser ? Qui peut la faire s'arrêter ? Qui peut la faire s'arrêter ? Qui peut la faire s'arrêter ? Qui peut la faire s'arrêter ? Qui peut la faire s'arrêter ? Qui peut la faire s'arrêter ? Celui qui ne veut pas être plein ne peut être épuisé, renouvelé ou créé..aire s'arrêter ? Qui peut la faire s'arrêter ? C'est celui qui ne veut pas être plein Celui qui ne veut pas être plein ne peut être épuisé, renouvelé ou créé.",
+      "review_scores": {
+        "adequacy": 2.0,
+        "terminology": 3.0,
+        "fluency": 1.0,
+        "culture": 3.0
+      },
+      "review_pass": false,
+      "review_parse_ok": true,
+      "online_tokens": {
+        "in": 1610,
+        "out": 2296
+      },
+      "team_tokens": {
+        "translator_in": 11091,
+        "translator_out": 1466,
+        "reviewer_in": 1610,
+        "reviewer_out": 2296
+      },
+      "wall_s": 101.21,
+      "metrics": {
+        "no_reference": false,
+        "length_ratio": 13.44,
+        "bleu": 1.87,
+        "chrf": 30.82,
+        "ter": 115.98,
+        "rougeL_error": "No module named 'rouge_score'",
+        "bert_error": "No module named 'bert_score'"
+      }
+    },
+    {
+      "group": "G5",
+      "pair_id": "la-ch15-ja",
+      "subset": "c1-la",
+      "source_lang": "zh-classical-cn",
+      "target_lang": "ja",
+      "has_reference": true,
+      "seed": 42,
+      "source_tokens_o200k": 111,
+      "degraded": false,
+      "degraded_reason": null,
+      "rounds": 3,
+      "model": "Qwen3.5-2B-Q4_K_M.gguf",
+      "reviewer_model": "deepseek-chat",
+      "reviewer_kind": "online",
+      "output": "古に善く士たる者は微妙玄通にして識る可からざるなり。識る可からざるが故に強いて之が容を為す、猶如畏四鄰兮、猶如畏四鄰兮、儼如客渙，如冰將釋，如冰將釋、如冰將釋、敦兮其若樸、曠兮其若谷、渾兮其若濁。孰能濁以静之徐清？孰能安以久動之徐生？保此道者不欲盈。。夫惟不盈故能弊れて新成を求めず。",
+      "review_scores": {
+        "adequacy": 4.0,
+        "terminology": 6.0,
+        "fluency": 3.0,
+        "culture": 5.0
+      },
+      "review_pass": false,
+      "review_parse_ok": true,
+      "online_tokens": {
+        "in": 1116,
+        "out": 1565
+      },
+      "team_tokens": {
+        "translator_in": 6717,
+        "translator_out": 534,
+        "reviewer_in": 1116,
+        "reviewer_out": 1565
+      },
+      "wall_s": 51.25,
+      "metrics": {
+        "no_reference": false,
+        "length_ratio": 1.56,
+        "bleu": 7.83,
+        "chrf": 9.56,
+        "ter": 100.0,
+        "rougeL_error": "No module named 'rouge_score'",
+        "bert_error": "No module named 'bert_score'"
+      }
+    },
+    {
+      "group": "G5",
+      "pair_id": "aq-xu-en",
+      "subset": "c1-aq",
+      "source_lang": "zh-cn",
+      "target_lang": "en",
+      "has_reference": true,
+      "seed": 42,
+      "source_tokens_o200k": 98,
+      "degraded": false,
+      "degraded_reason": null,
+      "rounds": 3,
+      "model": "Qwen3.5-2B-Q4_K_M.gguf",
+      "reviewer_model": "deepseek-chat",
+      "reviewer_kind": "online",
+      "output": "It has been more than a year or two since I wanted to write a biography of Ah Q.. Yet, while I am in the process of writing it, I am constantly thinking back.. This shows that I am not a man of \"establishing words.\" For an immortal pen must be used to hand down a man, so that men are handed down through the text, and the text is handed down through the man.. Ultimately, it is unclear who is immortalizing whom, until it finally comes down to writing the biography of Ah Q, 仿佛思想里有鬼似的.",
+      "review_scores": {
+        "adequacy": 6.0,
+        "terminology": 7.0,
+        "fluency": 6.0,
+        "culture": 6.0
+      },
+      "review_pass": false,
+      "review_parse_ok": true,
+      "online_tokens": {
+        "in": 1049,
+        "out": 1472
+      },
+      "team_tokens": {
+        "translator_in": 5966,
+        "translator_out": 448,
+        "reviewer_in": 1049,
+        "reviewer_out": 1472
+      },
+      "wall_s": 46.87,
+      "metrics": {
+        "no_reference": false,
+        "length_ratio": 4.339,
+        "bleu": 10.28,
+        "chrf": 28.36,
+        "ter": 79.05,
+        "rougeL_error": "No module named 'rouge_score'",
+        "bert_error": "No module named 'bert_score'"
+      }
+    },
+    {
+      "group": "G5",
+      "pair_id": "aq-ch1-en",
+      "subset": "c1-aq",
+      "source_lang": "zh-cn",
+      "target_lang": "en",
+      "has_reference": true,
+      "seed": 42,
+      "source_tokens_o200k": 104,
+      "degraded": false,
+      "degraded_reason": null,
+      "rounds": 3,
+      "model": "Qwen3.5-2B-Q4_K_M.gguf",
+      "reviewer_model": "deepseek-chat",
+      "reviewer_kind": "online",
+      "output": "Not only are Ah Q's name and place of origin somewhat obscure, but even his former deeds are vague; they only wanted his help and made fun of him, and never paid attention to his actions. Aq himself did not speak of it either, but when he argues with others, he occasionally squints his eyes to glare and says: \"What do you amount to? For the people of Wuzhuang, As long as he helps them, they treat him as a joke and never pay attention to his deeds, though they only wanted his help and made fun of him. Aq himself did not speak of it either, but when he argues with others, he occasionally squints his eyes to glare and says: \"What do you amount to?\"",
+      "review_scores": {
+        "adequacy": 3.0,
+        "terminology": 6.0,
+        "fluency": 2.0,
+        "culture": 5.0
+      },
+      "review_pass": false,
+      "review_parse_ok": true,
+      "online_tokens": {
+        "in": 1057,
+        "out": 1415
+      },
+      "team_tokens": {
+        "translator_in": 6011,
+        "translator_out": 845,
+        "reviewer_in": 1057,
+        "reviewer_out": 1415
+      },
+      "wall_s": 56.24,
+      "metrics": {
+        "no_reference": false,
+        "length_ratio": 5.629,
+        "bleu": 14.7,
+        "chrf": 38.15,
+        "ter": 102.0,
+        "rougeL_error": "No module named 'rouge_score'",
+        "bert_error": "No module named 'bert_score'"
+      }
+    }
+  ]
+}

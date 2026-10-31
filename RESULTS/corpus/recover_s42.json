@@ -1,0 +1,41 @@
+{
+ "schema": "transcoder-next/dataset/v1",
+ "built": "2026-10-19",
+ "note": "recovery subset: pairs whose 4096-context call returned nothing",
+ "glossary": {
+  "大语言模型": {
+   "en": "large language model",
+   "ja": "大規模言語モデル",
+   "fr": "grand modèle de langage",
+   "de": "großes Sprachmodell"
+  },
+  "检索增强生成": {
+   "en": "retrieval-augmented generation",
+   "ja": "検索拡張生成"
+  },
+  "词元": {
+   "en": "token",
+   "ja": "トークン",
+   "fr": "jeton (token)",
+   "de": "Token"
+  },
+  "多智能体": {
+   "en": "multi-agent",
+   "ja": "マルチエージェント",
+   "fr": "multi-agents"
+  }
+ },
+ "n_pairs": 1,
+ "n_with_reference": 1,
+ "pairs": [
+  {
+   "pair_id": "la-ch9-fr",
+   "subset": "c1-la",
+   "source_text": "持而盈之不如其已揣而銳之不可長保金玉滿堂莫之能守富貴而驕自遺其咎功成名遂身退天之道",
+   "source_lang": "zh-classical-cn",
+   "target_lang": "fr",
+   "reference": "Il vaut mieux ne pas remplir un vase que de vouloir le maintenir (lorsqu’il est plein). Si l’on aiguise une lame, bien qu’on l’explore avec la main, on ne pourra la conserver constamment (tranchante). Si une salle est remplie d’or et de pierres précieuses, personne ne pourra les garder. Si l’on est comblé d’honneurs et qu’on s’enorgueillisse, on s’attirera des malheurs. Lorsqu’on a fait de grandes choses et obtenu de la réputation, il faut se retirer à l’écart. Telle est la voie du ciel. <span",
+   "reference_provenance": "Stanislas Julien trans. 1842, fr.wikisource, ch.9"
+  }
+ ]
+}

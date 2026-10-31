@@ -1,0 +1,14 @@
+{"schema": "transcoder-next/events/v1", "ts": "2026-10-20T13:50:05", "seq": 0, "run_id": "ad244e4daefc", "event": "pair.start", "role": "", "payload": {"group": "G1", "pair_id": "la-ch1-en"}}
+{"schema": "transcoder-next/events/v1", "ts": "2026-10-20T13:50:11", "seq": 0, "run_id": "9ee00271379b", "event": "pair.start", "role": "", "payload": {"group": "G1", "pair_id": "la-ch1-fr"}}
+{"schema": "transcoder-next/events/v1", "ts": "2026-10-20T13:50:17", "seq": 0, "run_id": "c1a011c1ee8c", "event": "pair.start", "role": "", "payload": {"group": "G1", "pair_id": "la-ch1-ja"}}
+{"schema": "transcoder-next/events/v1", "ts": "2026-10-20T13:50:21", "seq": 0, "run_id": "a04dc6057124", "event": "pair.start", "role": "", "payload": {"group": "G1", "pair_id": "la-ch8-en"}}
+{"schema": "transcoder-next/events/v1", "ts": "2026-10-20T13:50:25", "seq": 0, "run_id": "1131fd6f29cc", "event": "pair.start", "role": "", "payload": {"group": "G1", "pair_id": "la-ch8-fr"}}
+{"schema": "transcoder-next/events/v1", "ts": "2026-10-20T13:50:29", "seq": 0, "run_id": "a427886484a1", "event": "pair.start", "role": "", "payload": {"group": "G1", "pair_id": "la-ch8-ja"}}
+{"schema": "transcoder-next/events/v1", "ts": "2026-10-20T13:50:33", "seq": 0, "run_id": "2adf3face995", "event": "pair.start", "role": "", "payload": {"group": "G1", "pair_id": "la-ch9-en"}}
+{"schema": "transcoder-next/events/v1", "ts": "2026-10-20T13:50:37", "seq": 0, "run_id": "a913ec5e7a24", "event": "pair.start", "role": "", "payload": {"group": "G1", "pair_id": "la-ch9-fr"}}
+{"schema": "transcoder-next/events/v1", "ts": "2026-10-20T13:53:34", "seq": 0, "run_id": "39d677eeea23", "event": "pair.start", "role": "", "payload": {"group": "G1", "pair_id": "la-ch9-ja"}}
+{"schema": "transcoder-next/events/v1", "ts": "2026-10-20T13:53:37", "seq": 0, "run_id": "313ea1550d20", "event": "pair.start", "role": "", "payload": {"group": "G1", "pair_id": "la-ch15-en"}}
+{"schema": "transcoder-next/events/v1", "ts": "2026-10-20T13:53:45", "seq": 0, "run_id": "48cca818e21f", "event": "pair.start", "role": "", "payload": {"group": "G1", "pair_id": "la-ch15-fr"}}
+{"schema": "transcoder-next/events/v1", "ts": "2026-10-20T13:53:56", "seq": 0, "run_id": "5928391dfc56", "event": "pair.start", "role": "", "payload": {"group": "G1", "pair_id": "la-ch15-ja"}}
+{"schema": "transcoder-next/events/v1", "ts": "2026-10-20T13:54:01", "seq": 0, "run_id": "860100180a50", "event": "pair.start", "role": "", "payload": {"group": "G1", "pair_id": "aq-xu-en"}}
+{"schema": "transcoder-next/events/v1", "ts": "2026-10-20T13:54:07", "seq": 0, "run_id": "c523b5fb3eaa", "event": "pair.start", "role": "", "payload": {"group": "G1", "pair_id": "aq-ch1-en"}}

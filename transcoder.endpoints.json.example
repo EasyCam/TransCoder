@@ -1,0 +1,15 @@
+{
+  "$comment": "repo 级端点配置示例：复制为 transcoder.endpoints.json 后按需修改。所有端点统一走 OpenAI chat-completions 格式；本地 ollama 无需 api_key，模型列表也可留空（运行时从 GET /v1/models 自动获取）。",
+  "endpoints": {
+    "ollama-local": {
+      "base_url": "http://127.0.0.1:11434/v1",
+      "models": ["qwen3:0.6b", "qwen3.5:2b"],
+      "_说明": "本地 ollama 默认地址；start ollama serve 后即可接入。base_url 可换任意远程 ollama 主机地址。"
+    },
+    "moxing-local": {
+      "base_url": "http://127.0.0.1:8080/v1",
+      "models": [],
+      "_说明": "本机其它 OpenAI 兼容服务示例；models 留空表示运行时自动发现。"
+    }
+  }
+}

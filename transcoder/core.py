@@ -46,20 +46,25 @@ class ToolResult:
         }
 
 
+# External translation-memory usage: cosine similarity over MiniLM embeddings;
+# 0.7 is a conservative floor for genuinely useful few-shot references.
+TM_MIN_SIMILARITY = 0.7
+TM_MAX_REFS = 3
+
+
 class TranslationService:
     """Translation service with reflection-based improvement."""
 
     SUPPORTED_LANGUAGES = {
-        "zh-cn": "中文大陆地区现代文简体",
-        "zh-tw": "中文港澳台地区现代文繁体",
-        "zh-classical-cn": "中文文言文简体",
-        "zh-classical-tw": "中文文言文繁体",
+        "zh-cn": "简体中文",
+        "zh-tw": "繁体中文",
         "en": "English",
         "ja": "日本語",
         "ko": "한국어",
         "es": "Español",
         "fr": "Français",
         "de": "Deutsch",
+        "it": "Italiano",
         "ru": "Русский",
         "ar": "العربية",
         "pt": "Português",
@@ -137,21 +142,28 @@ class TranslationService:
         return lang_map.get(lang.lower(), lang.lower()[:2] if len(lang) >= 2 else lang)
 
     def translate_single(
-        self, source_text: str, source_lang: str, target_lang: str, model: Optional[str] = None
+        self, source_text: str, source_lang: str, target_lang: str, model: Optional[str] = None,
+        references: Optional[list] = None,
     ) -> ToolResult:
-        """Translate text to a single target language."""
+        """Translate text to a single target language.
+
+        ``references``: translation-memory hits used as few-shot examples.
+        """
         start_time = time.time()
 
         try:
             model = model or self.model
-            prompt = self._build_translation_prompt(source_text, source_lang, target_lang)
+            prompt = self._build_translation_prompt(source_text, source_lang, target_lang, references=references)
 
             translation = self._provider.generate(prompt, model=model)
             translation = self._clean_translation(translation)
 
             elapsed = time.time() - start_time
             word_count = len(translation.split())
-            tokens_per_second = word_count / elapsed if elapsed > 0 else 0
+            from transcoder.tokcount import count_tokens
+
+            tokens = count_tokens(translation)
+            tokens_per_second = tokens / elapsed if elapsed > 0 else 0
 
             return ToolResult(
                 success=True,
@@ -164,11 +176,46 @@ class TranslationService:
                 metadata={
                     "elapsed_time": round(elapsed, 2),
                     "word_count": word_count,
+                    "tokens_o200k": tokens,
                     "tokens_per_second": round(tokens_per_second, 1),
                 },
             )
         except Exception as e:
             return ToolResult(success=False, error=str(e))
+
+    def translate_stream(self, source_text: str, source_lang: str, target_lang: str,
+                         model: Optional[str] = None, vector_db_service=None):
+        """Yield translation deltas as the model produces them.
+
+        Falls back to chunked delivery for providers without streaming support
+        (e.g. local transformers), so the UI always sees progressive output.
+        """
+        model = model or self.model
+        if source_lang == "auto":
+            source_lang = self.detect_language(source_text)
+
+        refs = []
+        if vector_db_service is not None:
+            try:
+                found = vector_db_service.search_similar(source_text, k=8)
+                pool = (found.data.get("results", {}) or {}).get(target_lang, []) if found.success else []
+                refs = [r for r in pool if r.get("similarity", 0) >= TM_MIN_SIMILARITY][:TM_MAX_REFS]
+            except Exception:
+                refs = []
+
+        prompt = self._build_translation_prompt(source_text, source_lang, target_lang, references=refs)
+        provider = self._provider
+        if hasattr(provider, "stream_generate"):
+            produced = False
+            for delta in provider.stream_generate(prompt, model=model):
+                produced = True
+                yield delta
+            if produced:
+                return
+
+        text = provider.generate(prompt, model=model)
+        for i in range(0, len(text), 12):
+            yield text[i:i + 12]
 
     def translate(
         self,
@@ -181,20 +228,59 @@ class TranslationService:
         vector_db_service: Optional["VectorDBService"] = None,
         terminology_service: Optional["TerminologyService"] = None,
     ) -> ToolResult:
-        """Translate text to multiple target languages."""
+        """Translate text to multiple target languages.
+
+        When ``vector_db_service`` is given, external memory is used end-to-end:
+        similar stored pairs are retrieved as few-shot references before each
+        translation, and the successful result is stored back afterwards.
+        """
         results = {}
 
         if source_lang == "auto":
             source_lang = self.detect_language(source_text)
 
+        tm_pool: Dict[str, list] = {}
+        if vector_db_service is not None:
+            found = vector_db_service.search_similar(source_text, k=8)
+            if found.success:
+                tm_pool = found.data.get("results", {})
+
+        refs_used = 0
+        stored: Dict[str, str] = {}
         for target_lang in target_langs:
-            result = self.translate_single(source_text, source_lang, target_lang, model)
+            refs = [
+                r for r in tm_pool.get(target_lang, [])
+                if r.get("similarity", 0) >= TM_MIN_SIMILARITY
+            ][:TM_MAX_REFS]
+            result = self.translate_single(source_text, source_lang, target_lang, model, references=refs)
             if result.success:
                 results[target_lang] = result.data
+                if refs:
+                    refs_used += len(refs)
+                    results[target_lang]["memory_refs"] = [
+                        {"source": r["source"], "translation": r["translation"],
+                         "similarity": round(r["similarity"], 3)}
+                        for r in refs
+                    ]
+                stored[target_lang] = result.data.get("text", "")
             else:
                 results[target_lang] = {"error": result.error}
 
-        return ToolResult(success=True, data={"translations": results, "source_lang": source_lang})
+        memory_stored = False
+        if vector_db_service is not None and stored:
+            add_result = vector_db_service.add_translation_pair(source_text, stored)
+            memory_stored = bool(add_result.success)
+
+        return ToolResult(
+            success=True,
+            data={
+                "translations": results,
+                "source_lang": source_lang,
+                "memory": {"references_used": refs_used, "stored": memory_stored}
+                if vector_db_service is not None
+                else None,
+            },
+        )
 
     def translate_with_reflection(
         self, source_text: str, source_lang: str, target_lang: str, model: Optional[str] = None, iterations: int = 1
@@ -348,14 +434,24 @@ class TranslationService:
         """
         return self.translate_with_reflection(source_text, source_lang, target_lang, model, iterations)
 
-    def _build_translation_prompt(self, text: str, source_lang: str, target_lang: str) -> str:
-        """Build translation prompt."""
+    def _build_translation_prompt(self, text: str, source_lang: str, target_lang: str,
+                                  references: Optional[list] = None) -> str:
+        """Build translation prompt.
+
+        ``references`` are translation-memory hits (dicts with source/translation)
+        injected as few-shot examples so external memory shapes output style.
+        """
         lang_names = self.SUPPORTED_LANGUAGES
         source_name = lang_names.get(source_lang, source_lang)
         target_name = lang_names.get(target_lang, target_lang)
 
-        return f"""请将以下{source_name}文本翻译成{target_name}。
+        ref_block = ""
+        if references:
+            lines = [f"- 原文: {r['source']}\n  译文: {r['translation']}" for r in references]
+            ref_block = "\n参考译例（来自翻译记忆库，请保持术语与风格一致）:\n" + "\n".join(lines) + "\n"
 
+        return f"""请将以下{source_name}文本翻译成{target_name}。
+{ref_block}
 原文:
 {text}
 
@@ -394,7 +490,7 @@ class VectorDBService:
 
         self.db_path = db_path
         self.embedding_model_name = embedding_model or "sentence-transformers/paraphrase-multilingual-MiniLM-L12-v2"
-        self.model = SentenceTransformer(self.embedding_model_name)
+        self.model = SentenceTransformer(self.embedding_model_name, device="cpu")
         self.dimension = 384
 
         self._load_or_create_index()
@@ -431,27 +527,31 @@ class VectorDBService:
             return ToolResult(success=False, error=str(e))
 
     def search_similar(self, query_text: str, k: int = 5) -> ToolResult:
-        """Search for similar translations."""
+        """Search for similar translations (cosine similarity).
+
+        Note: embeddings are NOT normalised, so 1/(1+L2) collapses to ~0.05
+        even for near-identical sentences. Cosine is computed explicitly here.
+        """
         if self.index.ntotal == 0:
             return ToolResult(success=True, data={"results": {}})
 
         try:
-            query_embedding = self.model.encode(query_text)
-            k = min(k, self.index.ntotal)
-            distances, indices = self.index.search(np.array([query_embedding]), k)
+            q = np.asarray(self.model.encode(query_text), dtype=float)
+            matrix = np.asarray([m["embedding"] for m in self.metadata], dtype=float)
+            q_norm = q / (np.linalg.norm(q) + 1e-12)
+            row_norms = np.linalg.norm(matrix, axis=1) + 1e-12
+            sims = (matrix @ q_norm) / row_norms
+            order = np.argsort(-sims)[: min(k, len(sims))]
 
             results = {}
-            for idx, distance in zip(indices[0], distances[0]):
-                if idx < len(self.metadata):
-                    item = self.metadata[idx]
-                    similarity = 1 / (1 + distance)
-
-                    for lang, trans in item["translations"].items():
-                        if lang not in results:
-                            results[lang] = []
-                        results[lang].append(
-                            {"source": item["source"], "translation": trans, "similarity": float(similarity)}
-                        )
+            for idx in order:
+                item = self.metadata[int(idx)]
+                similarity = float(sims[int(idx)])
+                for lang, trans in item["translations"].items():
+                    results.setdefault(lang, []).append(
+                        {"source": item["source"], "translation": trans,
+                         "similarity": round(similarity, 4)}
+                    )
 
             return ToolResult(success=True, data={"results": results})
         except Exception as e:

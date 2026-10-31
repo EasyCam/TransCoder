@@ -1,33 +1,28 @@
 """
 TransCoder LLM Provider Abstraction Layer
 
-Supports multiple LLM backends: Ollama (default), OpenAI, and more.
+Every backend speaks the OpenAI chat-completions wire format (one transport
+for all): Ollama via its native ``/v1`` surface at a configurable local
+address, OpenAI-compatible cloud endpoints, and locally configured endpoints
+from :mod:`transcoder.endpoints`. The legacy native-``ollama``-package path
+was removed (it used a different protocol and proxy-env juggling).
 """
 
 import os
+import time
 from abc import ABC, abstractmethod
-from typing import List, Optional
-
-_proxy_vars = ["ALL_PROXY", "all_proxy", "HTTPS_PROXY", "https_proxy", "HTTP_PROXY", "http_proxy"]
-_saved_proxy = {}
-
-for var in _proxy_vars:
-    if var in os.environ:
-        _saved_proxy[var] = os.environ[var]
-        del os.environ[var]
-
-try:
-    import ollama
-except ImportError:
-    ollama = None
-
-for var, value in _saved_proxy.items():
-    os.environ[var] = value
+from typing import Any, Dict, List, Optional
 
 try:
     from openai import OpenAI
 except ImportError:
     OpenAI = None
+
+
+def _is_local_url(base_url: Optional[str]) -> bool:
+    """True when the endpoint is loopback (never route through a proxy)."""
+    b = (base_url or "").lower()
+    return ("127.0.0.1" in b) or ("localhost" in b) or ("[::1]" in b)
 
 
 class LLMProvider(ABC):
@@ -50,7 +45,15 @@ class LLMProvider(ABC):
 
 
 class OllamaProvider(LLMProvider):
-    """Ollama LLM provider (default, local)."""
+    """Ollama over the OpenAI-compatible ``/v1`` API at a configurable address.
+
+    The address is fully configurable (``host``), e.g. the local default
+    ``http://localhost:11434`` -> ``http://localhost:11434/v1`` or any remote
+    ollama host. Loopback traffic bypasses system proxies via
+    ``httpx.Client(trust_env=False)`` so a local ollama works even when global
+    proxy env vars are set. ``use_proxy``/``proxy_url`` are accepted for
+    signature compatibility but no longer needed for local endpoints.
+    """
 
     def __init__(
         self,
@@ -59,52 +62,88 @@ class OllamaProvider(LLMProvider):
         use_proxy: bool = False,
         proxy_url: Optional[str] = None,
     ):
-        self.host = host
+        base = (host or "http://localhost:11434").rstrip("/")
+        if not base.endswith("/v1"):
+            base += "/v1"
+        self.host = base  # OpenAI-compatible base_url
         self.default_model = default_model
-        self.use_proxy = use_proxy
-        self.proxy_url = proxy_url
+        self._client = None
 
-        if ollama:
-            if use_proxy and proxy_url:
-                for var in _proxy_vars:
-                    if var in os.environ:
-                        del os.environ[var]
-                if proxy_url.startswith("socks://"):
-                    proxy_url = proxy_url.replace("socks://", "socks5://")
-                os.environ["HTTPS_PROXY"] = proxy_url
-                os.environ["HTTP_PROXY"] = proxy_url
-            elif not use_proxy:
-                for var in _proxy_vars:
-                    if var in os.environ:
-                        del os.environ[var]
+    @property
+    def client(self):
+        if OpenAI is None:
+            raise ImportError("openai package not installed. Run: pip install openai")
 
-            ollama.host = host
+        if self._client is None:
+            import httpx
 
-    def generate(self, prompt: str, model: Optional[str] = None) -> str:
-        """Generate text using Ollama."""
-        if ollama is None:
-            raise ImportError("ollama package not installed. Run: pip install ollama")
+            client_kwargs: Dict[str, Any] = {
+                "api_key": os.getenv("OLLAMA_API_KEY") or "EMPTY",
+                "base_url": self.host,
+                "timeout": 60.0,
+            }
+            if _is_local_url(self.host):
+                client_kwargs["http_client"] = httpx.Client(trust_env=False, timeout=60.0)
+            self._client = OpenAI(**client_kwargs)
+        return self._client
 
-        model = model or self.default_model
-        response = ollama.generate(model=model, prompt=prompt)
-        return response.get("response", "").strip()
+    def chat(self, messages: List[dict], model: Optional[str] = None, temperature: float = 0.3,
+             max_tokens: Optional[int] = None, seed: Optional[int] = None):
+        """OpenAI-format chat completions. Returns ``(text, usage_dict)``."""
+        kwargs: Dict[str, Any] = {
+            "model": model or self.default_model,
+            "messages": messages,
+            "temperature": temperature,
+        }
+        if max_tokens is not None:
+            kwargs["max_tokens"] = max_tokens
+        if seed is not None:
+            kwargs["seed"] = seed
+        response = self.client.chat.completions.create(**kwargs)
+        text = response.choices[0].message.content or ""
+        usage = getattr(response, "usage", None)
+        usage_dict = None
+        if usage is not None:
+            usage_dict = {
+                "prompt_tokens": getattr(usage, "prompt_tokens", 0) or 0,
+                "completion_tokens": getattr(usage, "completion_tokens", 0) or 0,
+            }
+        return text, usage_dict
+
+    def generate(self, prompt: str, model: Optional[str] = None, temperature: float = 0.3) -> str:
+        """Generate text using Ollama (OpenAI-format transport)."""
+        text, _ = self.chat([{"role": "user", "content": prompt}], model=model, temperature=temperature)
+        return text.strip()
+
+    def stream_generate(self, prompt: str, model: Optional[str] = None, temperature: float = 0.3):
+        """Yield text deltas as they arrive (OpenAI-format streaming)."""
+        stream = self.client.chat.completions.create(
+            model=model or self.default_model,
+            messages=[{"role": "user", "content": prompt}],
+            temperature=temperature,
+            stream=True,
+        )
+        for chunk in stream:
+            choices = getattr(chunk, "choices", None) or []
+            if not choices:
+                continue
+            delta = getattr(choices[0], "delta", None)
+            text = getattr(delta, "content", None) if delta is not None else None
+            if text:
+                yield text
 
     def get_available_models(self) -> List[str]:
-        """Get list of available Ollama models."""
-        if ollama is None:
-            return []
+        """Get list of available Ollama models (OpenAI-format /v1/models)."""
         try:
-            models = ollama.list()
-            return [m["model"] for m in models.get("models", [])]
+            models_response = self.client.models.list()
+            return sorted([m.id for m in models_response.data])
         except Exception:
             return []
 
     def is_available(self) -> bool:
         """Check if Ollama is available."""
-        if ollama is None:
-            return False
         try:
-            ollama.list()
+            self.client.models.list()
             return True
         except Exception:
             return False
@@ -173,16 +212,215 @@ class OpenAIProvider(LLMProvider):
             return False
 
 
+class ConfiguredEndpointProvider(LLMProvider):
+    """Provider bound to one locally configured endpoint (from endpoints.py).
+
+    OpenAI-compatible (`chat.completions`); the endpoint's api_key lives only
+    in memory (EndpointConfig holds it; serialization is always masked).
+    """
+
+    def __init__(self, endpoint: "EndpointConfig", default_model: Optional[str] = None, timeout: float = 60.0):
+        self.endpoint = endpoint
+        self.default_model = default_model or endpoint.default_model
+        self.timeout = timeout
+        self._client = None
+
+    @property
+    def client(self):
+        if OpenAI is None:
+            raise ImportError("openai package not installed. Run: pip install openai")
+        if self._client is None:
+            client_kwargs: Dict[str, Any] = {
+                "api_key": self.endpoint.api_key or "EMPTY", "timeout": self.timeout
+            }
+            if self.endpoint.base_url:
+                client_kwargs["base_url"] = self.endpoint.base_url
+            if _is_local_url(self.endpoint.base_url):
+                # Loopback endpoints never go through system proxies (works
+                # even with ALL_PROXY/HTTP_PROXY pointing at a global proxy).
+                import httpx
+
+                client_kwargs["http_client"] = httpx.Client(trust_env=False, timeout=self.timeout)
+            self._client = OpenAI(**client_kwargs)
+        return self._client
+
+    def chat(
+        self,
+        messages: List[dict],
+        model: Optional[str] = None,
+        temperature: float = 0.3,
+        max_tokens: Optional[int] = None,
+        seed: Optional[int] = None,
+    ):
+        """Chat-completions with usage. Returns ``(text, usage_dict)``.
+
+        ``usage_dict`` carries the vendor's own prompt/completion token counts
+        when the endpoint reports them; agents fall back to o200k counting when
+        it is None.
+        """
+        model = model or self.default_model
+        kwargs = {"model": model, "messages": messages, "temperature": temperature}
+        if max_tokens is not None:
+            kwargs["max_tokens"] = max_tokens
+        if seed is not None:
+            kwargs["seed"] = seed
+        response = self.client.chat.completions.create(**kwargs)
+        text = response.choices[0].message.content or ""
+        usage = getattr(response, "usage", None)
+        usage_dict = None
+        if usage is not None:
+            usage_dict = {
+                "prompt_tokens": getattr(usage, "prompt_tokens", 0) or 0,
+                "completion_tokens": getattr(usage, "completion_tokens", 0) or 0,
+            }
+        return text, usage_dict
+
+    def generate(self, prompt: str, model: Optional[str] = None, temperature: float = 0.3, max_tokens: Optional[int] = None):
+        model = model or self.default_model
+        response = self.client.chat.completions.create(
+            model=model, messages=[{"role": "user", "content": prompt}], temperature=temperature, max_tokens=max_tokens
+        )
+        return response.choices[0].message.content or ""
+
+    def stream_generate(self, prompt: str, model: Optional[str] = None, temperature: float = 0.3):
+        """Yield text deltas as they arrive (OpenAI-format streaming)."""
+        stream = self.client.chat.completions.create(
+            model=model or self.default_model,
+            messages=[{"role": "user", "content": prompt}],
+            temperature=temperature,
+            stream=True,
+        )
+        for chunk in stream:
+            choices = getattr(chunk, "choices", None) or []
+            if not choices:
+                continue
+            delta = getattr(choices[0], "delta", None)
+            text = getattr(delta, "content", None) if delta is not None else None
+            if text:
+                yield text
+
+    def get_available_models(self, raise_on_error: bool = False) -> List[str]:
+        try:
+            models_response = self.client.models.list()
+            return sorted([m.id for m in models_response.data])
+        except Exception:
+            if raise_on_error:
+                raise
+            return list(self.endpoint.models)
+
+    def is_available(self) -> bool:
+        try:
+            self.client.models.list()
+            return True
+        except Exception:
+            return False
+
+
+def _default_results_dir():
+    from pathlib import Path
+
+    return Path(__file__).resolve().parent.parent / "RESULTS"
+
+
+def probe_endpoint(endpoint, timeout: float = 12.0, chat_ping: bool = False, ping_model: Optional[str] = None) -> dict:
+    """Probe one endpoint: reachability + latency + model list (+ tiny chat).
+
+    Returns a redacted, JSON-safe dict (never contains the api_key).
+    """
+    from transcoder.endpoints import redact
+
+    record = dict(endpoint.to_safe_dict())
+    record["probe"] = {"reachable": False}
+
+    client = None
+    try:
+        if OpenAI is None:
+            raise ImportError("openai package not installed")
+        client_kwargs = {
+            "api_key": endpoint.api_key or "EMPTY",
+            "base_url": endpoint.base_url,
+            "timeout": timeout,
+            "max_retries": 0,
+        }
+        if _is_local_url(endpoint.base_url):
+            import httpx
+
+            client_kwargs["http_client"] = httpx.Client(trust_env=False, timeout=timeout)
+        client = OpenAI(**client_kwargs)
+    except Exception as e:
+        record["probe"]["error"] = redact(str(e))
+        return record
+
+    # 1) GET /models
+    t0 = time.time()
+    try:
+        models_response = client.models.list()
+        latency_ms = round((time.time() - t0) * 1000, 1)
+        ids = sorted([m.id for m in models_response.data])
+        record["probe"] = {"reachable": True, "latency_ms": latency_ms, "http_status": 200, "models": ids}
+        if endpoint.models and not ids:
+            record["probe"]["configured_models"] = list(endpoint.models)
+    except Exception as e:
+        record["probe"] = {
+            "reachable": False,
+            "latency_ms": round((time.time() - t0) * 1000, 1),
+            "error": redact(f"{type(e).__name__}: {e}"),
+        }
+        if chat_ping:
+            return record
+
+    # 2) Optional minimal chat completion (auth + full path verification).
+    if chat_ping:
+        model = ping_model or endpoint.default_model
+        if not model:
+            record["probe"]["chat_ping"] = {"ok": False, "error": "no model id available"}
+        else:
+            t1 = time.time()
+            try:
+                resp = client.chat.completions.create(
+                    model=model,
+                    messages=[{"role": "user", "content": "ping"}],
+                    max_tokens=8,
+                    temperature=0.0,
+                )
+                sample = (resp.choices[0].message.content or "").strip()[:24]
+                record["probe"]["chat_ping"] = {
+                    "ok": True,
+                    "model": model,
+                    "latency_ms": round((time.time() - t1) * 1000, 1),
+                    "sample": redact(sample),
+                }
+            except Exception as e:
+                lat = round((time.time() - t1) * 1000, 1)
+                # 401/403 with reachable network still proves reachability.
+                status = getattr(getattr(e, "status_code", None), "value", None) or getattr(e, "status_code", None)
+                record["probe"]["chat_ping"] = {
+                    "ok": False,
+                    "model": model,
+                    "latency_ms": lat,
+                    "http_status": status if isinstance(status, int) else None,
+                    "error": redact(f"{type(e).__name__}: {e}"),
+                }
+    return record
+
+
 def create_provider(provider_type: str = "ollama", model: Optional[str] = None, **kwargs) -> LLMProvider:
     """
     Create an LLM provider instance.
 
     Args:
-        provider_type: "ollama" or "openai"
+        provider_type: "ollama" (OpenAI-format transport at a configurable
+            local address), "openai", or "openai-compat" (alias: "configured")
+            which resolves a locally configured endpoint by name — any
+            OpenAI-compatible backend, local or remote.
         model: Default model to use
         **kwargs: Additional provider-specific arguments
-            For Ollama: host, use_proxy, proxy_url
+            For Ollama: host (default http://localhost:11434, `/v1` is
+                auto-appended), use_proxy, proxy_url (compat, ignored for
+                loopback)
             For OpenAI: api_key, base_url
+            For openai-compat: endpoint_name (e.g. "deepseek", "ollama-local"), or
+                an explicit `endpoint: EndpointConfig` instance.
 
     Returns:
         LLMProvider instance
@@ -202,5 +440,21 @@ def create_provider(provider_type: str = "ollama", model: Optional[str] = None, 
             api_key=kwargs.get("api_key"), base_url=kwargs.get("base_url"), default_model=model or "gpt-4o-mini"
         )
 
+    elif provider_type in ("openai-compat", "configured"):
+        endpoint = kwargs.get("endpoint")
+        if endpoint is None:
+            from transcoder.endpoints import discover_endpoints
+
+            endpoint_name = kwargs.get("endpoint_name")
+            if not endpoint_name:
+                raise ValueError("openai-compat provider requires `endpoint_name` or `endpoint`")
+            endpoints = discover_endpoints()
+            if endpoint_name not in endpoints:
+                raise ValueError(f"endpoint not found in local configs: {endpoint_name}")
+            endpoint = endpoints[endpoint_name]
+        return ConfiguredEndpointProvider(
+            endpoint, default_model=model, timeout=kwargs.get("timeout", 60.0)
+        )
+
     else:
-        raise ValueError(f"Unknown provider type: {provider_type}. Use 'ollama' or 'openai'.")
+        raise ValueError(f"Unknown provider type: {provider_type}. Use 'ollama', 'openai' or 'openai-compat'.")

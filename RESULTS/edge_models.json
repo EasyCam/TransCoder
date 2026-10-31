@@ -1,0 +1,66 @@
+{
+  "date": "2026-10-19",
+  "runtime": "transformers CPU (Apple M4, no GPU/llama.cpp)",
+  "models": {
+    "qwen3:0.6b": {
+      "tag": "qwen3:0.6b",
+      "repo": "Qwen/Qwen3-0.6B",
+      "status": "ok",
+      "path": "/Users/fred/.cache/modelscope/models/Qwen--Qwen3-0.6B/snapshots/master",
+      "params": 596049920,
+      "<=1b": true,
+      "load_secs": 5.1,
+      "spot_prompt": "将下面的中文翻译成英文，只输出译文：\n未庄的人都说阿Q阔了。",
+      "spot_output": "All the people in the village said that Qian Guo was wide.",
+      "spot_tok_s": 5.71,
+      "spot_completion_tokens": 16,
+      "spot_output_ja": "上善は水の流れ。",
+      "spot_tok_s_ja": 5.42
+    },
+    "lfm2.5-350m": {
+      "tag": "lfm2.5-350m",
+      "repo": "LiquidAI/LFM2.5-350M",
+      "status": "ok",
+      "path": "/Users/fred/.cache/modelscope/models/LiquidAI--LFM2.5-350M/snapshots/master",
+      "params": 354483968,
+      "<=1b": true,
+      "load_secs": 1.9,
+      "spot_prompt": "将下面的中文翻译成英文，只输出译文：\n未庄的人都说阿Q阔了。",
+      "spot_output": "The unshowered person said AQ.",
+      "spot_tok_s": 3.19,
+      "spot_completion_tokens": 11,
+      "spot_output_ja": "上善は水を愛する。",
+      "spot_tok_s_ja": 3.54
+    },
+    "granite4:350m-h": {
+      "tag": "granite4:350m-h",
+      "repo": "ibm-granite/granite-4.0-h-350m",
+      "status": "ok",
+      "path": "/Users/fred/.cache/modelscope/models/ibm-granite--granite-4.0-h-350m/snapshots/master",
+      "params": 340332224,
+      "<=1b": true,
+      "load_secs": 0.9,
+      "spot_prompt": "将下面的中文翻译成英文，只输出译文：\n未庄的人都说阿Q阔了。",
+      "spot_output": "Translation: Unmarried people say Qaf has gone.",
+      "spot_tok_s": 0.48,
+      "spot_completion_tokens": 12,
+      "spot_output_ja": "上善は水のごとし。",
+      "spot_tok_s_ja": 0.41
+    },
+    "gemma3:270m": {
+      "tag": "gemma3:270m",
+      "repo": "google/gemma-3-270m-it",
+      "status": "ok",
+      "path": "/Users/fred/.cache/modelscope/models/google--gemma-3-270m-it/snapshots/master",
+      "params": 268098176,
+      "<=1b": true,
+      "load_secs": 1.6,
+      "spot_prompt": "将下面的中文翻译成英文，只输出译文：\n未庄的人都说阿Q阔了。",
+      "spot_output": "未庄的人都说阿Q阔了。",
+      "spot_tok_s": 17.31,
+      "spot_completion_tokens": 11,
+      "spot_output_ja": "承知いたしました。",
+      "spot_tok_s_ja": 15.08
+    }
+  }
+}

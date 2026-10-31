@@ -1,0 +1,645 @@
+{
+  "schema": "transcoder-next/results/v1",
+  "group": "G5",
+  "description": "team-hybrid (edge translator + online reviewer)",
+  "temperature": 0.3,
+  "seed": 44,
+  "translator_model": "Qwen3.5-2B-Q4_K_M.gguf",
+  "reviewer": [
+    "deepseek",
+    "deepseek-chat"
+  ],
+  "n_pairs": 14,
+  "rows": [
+    {
+      "group": "G5",
+      "pair_id": "la-ch1-en",
+      "subset": "c1-la",
+      "source_lang": "zh-classical-cn",
+      "target_lang": "en",
+      "has_reference": true,
+      "seed": 44,
+      "source_tokens_o200k": 58,
+      "degraded": false,
+      "degraded_reason": null,
+      "rounds": 3,
+      "model": "Qwen3.5-2B-Q4_K_M.gguf",
+      "reviewer_model": "deepseek-chat",
+      "reviewer_kind": "online",
+      "output": "The Way that can be spoken is not the Way; the Name that can be named is not the Name; the Nameless is the beginning of heaven and earth, and the Named is the mother of all things. The constant absence of desire allows one to observe its subtlety; the constant presence of desire allows one to perceive its outward manifestations. These two are of the same origin but different names, both called the profound. The profound is again and again the profound. The gate to all mysteries.",
+      "review_scores": {
+        "adequacy": 8.0,
+        "terminology": 8.0,
+        "fluency": 7.0,
+        "culture": 8.0
+      },
+      "review_pass": false,
+      "review_parse_ok": true,
+      "online_tokens": {
+        "in": 918,
+        "out": 1030
+      },
+      "team_tokens": {
+        "translator_in": 2166,
+        "translator_out": 505,
+        "reviewer_in": 918,
+        "reviewer_out": 1030
+      },
+      "wall_s": 55.4,
+      "metrics": {
+        "no_reference": false,
+        "length_ratio": 8.328,
+        "bleu": 14.26,
+        "chrf": 34.75,
+        "ter": 68.5,
+        "rougeL_error": "No module named 'rouge_score'",
+        "bert_error": "No module named 'bert_score'"
+      }
+    },
+    {
+      "group": "G5",
+      "pair_id": "la-ch1-fr",
+      "subset": "c1-la",
+      "source_lang": "zh-classical-cn",
+      "target_lang": "fr",
+      "has_reference": true,
+      "seed": 44,
+      "source_tokens_o200k": 58,
+      "degraded": false,
+      "degraded_reason": null,
+      "rounds": 3,
+      "model": "Qwen3.5-2B-Q4_K_M.gguf",
+      "reviewer_model": "deepseek-chat",
+      "reviewer_kind": "online",
+      "output": "La Voie peut être dite, et ce qui est dite n'est pas la Voie constante ; le nom peut être nommé, et ce qui est nommé n'est pas le nom constant. Le nom sans nom est le commencement des choses et la mère des dix mille êtres ; le nom a des choses. Il faut souvent avoir des désirs pour observer la subtilité, et souvent avoir des désirs pour observer les manifestations. Ces deux aspects, sortant ensemble, ont des noms différents ; on les appelle ensemble le Mystère. Le Mystère est encore le Mystère. C'est la porte de toutes les merveilles.",
+      "review_scores": {
+        "adequacy": 3.0,
+        "terminology": 4.0,
+        "fluency": 4.0,
+        "culture": 5.0
+      },
+      "review_pass": false,
+      "review_parse_ok": true,
+      "online_tokens": {
+        "in": 1006,
+        "out": 1680
+      },
+      "team_tokens": {
+        "translator_in": 2780,
+        "translator_out": 628,
+        "reviewer_in": 1006,
+        "reviewer_out": 1680
+      },
+      "wall_s": 56.56,
+      "metrics": {
+        "no_reference": false,
+        "length_ratio": 9.31,
+        "bleu": 11.23,
+        "chrf": 39.28,
+        "ter": 70.75,
+        "rougeL_error": "No module named 'rouge_score'",
+        "bert_error": "No module named 'bert_score'"
+      }
+    },
+    {
+      "group": "G5",
+      "pair_id": "la-ch1-ja",
+      "subset": "c1-la",
+      "source_lang": "zh-classical-cn",
+      "target_lang": "ja",
+      "has_reference": true,
+      "seed": 44,
+      "source_tokens_o200k": 58,
+      "degraded": false,
+      "degraded_reason": null,
+      "rounds": 3,
+      "model": "Qwen3.5-2B-Q4_K_M.gguf",
+      "reviewer_model": "deepseek-chat",
+      "reviewer_kind": "online",
+      "output": "道は言うる道は恒なる道ではない。名は名づける名は恒なる名ではない。無名は天地の始まり、有名は万物の母である。常に無欲にしてその妙を観、常に有欲にしてその徼を観。これらは同出にして異名なり。これを同じく玄と謂う。玄のまた玄。衆妙の門。",
+      "review_scores": {
+        "adequacy": 8.0,
+        "terminology": 7.0,
+        "fluency": 8.0,
+        "culture": 8.0
+      },
+      "review_pass": false,
+      "review_parse_ok": true,
+      "online_tokens": {
+        "in": 905,
+        "out": 1299
+      },
+      "team_tokens": {
+        "translator_in": 2330,
+        "translator_out": 436,
+        "reviewer_in": 905,
+        "reviewer_out": 1299
+      },
+      "wall_s": 44.91,
+      "metrics": {
+        "no_reference": false,
+        "length_ratio": 2.0,
+        "bleu": 19.38,
+        "chrf": 17.15,
+        "ter": 100.0,
+        "rougeL_error": "No module named 'rouge_score'",
+        "bert_error": "No module named 'bert_score'"
+      }
+    },
+    {
+      "group": "G5",
+      "pair_id": "la-ch8-en",
+      "subset": "c1-la",
+      "source_lang": "zh-classical-cn",
+      "target_lang": "en",
+      "has_reference": true,
+      "seed": 44,
+      "source_tokens_o200k": 54,
+      "degraded": false,
+      "degraded_reason": null,
+      "rounds": 3,
+      "model": "Qwen3.5-2B-Q4_K_M.gguf",
+      "reviewer_model": "deepseek-chat",
+      "reviewer_kind": "online",
+      "output": "The highest good is like water; water benefits all things without striving. It dwells in places people disdain, is good at the deep, and is kind to all. It speaks truthfully and acts with sincerity. It governs affairs wisely and moves with timing. It is precisely because it does not contend.",
+      "review_scores": {
+        "adequacy": 6.0,
+        "terminology": 7.0,
+        "fluency": 8.0,
+        "culture": 7.0
+      },
+      "review_pass": false,
+      "review_parse_ok": true,
+      "online_tokens": {
+        "in": 781,
+        "out": 1485
+      },
+      "team_tokens": {
+        "translator_in": 2434,
+        "translator_out": 316,
+        "reviewer_in": 781,
+        "reviewer_out": 1485
+      },
+      "wall_s": 38.27,
+      "metrics": {
+        "no_reference": false,
+        "length_ratio": 6.213,
+        "bleu": 0.69,
+        "chrf": 19.12,
+        "ter": 87.4,
+        "rougeL_error": "No module named 'rouge_score'",
+        "bert_error": "No module named 'bert_score'"
+      }
+    },
+    {
+      "group": "G5",
+      "pair_id": "la-ch8-fr",
+      "subset": "c1-la",
+      "source_lang": "zh-classical-cn",
+      "target_lang": "fr",
+      "has_reference": true,
+      "seed": 44,
+      "source_tokens_o200k": 54,
+      "degraded": false,
+      "degraded_reason": null,
+      "rounds": 3,
+      "model": "Qwen3.5-2B-Q4_K_M.gguf",
+      "reviewer_model": "deepseek-chat",
+      "reviewer_kind": "online",
+      "output": "Le plus haut bien est comme l'eau : elle est utile à tous les êtres sans rivaliser. Elle habite les lieux que les autres dédaignent, et elle est proche de la Voie. Elle habite le bon fond, le cœur profond, le don bienveillant, la parole fidèle, l'administration ordonnée, l'action compétente, et le mouvement opportun. C'est précisément parce qu'elle ne rivalise pas que le plus haut bien est comme l'eau.",
+      "review_scores": {
+        "adequacy": 7.0,
+        "terminology": 8.0,
+        "fluency": 8.0,
+        "culture": 8.0
+      },
+      "review_pass": false,
+      "review_parse_ok": true,
+      "online_tokens": {
+        "in": 907,
+        "out": 1292
+      },
+      "team_tokens": {
+        "translator_in": 2588,
+        "translator_out": 483,
+        "reviewer_in": 907,
+        "reviewer_out": 1292
+      },
+      "wall_s": 43.31,
+      "metrics": {
+        "no_reference": false,
+        "length_ratio": 8.617,
+        "bleu": 4.5,
+        "chrf": 23.59,
+        "ter": 90.18,
+        "rougeL_error": "No module named 'rouge_score'",
+        "bert_error": "No module named 'bert_score'"
+      }
+    },
+    {
+      "group": "G5",
+      "pair_id": "la-ch8-ja",
+      "subset": "c1-la",
+      "source_lang": "zh-classical-cn",
+      "target_lang": "ja",
+      "has_reference": true,
+      "seed": 44,
+      "source_tokens_o200k": 54,
+      "degraded": false,
+      "degraded_reason": null,
+      "rounds": 1,
+      "model": "Qwen3.5-2B-Q4_K_M.gguf",
+      "reviewer_model": "deepseek-chat",
+      "reviewer_kind": "online",
+      "output": "上善如水，水善利万物而不争，处众人之所恶，故几于道。居善地，心善渊，与善仁，言善信，政善治，事善能，动善时。夫惟不争。",
+      "review_scores": {
+        "adequacy": 9.0,
+        "terminology": 9.0,
+        "fluency": 8.0,
+        "culture": 8.0
+      },
+      "review_pass": true,
+      "review_parse_ok": true,
+      "online_tokens": {
+        "in": 253,
+        "out": 114
+      },
+      "team_tokens": {
+        "translator_in": 100,
+        "translator_out": 54,
+        "reviewer_in": 253,
+        "reviewer_out": 114
+      },
+      "wall_s": 6.48,
+      "metrics": {
+        "no_reference": false,
+        "length_ratio": 1.255,
+        "bleu": 2.23,
+        "chrf": 6.36,
+        "ter": 100.0,
+        "rougeL_error": "No module named 'rouge_score'",
+        "bert_error": "No module named 'bert_score'"
+      }
+    },
+    {
+      "group": "G5",
+      "pair_id": "la-ch9-en",
+      "subset": "c1-la",
+      "source_lang": "zh-classical-cn",
+      "target_lang": "en",
+      "has_reference": true,
+      "seed": 44,
+      "source_tokens_o200k": 46,
+      "degraded": false,
+      "degraded_reason": null,
+      "rounds": 3,
+      "model": "Qwen3.5-2B-Q4_K_M.gguf",
+      "reviewer_model": "deepseek-chat",
+      "reviewer_kind": "online",
+      "output": "Holding and filling to excess is worse than stopping; sharpening and hammering to a point cannot be long preserved; gold and jade fill the hall, yet no one can guard them; to be rich and proud is to bring disaster upon oneself; when merit and fame are achieved, one withdraws. This is the Way of Heaven.",
+      "review_scores": {
+        "adequacy": 9.0,
+        "terminology": 8.0,
+        "fluency": 9.0,
+        "culture": 9.0
+      },
+      "review_pass": false,
+      "review_parse_ok": true,
+      "online_tokens": {
+        "in": 787,
+        "out": 735
+      },
+      "team_tokens": {
+        "translator_in": 1688,
+        "translator_out": 355,
+        "reviewer_in": 787,
+        "reviewer_out": 735
+      },
+      "wall_s": 30.19,
+      "metrics": {
+        "no_reference": false,
+        "length_ratio": 7.39,
+        "bleu": 12.64,
+        "chrf": 30.81,
+        "ter": 75.61,
+        "rougeL_error": "No module named 'rouge_score'",
+        "bert_error": "No module named 'bert_score'"
+      }
+    },
+    {
+      "group": "G5",
+      "pair_id": "la-ch9-fr",
+      "subset": "c1-la",
+      "source_lang": "zh-classical-cn",
+      "target_lang": "fr",
+      "has_reference": true,
+      "seed": 44,
+      "source_tokens_o200k": 46,
+      "degraded": false,
+      "degraded_reason": null,
+      "rounds": 3,
+      "model": "Qwen3.5-2B-Q4_K_M.gguf",
+      "reviewer_model": "deepseek-chat",
+      "reviewer_kind": "online",
+      "output": "Leur possession ne vaut pas celle qu'ils ont déjà : le plein et le surchargement ne sont pas meilleurs que la cessation ; le point de la pointe ne peut pas être conservé longtemps ; l'or et le jade ne peuvent pas être gardés dans un lieu rempli de richesses ; on ne peut pas garder ses richesses et sa gloire, et on se fait honneur et on se fait orgueil, se faisant ainsi sa propre faute ; le succès de ses mérites et de ses gloires, et la retraite de son corps, c'est la Voie du Ciel.",
+      "review_scores": {
+        "adequacy": 3.0,
+        "terminology": 4.0,
+        "fluency": 3.0,
+        "culture": 4.0
+      },
+      "review_pass": false,
+      "review_parse_ok": true,
+      "online_tokens": {
+        "in": 936,
+        "out": 2102
+      },
+      "team_tokens": {
+        "translator_in": 3112,
+        "translator_out": 567,
+        "reviewer_in": 936,
+        "reviewer_out": 2102
+      },
+      "wall_s": 55.88,
+      "metrics": {
+        "no_reference": false,
+        "length_ratio": 11.829,
+        "bleu": 6.01,
+        "chrf": 27.17,
+        "ter": 101.18,
+        "rougeL_error": "No module named 'rouge_score'",
+        "bert_error": "No module named 'bert_score'"
+      }
+    },
+    {
+      "group": "G5",
+      "pair_id": "la-ch9-ja",
+      "subset": "c1-la",
+      "source_lang": "zh-classical-cn",
+      "target_lang": "ja",
+      "has_reference": true,
+      "seed": 44,
+      "source_tokens_o200k": 46,
+      "degraded": false,
+      "degraded_reason": null,
+      "rounds": 3,
+      "model": "Qwen3.5-2B-Q4_K_M.gguf",
+      "reviewer_model": "deepseek-chat",
+      "reviewer_kind": "online",
+      "output": "持ちて満ちて止むを得ず、揣て鋭くは長きものなり、金玉を満たすは守らざり、富貴を誇りしは己の過ちを招き、功を成し名を遂げて身を退くは天の道なり",
+      "review_scores": {
+        "adequacy": 3.0,
+        "terminology": 4.0,
+        "fluency": 3.0,
+        "culture": 3.0
+      },
+      "review_pass": false,
+      "review_parse_ok": true,
+      "online_tokens": {
+        "in": 770,
+        "out": 1574
+      },
+      "team_tokens": {
+        "translator_in": 2078,
+        "translator_out": 311,
+        "reviewer_in": 770,
+        "reviewer_out": 1574
+      },
+      "wall_s": 37.26,
+      "metrics": {
+        "no_reference": false,
+        "length_ratio": 1.707,
+        "bleu": 7.48,
+        "chrf": 9.59,
+        "ter": 100.0,
+        "rougeL_error": "No module named 'rouge_score'",
+        "bert_error": "No module named 'bert_score'"
+      }
+    },
+    {
+      "group": "G5",
+      "pair_id": "la-ch15-en",
+      "subset": "c1-la",
+      "source_lang": "zh-classical-cn",
+      "target_lang": "en",
+      "has_reference": true,
+      "seed": 44,
+      "source_tokens_o200k": 111,
+      "degraded": false,
+      "degraded_reason": null,
+      "rounds": 3,
+      "model": "Qwen3.5-2B-Q4_K_M.gguf",
+      "reviewer_model": "deepseek-chat",
+      "reviewer_kind": "online",
+      "output": "Those who were skilled in being a 士 (scholar/gentleman/practitioner) are subtle, mysterious, profound, and deep, beyond recognition. For it is precisely because they are beyond recognition that they are cultivated with care and grace. Like a hesitant person crossing a winter river, as if they feared their four neighbors, standing like guests, scattered like ice about to melt, pure as the uncarved block, vast as the wilderness, like the clear valley, all mixed with turbidity. Who can, from turbidity, still it and gradually clear it? Who can, from stability, long move it and gradually give life? The one who preserves this Way does not desire fullness. For it is precisely because they do not desire fullness that they can endure without newness and remain unblemished.",
+      "review_scores": {
+        "adequacy": 6.0,
+        "terminology": 7.0,
+        "fluency": 6.0,
+        "culture": 6.0
+      },
+      "review_pass": false,
+      "review_parse_ok": true,
+      "online_tokens": {
+        "in": 1247,
+        "out": 1845
+      },
+      "team_tokens": {
+        "translator_in": 3675,
+        "translator_out": 843,
+        "reviewer_in": 1247,
+        "reviewer_out": 1845
+      },
+      "wall_s": 63.44,
+      "metrics": {
+        "no_reference": false,
+        "length_ratio": 8.505,
+        "bleu": 2.36,
+        "chrf": 29.71,
+        "ter": 84.15,
+        "rougeL_error": "No module named 'rouge_score'",
+        "bert_error": "No module named 'bert_score'"
+      }
+    },
+    {
+      "group": "G5",
+      "pair_id": "la-ch15-fr",
+      "subset": "c1-la",
+      "source_lang": "zh-classical-cn",
+      "target_lang": "fr",
+      "has_reference": true,
+      "seed": 44,
+      "source_tokens_o200k": 111,
+      "degraded": false,
+      "degraded_reason": null,
+      "rounds": 3,
+      "model": "Qwen3.5-2B-Q4_K_M.gguf",
+      "reviewer_model": "deepseek-chat",
+      "reviewer_kind": "online",
+      "output": "Ceux qui savent bien être des maîtres sont subtils, mystérieux, profonds et inconnus. C'est pourquoi, pour les rendre accessibles, on leur impose des apparences douces et confiantes : comme si l'on traversait un fleuve en hiver, comme si l'on craignait les quatre voisins, comme si l'on était un étranger, comme si l'eau se dissolvait, comme si l'on était comme du bois brut, comme si l'on était comme une vallée, comme si l'on était comme de la boue. Qui peut rendre la clarté par le silence ? Qui peut calmer la turbulence par la patience ? Qui peut faire naître la vie par la conservation ? Ce qui ne veut pas être plein, peut être épuisé sans être nouveau.",
+      "review_scores": {
+        "adequacy": 4.0,
+        "terminology": 5.0,
+        "fluency": 6.0,
+        "culture": 5.0
+      },
+      "review_pass": false,
+      "review_parse_ok": true,
+      "online_tokens": {
+        "in": 1262,
+        "out": 2111
+      },
+      "team_tokens": {
+        "translator_in": 3949,
+        "translator_out": 832,
+        "reviewer_in": 1262,
+        "reviewer_out": 2111
+      },
+      "wall_s": 54.41,
+      "metrics": {
+        "no_reference": false,
+        "length_ratio": 7.253,
+        "bleu": 1.79,
+        "chrf": 25.91,
+        "ter": 83.43,
+        "rougeL_error": "No module named 'rouge_score'",
+        "bert_error": "No module named 'bert_score'"
+      }
+    },
+    {
+      "group": "G5",
+      "pair_id": "la-ch15-ja",
+      "subset": "c1-la",
+      "source_lang": "zh-classical-cn",
+      "target_lang": "ja",
+      "has_reference": true,
+      "seed": 44,
+      "source_tokens_o200k": 111,
+      "degraded": false,
+      "degraded_reason": null,
+      "rounds": 3,
+      "model": "Qwen3.5-2B-Q4_K_M.gguf",
+      "reviewer_model": "deepseek-chat",
+      "reviewer_kind": "online",
+      "output": "古に優れた士は微妙玄通で深不可知である。そのようにして認識できないからこそ、強いてその容姿を豊かにし、安らぎとしよう。冬に川を渡るように、四隣を畏れ、客を敬い、氷が解けるように、敦（敦）をなぞる。広々として素朴なよう、混然として濁るよう、誰が静かにして濁りを静め、徐々に清らかにし、誰が動かし、徐々に安らぎを保ち、徐々に生かす。この道に優れた者は、盈（えい）を求めない。なぜなら、不盈であるからこそ、弊（ひ）を成し、新（しん）を成すことができる。",
+      "review_scores": {
+        "adequacy": 3.0,
+        "terminology": 3.0,
+        "fluency": 4.0,
+        "culture": 3.0
+      },
+      "review_pass": false,
+      "review_parse_ok": true,
+      "online_tokens": {
+        "in": 1285,
+        "out": 2305
+      },
+      "team_tokens": {
+        "translator_in": 3729,
+        "translator_out": 809,
+        "reviewer_in": 1285,
+        "reviewer_out": 2305
+      },
+      "wall_s": 70.14,
+      "metrics": {
+        "no_reference": false,
+        "length_ratio": 2.451,
+        "bleu": 11.39,
+        "chrf": 11.74,
+        "ter": 100.0,
+        "rougeL_error": "No module named 'rouge_score'",
+        "bert_error": "No module named 'bert_score'"
+      }
+    },
+    {
+      "group": "G5",
+      "pair_id": "aq-xu-en",
+      "subset": "c1-aq",
+      "source_lang": "zh-cn",
+      "target_lang": "en",
+      "has_reference": true,
+      "seed": 44,
+      "source_tokens_o200k": 98,
+      "degraded": false,
+      "degraded_reason": null,
+      "rounds": 3,
+      "model": "Qwen3.5-2B-Q4_K_M.gguf",
+      "reviewer_model": "deepseek-chat",
+      "reviewer_kind": "online",
+      "output": "I am writing a proper biography of Ah Q, and this has been my intention for more than a year or two. Yet, while I am writing, I am constantly second-guessing myself, which shows that I am not a man of establishing enduring words. For an immortal pen must be used to transmit an immortal person; thus, the man is handed down through his writing, and the writing is handed down through the man. Ultimately, it is unclear who relies on whom to be transmitted, and finally, it all comes down to writing about Ah Q, as if something were haunting my thoughts.",
+      "review_scores": {
+        "adequacy": 8.0,
+        "terminology": 7.0,
+        "fluency": 8.0,
+        "culture": 7.0
+      },
+      "review_pass": false,
+      "review_parse_ok": true,
+      "online_tokens": {
+        "in": 1044,
+        "out": 1583
+      },
+      "team_tokens": {
+        "translator_in": 2724,
+        "translator_out": 593,
+        "reviewer_in": 1044,
+        "reviewer_out": 1583
+      },
+      "wall_s": 40.62,
+      "metrics": {
+        "no_reference": false,
+        "length_ratio": 4.938,
+        "bleu": 11.11,
+        "chrf": 31.83,
+        "ter": 79.05,
+        "rougeL_error": "No module named 'rouge_score'",
+        "bert_error": "No module named 'bert_score'"
+      }
+    },
+    {
+      "group": "G5",
+      "pair_id": "aq-ch1-en",
+      "subset": "c1-aq",
+      "source_lang": "zh-cn",
+      "target_lang": "en",
+      "has_reference": true,
+      "seed": 44,
+      "source_tokens_o200k": 104,
+      "degraded": false,
+      "degraded_reason": null,
+      "rounds": 3,
+      "model": "Qwen3.5-2B-Q4_K_M.gguf",
+      "reviewer_model": "deepseek-chat",
+      "reviewer_kind": "online",
+      "output": "Aq's name and place of origin are somewhat obscure; even his former biography is unclear. For the people of Weizhuang, as long as he helps them, they only want him to do so and only make fun of him, never paying attention to his conduct. Aq himself does not admit this; he only speaks of it when he has a quarrel with others, sometimes glazing his eyes and saying, \"We were once much richer than you! What sort of thing are you?\"",
+      "review_scores": {
+        "adequacy": 7.0,
+        "terminology": 8.0,
+        "fluency": 7.0,
+        "culture": 7.0
+      },
+      "review_pass": false,
+      "review_parse_ok": true,
+      "online_tokens": {
+        "in": 1000,
+        "out": 1180
+      },
+      "team_tokens": {
+        "translator_in": 2311,
+        "translator_out": 491,
+        "reviewer_in": 1000,
+        "reviewer_out": 1180
+      },
+      "wall_s": 45.15,
+      "metrics": {
+        "no_reference": false,
+        "length_ratio": 3.698,
+        "bleu": 7.83,
+        "chrf": 34.31,
+        "ter": 76.0,
+        "rougeL_error": "No module named 'rouge_score'",
+        "bert_error": "No module named 'bert_score'"
+      }
+    }
+  ]
+}

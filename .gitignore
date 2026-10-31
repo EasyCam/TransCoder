@@ -197,3 +197,8 @@ AGENTS.md
 /docs
 /.trae
 PROJECT_OVERVIEW.md
+data/models/
+RESULTS/tmp_probe/
+
+# local article assets (screenshots etc.)
+article/

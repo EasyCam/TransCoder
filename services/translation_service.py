@@ -2,7 +2,9 @@ import ollama
 from langdetect import detect
 import config
 import json
-from typing import List, Dict, Any
+from typing import Any, Dict, List
+
+from transcoder.tokcount import count_tokens
 
 class TranslationService:
     def __init__(self):
@@ -420,10 +422,10 @@ class TranslationService:
                 if 'message' in chunk and 'content' in chunk['message']:
                     content = chunk['message']['content']
                     full_response += content
-                    
-                    # 估算token数量（简单按空格和字符数估算）
-                    token_count += len(content.split()) + len(content) // 4
-                    
+
+                    # token 数：tiktoken o200k 真实计数（tokcount）
+                    token_count = count_tokens(full_response)
+
                     current_time = time.time()
                     elapsed_time = current_time - start_time
                     
@@ -505,18 +507,16 @@ class TranslationService:
             end_time = time.time()
             total_time = end_time - start_time
             
-            # 计算反思的性能指标
-            word_count = len(cleaned_reflection.split())
-            char_count = len(cleaned_reflection)
-            estimated_tokens = word_count + char_count // 4
-            tokens_per_second = estimated_tokens / total_time if total_time > 0 else 0
-            
+            # 计算反思的性能指标（tokens：tiktoken o200k 真实计数，tokcount）
+            tokens = count_tokens(cleaned_reflection)
+            tokens_per_second = tokens / total_time if total_time > 0 else 0
+
             return {
                 'reflection': cleaned_reflection,
                 'metrics': {
                     'tokens_per_second': round(tokens_per_second, 1),
                     'total_time': round(total_time, 2),
-                    'total_tokens': estimated_tokens
+                    'total_tokens': tokens
                 }
             }
             
@@ -570,18 +570,16 @@ class TranslationService:
             end_time = time.time()
             total_time = end_time - start_time
             
-            # 计算改进的性能指标
-            word_count = len(cleaned_translation.split())
-            char_count = len(cleaned_translation)
-            estimated_tokens = word_count + char_count // 4
-            tokens_per_second = estimated_tokens / total_time if total_time > 0 else 0
-            
+            # 计算改进的性能指标（tokens：tiktoken o200k 真实计数，tokcount）
+            tokens = count_tokens(cleaned_translation)
+            tokens_per_second = tokens / total_time if total_time > 0 else 0
+
             return {
                 'improved_translation': cleaned_translation,
                 'metrics': {
                     'tokens_per_second': round(tokens_per_second, 1),
                     'total_time': round(total_time, 2),
-                    'total_tokens': estimated_tokens
+                    'total_tokens': tokens
                 }
             }
             
@@ -814,20 +812,19 @@ The improved translation should address the specific issues mentioned in the fee
         end_time = time.time()
         total_time = end_time - start_time
         
-        # 计算token数量（简单估算：按空格分割的词数 + 字符数/4）
+        # 计算 token 数量（tiktoken o200k 真实计数，tokcount；word_count 仅保留作显示对照）
         word_count = len(translation.split())
-        char_count = len(translation)
-        estimated_tokens = word_count + char_count // 4
-        
+        token_count = count_tokens(translation)
+
         # 计算tokens/s
-        tokens_per_second = estimated_tokens / total_time if total_time > 0 else 0
-        
+        tokens_per_second = token_count / total_time if total_time > 0 else 0
+
         return {
             'text': translation,
             'metrics': {
                 'tokens_per_second': round(tokens_per_second, 1),
                 'total_time': round(total_time, 2),
-                'total_tokens': estimated_tokens,
+                'total_tokens': token_count,
                 'word_count': word_count
             }
         } 

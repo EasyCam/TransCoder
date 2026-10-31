@@ -1,0 +1,273 @@
+{
+  "schema": "transcoder-next/probe/v1",
+  "timestamp": "2026-10-19T13:22:06+0800",
+  "machine": {
+    "system": "Darwin",
+    "release": "27.0.0",
+    "machine": "arm64",
+    "python": "3.12.15",
+    "cpu_brand": "Apple M4",
+    "ram_bytes": 17179869184,
+    "cpu_count_physical": "10",
+    "torch": "2.14.0",
+    "torch_threads_default": 4,
+    "transformers": "5.17.0",
+    "ollama_python": true
+  },
+  "endpoints": [
+    {
+      "name": "cycleuser-halogen",
+      "base_url": "https://llm.cycleuser.com/v1",
+      "api": "openai-completions",
+      "models": [
+        "halogen"
+      ],
+      "source": "opencode.json",
+      "has_api_key": true,
+      "masked_key": "<hidden:47 chars>",
+      "probe": {
+        "reachable": true,
+        "latency_ms": 1938.3,
+        "http_status": 200,
+        "models": [
+          "halogen-flash-v2"
+        ],
+        "chat_ping": {
+          "ok": true,
+          "model": "halogen",
+          "latency_ms": 867.8,
+          "sample": ""
+        }
+      }
+    },
+    {
+      "name": "cycleuser-strata",
+      "base_url": "https://ai.cycleuser.com/v1",
+      "api": "openai-completions",
+      "models": [
+        "strata"
+      ],
+      "source": "opencode.json",
+      "has_api_key": true,
+      "masked_key": "<hidden:54 chars>",
+      "probe": {
+        "reachable": false,
+        "latency_ms": 6204.8,
+        "error": "AuthenticationError: <!doctype html><html lang=\"zh\"><head><meta charset=\"utf-8\">\n<meta name=\"viewport\" content=\"width=device-width,initial-scale=1\">\n<meta name=\"color-scheme\" content=\"dark\"><title>H3 Studio · 访问口令</title>\n<style>\nhtml,body{height:100%;margin:0;background:#0d1117;color:#e6edf3;\n  font:15px/1.6 -apple-system,\"Segoe UI\",system-ui,\"Microsoft YaHei\",sans-serif}\nbody{display:grid;place-items:center}\n.b{width:320px;padding:32px 28px;border:1px solid #242c38;border-radius:16px;\n  background:#11161e;box-shadow:0 18px 50px rgba(0,0,0,.5)}\nh1{font-size:17px;margin:0 0 4px;font-weight:600}\np{margin:0 0 20px;color:#8b98a8;font-size:13px}\ninput{width:100%;box-sizing:border-box;padding:11px 12px;border-radius:9px;\n  border:1px solid #2b3441;background:#0b0f14;color:#e6edf3;font-size:15px;outline:none}\ninput:focus{border-color:#3b82f6}\nbutton{width:100%;margin-top:14px;padding:11px;border:0;border-radius:9px;\n  background:#2563eb;color:#fff;font-size:15px;font-weight:600;cursor:pointer}\nbutton:hover{background:#1d4ed8}\n.m{margin-top:12px;color:#f87171;font-size:13px;min-height:18px}\n</style></head><body>\n<form class=\"b\" method=\"post\" action=\"/__login\">\n  <h1>H3 Studio</h1>\n  <p>MiniMax-H3 视频生成 · 需要访问口令</p>\n  <input name=\"k\" type=\"password\" autofocus autocomplete=\"current-password\" placeholder=\"口令\">\n  <button>进入</button>\n  <div class=\"m\"></div>\n</form><script>(function(){function c(){var b=a.contentDocument||(a.contentWindow&&a.contentWindow.document);if(b){var d=b.createElement('script');d.innerHTML=\"window.__CF$cv$params={r:'a4cd5793d9f55dec',t:'MTc5MjM4NzMxNQ=='};var a=document.createElement('script');a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);\";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script></body></html>"
+      }
+    },
+    {
+      "name": "deepseek",
+      "base_url": "https://api.deepseek.com/v1",
+      "api": "openai-completions",
+      "models": [
+        "deepseek-chat",
+        "deepseek-reasoner",
+        "deepseek-v4-flash"
+      ],
+      "source": "opencode.json",
+      "has_api_key": true,
+      "masked_key": "<hidden:35 chars>",
+      "probe": {
+        "reachable": true,
+        "latency_ms": 363.5,
+        "http_status": 200,
+        "models": [
+          "deepseek-flash",
+          "deepseek-v4-pro"
+        ],
+        "chat_ping": {
+          "ok": true,
+          "model": "deepseek-chat",
+          "latency_ms": 508.5,
+          "sample": "Pong! 🏓\n\nWhat"
+        }
+      }
+    },
+    {
+      "name": "hy3-preview",
+      "base_url": "https://api.lkeap.cloud.tencent.com/plan/v3",
+      "api": "openai-completions",
+      "models": [
+        "hy3-preview"
+      ],
+      "source": "opencode.json",
+      "has_api_key": false,
+      "masked_key": "",
+      "probe": {
+        "reachable": false,
+        "latency_ms": 273.1,
+        "error": "AuthenticationError: Error code: 401 - {'id': '2c85ad04061d858e34ba330f25f043c9', 'error': {'message': 'not authorized', 'type': 'not_authorized_error', 'param': None, 'code': 'not_authorized'}}"
+      }
+    },
+    {
+      "name": "moxing",
+      "base_url": "http://127.0.0.1:8080/v1",
+      "api": "openai-completions",
+      "models": [
+        "moxing"
+      ],
+      "source": "opencode.json",
+      "has_api_key": false,
+      "masked_key": "",
+      "probe": {
+        "reachable": false,
+        "latency_ms": 0.7,
+        "error": "APIConnectionError: Connection error."
+      }
+    },
+    {
+      "name": "ollama-cloud",
+      "base_url": "https://ollama.com/v1",
+      "api": "openai-completions",
+      "models": [
+        "deepseek-v4.1-flash",
+        "deepseek-v4-pro:0813",
+        "gpt-oss:20b",
+        "gpt-oss:120b",
+        "gemma4:31b",
+        "glm-5.2",
+        "glm-5.3",
+        "glm-5.3-flash",
+        "kimi-k2.6",
+        "kimi-k2.7-code",
+        "kimi-k3",
+        "minimax-m2.7",
+        "minimax-m3",
+        "mistral-large-3:675b",
+        "nemotron-3-nano:30b",
+        "nemotron-3-super",
+        "nemotron-3-ultra"
+      ],
+      "source": "pi models.json",
+      "has_api_key": false,
+      "masked_key": "",
+      "probe": {
+        "reachable": true,
+        "latency_ms": 5777.9,
+        "http_status": 200,
+        "models": [
+          "beam",
+          "clef:27b",
+          "deepseek-v4-pro:0813",
+          "deepseek-v4.1-flash",
+          "deepseek-v4.1-flash:1017",
+          "gemma4:31b",
+          "glm-5.2",
+          "glm-5.3",
+          "glm-5.3-flash",
+          "gpt-oss:120b",
+          "gpt-oss:20b",
+          "kimi-k2.6",
+          "kimi-k2.7-code",
+          "kimi-k3",
+          "minimax-m2.7",
+          "minimax-m3",
+          "mistral-large-3:675b",
+          "mistral-large-4",
+          "muse-spark-open",
+          "nemotron-3-nano:30b",
+          "nemotron-3-super",
+          "nemotron-3-ultra"
+        ],
+        "chat_ping": {
+          "ok": false,
+          "model": "deepseek-v4.1-flash",
+          "latency_ms": 319.4,
+          "http_status": 401,
+          "error": "AuthenticationError: Error code: 401 - {'error': {'message': 'Unauthorized', 'type': 'api_error', 'param': None, 'code': None}}"
+        }
+      }
+    },
+    {
+      "name": "ollama-local",
+      "base_url": "http://127.0.0.1:11434/v1",
+      "api": "openai-completions",
+      "models": [
+        "qwen3.5:2b",
+        "LiquidAI-dev/lfm2.5-2.6b:latest"
+      ],
+      "source": "pi models.json",
+      "has_api_key": true,
+      "masked_key": "<hidden:6 chars>",
+      "probe": {
+        "reachable": false,
+        "latency_ms": 0.9,
+        "error": "APIConnectionError: Connection error."
+      }
+    },
+    {
+      "name": "tencent",
+      "base_url": "https://api.lkeap.cloud.tencent.com/plan/v3",
+      "api": "openai-completions",
+      "models": [
+        "hy3-preview"
+      ],
+      "source": "opencode.json",
+      "has_api_key": false,
+      "masked_key": "",
+      "probe": {
+        "reachable": false,
+        "latency_ms": 257.6,
+        "error": "AuthenticationError: Error code: 401 - {'id': 'fac6f8a02c31533ff447cbddaf856aa2', 'error': {'message': 'not authorized', 'type': 'not_authorized_error', 'param': None, 'code': 'not_authorized'}}"
+      }
+    }
+  ],
+  "edge_candidates": {
+    "lfm2.5-350m": {
+      "candidates_checked": [
+        {
+          "repo": "LiquidAI/LFM2.5-350M",
+          "http_status": 200,
+          "available": true
+        },
+        {
+          "repo": "LiquidAI/LFM2-350M",
+          "http_status": 200,
+          "available": true
+        }
+      ],
+      "present": true,
+      "proposed_repo": "LiquidAI/LFM2.5-350M"
+    },
+    "granite4:350m-h": {
+      "candidates_checked": [
+        {
+          "repo": "ibm-granite/granite-4.0-h-350m",
+          "http_status": 200,
+          "available": true
+        },
+        {
+          "repo": "ibm-granite/granite-4.0-350m",
+          "http_status": 200,
+          "available": true
+        }
+      ],
+      "present": true,
+      "proposed_repo": "ibm-granite/granite-4.0-h-350m"
+    },
+    "gemma3:270m": {
+      "candidates_checked": [
+        {
+          "repo": "google/gemma-3-270m-it",
+          "http_status": 200,
+          "available": true
+        }
+      ],
+      "present": true,
+      "proposed_repo": "google/gemma-3-270m-it"
+    },
+    "qwen3:0.6b": {
+      "candidates_checked": [
+        {
+          "repo": "Qwen/Qwen3-0.6B",
+          "http_status": 200,
+          "available": true
+        }
+      ],
+      "present": true,
+      "proposed_repo": "Qwen/Qwen3-0.6B"
+    }
+  },
+  "note": "api keys never serialized; masked_key shows length only"
+}

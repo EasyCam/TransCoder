@@ -1,0 +1,49 @@
+{
+  "schema": "transcoder-next/tokcount/v1",
+  "date": "2026-10-19",
+  "standard": "tiktoken o200k_base (uniform cross-model accounting)",
+  "legacy": "word_count + char_count // 4 (PERFORMANCE_METRICS_SUMMARY.md)",
+  "samples": [
+    {
+      "sample": "hello-en",
+      "chars": 35,
+      "legacy_estimate": 15,
+      "o200k": 9,
+      "diff": 6,
+      "rel_diff_pct": 66.7
+    },
+    {
+      "sample": "zh-short",
+      "chars": 11,
+      "legacy_estimate": 3,
+      "o200k": 11,
+      "diff": -8,
+      "rel_diff_pct": -72.7
+    },
+    {
+      "sample": "zh-para",
+      "chars": 44,
+      "legacy_estimate": 12,
+      "o200k": 42,
+      "diff": -30,
+      "rel_diff_pct": -71.4
+    },
+    {
+      "sample": "ja-short",
+      "chars": 20,
+      "legacy_estimate": 6,
+      "o200k": 17,
+      "diff": -11,
+      "rel_diff_pct": -64.7
+    },
+    {
+      "sample": "mixed-tech",
+      "chars": 98,
+      "legacy_estimate": 33,
+      "o200k": 36,
+      "diff": -3,
+      "rel_diff_pct": -8.3
+    }
+  ],
+  "note": "o200k is the accounting layer for cross-group comparison; vendor invoices may differ (DeepSeek/ollama tokenize differently). Engine metrics now use count_tokens(); legacy estimator retained only for this report."
+}

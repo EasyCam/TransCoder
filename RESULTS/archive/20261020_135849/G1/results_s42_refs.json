@@ -1,0 +1,169 @@
+{
+  "schema": "transcoder-next/results/v1",
+  "group": "G1",
+  "description": "direct-small (edge small model)",
+  "temperature": 0.3,
+  "seed": 42,
+  "translator_model": "Qwen3.5-2B-Q4_K_M.gguf",
+  "reviewer": [
+    "deepseek",
+    "deepseek-chat"
+  ],
+  "n_pairs": 14,
+  "rows": [
+    {
+      "group": "G1",
+      "pair_id": "la-ch1-en",
+      "subset": "c1-la",
+      "source_lang": "zh-classical-cn",
+      "target_lang": "en",
+      "has_reference": true,
+      "seed": 42,
+      "error": "AttributeError: 'ConfiguredEndpointProvider' object has no attribute 'gen_log'",
+      "output": ""
+    },
+    {
+      "group": "G1",
+      "pair_id": "la-ch1-fr",
+      "subset": "c1-la",
+      "source_lang": "zh-classical-cn",
+      "target_lang": "fr",
+      "has_reference": true,
+      "seed": 42,
+      "error": "AttributeError: 'ConfiguredEndpointProvider' object has no attribute 'gen_log'",
+      "output": ""
+    },
+    {
+      "group": "G1",
+      "pair_id": "la-ch1-ja",
+      "subset": "c1-la",
+      "source_lang": "zh-classical-cn",
+      "target_lang": "ja",
+      "has_reference": true,
+      "seed": 42,
+      "error": "AttributeError: 'ConfiguredEndpointProvider' object has no attribute 'gen_log'",
+      "output": ""
+    },
+    {
+      "group": "G1",
+      "pair_id": "la-ch8-en",
+      "subset": "c1-la",
+      "source_lang": "zh-classical-cn",
+      "target_lang": "en",
+      "has_reference": true,
+      "seed": 42,
+      "error": "AttributeError: 'ConfiguredEndpointProvider' object has no attribute 'gen_log'",
+      "output": ""
+    },
+    {
+      "group": "G1",
+      "pair_id": "la-ch8-fr",
+      "subset": "c1-la",
+      "source_lang": "zh-classical-cn",
+      "target_lang": "fr",
+      "has_reference": true,
+      "seed": 42,
+      "error": "AttributeError: 'ConfiguredEndpointProvider' object has no attribute 'gen_log'",
+      "output": ""
+    },
+    {
+      "group": "G1",
+      "pair_id": "la-ch8-ja",
+      "subset": "c1-la",
+      "source_lang": "zh-classical-cn",
+      "target_lang": "ja",
+      "has_reference": true,
+      "seed": 42,
+      "error": "AttributeError: 'ConfiguredEndpointProvider' object has no attribute 'gen_log'",
+      "output": ""
+    },
+    {
+      "group": "G1",
+      "pair_id": "la-ch9-en",
+      "subset": "c1-la",
+      "source_lang": "zh-classical-cn",
+      "target_lang": "en",
+      "has_reference": true,
+      "seed": 42,
+      "error": "AttributeError: 'ConfiguredEndpointProvider' object has no attribute 'gen_log'",
+      "output": ""
+    },
+    {
+      "group": "G1",
+      "pair_id": "la-ch9-fr",
+      "subset": "c1-la",
+      "source_lang": "zh-classical-cn",
+      "target_lang": "fr",
+      "has_reference": true,
+      "seed": 42,
+      "error": "AttributeError: 'ConfiguredEndpointProvider' object has no attribute 'gen_log'",
+      "output": ""
+    },
+    {
+      "group": "G1",
+      "pair_id": "la-ch9-ja",
+      "subset": "c1-la",
+      "source_lang": "zh-classical-cn",
+      "target_lang": "ja",
+      "has_reference": true,
+      "seed": 42,
+      "error": "AttributeError: 'ConfiguredEndpointProvider' object has no attribute 'gen_log'",
+      "output": ""
+    },
+    {
+      "group": "G1",
+      "pair_id": "la-ch15-en",
+      "subset": "c1-la",
+      "source_lang": "zh-classical-cn",
+      "target_lang": "en",
+      "has_reference": true,
+      "seed": 42,
+      "error": "AttributeError: 'ConfiguredEndpointProvider' object has no attribute 'gen_log'",
+      "output": ""
+    },
+    {
+      "group": "G1",
+      "pair_id": "la-ch15-fr",
+      "subset": "c1-la",
+      "source_lang": "zh-classical-cn",
+      "target_lang": "fr",
+      "has_reference": true,
+      "seed": 42,
+      "error": "AttributeError: 'ConfiguredEndpointProvider' object has no attribute 'gen_log'",
+      "output": ""
+    },
+    {
+      "group": "G1",
+      "pair_id": "la-ch15-ja",
+      "subset": "c1-la",
+      "source_lang": "zh-classical-cn",
+      "target_lang": "ja",
+      "has_reference": true,
+      "seed": 42,
+      "error": "AttributeError: 'ConfiguredEndpointProvider' object has no attribute 'gen_log'",
+      "output": ""
+    },
+    {
+      "group": "G1",
+      "pair_id": "aq-xu-en",
+      "subset": "c1-aq",
+      "source_lang": "zh-cn",
+      "target_lang": "en",
+      "has_reference": true,
+      "seed": 42,
+      "error": "AttributeError: 'ConfiguredEndpointProvider' object has no attribute 'gen_log'",
+      "output": ""
+    },
+    {
+      "group": "G1",
+      "pair_id": "aq-ch1-en",
+      "subset": "c1-aq",
+      "source_lang": "zh-cn",
+      "target_lang": "en",
+      "has_reference": true,
+      "seed": 42,
+      "error": "AttributeError: 'ConfiguredEndpointProvider' object has no attribute 'gen_log'",
+      "output": ""
+    }
+  ]
+}

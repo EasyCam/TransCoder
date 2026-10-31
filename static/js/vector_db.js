@@ -392,10 +392,8 @@ async function clearDatabase() {
 // 工具函数
 function getLanguageName(code) {
     const names = {
-        'zh-cn': '中文大陆地区现代文简体',
-        'zh-tw': '中文港澳台地区现代文繁体',
-        'zh-classical-cn': '中文文言文简体',
-        'zh-classical-tw': '中文文言文繁体',
+        'zh-cn': '简体中文',
+        'zh-tw': '繁体中文',
         'en': 'English',
         'ja': '日本語',
         'ko': '한국어',

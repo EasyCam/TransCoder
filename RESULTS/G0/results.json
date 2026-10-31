@@ -1,0 +1,936 @@
+{
+  "schema": "transcoder-next/results/v1",
+  "group": "G0",
+  "description": "direct (online big model, upper reference)",
+  "temperature": 0.3,
+  "seed": 42,
+  "translator_model": "qwen3:0.6b",
+  "reviewer": [
+    "deepseek",
+    "deepseek-chat"
+  ],
+  "n_pairs": 37,
+  "rows": [
+    {
+      "group": "G0",
+      "pair_id": "la-ch1-en",
+      "subset": "c1-la",
+      "source_lang": "zh-classical-cn",
+      "target_lang": "en",
+      "has_reference": true,
+      "seed": 42,
+      "source_tokens_o200k": 58,
+      "output": "The Dao that can be spoken of is not the constant Dao; the name that can be named is not the constant name. The nameless is the beginning of Heaven and Earth; the named is the mother of the myriad things. Thus, constantly without desire, one observes its wonder; constantly with desire, one observes its manifestations. These two emerge together but are named differently; together they are called the profound. The profound and again the profound—the gate of all wonders.",
+      "error": null,
+      "online_tokens": {
+        "in": 95,
+        "out": 95
+      },
+      "latency_s": 2.323,
+      "model": "deepseek-chat",
+      "wall_s": 2.96,
+      "metrics": {
+        "no_reference": false,
+        "length_ratio": 0.0,
+        "bleu": 12.67,
+        "chrf": 33.2,
+        "ter": 68.5,
+        "rougeL": 0.423,
+        "bert_f1": 0.756
+      }
+    },
+    {
+      "group": "G0",
+      "pair_id": "la-ch1-fr",
+      "subset": "c1-la",
+      "source_lang": "zh-classical-cn",
+      "target_lang": "fr",
+      "has_reference": true,
+      "seed": 42,
+      "source_tokens_o200k": 58,
+      "output": "La Voie qui peut être suivie n'est pas la Voie éternelle. Le nom qui peut être nommé n'est pas le nom éternel. Sans nom, elle est l'origine du ciel et de la terre ; avec un nom, elle est la mère de toutes choses. Aussi, en étant constamment sans désir, on contemple son mystère ; en étant constamment avec désir, on contemple ses manifestations. Ces deux aspects ont la même origine mais portent des noms différents ; ensemble, on les appelle le Mystère. Mystère des mystères, porte de toutes les merveilles.",
+      "error": null,
+      "online_tokens": {
+        "in": 95,
+        "out": 130
+      },
+      "latency_s": 1.689,
+      "model": "deepseek-chat",
+      "wall_s": 1.69,
+      "metrics": {
+        "no_reference": false,
+        "length_ratio": 0.0,
+        "bleu": 31.79,
+        "chrf": 49.26,
+        "ter": 50.0,
+        "rougeL": 0.608,
+        "bert_f1": 0.806
+      }
+    },
+    {
+      "group": "G0",
+      "pair_id": "la-ch1-ja",
+      "subset": "c1-la",
+      "source_lang": "zh-classical-cn",
+      "target_lang": "ja",
+      "has_reference": true,
+      "seed": 42,
+      "source_tokens_o200k": 58,
+      "output": "道の道とすべきは、常の道に非ず。名の名とすべきは、常の名に非ず。名無きは天地の始め、名有るは万物の母なり。常に欲無くして以て其の妙を観、常に欲有りて以て其の徼を観る。此の両者は同じく出でて名を異にす。同じく之を玄と謂う。玄の又玄、衆妙の門なり。",
+      "error": null,
+      "online_tokens": {
+        "in": 95,
+        "out": 113
+      },
+      "latency_s": 1.898,
+      "model": "deepseek-chat",
+      "wall_s": 1.9,
+      "metrics": {
+        "no_reference": false,
+        "length_ratio": 0.0,
+        "bleu": 26.74,
+        "chrf": 21.64,
+        "ter": 100.0,
+        "rougeL": 0,
+        "bert_f1": 0.786
+      }
+    },
+    {
+      "group": "G0",
+      "pair_id": "la-ch1-ko",
+      "subset": "c1-la",
+      "source_lang": "zh-classical-cn",
+      "target_lang": "ko",
+      "has_reference": false,
+      "seed": 42,
+      "source_tokens_o200k": 58,
+      "output": "도를 도라고 말할 수 있으면 그것은 항상 도가 아니며, 이름을 이름이라고 할 수 있으면 그것은 항상 이름이 아니다. 이름이 없음은 천지의 시작이요, 이름이 있음은 만물의 어머니다. 항상 욕심이 없으면 그 묘함을 관찰하고, 항상 욕심이 있으면 그 끝을 관찰한다. 이 둘은 함께 나오지만 이름이 다르며, 함께 현묘하다고 이른다. 현묘하고 또 현묘하니, 모든 묘함의 문이다.",
+      "error": null,
+      "online_tokens": {
+        "in": 95,
+        "out": 133
+      },
+      "latency_s": 1.861,
+      "model": "deepseek-chat",
+      "wall_s": 1.9,
+      "metrics": {
+        "no_reference": true,
+        "length_ratio": 0.0
+      }
+    },
+    {
+      "group": "G0",
+      "pair_id": "la-ch1-de",
+      "subset": "c1-la",
+      "source_lang": "zh-classical-cn",
+      "target_lang": "de",
+      "has_reference": false,
+      "seed": 42,
+      "source_tokens_o200k": 58,
+      "output": "Der Weg, der sich aussprechen lässt, ist nicht der ewige Weg. Der Name, der sich nennen lässt, ist nicht der ewige Name. Das Namenlose ist der Anfang von Himmel und Erde. Das Benannte ist die Mutter der zehntausend Dinge. Immer ohne Verlangen schaut man sein innerstes Wesen. Immer mit Verlangen schaut man seine äußere Erscheinung. Diese beiden entspringen demselben Ursprung und tragen verschiedene Namen. Gemeinsam heißen sie das Geheimnis. Geheimnis über Geheimnis – das Tor zu aller Wunderbarkeit.",
+      "error": null,
+      "online_tokens": {
+        "in": 95,
+        "out": 139
+      },
+      "latency_s": 1.625,
+      "model": "deepseek-chat",
+      "wall_s": 1.63,
+      "metrics": {
+        "no_reference": true,
+        "length_ratio": 0.0
+      }
+    },
+    {
+      "group": "G0",
+      "pair_id": "la-ch8-en",
+      "subset": "c1-la",
+      "source_lang": "zh-classical-cn",
+      "target_lang": "en",
+      "has_reference": true,
+      "seed": 42,
+      "source_tokens_o200k": 54,
+      "output": "The highest good is like water. Water is good at benefiting all things and does not contend. It dwells in places that people disdain—therefore it is close to the Dao. In dwelling, it is good at choosing the lowly place; in the heart, it is good at being deep; in giving, it is good at being benevolent; in speech, it is good at being trustworthy; in governing, it is good at bringing order; in affairs, it is good at being capable; in action, it is good at timing. It is only because it does not contend.",
+      "error": null,
+      "online_tokens": {
+        "in": 87,
+        "out": 118
+      },
+      "latency_s": 1.621,
+      "model": "deepseek-chat",
+      "wall_s": 1.62,
+      "metrics": {
+        "no_reference": false,
+        "length_ratio": 0.0,
+        "bleu": 2.29,
+        "chrf": 24.86,
+        "ter": 82.68,
+        "rougeL": 0.286,
+        "bert_f1": 0.71
+      }
+    },
+    {
+      "group": "G0",
+      "pair_id": "la-ch8-fr",
+      "subset": "c1-la",
+      "source_lang": "zh-classical-cn",
+      "target_lang": "fr",
+      "has_reference": true,
+      "seed": 42,
+      "source_tokens_o200k": 54,
+      "output": "Le plus grand bien est comme l'eau. L'eau excelle à profiter à toutes choses sans lutter, et demeure là où les hommes répugnent à rester : ainsi elle est proche du Dao. Pour la demeure, elle excelle à choisir le lieu bas ; pour le cœur, elle excelle à demeurer dans la profondeur ; pour les relations, elle excelle à la bienveillance ; pour la parole, elle excelle à la sincérité ; pour le gouvernement, elle excelle à l'ordre ; pour les affaires, elle excelle à la capacité ; pour l'action, elle excelle à saisir le moment. C'est parce qu'elle ne lutte pas.",
+      "error": null,
+      "online_tokens": {
+        "in": 87,
+        "out": 149
+      },
+      "latency_s": 1.954,
+      "model": "deepseek-chat",
+      "wall_s": 1.96,
+      "metrics": {
+        "no_reference": false,
+        "length_ratio": 0.0,
+        "bleu": 1.99,
+        "chrf": 31.0,
+        "ter": 83.04,
+        "rougeL": 0.228,
+        "bert_f1": 0.738
+      }
+    },
+    {
+      "group": "G0",
+      "pair_id": "la-ch8-ja",
+      "subset": "c1-la",
+      "source_lang": "zh-classical-cn",
+      "target_lang": "ja",
+      "has_reference": true,
+      "seed": 42,
+      "source_tokens_o200k": 54,
+      "output": "上善は水の若し。水は善く万物を利して而も争わず、衆人の悪む所に処る。故に道に幾し。居は善く地を選び、心は善く淵のごとく静かに、与は善く仁、言は善く信、政は善く治め、事は善く能くし、動は善く時をなす。夫れ唯だ争わざるが故に、尤もなし。",
+      "error": null,
+      "online_tokens": {
+        "in": 87,
+        "out": 111
+      },
+      "latency_s": 1.701,
+      "model": "deepseek-chat",
+      "wall_s": 1.7,
+      "metrics": {
+        "no_reference": false,
+        "length_ratio": 0.0,
+        "bleu": 38.56,
+        "chrf": 32.62,
+        "ter": 100.0,
+        "rougeL": 0,
+        "bert_f1": 0.833
+      }
+    },
+    {
+      "group": "G0",
+      "pair_id": "la-ch8-ko",
+      "subset": "c1-la",
+      "source_lang": "zh-classical-cn",
+      "target_lang": "ko",
+      "has_reference": false,
+      "seed": 42,
+      "source_tokens_o200k": 54,
+      "output": "최고의 선은 물과 같다. 물은 만물을 이롭게 하면서도 다투지 않고, 뭇사람이 싫어하는 낮은 곳에 처한다. 그러므로 도에 가깝다. 거처는 땅을 잘 택하고, 마음은 깊은 못처럼 고요하며, 사귐은 인을 잘하고, 말은 신의를 잘 지키며, 정사는 다스림을 잘하고, 일은 능함을 잘하며, 움직임은 때를 잘 탄다. 오직 다투지 않기 때문이다.",
+      "error": null,
+      "online_tokens": {
+        "in": 87,
+        "out": 137
+      },
+      "latency_s": 1.874,
+      "model": "deepseek-chat",
+      "wall_s": 1.88,
+      "metrics": {
+        "no_reference": true,
+        "length_ratio": 0.0
+      }
+    },
+    {
+      "group": "G0",
+      "pair_id": "la-ch8-de",
+      "subset": "c1-la",
+      "source_lang": "zh-classical-cn",
+      "target_lang": "de",
+      "has_reference": false,
+      "seed": 42,
+      "source_tokens_o200k": 54,
+      "output": "Höchste Güte ist wie Wasser. Wasser ist gut und nützt allen Dingen, und es streitet nicht. Es weilt an den Orten, die die Menschen verabscheuen; darum ist es nahe am Dao. Beim Wohnen ist es gut im Boden, im Herzen gut in der Tiefe, im Umgang gut in der Güte, im Wort gut in der Verlässlichkeit, in der Regierung gut in der Ordnung, in den Geschäften gut in der Fähigkeit, im Handeln gut im Zeitpunkt. Allein dadurch, dass es nicht streitet.",
+      "error": null,
+      "online_tokens": {
+        "in": 87,
+        "out": 131
+      },
+      "latency_s": 1.766,
+      "model": "deepseek-chat",
+      "wall_s": 1.77,
+      "metrics": {
+        "no_reference": true,
+        "length_ratio": 0.0
+      }
+    },
+    {
+      "group": "G0",
+      "pair_id": "la-ch9-en",
+      "subset": "c1-la",
+      "source_lang": "zh-classical-cn",
+      "target_lang": "en",
+      "has_reference": true,
+      "seed": 42,
+      "source_tokens_o200k": 46,
+      "output": "To hold and fill it to the brim is not as good as stopping in time. To hammer and sharpen it to a fine edge cannot preserve it for long. When gold and jade fill the hall, no one can keep them. To be rich and noble and then arrogant brings calamity upon oneself. When the work is accomplished and the name is achieved, to withdraw the self—this is the Way of Heaven.",
+      "error": null,
+      "online_tokens": {
+        "in": 79,
+        "out": 84
+      },
+      "latency_s": 1.606,
+      "model": "deepseek-chat",
+      "wall_s": 1.61,
+      "metrics": {
+        "no_reference": false,
+        "length_ratio": 0.0,
+        "bleu": 21.25,
+        "chrf": 39.03,
+        "ter": 65.85,
+        "rougeL": 0.408,
+        "bert_f1": 0.786
+      }
+    },
+    {
+      "group": "G0",
+      "pair_id": "la-ch9-fr",
+      "subset": "c1-la",
+      "source_lang": "zh-classical-cn",
+      "target_lang": "fr",
+      "has_reference": true,
+      "seed": 42,
+      "source_tokens_o200k": 46,
+      "output": "Mieux vaut renoncer que de remplir et déborder ; qui aiguise et affûte ne peut garder longtemps ; or et jade remplissent la salle, nul ne peut les conserver ; richesse et honneur avec orgueil, on s'attire soi-même le malheur ; le mérite accompli, la renommée établie, se retirer soi-même : c'est la Voie du Ciel.",
+      "error": null,
+      "online_tokens": {
+        "in": 79,
+        "out": 96
+      },
+      "latency_s": 1.525,
+      "model": "deepseek-chat",
+      "wall_s": 1.53,
+      "metrics": {
+        "no_reference": false,
+        "length_ratio": 0.0,
+        "bleu": 5.24,
+        "chrf": 24.93,
+        "ter": 80.0,
+        "rougeL": 0.252,
+        "bert_f1": 0.689
+      }
+    },
+    {
+      "group": "G0",
+      "pair_id": "la-ch9-ja",
+      "subset": "c1-la",
+      "source_lang": "zh-classical-cn",
+      "target_lang": "ja",
+      "has_reference": true,
+      "seed": 42,
+      "source_tokens_o200k": 46,
+      "output": "持して之を盈たすは其れ已むに如かず。揣りて之を鋭くするは長く保つべからず。金玉堂に満つるも之を守る能うるもの莫し。富貴にして驕るは自ら其の咎を遺す。功成り名遂げて身退くは天の道なり。",
+      "error": null,
+      "online_tokens": {
+        "in": 79,
+        "out": 85
+      },
+      "latency_s": 1.729,
+      "model": "deepseek-chat",
+      "wall_s": 1.73,
+      "metrics": {
+        "no_reference": false,
+        "length_ratio": 0.0,
+        "bleu": 42.12,
+        "chrf": 32.24,
+        "ter": 100.0,
+        "rougeL": 0,
+        "bert_f1": 0.861
+      }
+    },
+    {
+      "group": "G0",
+      "pair_id": "la-ch9-ko",
+      "subset": "c1-la",
+      "source_lang": "zh-classical-cn",
+      "target_lang": "ko",
+      "has_reference": false,
+      "seed": 42,
+      "source_tokens_o200k": 46,
+      "output": "가득 채우기보다 그치는 것만 못하고, 날카롭게 벼리면 오래 보전할 수 없다. 금과 옥이 집에 가득해도 지킬 수 없으며, 부귀하면서 교만하면 스스로 허물을 남긴다. 공을 이루고 이름을 얻었으면 몸을 물리는 것이 하늘의 도이다.",
+      "error": null,
+      "online_tokens": {
+        "in": 79,
+        "out": 87
+      },
+      "latency_s": 1.735,
+      "model": "deepseek-chat",
+      "wall_s": 1.74,
+      "metrics": {
+        "no_reference": true,
+        "length_ratio": 0.0
+      }
+    },
+    {
+      "group": "G0",
+      "pair_id": "la-ch9-de",
+      "subset": "c1-la",
+      "source_lang": "zh-classical-cn",
+      "target_lang": "de",
+      "has_reference": false,
+      "seed": 42,
+      "source_tokens_o200k": 46,
+      "output": "Etwas festhalten und es überfüllen zu wollen – das ist nicht so gut, wie damit aufzuhören. Etwas schärfen und es spitz machen zu wollen – das lässt sich nicht lange bewahren. Ist Gold und Jade die Halle gefüllt, so vermag es niemand zu behüten. Reich und vornehm und dabei hochmütig sein – das zieht sich selbst das Verderben zu. Verdienste vollenden, Namen erlangen und sich dann zurückziehen – das ist der Weg des Himmels.",
+      "error": null,
+      "online_tokens": {
+        "in": 79,
+        "out": 116
+      },
+      "latency_s": 1.913,
+      "model": "deepseek-chat",
+      "wall_s": 1.92,
+      "metrics": {
+        "no_reference": true,
+        "length_ratio": 0.0
+      }
+    },
+    {
+      "group": "G0",
+      "pair_id": "la-ch15-en",
+      "subset": "c1-la",
+      "source_lang": "zh-classical-cn",
+      "target_lang": "en",
+      "has_reference": true,
+      "seed": 42,
+      "source_tokens_o200k": 111,
+      "output": "The ancient masters of the Way were subtle, mysterious, profound, and penetrating—too deep to be understood. Because they could not be understood, I must force myself to describe their appearance: Hesitant, as one crossing a river in winter; wary, as one fearing danger from all four neighbors; respectful, as a guest; yielding, as ice about to melt; simple, as uncarved wood; vast, as a valley; merged, as muddy water. Who can make muddy water clear? By stillness it gradually becomes clear. Who can make the still endure? By movement it gradually comes to life. Those who preserve this Way do not desire fullness. It is precisely because they are not full that they can wear out and yet not need renewal.",
+      "error": null,
+      "online_tokens": {
+        "in": 137,
+        "out": 152
+      },
+      "latency_s": 1.657,
+      "model": "deepseek-chat",
+      "wall_s": 1.66,
+      "metrics": {
+        "no_reference": false,
+        "length_ratio": 0.0,
+        "bleu": 4.84,
+        "chrf": 32.37,
+        "ter": 75.96,
+        "rougeL": 0.339,
+        "bert_f1": 0.731
+      }
+    },
+    {
+      "group": "G0",
+      "pair_id": "la-ch15-fr",
+      "subset": "c1-la",
+      "source_lang": "zh-classical-cn",
+      "target_lang": "fr",
+      "has_reference": true,
+      "seed": 42,
+      "source_tokens_o200k": 111,
+      "output": "Les maîtres d'autrefois qui excellaient dans la Voie étaient subtils, mystérieux, pénétrants et si profonds qu'on ne pouvait les connaître. Comme on ne pouvait les connaître, je m'efforce de les décrire : prudents, comme celui qui traverse un fleuve en hiver ; circonspects, comme celui qui craint les quatre voisins ; réservés, comme un invité ; effacés, comme la glace sur le point de fondre ; simples, comme le bois brut ; vastes, comme la vallée ; confondus, comme l'eau trouble. Qui peut, de l'eau trouble, par le calme, la faire peu à peu s'éclaircir ? Qui peut, de ce qui est stable, par un long mouvement, faire peu à peu naître la vie ? Celui qui garde cette Voie ne désire point la plénitude. C'est précisément parce qu'il ne veut point être plein qu'il peut demeurer usé sans se renouveler en apparence.",
+      "error": null,
+      "online_tokens": {
+        "in": 137,
+        "out": 227
+      },
+      "latency_s": 2.576,
+      "model": "deepseek-chat",
+      "wall_s": 2.58,
+      "metrics": {
+        "no_reference": false,
+        "length_ratio": 0.0,
+        "bleu": 15.13,
+        "chrf": 40.34,
+        "ter": 71.01,
+        "rougeL": 0.402,
+        "bert_f1": 0.748
+      }
+    },
+    {
+      "group": "G0",
+      "pair_id": "la-ch15-ja",
+      "subset": "c1-la",
+      "source_lang": "zh-classical-cn",
+      "target_lang": "ja",
+      "has_reference": true,
+      "seed": 42,
+      "source_tokens_o200k": 111,
+      "output": "古の善く士たる者は、微妙玄通にして深く識るべからず。夫れ惟だ識るべからざるが故に、強いて之が容を為さば、豫として冬の川を渉るが若く、猶として四隣を畏るるが若く、儼として客の若く、渙として冰の将に釈けんとするが若く、敦として其の樸なるが若く、曠として其の谷なるが若く、渾として其の濁れるが若し。孰か能く濁れるを以て之を静めて徐かに清からしめん。孰か能く安きを以て久しく之を動かして徐かに生ぜしめん。此の道を保つ者は盈むるを欲せず。夫れ惟だ盈まざるが故に、能く弊れて新たに成らず。",
+      "error": null,
+      "online_tokens": {
+        "in": 137,
+        "out": 211
+      },
+      "latency_s": 2.545,
+      "model": "deepseek-chat",
+      "wall_s": 2.55,
+      "metrics": {
+        "no_reference": false,
+        "length_ratio": 0.0,
+        "bleu": 39.54,
+        "chrf": 28.66,
+        "ter": 100.0,
+        "rougeL": 0,
+        "bert_f1": 0.827
+      }
+    },
+    {
+      "group": "G0",
+      "pair_id": "la-ch15-ko",
+      "subset": "c1-la",
+      "source_lang": "zh-classical-cn",
+      "target_lang": "ko",
+      "has_reference": false,
+      "seed": 42,
+      "source_tokens_o200k": 111,
+      "output": "옛날에 도를 잘 닦은 선비는 미묘하고 현묘하여 통달함이 깊어서 식별할 수 없었다. 오직 식별할 수 없기 때문에 억지로 그 모습을 형용하자면, 망설이는 듯하여 겨울에 냇물을 건너는 것 같고, 조심하는 듯하여 사방 이웃을 두려워하는 것 같으며, 엄숙하기가 손님과 같고, 흩어지기가 얼음이 장차 녹는 것 같으며, 돈후하기가 본래의 소박함과 같고, 넓기가 골짜기와 같으며, 혼연하기가 흐탁한 물과 같았다. 누가 능히 흐탁한 것을 고요함으로써 서서히 맑게 하며, 누가 능히 안정된 것을 오래 움직임으로써 서서히 생겨나게 할 수 있겠는가. 이 도를 지키는 자는 가득 채우려 하지 않는다. 오직 가득 채우지 않기 때문에 능히 낡아도 새로 이루지 않을 수 있다.",
+      "error": null,
+      "online_tokens": {
+        "in": 137,
+        "out": 269
+      },
+      "latency_s": 2.974,
+      "model": "deepseek-chat",
+      "wall_s": 2.98,
+      "metrics": {
+        "no_reference": true,
+        "length_ratio": 0.0
+      }
+    },
+    {
+      "group": "G0",
+      "pair_id": "la-ch15-de",
+      "subset": "c1-la",
+      "source_lang": "zh-classical-cn",
+      "target_lang": "de",
+      "has_reference": false,
+      "seed": 42,
+      "source_tokens_o200k": 111,
+      "output": "Die im Altertum gut waren als Meister, waren fein, wunderbar, geheimnisvoll, durchdringend, so tief, dass man sie nicht erkennen konnte. Weil sie nicht zu erkennen sind, darum kann man nur versuchen, ihr Wesen zu beschreiben: Sie waren zögernd, wie einer, der im Winter einen Fluss durchwatet; vorsichtig, wie einer, der die Nachbarn ringsum fürchtet; zurückhaltend, wie ein Gast; nachgiebig, wie Eis, das schmelzen will; schlicht, wie rohes Holz; weit, wie ein Tal; undurchsichtig, wie trübes Wasser. Wer vermag das Trübe zu klären, indem er es still werden lässt und es langsam klar wird? Wer vermag das Ruhende zu beleben, indem er es lange bewegt und es langsam lebendig wird? Wer diesen Weg bewahrt, begehrt nicht die Fülle. Weil er nicht die Fülle begehrt, darum kann er verbraucht werden und erneuert sich nicht.",
+      "error": null,
+      "online_tokens": {
+        "in": 137,
+        "out": 238
+      },
+      "latency_s": 2.49,
+      "model": "deepseek-chat",
+      "wall_s": 2.49,
+      "metrics": {
+        "no_reference": true,
+        "length_ratio": 0.0
+      }
+    },
+    {
+      "group": "G0",
+      "pair_id": "aq-xu-en",
+      "subset": "c1-aq",
+      "source_lang": "zh-cn",
+      "target_lang": "en",
+      "has_reference": true,
+      "seed": 42,
+      "source_tokens_o200k": 98,
+      "output": "For more than a year or two I have wanted to write a true biography of Ah Q. But while wanting to write, I kept thinking back, which is enough to show that I am not a person who \"establishes words,\" for the pen that is never immortal must transmit an immortal person; thus the person is transmitted by the writing, and the writing is transmitted by the person—in the end, who relies on whom to be transmitted gradually became rather unclear, and finally it came down to writing the biography of Ah Q, as if there were a ghost in my thoughts.",
+      "error": null,
+      "online_tokens": {
+        "in": 120,
+        "out": 118
+      },
+      "latency_s": 1.441,
+      "model": "deepseek-chat",
+      "wall_s": 1.44,
+      "metrics": {
+        "no_reference": false,
+        "length_ratio": 0.0,
+        "bleu": 13.32,
+        "chrf": 35.67,
+        "ter": 73.65,
+        "rougeL": 0.357,
+        "bert_f1": 0.753
+      }
+    },
+    {
+      "group": "G0",
+      "pair_id": "aq-xu-ja",
+      "subset": "c1-aq",
+      "source_lang": "zh-cn",
+      "target_lang": "ja",
+      "has_reference": false,
+      "seed": 42,
+      "source_tokens_o200k": 98,
+      "output": "阿Qの正伝を書こうとしてから、もう一、二年にもなる。しかし一方で書こうとし、一方でまた思い直す。これで私は「立言」する者ではないことがよくわかる。というのも、不朽の筆はいつも不朽の人を伝えるものでなければならず、かくして人は文によって伝わり、文は人によって伝わる——いったいどちらがどちらに頼って伝わるのか、しだいに定かでなくなり、ついに阿Qの伝を書くところに落ち着いてしまう。まるで頭の中に化け物でもいるかのようだ。",
+      "error": null,
+      "online_tokens": {
+        "in": 120,
+        "out": 138
+      },
+      "latency_s": 1.974,
+      "model": "deepseek-chat",
+      "wall_s": 1.98,
+      "metrics": {
+        "no_reference": true,
+        "length_ratio": 0.0
+      }
+    },
+    {
+      "group": "G0",
+      "pair_id": "aq-xu-ko",
+      "subset": "c1-aq",
+      "source_lang": "zh-cn",
+      "target_lang": "ko",
+      "has_reference": false,
+      "seed": 42,
+      "source_tokens_o200k": 98,
+      "output": "아Q의 정전(正傳)을 쓰려고 마음먹은 지가 이미 한두 해가 아니다. 그러나 한편으로는 쓰려고 하면서도 한편으로는 자꾸 뒤로 물러서게 되니, 이는 내가 결코 ‘입언(立言)’하는 사람이 아님을 충분히 보여준다. 불후의 붓은 본래 불후의 인물을 전해야 하니, 이에 사람은 글로써 전해지고 글은 사람으로써 전해진다——도대체 누가 누구에게 의지해 전해지는 것인지 점점 분명치 않아지다가, 마침내 아Q의 전을 쓰는 것으로 귀결되고 마니, 마치 머릿속에 귀신이라도 있는 듯하다.",
+      "error": null,
+      "online_tokens": {
+        "in": 120,
+        "out": 186
+      },
+      "latency_s": 2.522,
+      "model": "deepseek-chat",
+      "wall_s": 2.52,
+      "metrics": {
+        "no_reference": true,
+        "length_ratio": 0.0
+      }
+    },
+    {
+      "group": "G0",
+      "pair_id": "aq-xu-fr",
+      "subset": "c1-aq",
+      "source_lang": "zh-cn",
+      "target_lang": "fr",
+      "has_reference": false,
+      "seed": 42,
+      "source_tokens_o200k": 98,
+      "output": "Depuis plus d’une ou deux années déjà, j’ai l’intention d’écrire la véritable biographie d’Ah Q. Mais à mesure que je m’y prépare, je recule en pensée, ce qui montre assez que je ne suis pas homme à « fonder une parole » ; car il n’a jamais existé de pinceau immortel qui ne doive transmettre un homme immortel : ainsi l’homme se transmet par l’écrit, et l’écrit par l’homme — à la longue, on ne distingue plus très bien lequel des deux transmet l’autre, et l’on finit par en revenir à écrire la biographie d’Ah Q, comme si l’on avait un démon dans l’esprit.",
+      "error": null,
+      "online_tokens": {
+        "in": 120,
+        "out": 173
+      },
+      "latency_s": 2.138,
+      "model": "deepseek-chat",
+      "wall_s": 2.14,
+      "metrics": {
+        "no_reference": true,
+        "length_ratio": 0.0
+      }
+    },
+    {
+      "group": "G0",
+      "pair_id": "aq-xu-de",
+      "subset": "c1-aq",
+      "source_lang": "zh-cn",
+      "target_lang": "de",
+      "has_reference": false,
+      "seed": 42,
+      "source_tokens_o200k": 98,
+      "output": "Ich habe schon seit mehr als ein, zwei Jahren die Absicht, für Ah Q eine „wahre Lebensgeschichte“ zu schreiben. Aber während ich es einerseits vorhatte, dachte ich andererseits immer wieder daran zurück – das zeigt deutlich genug, dass ich kein Mann des „richtigen Wortes“ bin; denn der unsterbliche Pinsel muss von jeher unsterbliche Menschen überliefern, und so wird der Mensch durch die Schrift und die Schrift durch den Menschen überliefert – wer sich letzten Endes auf wen stützt, wird allmählich recht unklar, und schließlich läuft es doch darauf hinaus, die Lebensgeschichte des Ah Q zu schreiben, als ob in meinen Gedanken ein Geist spuke.",
+      "error": null,
+      "online_tokens": {
+        "in": 120,
+        "out": 162
+      },
+      "latency_s": 2.268,
+      "model": "deepseek-chat",
+      "wall_s": 2.27,
+      "metrics": {
+        "no_reference": true,
+        "length_ratio": 0.0
+      }
+    },
+    {
+      "group": "G0",
+      "pair_id": "aq-ch1-en",
+      "subset": "c1-aq",
+      "source_lang": "zh-cn",
+      "target_lang": "en",
+      "has_reference": true,
+      "seed": 42,
+      "source_tokens_o200k": 104,
+      "output": "Not only was Ah Q's name and birthplace vague, but even his earlier \"biography\" was vague. For the people of Weizhuang, as far as Ah Q was concerned, they only wanted his help and made fun of him; they had never paid attention to his \"biography.\" And Ah Q himself did not speak of it either, except that when quarreling with others, he would occasionally glare and say: \"We used to be—much richer than you! What do you amount to!\"",
+      "error": null,
+      "online_tokens": {
+        "in": 124,
+        "out": 105
+      },
+      "latency_s": 1.746,
+      "model": "deepseek-chat",
+      "wall_s": 1.75,
+      "metrics": {
+        "no_reference": false,
+        "length_ratio": 0.0,
+        "bleu": 13.08,
+        "chrf": 34.08,
+        "ter": 73.0,
+        "rougeL": 0.339,
+        "bert_f1": 0.772
+      }
+    },
+    {
+      "group": "G0",
+      "pair_id": "aq-ch1-ja",
+      "subset": "c1-aq",
+      "source_lang": "zh-cn",
+      "target_lang": "ja",
+      "has_reference": false,
+      "seed": 42,
+      "source_tokens_o200k": 104,
+      "output": "阿Ｑは姓名や本籍がおぼろげなだけでなく、彼の以前の「行状」さえもおぼろげであった。なぜなら未庄の人々は阿Ｑに対して、ただ彼に手伝わせ、ただ彼をからかうだけで、彼の「行状」に気を留めたことはなかったからである。そして阿Ｑ自身も語らず、ただ他人と言い争うときだけ、時おり目をむいて言うのだった。「おれたちは昔――おまえよりずっと裕福だったんだぞ！おまえなんか何様だ！」",
+      "error": null,
+      "online_tokens": {
+        "in": 124,
+        "out": 133
+      },
+      "latency_s": 2.412,
+      "model": "deepseek-chat",
+      "wall_s": 2.42,
+      "metrics": {
+        "no_reference": true,
+        "length_ratio": 0.0
+      }
+    },
+    {
+      "group": "G0",
+      "pair_id": "aq-ch1-ko",
+      "subset": "c1-aq",
+      "source_lang": "zh-cn",
+      "target_lang": "ko",
+      "has_reference": false,
+      "seed": 42,
+      "source_tokens_o200k": 104,
+      "output": "아Q는 성명과籍贯(본적)이 다소 희미할 뿐만 아니라, 그의 이전 ‘행장(행적)’조차 희미했다. 왜냐하면 미장(未莊) 사람들이 아Q를 대할 때는 그가 도와주기만 하면 되었고, 그를 놀려먹기만 했을 뿐, 결코 그의 ‘행장’에 유의한 적이 없었기 때문이다. 그리고 아Q 자신도 말하지 않았으며, 오직 남과 말다툼할 때에 이따금 눈을 부릅뜨고 말하곤 했다. “우리 이전에는——너보다 훨씬 넉넉했어! 네까짓 게 뭐야!”",
+      "error": null,
+      "online_tokens": {
+        "in": 124,
+        "out": 180
+      },
+      "latency_s": 2.413,
+      "model": "deepseek-chat",
+      "wall_s": 2.42,
+      "metrics": {
+        "no_reference": true,
+        "length_ratio": 0.0
+      }
+    },
+    {
+      "group": "G0",
+      "pair_id": "aq-ch1-fr",
+      "subset": "c1-aq",
+      "source_lang": "zh-cn",
+      "target_lang": "fr",
+      "has_reference": false,
+      "seed": 42,
+      "source_tokens_o200k": 104,
+      "output": "Pour Ah Q, non seulement le nom et le lieu d'origine étaient assez vagues, mais même ses « antécédents » d'autrefois l'étaient aussi. Car les gens de Weizhuang, à l'égard d'Ah Q, se contentaient de le faire aider et de le prendre pour objet de moquerie ; jamais ils ne s'étaient souciés de ses « antécédents ». Et Ah Q lui-même n'en parlait pas ; seul, lorsqu'il se disputait avec quelqu'un, il lui arrivait parfois de fixer les yeux sur son interlocuteur en disant : « Nous autrefois — nous étions bien plus riches que vous ! Qu'est-ce que vous êtes, vous ? »",
+      "error": null,
+      "online_tokens": {
+        "in": 124,
+        "out": 159
+      },
+      "latency_s": 2.063,
+      "model": "deepseek-chat",
+      "wall_s": 2.07,
+      "metrics": {
+        "no_reference": true,
+        "length_ratio": 0.0
+      }
+    },
+    {
+      "group": "G0",
+      "pair_id": "aq-ch1-de",
+      "subset": "c1-aq",
+      "source_lang": "zh-cn",
+      "target_lang": "de",
+      "has_reference": false,
+      "seed": 42,
+      "source_tokens_o200k": 104,
+      "output": "Bei Ah Q waren nicht nur Name und Herkunftsort ziemlich unklar, selbst seine früheren »Taten« lagen im Dunkeln. Denn die Leute von Weizhuang kümmerten sich, was Ah Q betraf, nur darum, dass er ihnen half und sie sich über ihn lustig machen konnten; nie hatten sie auf seine »Taten« geachtet. Und Ah Q selbst sprach auch nicht davon; nur wenn er sich mit jemandem zankte, kam es bisweilen vor, dass er die Augen aufriss und sagte: »Wir waren früher – viel reicher als ihr! Was seid ihr schon!«",
+      "error": null,
+      "online_tokens": {
+        "in": 124,
+        "out": 140
+      },
+      "latency_s": 2.162,
+      "model": "deepseek-chat",
+      "wall_s": 2.17,
+      "metrics": {
+        "no_reference": true,
+        "length_ratio": 0.0
+      }
+    },
+    {
+      "group": "G0",
+      "pair_id": "c2-zh-en",
+      "subset": "c2",
+      "source_lang": "zh-cn",
+      "target_lang": "en",
+      "has_reference": false,
+      "seed": 42,
+      "source_tokens_o200k": 209,
+      "output": "Ah Q had no family but lived in the Tutelary God's Temple at Weizhuang. He had no regular work either, being simply an odd-job man for others: when there was wheat to be cut he would cut it, when there was rice to be hulled he would hull it, when there was a boat to be punted he would punt it. If the work lasted for any length of time he might stay in the house of his temporary employer, but as soon as it was finished he would leave. So whenever the people had work to be done they would remember Ah Q, but what they remembered was his work and not his \"biography\"; and once they had no work for him, they would forget him altogether, let alone his \"biography.\" Once, however, an old man did praise him: \"Ah Q really can work!\" At the time Ah Q, stripped to the waist, thin and tired-looking, was standing before him, and the others could not tell whether this was meant sincerely or was sarcasm, but Ah Q was very pleased. Ah Q was also very conceited, and he looked down on all the other inhabitants of Weizhuang.",
+      "error": null,
+      "online_tokens": {
+        "in": 217,
+        "out": 243
+      },
+      "latency_s": 2.856,
+      "model": "deepseek-chat",
+      "wall_s": 2.86,
+      "metrics": {
+        "no_reference": true,
+        "length_ratio": 0.0
+      }
+    },
+    {
+      "group": "G0",
+      "pair_id": "c2-zh-fr",
+      "subset": "c2",
+      "source_lang": "zh-cn",
+      "target_lang": "fr",
+      "has_reference": false,
+      "seed": 42,
+      "source_tokens_o200k": 200,
+      "output": "Ah Q fut battu en apparence : on l’attrapa par sa natte jaune et on lui fit cogner quatre ou cinq fois le front contre le mur. Les oisifs, enfin satisfaits, s’en allèrent vainqueurs. Ah Q resta un moment debout, puis pensa en lui-même : « Après tout, j’ai été battu par mon fils ; le monde d’aujourd’hui ne ressemble vraiment à rien… » Et il s’en alla lui aussi, satisfait et vainqueur. Ce qu’Ah Q pensait en lui-même, il finissait souvent par le dire tout haut ; aussi presque tous ceux qui plaisantaient avec Ah Q connaissaient cette méthode de victoire spirituelle. Désormais, chaque fois qu’on l’attrapait par sa natte jaune, on commençait par lui dire : « Ah Q, ce n’est pas le fils qui bat le père, c’est l’homme qui bat une bête. Dis-le toi-même : l’homme bat une bête ! » Ah Q saisit de ses deux mains la racine de sa natte, pencha la tête et dit : « Disons que je suis un insecte, ça va ? Je suis un insecte. »",
+      "error": null,
+      "online_tokens": {
+        "in": 203,
+        "out": 282
+      },
+      "latency_s": 2.67,
+      "model": "deepseek-chat",
+      "wall_s": 2.67,
+      "metrics": {
+        "no_reference": true,
+        "length_ratio": 0.0
+      }
+    },
+    {
+      "group": "G0",
+      "pair_id": "c2-en-zh",
+      "subset": "c2",
+      "source_lang": "en",
+      "target_lang": "zh-cn",
+      "has_reference": false,
+      "seed": 42,
+      "source_tokens_o200k": 40,
+      "output": "地狱街是绿丘巷溪边的一排茅草顶、鼓鼓囊囊的村舍。住在那里的是在两块地之外的小型绞盘矿井里干活的煤矿工人。",
+      "error": null,
+      "online_tokens": {
+        "in": 81,
+        "out": 40
+      },
+      "latency_s": 1.486,
+      "model": "deepseek-chat",
+      "wall_s": 1.49,
+      "metrics": {
+        "no_reference": true,
+        "length_ratio": 0.0
+      }
+    },
+    {
+      "group": "G0",
+      "pair_id": "c2-fr-zh",
+      "subset": "c2",
+      "source_lang": "fr",
+      "target_lang": "zh-cn",
+      "has_reference": false,
+      "seed": 42,
+      "source_tokens_o200k": 70,
+      "output": "他们讲述说，有两个旅行者在那里寻找避雨之处，结果被雷电击中。其中一人当场死亡；另一人及时离开，只是被震晕了，因为他听到一个声音对他喊道：“快走开！”",
+      "error": null,
+      "online_tokens": {
+        "in": 118,
+        "out": 45
+      },
+      "latency_s": 1.174,
+      "model": "deepseek-chat",
+      "wall_s": 1.18,
+      "metrics": {
+        "no_reference": true,
+        "length_ratio": 0.0
+      }
+    },
+    {
+      "group": "G0",
+      "pair_id": "c2-de-zh",
+      "subset": "c2",
+      "source_lang": "de",
+      "target_lang": "zh-cn",
+      "has_reference": false,
+      "seed": 42,
+      "source_tokens_o200k": 74,
+      "output": "稍有些失控，继续向前，我选择了上山进入荒野之路，始终站在较低的那只脚上。看，在陡峭山路的开端，一只豹兽四肢覆着斑斓的皮毛，灵巧而极其敏捷。",
+      "error": null,
+      "online_tokens": {
+        "in": 114,
+        "out": 47
+      },
+      "latency_s": 1.531,
+      "model": "deepseek-chat",
+      "wall_s": 1.53,
+      "metrics": {
+        "no_reference": true,
+        "length_ratio": 0.0
+      }
+    },
+    {
+      "group": "G0",
+      "pair_id": "c3-tech1",
+      "subset": "c3",
+      "source_lang": "zh-cn",
+      "target_lang": "en",
+      "has_reference": false,
+      "seed": 42,
+      "source_tokens_o200k": 78,
+      "output": "This system adopts a retrieval-augmented generation (RAG) architecture: before answering, the large language model first retrieves relevant document fragments from a vector database, then splices the context into the prompt. Token counting uses a real tokenizer, multi-agent collaboration is uniformly scheduled by an orchestrator, and a terminology guard is responsible for injecting the recommended translations from the terminology database.",
+      "error": null,
+      "online_tokens": {
+        "in": 101,
+        "out": 77
+      },
+      "latency_s": 1.309,
+      "model": "deepseek-chat",
+      "wall_s": 1.31,
+      "metrics": {
+        "no_reference": true,
+        "length_ratio": 0.0
+      }
+    },
+    {
+      "group": "G0",
+      "pair_id": "c3-tech2",
+      "subset": "c3",
+      "source_lang": "zh-cn",
+      "target_lang": "en",
+      "has_reference": false,
+      "seed": 42,
+      "source_tokens_o200k": 59,
+      "output": "On-device deployment requires compressing large language models to a size that fits in phone memory while maintaining token generation speed. The cache layer of retrieval-augmented generation can still provide similar-sentence recall when offline, and the retry limit for multi-agent loops is determined by configuration.",
+      "error": null,
+      "online_tokens": {
+        "in": 90,
+        "out": 57
+      },
+      "latency_s": 1.064,
+      "model": "deepseek-chat",
+      "wall_s": 1.07,
+      "metrics": {
+        "no_reference": true,
+        "length_ratio": 0.0
+      }
+    }
+  ]
+}

@@ -1,0 +1,407 @@
+{
+  "schema": "transcoder-next/results/v1",
+  "group": "G0",
+  "description": "direct (online big model, upper reference)",
+  "temperature": 0.3,
+  "seed": 42,
+  "translator_model": "Qwen3.5-2B-Q4_K_M.gguf",
+  "reviewer": [
+    "deepseek",
+    "deepseek-chat"
+  ],
+  "n_pairs": 14,
+  "rows": [
+    {
+      "group": "G0",
+      "pair_id": "la-ch1-en",
+      "subset": "c1-la",
+      "source_lang": "zh-classical-cn",
+      "target_lang": "en",
+      "has_reference": true,
+      "seed": 42,
+      "source_tokens_o200k": 58,
+      "output": "The Dao that can be spoken of is not the constant Dao; the name that can be named is not the constant name. The nameless is the beginning of Heaven and Earth; the named is the mother of the ten thousand things. Constantly without desire, one observes its wonder; constantly with desire, one observes its manifestations. These two emerge together but are named differently; together they are called the profound. The profound and again the profound—the gate of all wonders.",
+      "error": null,
+      "online_tokens": {
+        "in": 95,
+        "out": 95
+      },
+      "latency_s": 1.597,
+      "model": "deepseek-chat",
+      "wall_s": 2.09,
+      "metrics": {
+        "no_reference": false,
+        "length_ratio": 8.138,
+        "bleu": 12.53,
+        "chrf": 33.25,
+        "ter": 69.29,
+        "rougeL_error": "No module named 'rouge_score'",
+        "bert_error": "No module named 'bert_score'"
+      }
+    },
+    {
+      "group": "G0",
+      "pair_id": "la-ch1-fr",
+      "subset": "c1-la",
+      "source_lang": "zh-classical-cn",
+      "target_lang": "fr",
+      "has_reference": true,
+      "seed": 42,
+      "source_tokens_o200k": 58,
+      "output": "La Voie qui peut être suivie n'est pas la Voie éternelle. Le nom qui peut être nommé n'est pas le nom éternel. Sans nom, elle est l'origine du ciel et de la terre ; avec un nom, elle est la mère de toutes choses. Aussi, en étant constamment sans désir, on contemple son mystère ; en étant constamment avec désir, on contemple ses manifestations. Ces deux aspects ont la même origine mais portent des noms différents ; ensemble, on les appelle le Mystère. Mystère des mystères, porte de toutes les merveilles.",
+      "error": null,
+      "online_tokens": {
+        "in": 95,
+        "out": 130
+      },
+      "latency_s": 2.614,
+      "model": "deepseek-chat",
+      "wall_s": 2.61,
+      "metrics": {
+        "no_reference": false,
+        "length_ratio": 8.759,
+        "bleu": 31.79,
+        "chrf": 49.26,
+        "ter": 50.0,
+        "rougeL_error": "No module named 'rouge_score'",
+        "bert_error": "No module named 'bert_score'"
+      }
+    },
+    {
+      "group": "G0",
+      "pair_id": "la-ch1-ja",
+      "subset": "c1-la",
+      "source_lang": "zh-classical-cn",
+      "target_lang": "ja",
+      "has_reference": true,
+      "seed": 42,
+      "source_tokens_o200k": 58,
+      "output": "道の道とすべきは、常の道に非ず。名の名とすべきは、常の名に非ず。名なきは天地の始め、名あるは万物の母なり。常に欲なきを以てその妙を観、常に欲あるを以てその徼を観る。この両者は同じく出でて名を異にす。同じくこれを玄と謂う。玄の又玄、衆妙の門なり。",
+      "error": null,
+      "online_tokens": {
+        "in": 95,
+        "out": 107
+      },
+      "latency_s": 1.681,
+      "model": "deepseek-chat",
+      "wall_s": 1.68,
+      "metrics": {
+        "no_reference": false,
+        "length_ratio": 2.103,
+        "bleu": 31.52,
+        "chrf": 24.48,
+        "ter": 100.0,
+        "rougeL_error": "No module named 'rouge_score'",
+        "bert_error": "No module named 'bert_score'"
+      }
+    },
+    {
+      "group": "G0",
+      "pair_id": "la-ch8-en",
+      "subset": "c1-la",
+      "source_lang": "zh-classical-cn",
+      "target_lang": "en",
+      "has_reference": true,
+      "seed": 42,
+      "source_tokens_o200k": 54,
+      "output": "The highest good is like water. Water is good at benefiting all things and does not contend. It dwells in places that people disdain—therefore it is close to the Dao. In dwelling, it is good at choosing the lowly place; in the heart, it is good at being deep; in giving, it is good at being benevolent; in speech, it is good at being trustworthy; in governing, it is good at bringing order; in affairs, it is good at being capable; in action, it is good at timing. It is only because it does not contend.",
+      "error": null,
+      "online_tokens": {
+        "in": 87,
+        "out": 118
+      },
+      "latency_s": 1.43,
+      "model": "deepseek-chat",
+      "wall_s": 1.43,
+      "metrics": {
+        "no_reference": false,
+        "length_ratio": 10.723,
+        "bleu": 2.29,
+        "chrf": 24.86,
+        "ter": 82.68,
+        "rougeL_error": "No module named 'rouge_score'",
+        "bert_error": "No module named 'bert_score'"
+      }
+    },
+    {
+      "group": "G0",
+      "pair_id": "la-ch8-fr",
+      "subset": "c1-la",
+      "source_lang": "zh-classical-cn",
+      "target_lang": "fr",
+      "has_reference": true,
+      "seed": 42,
+      "source_tokens_o200k": 54,
+      "output": "Le plus grand bien est comme l'eau. L'eau excelle à profiter à toutes choses sans lutter, et elle demeure là où les gens détestent se trouver ; c'est pourquoi elle est proche du Dao. Pour la demeure, elle excelle à choisir le lieu bas ; pour le cœur, elle excelle à demeurer dans la profondeur ; pour les relations, elle excelle à la bienveillance ; pour la parole, elle excelle à la sincérité ; pour le gouvernement, elle excelle à l'ordre ; pour les affaires, elle excelle à la capacité ; pour l'action, elle excelle à saisir le moment. C'est uniquement parce qu'elle ne lutte pas.",
+      "error": null,
+      "online_tokens": {
+        "in": 87,
+        "out": 153
+      },
+      "latency_s": 1.744,
+      "model": "deepseek-chat",
+      "wall_s": 1.74,
+      "metrics": {
+        "no_reference": false,
+        "length_ratio": 12.404,
+        "bleu": 2.02,
+        "chrf": 32.34,
+        "ter": 82.14,
+        "rougeL_error": "No module named 'rouge_score'",
+        "bert_error": "No module named 'bert_score'"
+      }
+    },
+    {
+      "group": "G0",
+      "pair_id": "la-ch8-ja",
+      "subset": "c1-la",
+      "source_lang": "zh-classical-cn",
+      "target_lang": "ja",
+      "has_reference": true,
+      "seed": 42,
+      "source_tokens_o200k": 54,
+      "output": "上善は水の若し。水は善く万物を利して而も争わず、衆人の悪む所に処る。故に道に幾し。居は善く地を選び、心は善く淵を蔵し、与は善く仁を施し、言は善く信を守り、政は善く治め、事は善く能を尽し、動は善く時を得る。夫れ唯だ争わざるが故に、故に尤無し。",
+      "error": null,
+      "online_tokens": {
+        "in": 87,
+        "out": 116
+      },
+      "latency_s": 1.521,
+      "model": "deepseek-chat",
+      "wall_s": 1.52,
+      "metrics": {
+        "no_reference": false,
+        "length_ratio": 2.553,
+        "bleu": 35.72,
+        "chrf": 30.91,
+        "ter": 100.0,
+        "rougeL_error": "No module named 'rouge_score'",
+        "bert_error": "No module named 'bert_score'"
+      }
+    },
+    {
+      "group": "G0",
+      "pair_id": "la-ch9-en",
+      "subset": "c1-la",
+      "source_lang": "zh-classical-cn",
+      "target_lang": "en",
+      "has_reference": true,
+      "seed": 42,
+      "source_tokens_o200k": 46,
+      "output": "To hold and fill it to the brim is not as good as stopping in time. To hammer and sharpen it to a fine edge cannot preserve it for long. When gold and jade fill the hall, no one can keep them. To be rich and noble and then arrogant brings calamity upon oneself. When the work is accomplished and the name is achieved, to withdraw the self—this is the Way of Heaven.",
+      "error": null,
+      "online_tokens": {
+        "in": 79,
+        "out": 84
+      },
+      "latency_s": 1.464,
+      "model": "deepseek-chat",
+      "wall_s": 1.46,
+      "metrics": {
+        "no_reference": false,
+        "length_ratio": 8.902,
+        "bleu": 21.25,
+        "chrf": 39.03,
+        "ter": 65.85,
+        "rougeL_error": "No module named 'rouge_score'",
+        "bert_error": "No module named 'bert_score'"
+      }
+    },
+    {
+      "group": "G0",
+      "pair_id": "la-ch9-fr",
+      "subset": "c1-la",
+      "source_lang": "zh-classical-cn",
+      "target_lang": "fr",
+      "has_reference": true,
+      "seed": 42,
+      "source_tokens_o200k": 46,
+      "output": "Mieux vaut renoncer que de remplir et de déborder ; qui aiguise et affûte ne peut garder longtemps son tranchant. Or et jade remplissent la salle, nul ne peut les conserver. Riche et honoré, puis orgueilleux, on s'attire soi-même le malheur. Le mérite accompli, la renommée établie, se retirer : telle est la Voie du Ciel.",
+      "error": null,
+      "online_tokens": {
+        "in": 79,
+        "out": 100
+      },
+      "latency_s": 1.413,
+      "model": "deepseek-chat",
+      "wall_s": 1.41,
+      "metrics": {
+        "no_reference": false,
+        "length_ratio": 7.854,
+        "bleu": 8.4,
+        "chrf": 27.42,
+        "ter": 78.82,
+        "rougeL_error": "No module named 'rouge_score'",
+        "bert_error": "No module named 'bert_score'"
+      }
+    },
+    {
+      "group": "G0",
+      "pair_id": "la-ch9-ja",
+      "subset": "c1-la",
+      "source_lang": "zh-classical-cn",
+      "target_lang": "ja",
+      "has_reference": true,
+      "seed": 42,
+      "source_tokens_o200k": 46,
+      "output": "持して之を盈たすは其れ已むに如かず。揣りて之を鋭くするは長く保つべからず。金玉堂に満つるも之を守る能うるもの莫し。富貴にして驕るは自ら其の咎を遺す。功成り名遂げて身退くは天の道なり。",
+      "error": null,
+      "online_tokens": {
+        "in": 79,
+        "out": 85
+      },
+      "latency_s": 1.311,
+      "model": "deepseek-chat",
+      "wall_s": 1.31,
+      "metrics": {
+        "no_reference": false,
+        "length_ratio": 2.22,
+        "bleu": 42.12,
+        "chrf": 32.24,
+        "ter": 100.0,
+        "rougeL_error": "No module named 'rouge_score'",
+        "bert_error": "No module named 'bert_score'"
+      }
+    },
+    {
+      "group": "G0",
+      "pair_id": "la-ch15-en",
+      "subset": "c1-la",
+      "source_lang": "zh-classical-cn",
+      "target_lang": "en",
+      "has_reference": true,
+      "seed": 42,
+      "source_tokens_o200k": 111,
+      "output": "The ancients who were skilled in the way of the scholar were subtle, mysterious, profound, and penetrating—too deep to be recognized. It is precisely because they could not be recognized that I force myself to describe their appearance: hesitant, as if crossing a river in winter; wary, as if fearing neighbors on all four sides; dignified, as if a guest; yielding, as if ice about to melt; simple, like uncarved wood; vast, like a valley; murky, like troubled water. Who can, amid turbidity, quiet it and slowly make it clear? Who can, at rest, long maintain movement and slowly bring forth life? Those who preserve this Way do not desire fullness. It is precisely because they are not full that they can be worn without needing renewal to be complete.",
+      "error": null,
+      "online_tokens": {
+        "in": 137,
+        "out": 164
+      },
+      "latency_s": 2.156,
+      "model": "deepseek-chat",
+      "wall_s": 2.16,
+      "metrics": {
+        "no_reference": false,
+        "length_ratio": 8.275,
+        "bleu": 3.84,
+        "chrf": 31.72,
+        "ter": 78.69,
+        "rougeL_error": "No module named 'rouge_score'",
+        "bert_error": "No module named 'bert_score'"
+      }
+    },
+    {
+      "group": "G0",
+      "pair_id": "la-ch15-fr",
+      "subset": "c1-la",
+      "source_lang": "zh-classical-cn",
+      "target_lang": "fr",
+      "has_reference": true,
+      "seed": 42,
+      "source_tokens_o200k": 111,
+      "output": "Les maîtres d'autrefois qui excellaient dans la Voie étaient subtils, mystérieux, pénétrants et si profonds qu'on ne pouvait les connaître. Comme on ne peut les connaître, je m'efforce d'en décrire l'apparence : prudents, comme celui qui traverse un fleuve en hiver ; circonspects, comme celui qui craint les quatre voisins ; réservés, comme un hôte ; effacés, comme la glace qui va fondre ; simples, comme le bois brut ; vastes, comme la vallée ; confus, comme l'eau trouble. Qui donc, parmi l'eau trouble, sait, par le calme, l'éclaircir peu à peu ? Qui donc, dans le repos durable, sait, par le mouvement, faire naître peu à peu la vie ? Celui qui garde cette Voie ne désire point la plénitude. C'est précisément parce qu'il ne désire point la plénitude qu'il peut demeurer usé sans se renouveler en achèvement.",
+      "error": null,
+      "online_tokens": {
+        "in": 137,
+        "out": 230
+      },
+      "latency_s": 1.991,
+      "model": "deepseek-chat",
+      "wall_s": 1.99,
+      "metrics": {
+        "no_reference": false,
+        "length_ratio": 8.945,
+        "bleu": 14.03,
+        "chrf": 39.43,
+        "ter": 70.41,
+        "rougeL_error": "No module named 'rouge_score'",
+        "bert_error": "No module named 'bert_score'"
+      }
+    },
+    {
+      "group": "G0",
+      "pair_id": "la-ch15-ja",
+      "subset": "c1-la",
+      "source_lang": "zh-classical-cn",
+      "target_lang": "ja",
+      "has_reference": true,
+      "seed": 42,
+      "source_tokens_o200k": 111,
+      "output": "古の善く士たる者は、微妙玄通にして深く識るべからず。夫れ惟れ識るべからざるが故に、強いて之が容を為さば、豫として冬の川を渉るが若く、猶として四隣を畏るるが若く、儼として客の若く、渙として冰の将に釈けんとするが若く、敦として其れ樸の若く、曠として其れ谷の若く、渾として其れ濁の若し。孰か能く濁を以て之を静めて徐かに清からん、孰か能く安を以て乆しく之を動かして徐かに生ぜん。此の道を保つ者は盈るを欲せず。夫れ惟れ盈らざるが故に、能く弊れて新たに成らず。",
+      "error": null,
+      "online_tokens": {
+        "in": 137,
+        "out": 202
+      },
+      "latency_s": 2.364,
+      "model": "deepseek-chat",
+      "wall_s": 2.36,
+      "metrics": {
+        "no_reference": false,
+        "length_ratio": 2.462,
+        "bleu": 40.59,
+        "chrf": 29.61,
+        "ter": 100.0,
+        "rougeL_error": "No module named 'rouge_score'",
+        "bert_error": "No module named 'bert_score'"
+      }
+    },
+    {
+      "group": "G0",
+      "pair_id": "aq-xu-en",
+      "subset": "c1-aq",
+      "source_lang": "zh-cn",
+      "target_lang": "en",
+      "has_reference": true,
+      "seed": 42,
+      "source_tokens_o200k": 98,
+      "output": "For more than a year or two I have wanted to write a true biography of Ah Q. But while wanting to write, I kept thinking back, which is enough to show that I am not a person who \"establishes words,\" for the brush that is never immortal must transmit an immortal person; thus the person is transmitted by the writing, and the writing is transmitted by the person—in the end, who relies on whom to be transmitted gradually became rather unclear, and finally it came down to writing the biography of Ah Q, as if there were a ghost in my thoughts.",
+      "error": null,
+      "online_tokens": {
+        "in": 120,
+        "out": 118
+      },
+      "latency_s": 1.392,
+      "model": "deepseek-chat",
+      "wall_s": 1.39,
+      "metrics": {
+        "no_reference": false,
+        "length_ratio": 4.848,
+        "bleu": 13.17,
+        "chrf": 35.15,
+        "ter": 73.65,
+        "rougeL_error": "No module named 'rouge_score'",
+        "bert_error": "No module named 'bert_score'"
+      }
+    },
+    {
+      "group": "G0",
+      "pair_id": "aq-ch1-en",
+      "subset": "c1-aq",
+      "source_lang": "zh-cn",
+      "target_lang": "en",
+      "has_reference": true,
+      "seed": 42,
+      "source_tokens_o200k": 104,
+      "output": "Not only was Ah Q's name and native place vague, but even his earlier \"biography\" was vague. For the people of Weizhuang, as far as Ah Q was concerned, they only wanted his help and made fun of him; they had never paid attention to his \"biography.\" And Ah Q himself did not speak of it either—only when quarreling with others did he occasionally glare and say: \"We used to be—much richer than you! What do you amount to!\"",
+      "error": null,
+      "online_tokens": {
+        "in": 124,
+        "out": 104
+      },
+      "latency_s": 1.446,
+      "model": "deepseek-chat",
+      "wall_s": 1.45,
+      "metrics": {
+        "no_reference": false,
+        "length_ratio": 3.629,
+        "bleu": 10.04,
+        "chrf": 32.57,
+        "ter": 76.0,
+        "rougeL_error": "No module named 'rouge_score'",
+        "bert_error": "No module named 'bert_score'"
+      }
+    }
+  ]
+}

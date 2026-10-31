@@ -1,0 +1,345 @@
+{
+  "condition": "B (2B generator, 1.2B reviewer, GGUF Q4_K_M)",
+  "seed": 42,
+  "pass_policy": "scores (threshold 7.0; blocking issue must quote a span)",
+  "groups": [
+    {
+      "group": "G0",
+      "runs": 14,
+      "bleu_mean": 19.236,
+      "bleu_sd": 14.399,
+      "online_tokens_total": 3244,
+      "wall_median_s": 1.6,
+      "review_parse": "0/14",
+      "review_pass": "0/14",
+      "file": "RESULTS/G0/results_s42_refs.json"
+    },
+    {
+      "group": "G1",
+      "runs": 14,
+      "bleu_mean": 7.281,
+      "bleu_sd": 6.063,
+      "online_tokens_total": 0,
+      "wall_median_s": 4.92,
+      "review_parse": "0/14",
+      "review_pass": "0/14",
+      "file": "RESULTS/G1/results_s42_refs.json"
+    },
+    {
+      "group": "G4",
+      "runs": 14,
+      "bleu_mean": 7.19,
+      "bleu_sd": 5.911,
+      "online_tokens_total": 0,
+      "wall_median_s": 20.07,
+      "review_parse": "9/14",
+      "review_pass": "6/14",
+      "file": "RESULTS/G4/results_s42_refs.json"
+    }
+  ],
+  "G5_pooled": {
+    "note": "per-pair mean of the four scores-policy runs; remote reviewer ignores the seed",
+    "runs": 4,
+    "bleu_per_pair_mean": 10.15,
+    "run_sd": 2.56,
+    "tokens_total_mean": 35963,
+    "wall_median_s": 40.7,
+    "delta_vs_G1": 2.87,
+    "delta_ci95": [
+      0.14,
+      5.99
+    ],
+    "delta_without_largest_pair": 1.76,
+    "ci_without_largest": [
+      -0.39,
+      3.96
+    ],
+    "run_means": [
+      13.68,
+      10.81,
+      8.06,
+      8.58
+    ]
+  },
+  "paired": {
+    "G5_minus_G1": {
+      "delta": 3.58,
+      "ci95_low": 0.98,
+      "ci95_high": 6.76,
+      "n": 13
+    },
+    "G4_minus_G1": {
+      "delta": -0.09,
+      "ci95_low": -0.28,
+      "ci95_high": 0.01,
+      "n": 14
+    },
+    "G1_minus_G0": {
+      "delta": -11.96,
+      "ci95_low": -19.27,
+      "ci95_high": -5.29
+    }
+  },
+  "threshold_score_passes": {
+    "G4": {
+      "6.0": "9/9",
+      "6.5": "8/9",
+      "7.0": "8/9",
+      "7.5": "2/9"
+    },
+    "G5": {
+      "6.0": "9/14",
+      "6.5": "6/14",
+      "7.0": "6/14",
+      "7.5": "4/14"
+    }
+  },
+  "G5_runs_scores_policy": [
+    {
+      "seed": 42,
+      "file": "RESULTS/G5/results_s42_refs.json",
+      "bleu": 13.68,
+      "tokens": 36096,
+      "wall_median_s": 36.3,
+      "pass": 3
+    },
+    {
+      "seed": 43,
+      "file": "RESULTS/G5/results_s43_refs.json",
+      "bleu": 10.81,
+      "tokens": 35215,
+      "wall_median_s": 53.8,
+      "pass": 1
+    },
+    {
+      "seed": 44,
+      "file": "RESULTS/G5/results_s44_refs.json",
+      "bleu": 8.06,
+      "tokens": 33436,
+      "wall_median_s": 45.0,
+      "pass": 1
+    },
+    {
+      "seed": 45,
+      "file": "RESULTS/G5/results_s45_refs.json",
+      "bleu": 8.58,
+      "tokens": 39105,
+      "wall_median_s": 32.1,
+      "pass": 0
+    }
+  ],
+  "G5_runs_archive": [
+    {
+      "group": "G5_run1_model_flag_policy",
+      "runs": 14,
+      "bleu_mean": 9.16,
+      "bleu_sd": 6.6,
+      "online_tokens_total": 35250,
+      "wall_median_s": 31.57,
+      "review_parse": "14/14",
+      "review_pass": "2/14",
+      "file": "RESULTS/archive/20261020_160708/G5/results_s42_refs.json"
+    }
+  ],
+  "ablations": [
+    {
+      "arm": "G1 direct (no guard, no review)",
+      "n": 14,
+      "bleu": 7.28,
+      "tokens": 0,
+      "wall_median_s": 4.9,
+      "parse": "0/14",
+      "pass": "0/14",
+      "file": "RESULTS/G1/results_s42_refs.json"
+    },
+    {
+      "arm": "G5 one round, guard off",
+      "n": 14,
+      "bleu": 7.17,
+      "tokens": 16167,
+      "wall_median_s": 8.2,
+      "parse": "14/14",
+      "pass": "0/14",
+      "file": "RESULTS/G5/results_s42_rounds1_noguard.json"
+    },
+    {
+      "arm": "G5 one round, guard on (review cannot rewrite)",
+      "n": 14,
+      "bleu": 7.84,
+      "tokens": 11559,
+      "wall_median_s": 18.4,
+      "parse": "13/14",
+      "pass": "0/14",
+      "file": "RESULTS/G5/results_s42_rounds1.json"
+    },
+    {
+      "arm": "G4 1.2B local reviewer + rewrite",
+      "n": 14,
+      "bleu": 7.19,
+      "tokens": 0,
+      "wall_median_s": 20.1,
+      "parse": "9/14",
+      "pass": "6/14",
+      "file": "RESULTS/G4/results_s42_refs.json"
+    },
+    {
+      "arm": "G4 2B self-review + rewrite",
+      "n": 14,
+      "bleu": 7.14,
+      "tokens": 0,
+      "wall_median_s": 63.4,
+      "parse": "13/14",
+      "pass": "9/14",
+      "file": "RESULTS/G4/results_s42_selfreview.json"
+    },
+    {
+      "arm": "G5 online, guard off",
+      "n": 14,
+      "bleu": 13.37,
+      "tokens": 35054,
+      "wall_median_s": 26.1,
+      "parse": "14/14",
+      "pass": "2/14",
+      "file": "RESULTS/G5/results_s42_noguard.json",
+      "note": "single seed; compare with seed-42 guard run (13.68), not the pooled mean"
+    }
+  ],
+  "round_dose_response": {
+    "1": {
+      "bleu": 7.84,
+      "tokens": 11559,
+      "wall_median_s": 18.4,
+      "pass": 0,
+      "file": "RESULTS/G5/results_s42_rounds1.json"
+    },
+    "2": {
+      "runs": [
+        {
+          "bleu": 9.12,
+          "tokens": 26458,
+          "wall_median_s": 18.8,
+          "pass": 1,
+          "file": "RESULTS/G5/results_s42_rounds2.json"
+        },
+        {
+          "bleu": 8.0,
+          "tokens": 25115,
+          "wall_median_s": 25.5,
+          "pass": 1,
+          "file": "RESULTS/G5/results_s43_r2.json"
+        },
+        {
+          "bleu": 8.08,
+          "tokens": 24040,
+          "wall_median_s": 24.2,
+          "pass": 1,
+          "file": "RESULTS/G5/results_s44_r2.json"
+        },
+        {
+          "bleu": 6.8,
+          "tokens": 32095,
+          "wall_median_s": 18.3,
+          "pass": 1,
+          "file": "RESULTS/G5/results_s45_r2.json"
+        }
+      ],
+      "pooled_per_pair_bleu": 7.97,
+      "tokens_mean": 26927,
+      "wall_median_s": 21.5,
+      "pass": [
+        1,
+        1,
+        1,
+        1
+      ]
+    },
+    "3": {
+      "runs": [
+        {
+          "bleu": 13.68,
+          "tokens": 36096,
+          "wall_median_s": 36.3,
+          "pass": 3,
+          "file": "RESULTS/G5/results_s42_refs.json"
+        },
+        {
+          "bleu": 10.81,
+          "tokens": 35215,
+          "wall_median_s": 53.8,
+          "pass": 1,
+          "file": "RESULTS/G5/results_s43_refs.json"
+        },
+        {
+          "bleu": 8.06,
+          "tokens": 33436,
+          "wall_median_s": 45.0,
+          "pass": 1,
+          "file": "RESULTS/G5/results_s44_refs.json"
+        },
+        {
+          "bleu": 8.58,
+          "tokens": 39105,
+          "wall_median_s": 32.1,
+          "pass": 0,
+          "file": "RESULTS/G5/results_s45_refs.json"
+        }
+      ],
+      "pooled_per_pair_bleu": 10.15,
+      "tokens_mean": 35963,
+      "wall_median_s": 40.7,
+      "pass": [
+        3,
+        1,
+        1,
+        0
+      ]
+    },
+    "paired_3_vs_2": {
+      "delta": 2.18,
+      "ci95": [
+        0.64,
+        4.13
+      ],
+      "pairs_positive": "11/14",
+      "seeds_positive": "3/4"
+    }
+  },
+  "english_failure_case": {
+    "pair": "la-ch9-en",
+    "G1_bleu": 15.18,
+    "G5_runs": [
+      13.49,
+      3.93,
+      12.64,
+      3.83
+    ],
+    "G5_mean": 8.47,
+    "note": "reviewer objections correct; the 2B rewriter relocated the comparison and dropped a clause"
+  },
+  "minimal_edit_guard": {
+    "file": "RESULTS/G5/results_s42_minedit.json",
+    "bleu": 13.03,
+    "tokens": 33816,
+    "wall_median_s": 35.9,
+    "pass": 3,
+    "rewrites": 26,
+    "rejected": 0,
+    "baseline_seed42": {
+      "bleu": 13.68,
+      "tokens": 36096
+    },
+    "note": "guard never fired; residual errors are inside the quoted spans"
+  },
+  "span_rewrite": {
+    "file": "RESULTS/G5/results_s42_spanrewrite.json",
+    "bleu": 11.74,
+    "tokens": 46288,
+    "pass": 1,
+    "baseline_seed42": {
+      "bleu": 13.68,
+      "tokens": 36096
+    },
+    "english_mean_delta": 0.34,
+    "note": "one call per issue; Japanese pairs that carry the gain fall; stitching replaces collateral damage"
+  }
+}

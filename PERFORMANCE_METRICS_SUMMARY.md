@@ -48,14 +48,31 @@
 - `/api/translate/improve` - 返回改进性能指标
 
 #### 3. 性能指标计算
+
+> **2026-10-19 口径变更**：token 计数从估算（`word_count + char_count // 4`）
+> 替换为真实 tokenizer 计数（`transcoder/tokcount.py`，tiktoken `o200k_base`，
+> 跨模型统一记账口径）；引擎各路径（简单/反思/改进/流式）已改用 `count_tokens()`，
+> 旧估算公式仅保留于对照报告。实测对比见 `RESULTS/tokcount_report.json`（旧口径对
+> 中文/日文文本低估约 70%，对英文高估约 67%）：
+
+| 样本 | 字符 | 旧口径估算 | o200k 实计 | 偏差 |
+|---|---|---|---|---|
+| hello-en（英文） | 35 | 15 | 9 | +67% |
+| zh-short（中文短句） | 11 | 3 | 11 | −73% |
+| zh-para（中文段落） | 44 | 12 | 42 | −71% |
+| ja-short（日文） | 20 | 6 | 17 | −65% |
+| mixed-tech（混排） | 98 | 33 | 36 | −8% |
+
 ```python
-# Token数量估算
+# 旧口径（仅保留作对照，不再使用）
 word_count = len(translation.split())
 char_count = len(translation)
 estimated_tokens = word_count + char_count // 4
 
-# 速度计算
-tokens_per_second = estimated_tokens / total_time
+# 新口径（当前生效）：transcoder/tokcount.py
+from transcoder.tokcount import count_tokens
+tokens = count_tokens(text)          # tiktoken o200k_base
+tokens_per_second = tokens / total_time
 ```
 
 ### 前端改进

@@ -5,7 +5,7 @@ TransCoder 启动脚本
 import os
 import sys
 from waitress import serve
-from app import app
+from transcoder.app import app
 import config
 
 def main():
